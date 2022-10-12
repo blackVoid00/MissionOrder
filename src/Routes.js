@@ -8,12 +8,14 @@ import UserList from "./components/UserList";
 import DetailUser from "./components/DetailUser"
 import UserUpdate from "./components/UserUpdate";
 import Home from "./components/Home";
+import BonCaisse from "./components/BonCaisse";
 const Routing = () => {
     return (
         <Routes>
            
             <Route exact path="/app" element={<Layout></Layout>}></Route>
             <Route exact path="/home" element={<Home></Home>}></Route>
+            <Route exact path="/boncaisse" element={<Layout><BonCaisse></BonCaisse></Layout>}></Route>
             <Route exact path="/login" element={<Login />}></Route>
             <Route exact path="/mission" element={<Layout><Mission></Mission></Layout>}></Route>
             <Route exact path="/user" element={<Layout><User></User></Layout>}></Route>

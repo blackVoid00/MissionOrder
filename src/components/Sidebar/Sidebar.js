@@ -83,7 +83,7 @@ const linksArray = [
     {
         label: "test4",
         icon:  <BsPeople />,
-        path: "/",
+        path: "/boncaisse",
        
     },
     {
