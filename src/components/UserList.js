@@ -2,7 +2,7 @@ import React ,{useEffect, useState} from 'react'
 import axios from "axios"
 import styles from "styled-components"
 import { useNavigate } from 'react-router-dom'
-import './Table.css'
+//////////////////////////////////////////////////////////////
 const MainDiv = styles.div`
 display:inline-block;
 background-color:#1c539b;
@@ -12,6 +12,42 @@ margin-top:5%;
 width:100vh;
 height:700px;
 `
+const Table=styles.table`
+border-collapse: collapse;
+border: 2px solid rgb(200, 200, 200);
+letter-spacing: 1px;
+font-family: sans-serif;
+font-size: .8rem;
+width:100%;
+height: 5%;
+`
+const Td =styles.td`
+border: 1px solid black;
+padding: 10px;
+text-align: center;
+`
+
+const Th =styles.th`
+border: 1px solid black;
+padding: 10px;`
+
+
+// th[scope="col"] {
+//     background-color: peru;
+//     color: #fff;
+// }
+
+// th[scope="row"] {
+//     background-color: #d7d9f2;
+// }
+
+const Caption =styles.caption`
+padding: 10px;
+caption-side: bottom;
+`
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 const UserList = () => {
 const navigate=useNavigate()
 const [val,setValue]=useState("")
@@ -43,34 +79,34 @@ const updateItem=(ID)=>{
          
         <MainDiv>
           <input type="text" placeholder='type a name' onChange={(e)=>setValue(e.target.value)}></input><br></br><br></br><br></br>
-            <table>
+            <Table>
             <caption></caption>
          <tr>
-             <th scope="col">Id</th>
-             <th scope="col">Nom</th>
-             <th scope="col">Prénom</th>
-             <th scope="col">Date Début Contrat</th>
-             <th scope="col">Date Fin Contrat</th>
-             <th scope="col">Status</th>
-             <th scope="col">Actions</th>
+             <Th >Id</Th>
+             <Th >Nom</Th>
+             <Th >Prénom</Th>
+             <Th >Date Début Contrat</Th>
+             <Th >Date Fin Contrat</Th>
+             <Th >Status</Th>
+             <Th >Actions</Th>
          </tr>
  {users.filter((user)=>user.nom.toLowerCase().includes(val)).map((data) => (
         
          <tr>
-             <td>{data.idUser}</td>
-             <td>{data.nom}</td>
-             <td>{data.prenom}</td>
-             <td>{data.dateDebutContrat}</td>
-             <td>{data.dateFinContrat}</td>
-             <td>{data.status.toString()}</td>
-             <td> <button onClick={() => deleteItem(data.idUser)}>Delete</button> &nbsp;&nbsp;
+             <Td>{data.idUser}</Td>
+             <Td>{data.nom}</Td>
+             <Td>{data.prenom}</Td>
+             <Td>{data.dateDebutContrat}</Td>
+             <Td>{data.dateFinContrat}</Td>
+             <Td>{data.status.toString()}</Td>
+             <Td> <button onClick={() => deleteItem(data.idUser)}>Delete</button> &nbsp;&nbsp;
              <button onClick={()=>detailItem(data.idUser)}>Details</button>&nbsp;&nbsp;
              <button onClick={()=>updateItem(data.idUser)}>Update</button>
-             </td>
+             </Td>
          </tr>
     
         ))}
-        </table>
+        </Table>
         </MainDiv>
 
          )
