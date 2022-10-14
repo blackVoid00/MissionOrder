@@ -66,6 +66,15 @@ border-radius:2px  !important;
 outline: none  !important;
 }
 `
+const Button=styles.button`
+margin-left:400px;
+margin-top:100px;
+text-align: left !important;
+cursor:pointer;
+&:focus{
+outline: none  !important;
+}
+`
 
 const CreerMS = () => {
   return (
@@ -99,8 +108,8 @@ const CreerMS = () => {
         <Label>Bon de Caisse</Label>
         <Input></Input>
       </DivInput>
+      <Button>Create</Button> 
         </SousDiv2>
-      
     </Div2>
     </MainDiv>
     </>
