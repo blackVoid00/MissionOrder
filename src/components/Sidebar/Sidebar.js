@@ -77,7 +77,7 @@ const linksArray = [
     {
         label: "test3",
         icon:  <BsPeople />,
-        path: "/",
+        path: "/creerMs",
        
     },
     {

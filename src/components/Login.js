@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from 'styled-components'
 import logo from '../assets/logo.jpg'
 import {useNavigate} from 'react-router-dom'
+import axios from "axios"
 const  H1= styles.h1`
 color:black;
 width:40%;
@@ -76,17 +77,34 @@ margin-right:0%;
 margin-bottom:0%;
 `
 const Login = () => {
+    const url="https://localhost:7048/api/Login"
+
+
+    const [identifiant,setIdentifiant]=useState("");
     const [password,setPassword] =useState("");
-    const [email,setEmail] =useState("");
     const [loginstatus , setLoginstatus]=useState(false);
+
     let navigate=useNavigate()
+    
    const LoginApp=()=>{
-    if(email=="nouhaila" && password=="nouha"){
-         //setLoginstatus(true)
-         navigate("/app")
-    }else{
-        setLoginstatus(true)
-    }
+    axios.post(url,{
+        identifiant: identifiant,
+        pwd: password,
+    }).then((response)=>{
+        if(response.status==200){
+            localStorage.setItem("loginId", identifiant);
+            navigate("/app")
+        } 
+    });
+      
+    
+  
+    // if(email=="nouhaila" && password=="nouha"){
+    //      //setLoginstatus(true)
+    //      navigate("/app")
+    // }else{
+    //     setLoginstatus(true)
+    // }
    }
   return (
     <>
@@ -95,7 +113,7 @@ const Login = () => {
     <Container>
         <SecondContainer>
         <Label>Identifiant: &nbsp; </Label>
-        <Input type="text" placeholder="enter your email" onChange={(e)=>{setEmail(e.target.value)}}></Input> <br></br><br></br><br></br>
+        <Input type="text" placeholder="enter your email" onChange={(e)=>{setIdentifiant(e.target.value)}}></Input> <br></br><br></br><br></br>
         <Label>Password: &nbsp; </Label>
         <Input type="password" placeholder="enter your password"  onChange={(e)=>{setPassword(e.target.value)}}></Input><br></br><br></br><br></br>
         <Button onClick={LoginApp}>Connect</Button>  
