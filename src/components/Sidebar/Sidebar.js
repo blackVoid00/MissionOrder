@@ -92,6 +92,12 @@ const linksArray = [
         path: "/mission",
        
     },
+    {
+        label: "test6",
+        icon:  <BsPeople />,
+        path: "/creerBs",
+       
+    },
  
   
 ];

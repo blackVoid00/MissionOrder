@@ -4,7 +4,7 @@ import styles from "styled-components"
 
 const GlobalDiv=styles.div`
 display:flex;
-margin-left:4q0%;
+margin-left:18%;
 margin-top:5%;
 width:100%
 `
@@ -14,6 +14,7 @@ border:2px solid black;
 justify-content:space-between;
 display:flex;
 width:100%;
+height:800px;
 `
 const Div1 =styles.div`
 margin-top:5%;
@@ -29,6 +30,7 @@ height:50vh;
 const Div=styles.div`
 display:flex;
 padding:5px 5px 5px 5px;
+margin-top:10px;
 `
 
 const Label=styles.label`

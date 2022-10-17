@@ -1,4 +1,5 @@
 import React from 'react'
+
 import styles from 'styled-components'
 
 
@@ -11,12 +12,11 @@ margin-top:10%;
 const Div = styles.div`
 display:flex;
 border:2px solid black;
-width:500px;
-height:400px;
+
 `
 const Div2 = styles.div`
 margin-left: 90px;
-display:flex;
+display:inline-block;
 border:2px solid black;
 width:100%;
 height:400px;
@@ -44,6 +44,8 @@ margin-top: 50px;
 
 const DivInput=styles.div`
 display:flex;
+margin-top: 20px;
+margin-left: 50px;
 `
 
 const Label=styles.label`
@@ -86,44 +88,44 @@ outline: none  !important;
 }
 `
 
-const CreerMS = () => {
+const CreerBs = () => {
   return (
-    <>
-    <MainDiv>
-    {/* <Div>
-     <H1>Nouvelle Mission</H1>
-    </Div> */}
+   <MainDiv>
     <Div2>
-        <SousDiv1>
+    <DivInput>
+            <Label>Numero Bon de Caisse</Label>
+             <Input type="text"></Input>
+        </DivInput>
         <DivInput>
-        <Label>Nom</Label>
-        <Input></Input>
-      </DivInput><DivInput>
-        <Label>Prenom</Label>
-        <Input></Input>
-      </DivInput><DivInput>
-        <Label>Date</Label>
-        <Input type="date"></Input>
-      </DivInput>
-        </SousDiv1>
-
-        <SousDiv2>
+            <Label>Date</Label>
+             <Input type="date"></Input>
+        </DivInput>
         <DivInput>
-        <Label>Matricule</Label>
-        <Input></Input>
-      </DivInput><DivInput>
-        <Label>Numero Mission</Label>
-        <Input></Input>
-      </DivInput><DivInput>
-        <Label>Bon de Caisse</Label>
-        <Input></Input>
-      </DivInput>
-      <Button>Create</Button> 
-        </SousDiv2>
+            <Label>Bénéficiaire</Label>
+             <Input type="text"></Input>
+        </DivInput>
+        <DivInput>
+            <Label>Libellé</Label>
+             <Input type="text"></Input>
+        </DivInput>
+        <DivInput>
+            <Label>Caissier</Label>
+             <Input type="text"></Input>
+        </DivInput>
     </Div2>
-    </MainDiv>
-    </>
+    <Div2>
+    <DivInput>
+            <Label>Crédit</Label>
+             <Input type="text"></Input>
+    </DivInput>
+    <DivInput>
+            <Label>Solde</Label>
+             <Input type="text"></Input>
+        </DivInput>
+      <Button>Create</Button>
+    </Div2>
+   </MainDiv>
   )
 }
 
-export default CreerMS
+export default CreerBs
