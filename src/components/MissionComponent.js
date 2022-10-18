@@ -254,10 +254,7 @@ const MissionComponent = () => {
           </Wrapper>
           &nbsp; &nbsp; &nbsp; &nbsp;
           <IconContext.Provider value={{ color: 'white', size: '30px'}}>
-           
-            <AiOutlineCloudUpload></AiOutlineCloudUpload>
-  
-       
+            <AiOutlineCloudUpload></AiOutlineCloudUpload>   
             </IconContext.Provider>
 
         </DivM> 

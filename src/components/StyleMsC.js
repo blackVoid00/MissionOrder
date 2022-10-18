@@ -59,8 +59,8 @@ height:50vh;
 export const InputM=styles.input`
 margin-bottom:10px;
 margin-top:10px;
-height:30px;
-width:150px;
+height:40px;
+width:200px;
 text-align: left !important;
 border: 10px solid transparent  !important;
 border-radius:2px  !important;
@@ -84,19 +84,16 @@ outline: none  !important;
 }
 `
 export const InputMFILE=styles.input`
-margin-top:10px;
-background-color: red;
 opacity: 0;
 -moz-opacity: 0;
 filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
-
+cursor:pointer !important;
 `
 export const Wrapper=styles.div`
 height: 32px;
 width: 40px;
 overflow: hidden;
-cursor: pointer;
-background-image:${image};
+background-image:url(${image});
 border:1px solid black !important;
 `
 export const LabelM=styles.label`
