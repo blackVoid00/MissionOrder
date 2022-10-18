@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import {MainM,H1, MainDiv,MainDiv2,Div1,SousDiv1,SousDiv2,Div2,Div3,InputM,Description,InputMFILE,InputD,Div1M,Div2M,LabelM,LabelMFile,DivM,ButtonM,Final,InputModal,LabelModal} from "./StyleMsC"
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import { Container } from 'react-bootstrap';
-
+import {MainM, MainDiv,MainDiv2,Wrapper,Div1,SousDiv1,SousDiv2,Div2,Div3,InputM,Description,InputMFILE,InputD,Div1M,Div2M,LabelM,LabelMFile,DivM,ButtonM,Final,InputModal,LabelModal} from "./StyleMsC"
+import {AiOutlineCloudUpload} from "react-icons/ai"
+import { IconContext } from "react-icons";
 const MissionComponent = () => {
     const [isDisabled,setDisabled]=useState(true)
     const [c,setClicked]=useState(false)
@@ -103,6 +101,7 @@ const MissionComponent = () => {
                       <DivM>
                        <LabelM> Accompagné par :</LabelM>
                        <InputM type="text"></InputM>
+                      
                       </DivM>
                    </SousDiv1>
                        <SousDiv2>
@@ -134,7 +133,16 @@ const MissionComponent = () => {
                            </DivM>
                           <DivM>
                           <LabelM>Fiche Intervention</LabelM>
-                         <InputMFILE type="file"  ></InputMFILE>
+                          <Wrapper>
+                           <InputMFILE  type="file" ></InputMFILE>
+                          </Wrapper>
+                          &nbsp; &nbsp; &nbsp; &nbsp;
+          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+           
+            <AiOutlineCloudUpload></AiOutlineCloudUpload>
+  
+       
+            </IconContext.Provider>
                           </DivM>
                           <DivM>
                            <ButtonM onClick={handleShow}>Autre Mission</ButtonM>
@@ -176,6 +184,7 @@ const MissionComponent = () => {
                   <DivM>
                     <LabelModal>Accompagné par :</LabelModal>
                      <InputModal type="text" placeholder='entrer le nom complet '></InputModal>
+        
                   </DivM>
                   </Div1M>
 
@@ -206,16 +215,26 @@ const MissionComponent = () => {
                   </DivM>
                   <DivM>
                           <LabelM>Fiche Intervention</LabelM>
-                         <InputMFILE type="file"  ></InputMFILE>
+                          <Wrapper>
+                          <InputMFILE  type="file"  ></InputMFILE>
+                          </Wrapper>
+                          &nbsp; &nbsp; &nbsp; &nbsp;
+          <IconContext.Provider value={{ color: '#1c539b', size: '30px'}}>
+           
+            <AiOutlineCloudUpload></AiOutlineCloudUpload>
+  
+       
+            </IconContext.Provider>
+
                           </DivM>
+                       
                   </Div2M>
-             
+                  
                   </MainM>
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                    Close
-                  </Button>
+                  
+                  <Button variant="success" >Soumettre</Button>
                  
                 </Modal.Footer>
             </Modal>
@@ -230,52 +249,121 @@ const MissionComponent = () => {
            <LabelM> Gasoil :</LabelM>
             <InputM type="text" placeholder='frais gazoil' ></InputM>
             <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-             <InputMFILE type="file" accept="image/png, image/jpg, image/gif, image/jpeg" ></InputMFILE>
+            <Wrapper>
+            <InputMFILE  type="file"  ></InputMFILE>
+          </Wrapper>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+           
+            <AiOutlineCloudUpload></AiOutlineCloudUpload>
+  
+       
+            </IconContext.Provider>
+
         </DivM> 
         <DivM>
            <LabelM> Parking :</LabelM>
             <InputM type="text" placeholder='frais parking'></InputM>
             <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-             <InputMFILE type="file" accept="image/png, image/jpg, image/gif, image/jpeg" ></InputMFILE>
+            <Wrapper>
+            <InputMFILE  type="file"  ></InputMFILE>
+          </Wrapper>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+           
+            <AiOutlineCloudUpload></AiOutlineCloudUpload>
+  
+       
+            </IconContext.Provider>
+
         </DivM> 
         <DivM>
            <LabelM> Hotel :</LabelM>
             <InputM type="text" placeholder='frais hotel'></InputM>
             <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-             <InputMFILE type="file" accept="image/png, image/jpg, image/gif, image/jpeg" ></InputMFILE>
+          <Wrapper>
+            <InputMFILE  type="file"  ></InputMFILE>
+          </Wrapper>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+           
+            <AiOutlineCloudUpload></AiOutlineCloudUpload>
+  
+       
+            </IconContext.Provider>
+           
         </DivM> 
         <DivM>
            <LabelM> Repas :</LabelM>
             <InputM type="text" placeholder='frais repas'></InputM>
             <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-             <InputMFILE type="file" accept="image/png, image/jpg, image/gif, image/jpeg" ></InputMFILE>
+            <Wrapper>
+            <InputMFILE  type="file"  ></InputMFILE>
+          </Wrapper>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+           
+            <AiOutlineCloudUpload></AiOutlineCloudUpload>
+  
+       
+            </IconContext.Provider>
+
         </DivM>
         <DivM>
            <LabelM> Taxi :</LabelM>
             <InputM type="text" placeholder='frais taxi'></InputM>
             <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-             <InputMFILE type="file" accept="image/png, image/jpg, image/gif, image/jpeg" ></InputMFILE>
+            <Wrapper>
+            <InputMFILE  type="file"  ></InputMFILE>
+          </Wrapper>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+           
+            <AiOutlineCloudUpload></AiOutlineCloudUpload>
+  
+       
+            </IconContext.Provider>
+
         </DivM>
         <DivM>
            <LabelM> Ach/tech :</LabelM>
             <InputM type="text" placeholder='frais achat tech' ></InputM>
             <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-             <InputMFILE type="file" accept="image/png, image/jpg, image/gif, image/jpeg" ></InputMFILE>
+            <Wrapper>
+            <InputMFILE  type="file"  ></InputMFILE>
+          </Wrapper>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+           
+            <AiOutlineCloudUpload></AiOutlineCloudUpload>
+  
+       
+            </IconContext.Provider>
         </DivM>  
         <DivM>
            <LabelM> divers :</LabelM>
             <InputM type="text" placeholder='autre'></InputM>
             <LabelMFile>P.J</LabelMFile> &nbsp; &nbsp; &nbsp; &nbsp;
-            <InputMFILE type="file" accept="image/png, image/jpg, image/gif, image/jpeg" ></InputMFILE>
+            <Wrapper>
+            <InputMFILE  type="file"  ></InputMFILE>
+          </Wrapper>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+           
+            <AiOutlineCloudUpload></AiOutlineCloudUpload>
+  
+       
+            </IconContext.Provider>
+
         </DivM>
         <Description>
             <LabelM>Description :</LabelM>
-            <InputM  type="text" size="200"></InputM>
+            <InputD  type="text" size="50"></InputD>
         </Description>
         <Final>
         <DivM>
         <LabelM> Total</LabelM>    
-        <InputM type="text" disabled></InputM>
+        <InputM  type="text" disabled></InputM>
         </DivM>
         <DivM> <ButtonM>Soumettre</ButtonM>  </DivM>
         </Final>

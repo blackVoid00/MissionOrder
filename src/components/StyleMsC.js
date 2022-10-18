@@ -1,5 +1,5 @@
 import styles from "styled-components"
-
+import image from "../assets/upload.png"
 
 export const MainM=styles.div`
 display:flex;
@@ -15,7 +15,7 @@ export const MainDiv=styles.div`
 display:inline-block;
 justify-content:center;
 border:2px solid black;
-margin-right:10px;
+margin-right:0px;
 margin-top:1%;
 width:100vh;
 background-color:#1c539b;
@@ -24,8 +24,8 @@ export const MainDiv2 = styles.div`
 display:inline-block;
 background-color:#1c539b;
 border:2px solid black;
-margin-left:5%;
-margin-top:5%;
+margin-left:1%;
+margin-top:1%;
 width:60vh;
 height:700px;
 `
@@ -70,6 +70,7 @@ outline: none  !important;
 `
 export const Description=styles.div`
 margin-top:50px;
+
 `
 export const InputD=styles.input`
 margin-top:10px;
@@ -84,6 +85,19 @@ outline: none  !important;
 `
 export const InputMFILE=styles.input`
 margin-top:10px;
+background-color: red;
+opacity: 0;
+-moz-opacity: 0;
+filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+
+`
+export const Wrapper=styles.div`
+height: 32px;
+width: 40px;
+overflow: hidden;
+cursor: pointer;
+background-image:${image};
+border:1px solid black !important;
 `
 export const LabelM=styles.label`
 display: inline-block;
@@ -119,7 +133,7 @@ export const InputModal=styles.input`
 margin-bottom:10px;
 margin-top:10px;
 height:30px;
-width:200px;
+width:300px;
 text-align: left !important;
 border: 1px solid black !important;
 border-radius:2px  !important;
@@ -135,6 +149,7 @@ color:black !important;
 `
 export const Div1M=styles.div`
 display: inline-block;
+margin-right:100px ! important;
 `
 export const Div2M=styles.div`
 display:inline-block;

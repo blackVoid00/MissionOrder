@@ -1,5 +1,7 @@
 import React ,{useState} from 'react'
 import styles from 'styled-components'
+
+
 const Label=styles.label`
 display: inline-block;
 width: 160px;
@@ -88,6 +90,7 @@ export const SousMission = ({name}) => {
                       <Div>
                        <Label> Accompagné par :</Label>
                        <Input type="text"></Input>
+                       
                       </Div>
          </SousDiv1>
                        <SousDiv2>
