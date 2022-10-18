@@ -53,9 +53,7 @@ export const SLinkContainer = styled.div`
     background: ${({ theme, isActive }) => (!isActive ? `transparent` : theme.bg3)};
     border-radius:300px;
     margin: 10px 0;
-    :hover {
-        background-color:black;
-    }
+  
 `;
 
 export const SLink = styled(Link)`

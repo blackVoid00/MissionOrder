@@ -175,9 +175,9 @@ const User = () => {
             <Div>
                 <Label>Service :</Label>
                 <Select name="idService" onChange={(e)=>setService(e.target.value)}>
-                    <Option>1</Option>
-                    <Option>2</Option>
-                   
+                    <Option value='1'>Informatique</Option>
+                    <Option value='2'>Technique</Option>
+                    <Option value='3'>Administration</Option>
                 </Select>
             </Div>
             <br></br><br></br>
@@ -186,9 +186,9 @@ const User = () => {
             <Div>
                 <Label> Role :</Label>
                 <Select name="role" onChange={(e)=>setRole(e.target.value)}>
-                    <Option>0</Option>
-                    <Option>1</Option>
-                    <Option>2</Option>
+                    <Option value="0">utilisateur</Option>
+                    <Option value="1">Superviseur</Option>
+                    <Option  value="2">Administrateur</Option>
                 </Select>
             </Div>
             <br></br><br></br>

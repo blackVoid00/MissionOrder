@@ -14,11 +14,14 @@ import  logo from "../../assets/logo.jpg";
 
 import {
  
-    AiOutlineLeft,
+    AiOutlineLeft,AiOutlineFileText
    
 } from "react-icons/ai";
 
-import { BsPeople } from "react-icons/bs";
+import {MdOutlineFilterAlt} from "react-icons/md";
+import { BsPeople ,BsReceiptCutoff} from "react-icons/bs";
+
+import {TbReceipt2 } from "react-icons/tb";
 
 import { useLocation } from "react-router-dom";
 import {IconContext} from 'react-icons'
@@ -32,7 +35,10 @@ const Sidebar = () => {
         <SSidebar isOpen={sidebarOpen}>
             <>
                 <SSidebarButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p) => !p)}>
-                    <AiOutlineLeft />
+                    <IconContext.Provider value={{ color: '#1c539b', size: '20px'}}>
+                         <AiOutlineLeft />
+                    </IconContext.Provider>
+                   
                 </SSidebarButton>
             </>
             <SLogo>
@@ -76,13 +82,13 @@ const linksArray = [
     },
     {
         label: "test3",
-        icon:  <BsPeople />,
+        icon:  <AiOutlineFileText />,
         path: "/creerMs",
        
     },
     {
         label: "test4",
-        icon:  <BsPeople />,
+        icon:  <MdOutlineFilterAlt />,
         path: "/boncaisse",
        
     },
@@ -98,6 +104,13 @@ const linksArray = [
         path: "/creerBs",
        
     },
+    {
+        label: "Bon caisse",
+        icon:  <BsReceiptCutoff />,
+        path: "/tableuser",
+       
+    },
+ 
  
   
 ];

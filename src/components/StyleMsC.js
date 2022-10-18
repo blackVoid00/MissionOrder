@@ -9,7 +9,7 @@ export const H1=styles.h1`
 color:black;
 font-weight:bold !important;
 font-size:30px !important;
-margin-left:30%;
+
 `
 export const MainDiv=styles.div`
 display:inline-block;
@@ -117,7 +117,7 @@ background-color:#B0C4DE ;
 font-weight:bold !important;
 cursor: pointer;
 font-weight:bold ;
-box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
+
 width:140px;
 height:30px;
 margin-left:55%;
