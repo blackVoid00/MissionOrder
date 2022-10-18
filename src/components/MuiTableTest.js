@@ -13,6 +13,7 @@ import EditIcon from "@mui/icons-material/EditOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/DoneAllTwoTone";
 import RevertIcon from "@mui/icons-material/NotInterestedOutlined";
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 const MainDiv = styles.div`
@@ -79,13 +80,10 @@ const onToggleDeleteMode = idUser => {
       });
     setRows(rows.filter((r) => {return r.idUser !== idUser}));
 };
+const onToggleDetailsMode = idUser => {
+    navigate(`/userdetail/${idUser}`)
+}
 
-const detailItem=(ID)=>{
-navigate(`/userdetail/${ID}`)
-}
-const updateItem=(ID)=>{
-navigate(`/userupdate/${ID}`)
-}
   const [previous, setPrevious] = useState({});
   const classes = useStyles();
 
@@ -179,6 +177,13 @@ navigate(`/userupdate/${ID}`)
                 >
                     <DeleteIcon />
                  </IconButton>
+                 <IconButton
+                   aria-label="details"
+                   onClick={() => onToggleDetailsMode(row.idUser)}
+                >
+              <FormatListBulletedIcon />
+                 </IconButton>
+                 
                  </>
                 )}
               </TableCell>
