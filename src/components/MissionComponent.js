@@ -1,10 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect  } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import {MainM, MainDiv,MainDiv2,Wrapper,Div1,SousDiv1,SousDiv2,Div2,Div3,InputM,Description,InputMFILE,InputD,Div1M,Div2M,LabelM,LabelMFile,DivM,ButtonM,Final,InputModal,LabelModal} from "./StyleMsC"
 import {AiOutlineCloudUpload} from "react-icons/ai"
 import { IconContext } from "react-icons";
+import axios from "axios";
 const MissionComponent = () => {
+  const url = "https://localhost:7048/api/Utilisateurs"
+  const [data,setData] = useState([])
+
+  const getUsers=async( )=> { 
+    await axios.get(url).then((response) => {
+     setData(response.data)
+    })
+  }
+  useEffect(()=>{
+      getUsers()
+   
+  })
+ 
     const [isDisabled,setDisabled]=useState(true)
     const [c,setClicked]=useState(false)
     
@@ -367,6 +381,20 @@ const MissionComponent = () => {
          </SousDiv1>
          
             </Div3>
+            <Div3>
+            <table style={{height:"100px",width:"200px", backgroundColor:"black",marginBottom:"100px", borderCollapse: "collapse"}}>
+                <tr>
+                  <th style={{paddingTop: "12px",paddingBottom: "12px",textAlign: "left" ,backgroundColor: "#04AA6D", color: "white"}}>Numero</th>
+                  <th style={{paddingTop: "12px",paddingBottom: "12px",textAlign: "left" ,backgroundColor: "#04AA6D", color: "white"}}>Crédit</th>
+                </tr>
+                <tr>
+                  <td style={{ border: "1px solid #ddd",padding: "8px"}}>{data[0].idUser}</td>
+                  <td style={{ border: "1px solid #ddd",padding: "8px"}}>{data[0].identifiant}</td>
+                </tr>
+              </table>
+            
+            </Div3>
+             
         </MainDiv2>
         </MainM>
         </>

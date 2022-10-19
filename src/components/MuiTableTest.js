@@ -18,11 +18,9 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 const MainDiv = styles.div`
 display:inline-block;
-border:2px solid black;
 margin-left:5%;
 margin-top:5%;
-width:100vh;
-height:700px;
+
 `
 
 const useStyles = makeStyles( ({
@@ -67,6 +65,32 @@ const CustomTableCell = ({ row, name, onChange }) => {
 const  MuiTableTest=()=> {
   const [rows, setRows] = useState([
   ]);
+  const updateUser=async ({ idUser,nom, prenom,matricule, mail , pwd, role ,identifiant, idService,cin, numeroTel, dateDebutContrat,dateFinContrat, status})=>{
+    try {
+
+      await axios.put("https://localhost:7048/api/Utilisateurs/"+idUser,{
+        idUser:idUser,
+        nom:  nom,
+        prenom: prenom,
+        matricule: matricule,
+        mail: mail,
+        pwd: pwd,
+        role:role ,
+        identifiant: identifiant,
+        idService: idService,
+        cin:  cin,
+        numeroTel: numeroTel,
+        dateDebutContrat: dateDebutContrat,
+        dateFinContrat:dateFinContrat,
+        status:status
+    }).then((response) => {
+    alert("user updated")
+    })
+    }catch (e) {
+
+    }
+  
+    }
   const navigate=useNavigate()
   const url="https://localhost:7048/api/Utilisateurs";
   useEffect(()=>{
@@ -80,6 +104,7 @@ const onToggleDeleteMode = idUser => {
       });
     setRows(rows.filter((r) => {return r.idUser !== idUser}));
 };
+
 const onToggleDetailsMode = idUser => {
     navigate(`/userdetail/${idUser}`)
 }
@@ -87,17 +112,26 @@ const onToggleDetailsMode = idUser => {
   const [previous, setPrevious] = useState({});
   const classes = useStyles();
 
-  const onToggleEditMode = idUser => {
-    setRows(state => {
+  const onToggleDoneMode = idUser => {
+    setRows(()=> {
       return rows.map(row => {
         if (row.idUser === idUser) {
+          updateUser(row)
           return { ...row, isEditMode: !row.isEditMode };
         }
         return row;
       });
     });
   };
-
+const onToggleEditMode = idUser => {
+  const newUser=rows.map((row)=>{
+    if (row.idUser === idUser) {
+      return { ...row, isEditMode: !row.isEditMode };
+    }
+    return row;
+  });
+  setRows(newUser)
+}
   const onChange = (e, row) => {
     if (!previous[row.idUser]) {
       setPrevious(state => ({ ...state, [row.idUser]: row }));
@@ -138,6 +172,16 @@ const onToggleDetailsMode = idUser => {
             <TableCell align="left">Nom</TableCell>
             <TableCell align="left">Prenom</TableCell>
             <TableCell align="left">Matricule</TableCell>
+            <TableCell align="left">Mail</TableCell>
+            <TableCell align="left">Password</TableCell>
+            <TableCell align="left">Role</TableCell>
+            <TableCell align="left">Identifiant</TableCell>
+            <TableCell align="left">Service</TableCell>
+            <TableCell align="left">Cin</TableCell>
+            <TableCell align="left">Numero Tél</TableCell>
+            <TableCell align="left">Date Fin Contrat</TableCell>
+            <TableCell align="left">Date Début Contrat</TableCell>
+            <TableCell align="left">Status</TableCell>
             <TableCell align="left" >Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -147,12 +191,22 @@ const onToggleDetailsMode = idUser => {
               <CustomTableCell {...{ row, name: "nom", onChange }} />
               <CustomTableCell {...{ row, name: "prenom", onChange }} />
               <CustomTableCell {...{ row, name: "matricule", onChange }} />
+              <CustomTableCell {...{ row, name: "mail", onChange }} />
+              <CustomTableCell {...{ row, name: "pwd", onChange }} />
+              <CustomTableCell {...{ row, name: "role", onChange }} />
+              <CustomTableCell {...{ row, name: "identifiant", onChange }} />
+              <CustomTableCell {...{ row, name: "idService", onChange }} />
+              <CustomTableCell {...{ row, name: "cin", onChange }} />
+              <CustomTableCell {...{ row, name: "numeroTel", onChange }} />
+              <CustomTableCell {...{ row, name: "dateDebutContrat", onChange }} />
+              <CustomTableCell {...{ row, name: "dateFinContrat", onChange }} />
+              <CustomTableCell {...{ row, name: "status", onChange }} />
               <TableCell className={classes.selectTableCell}>
                 {row.isEditMode ? (
                   <>
                     <IconButton
                       aria-label="done"
-                      onClick={() => onToggleEditMode(row.idUser)}
+                      onClick={() => onToggleDoneMode(row.idUser)}
                     >
                       <DoneIcon />
                     </IconButton>

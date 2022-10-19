@@ -110,7 +110,7 @@ const User = () => {
     const [numeroTel,setTel]=useState("")
     const [dateDebutContrat,setDateD]=useState("")
     const [dateFinContrat,setDateF]=useState("")
-    const [status,setStatus]=useState(true)
+    const [status,setStatus]=useState("")
  const postUser=()=>{
     axios.post("https://localhost:7048/api/Utilisateurs",{
         nom:  nom,
@@ -127,7 +127,7 @@ const User = () => {
         dateFinContrat:dateFinContrat,
         status:status
       }).then((response)=>{
-     alert("user inserted successfully")
+            alert("user inserted successfully")
     })
  }
  console.log(status)  
@@ -158,7 +158,7 @@ const User = () => {
             </Div>
             <Div>
                 <Label> Mot de passe :</Label>
-                <Input type="text" name="pwd" onChange={(e)=>setPwd(e.target.value)} placeholder='entrer le mdp'></Input>
+                <Input type="password" name="pwd" onChange={(e)=>setPwd(e.target.value)} placeholder='entrer le mdp'></Input>
             </Div>
             <Div>
                 <Label> CIN :</Label>
@@ -200,6 +200,10 @@ const User = () => {
             <Div>
                 <Label> Date Fin contrat:</Label>
                 <Input name="dateFinContrat" type="date" onChange={(e)=>setDateF(e.target.value)} ></Input>
+            </Div>
+            <Div>
+                <Label>Status:</Label>
+                <Input name="status" type="text" onChange={(e)=>setStatus(e.target.value)} ></Input>
             </Div>
                 <Button onClick={postUser}>Valider</Button>
                 </Div2>

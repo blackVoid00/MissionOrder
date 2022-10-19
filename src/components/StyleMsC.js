@@ -52,8 +52,8 @@ height:50vh;
 export const Div3 =styles.div`  
 margin-top:5%;
 display:flex;
-justify-content:space-between;
-height:50vh;
+
+height:auto;
 `
 
 export const InputM=styles.input`
@@ -108,6 +108,7 @@ font-weight:bold !important;
 `
 export const DivM=styles.div`
 display:flex;
+margin-top:16px;
 `
 export const ButtonM=styles.button`
 position: relative;
@@ -117,11 +118,10 @@ background-color:#B0C4DE ;
 font-weight:bold !important;
 cursor: pointer;
 font-weight:bold ;
-
 width:140px;
 height:30px;
 margin-left:55%;
-margin-top:10%;
+margin-top:5px;
 `
 export const Final=styles.div`
 margin-top:50px;
