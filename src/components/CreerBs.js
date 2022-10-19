@@ -108,10 +108,6 @@ const CreerBs = () => {
             <Label>Libellé</Label>
              <Input type="text"></Input>
         </DivInput>
-        <DivInput>
-            <Label>Caissier</Label>
-             <Input type="text"></Input>
-        </DivInput>
     </Div2>
     <Div2>
     <DivInput>

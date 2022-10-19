@@ -6,19 +6,19 @@ import {AiOutlineCloudUpload} from "react-icons/ai"
 import { IconContext } from "react-icons";
 import axios from "axios";
 const MissionComponent = () => {
-  const url = "https://localhost:7048/api/Utilisateurs"
-  const [data,setData] = useState([])
+  // const url = "https://localhost:7048/api/Utilisateurs"
+  // const [data,setData] = useState([])
 
-  const getUsers=async( )=> { 
-    await axios.get(url).then((response) => {
-     setData(response.data)
-    })
-  }
-  useEffect(()=>{
-      getUsers()
+  // const getUsers=async( )=> { 
+  //   await axios.get(url).then((response) => {
+  //    setData(response.data)
+  //   })
+  // }
+  // useEffect(()=>{
+  //     getUsers()
    
-  })
- 
+  // })
+
     const [isDisabled,setDisabled]=useState(true)
     const [c,setClicked]=useState(false)
     
@@ -382,7 +382,7 @@ const MissionComponent = () => {
          
             </Div3>
             <Div3>
-            <table style={{height:"100px",width:"200px", backgroundColor:"black",marginBottom:"100px", borderCollapse: "collapse"}}>
+            {/* <table style={{height:"100px",width:"200px", backgroundColor:"black",marginBottom:"100px", borderCollapse: "collapse"}}>
                 <tr>
                   <th style={{paddingTop: "12px",paddingBottom: "12px",textAlign: "left" ,backgroundColor: "#04AA6D", color: "white"}}>Numero</th>
                   <th style={{paddingTop: "12px",paddingBottom: "12px",textAlign: "left" ,backgroundColor: "#04AA6D", color: "white"}}>Crédit</th>
@@ -392,7 +392,7 @@ const MissionComponent = () => {
                   <td style={{ border: "1px solid #ddd",padding: "8px"}}>{data[0].identifiant}</td>
                 </tr>
               </table>
-            
+             */}
             </Div3>
              
         </MainDiv2>
