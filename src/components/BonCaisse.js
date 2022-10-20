@@ -14,7 +14,7 @@ const BonCaisse = () => {
 
  
   const Filter=()=>{
-    axios.get(`https://localhost:7048/api/FilterUser/${role}`).then((response) => {
+    axios.get(`https://localhost:7140/api/FilterUser/${role}`).then((response) => {
      setUsers(response.data);
     })
     setShow(true)

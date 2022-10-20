@@ -6,7 +6,7 @@ import {AiOutlineCloudUpload} from "react-icons/ai"
 import { IconContext } from "react-icons";
 import axios from "axios";
 const MissionComponent = () => {
-  // const url = "https://localhost:7048/api/Utilisateurs"
+  // const url = "https://localhost:7140/api/Utilisateurs"
   // const [data,setData] = useState([])
 
   // const getUsers=async( )=> { 
@@ -163,6 +163,8 @@ const MissionComponent = () => {
                           </DivM>
             </SousDiv2>
             <Modal
+                aria-labelledby="contained-modal-title-vcenter"
+                fullscreen="sm-down"
                 size="xl"
                 show={show}
                 onHide={handleClose}

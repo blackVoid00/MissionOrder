@@ -68,7 +68,7 @@ const  MuiTableTest=()=> {
   const updateUser=async ({ idUser,nom, prenom,matricule, mail , pwd, role ,identifiant, idService,cin, numeroTel, dateDebutContrat,dateFinContrat, status})=>{
     try {
 
-      await axios.put("https://localhost:7048/api/Utilisateurs/"+idUser,{
+      await axios.put("https://localhost:7140/api/Utilisateurs/"+idUser,{
         idUser:idUser,
         nom:  nom,
         prenom: prenom,
@@ -92,7 +92,7 @@ const  MuiTableTest=()=> {
   
     }
   const navigate=useNavigate()
-  const url="https://localhost:7048/api/Utilisateurs";
+  const url="https://localhost:7140/api/Utilisateurs";
   useEffect(()=>{
     axios.get(url).then((response) => {
         setRows(response.data);
@@ -100,7 +100,7 @@ const  MuiTableTest=()=> {
 },[])
 
 const onToggleDeleteMode = idUser => {
-    axios.delete(`https://localhost:7048/api/Utilisateurs/${idUser}`).then((response) => {
+    axios.delete(`https://localhost:7140/api/Utilisateurs/${idUser}`).then((response) => {
       });
     setRows(rows.filter((r) => {return r.idUser !== idUser}));
 };

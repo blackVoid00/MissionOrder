@@ -52,7 +52,7 @@ const UserList = () => {
 const navigate=useNavigate()
 const [val,setValue]=useState("")
 
-const url="https://localhost:7048/api/Utilisateurs";
+const url="https://localhost:7140/api/Utilisateurs";
 
     const [users,setUsers]=useState([])
 
@@ -63,7 +63,7 @@ const url="https://localhost:7048/api/Utilisateurs";
   },[])
 
    const deleteItem = (ID) => {
-          axios.delete(`https://localhost:7048/api/Utilisateurs/${ID}`).then((response) => {
+          axios.delete(`https://localhost:7140/api/Utilisateurs/${ID}`).then((response) => {
             });
           setUsers(users.filter((user) => {return user.idUser !== ID}));
       };
@@ -116,7 +116,7 @@ const updateItem=(ID)=>{
 
 
 
-  // const url="https://localhost:7048/api/Utilisateurs";
+  // const url="https://localhost:7140/api/Utilisateurs";
   //   const [users,setUsers]=useState([])
   //   const [delId,setDelId]=useState("")
   //   useEffect(()=>{
@@ -126,7 +126,7 @@ const updateItem=(ID)=>{
   //         });
   //   },[])
   // const deleteItem = (ID) => {
-  //     axios.delete(`https://localhost:7048/api/Utilisateurs/${ID}`).then((response) => {
+  //     axios.delete(`https://localhost:7140/api/Utilisateurs/${ID}`).then((response) => {
   //       });
   //     setUsers(users.filter((user) => {return user.idUser !== ID}));
   // };
@@ -151,7 +151,7 @@ const updateItem=(ID)=>{
   //   </MainDiv>
   // );
 
-  //   const url="https://localhost:7048/api/Utilisateurs";
+  //   const url="https://localhost:7140/api/Utilisateurs";
   //   const [users,setUsers]=useState([])
   //   // const [val,setValue]=useState("")
   //   const [idDel,setDelId]=useState("")
@@ -167,7 +167,7 @@ const updateItem=(ID)=>{
   //   }
     
   //  const Delete = (idofoption) => {
-  //   axios.delete(`https://localhost:7048/api/Utilisateurs/${idofoption}`).then((response) => {});
+  //   axios.delete(`https://localhost:7140/api/Utilisateurs/${idofoption}`).then((response) => {});
   //   setUsers(users.filter((u) => u.idUser !== idofoption));
   //   // window.location.reload(false);
   //  }

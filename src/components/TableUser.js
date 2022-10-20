@@ -6,7 +6,7 @@ import {Modal , Button } from 'react-bootstrap'
 import axios from 'axios'
 const TableUser = () => {
 
-    const url="https://localhost:7048/api/Utilisateurs";
+    const url="https://localhost:7140/api/Boncaisses";
     const [users,setUsers] =useState([])
     const [modalInfo ,setModalInfo] =useState([])
     const [showModal,setShowModal]=useState(false)
@@ -32,10 +32,10 @@ const TableUser = () => {
             keyboard={false}
             style={{color: "black"}}>
                  <Modal.Header closeButton>
-                  <Modal.Title  style={{color: "black"}}>Utilisateur : {modalInfo.nom}</Modal.Title>
+                  <Modal.Title  style={{color: "black"}}>Utilisateur </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <p>Cin :  {modalInfo.cin}</p>
+                  <p>mission</p>
                 </Modal.Body>
                 <Modal.Footer>
                   
@@ -51,26 +51,47 @@ const TableUser = () => {
             setUsers(response.data);
          });
     },[])
+
     const columns=[
-        {dataField:"idUser",text:"Id User"},
-        {dataField:"matricule",text:"Matricule User"},
-        {dataField:"nom",text:"Nom User" },
-        {dataField:"prenom",text:"Prenom User"},
-        {dataField:"dateDebutContrat",text:"Debut Contrat User"},
-        {dataField:"dateFinContrat",text:"Debut Contrat User"},
-        {dataField:"mail",text:"Mail User"},
-        {dataField:"identifiant",text:"Identfiant User"},
-        {dataField:"numeroTel",text:"Numéro Tel"}
+        {dataField:"dateMs",text:"Date Mission"},
+        {dataField:"libelleBc",text:"Désignation"},
+        {dataField:"prenomB",text:"Prénom Bénéficiaire"},
+        {dataField:"nomB",text:"Nom Bénéficiaire"},
+        {dataField: "totalMs",text:"Débit"},
+        {dataField:"creditBc",text:"Crédit"},
+        {dataField:"soldeBc",text:"Solde",
+        formatter: (cellContent,row) => {
+          if ( row.soldeBc< 0) {
+            return (
+              <span style={{color:"red",fontWeight:"bold"}}>
+                {row.soldeBc}
+              </span>
+            )
+          }   
+          return(
+            <span style={{color:"green",fontWeight:"bold"}}>
+              {row.soldeBc} </span>
+          )    
+      },},
+        {dataField: "idBc",text:"Numero Bon Caisse"},
+        {dataField: "numMs",text:"Numéro Mission" },
+        {dataField:"libelleMs",text:"Objet Mission"},
     ]
+    const defaultSorted = [{
+      dataField: 'dateMs',
+      order: 'desc'
+    }];
+    
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>
-        <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des Utilisateurs</h1>
-        <BootStrapTable
+        <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Caisse Du Mois Octobre 2022</h1>
+        <BootStrapTable      
         keyField='idUser'
         data={users}
         columns={columns}
         pagination={paginationFactory()} 
         rowEvents={rowEvents}
+        defaultSorted={ defaultSorted } 
         ></BootStrapTable>
         {show ? <ModalContenu></ModalContenu> : null}
         
