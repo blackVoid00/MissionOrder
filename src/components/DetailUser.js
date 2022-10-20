@@ -30,7 +30,7 @@ margin-left:35%;
 const DetailUser = () => {
   const {id} = useParams()
 
-  const url=`https://localhost:7048/api/Utilisateurs/${id}`;
+  const url=`https://localhost:7140/api/Utilisateurs/${id}`;
 
     const [users,setUsers]=useState([])
 

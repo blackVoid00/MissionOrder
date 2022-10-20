@@ -13,12 +13,15 @@ const TableUser = () => {
     const [show,setShow] =useState(false)
     const handleShow=()=>setShow(true)
     const handleClose=()=>setShow(false)
-    const rowEvents={
-        onClick:(e,row)=>{
-          setModalInfo(row)
-          toggle()
-        }
-    }
+    // const rowEvents={
+    //     onClick:(e,row)=>{
+    //       setModalInfo(row)
+    //       toggle()
+    //     }
+    // }
+    useEffect(()=>{
+
+    });
     const toggle=()=>{
         setShowModal(handleShow)
     }
@@ -32,7 +35,7 @@ const TableUser = () => {
             keyboard={false}
             style={{color: "black"}}>
                  <Modal.Header closeButton>
-                  <Modal.Title  style={{color: "black"}}>Utilisateur </Modal.Title>
+                  <Modal.Title  style={{color: "black"}}>{modalInfo.numMs}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   <p>mission</p>
@@ -60,7 +63,7 @@ const TableUser = () => {
         {dataField: "totalMs",text:"Débit"},
         {dataField:"creditBc",text:"Crédit"},
         {dataField:"soldeBc",text:"Solde",
-        formatter: (cellContent,row) => {
+        formatter: (cellContent ,row) => {
           if ( row.soldeBc< 0) {
             return (
               <span style={{color:"red",fontWeight:"bold"}}>
@@ -74,7 +77,11 @@ const TableUser = () => {
           )    
       },},
         {dataField: "idBc",text:"Numero Bon Caisse"},
-        {dataField: "numMs",text:"Numéro Mission" },
+        {dataField: "numMs",text:"Numéro Mission", events: {
+          onClick:(e, column, columnIndex, row, rowIndex)=>{
+            setModalInfo(row)
+            toggle()
+          } }},
         {dataField:"libelleMs",text:"Objet Mission"},
     ]
     const defaultSorted = [{
@@ -90,7 +97,7 @@ const TableUser = () => {
         data={users}
         columns={columns}
         pagination={paginationFactory()} 
-        rowEvents={rowEvents}
+       
         defaultSorted={ defaultSorted } 
         ></BootStrapTable>
         {show ? <ModalContenu></ModalContenu> : null}
