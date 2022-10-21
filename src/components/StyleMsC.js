@@ -26,11 +26,11 @@ background-color:#1c539b;
 border:2px solid black;
 margin-left:1%;
 margin-top:1%;
-width:60vh;
+width:70vh;
 height:700px;
 `
 export const Div1 =styles.div`
-margin-top:5%;
+margin-top:4%;
 display:flex;
 justify-content:space-between;
 `
@@ -47,12 +47,11 @@ export const Div2 =styles.div`
 margin-top:50px;
 display:flex;
 justify-content:space-between;
-height:50vh;
+height:60vh;
 `
 export const Div3 =styles.div`  
 margin-top:5%;
 display:flex;
-
 height:auto;
 `
 

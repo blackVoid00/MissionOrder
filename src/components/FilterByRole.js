@@ -7,7 +7,7 @@ import styles from 'styled-components'
 const Input=styles.input`
 border: 1px solid black;
 `
-const BonCaisse = () => {
+const FilterByRole = () => {
   const [role,setRole] =useState(0);
   const [show,setShow] = useState(false);
   const [users,setUsers]=useState([]);
@@ -52,6 +52,6 @@ const BonCaisse = () => {
   )
 }
 
-export default BonCaisse
+export default FilterByRole
 
 

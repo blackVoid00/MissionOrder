@@ -14,14 +14,15 @@ import  logo from "../../assets/logo.jpg";
 
 import {
  
-    AiOutlineLeft,AiOutlineFileText
+    AiOutlineLeft,AiOutlineFileText,AiOutlineForm,AiOutlineUserAdd
    
 } from "react-icons/ai";
 
 import {MdOutlineFilterAlt} from "react-icons/md";
-import { BsPeople ,BsReceiptCutoff} from "react-icons/bs";
-
-import {TbReceipt2 } from "react-icons/tb";
+import { BsReceiptCutoff} from "react-icons/bs";
+import { CgUserList } from "react-icons/cg";
+import {GiReceiveMoney,} from "react-icons/gi";
+import {BiTargetLock} from "react-icons/bi";
 
 import { useLocation } from "react-router-dom";
 import {IconContext} from 'react-icons'
@@ -69,43 +70,43 @@ const Sidebar = () => {
 
 const linksArray = [
     {
-        label: "test1",
-        icon: <BsPeople />,
+        label: "Add User",
+        icon: <AiOutlineUserAdd />,
         path: "/user",
        
     },
     {
-        label: "test2",
-        icon:  <BsPeople />,
+        label: "Users List",
+        icon:  <CgUserList/>,
         path: "/userlist",
       
     },
     {
-        label: "test3",
-        icon:  <AiOutlineFileText />,
+        label: "Form Mission",
+        icon:  <BiTargetLock />,
         path: "/creerMs",
        
     },
     {
-        label: "test4",
+        label: "Filter",
         icon:  <MdOutlineFilterAlt />,
-        path: "/boncaisse",
+        path: "/filter",
        
     },
     {
-        label: "test5",
-        icon:  <BsPeople />,
+        label: "Mission Fill",
+        icon:  <AiOutlineForm />,
         path: "/mission",
        
     },
     {
-        label: "test6",
-        icon:  <BsPeople />,
+        label: "Form BonCaisse",
+        icon:  <GiReceiveMoney />,
         path: "/creerBs",
        
     },
     {
-        label: "Bon caisse",
+        label: "Caisse",
         icon:  <BsReceiptCutoff />,
         path: "/tableuser",
        

@@ -2,7 +2,7 @@ import React ,{useState,useEffect} from 'react'
 import BootStrapTable from "react-bootstrap-table-next"
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import {Modal , Button } from 'react-bootstrap'
-
+import cellEditFactory,{Type} from 'react-bootstrap-table2-editor';
 import axios from 'axios'
 const TableUser = () => {
 
@@ -19,6 +19,12 @@ const TableUser = () => {
     //       toggle()
     //     }
     // }
+   const onAfterSaveCell=(value, name)=>{
+    
+
+      alert("user saved successfully")
+
+       }
     useEffect(()=>{
 
     });
@@ -49,10 +55,13 @@ const TableUser = () => {
           
         )
     }
+    
+    console.log(modalInfo)
     useEffect(()=>{
         axios.get(url).then((response) => {
             setUsers(response.data);
          });
+       
     },[])
 
     const columns=[
@@ -83,6 +92,16 @@ const TableUser = () => {
             toggle()
           } }},
         {dataField:"libelleMs",text:"Objet Mission"},
+        {dataField:"etatMs",text:"Etat Mission", editor: {
+          type: Type.SELECT,
+          options: [{
+            value: 'F',
+            label: 'F'
+          }, {
+            value: 'O',
+            label: 'O'
+          }]
+        }}
     ]
     const defaultSorted = [{
       dataField: 'dateMs',
@@ -97,7 +116,9 @@ const TableUser = () => {
         data={users}
         columns={columns}
         pagination={paginationFactory()} 
-       
+         cellEdit={ cellEditFactory({ 
+          mode: 'click' , 
+          afterSaveCell: onAfterSaveCell}) }
         defaultSorted={ defaultSorted } 
         ></BootStrapTable>
         {show ? <ModalContenu></ModalContenu> : null}
