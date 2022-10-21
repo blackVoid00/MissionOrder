@@ -8,7 +8,7 @@ const DivP=styles.div`
 display: flex;
 margin-left:5%;
 background-color:#1c539b;
-margin-top:5%;
+
 `
 const DivP1=styles.div`
 display: inline-block;
@@ -62,7 +62,7 @@ margin-top:5%;
 margin-bottom:5%;
 `
 const Input=styles.input`
-margin-top:10px !important;
+margin-top:5px !important;
 height:40px  !important;
 width:200px  !important;
 text-align: left !important;
@@ -171,6 +171,10 @@ const Test = () => {
                     <Option value="option1">option1</Option>
                 </Select>
             </DivIn>
+            <DivIn>
+                <Label>Durée Intervention:</Label>
+                <Input type="text" disabled></Input>
+            </DivIn>
            </DivForm>
            <DivForm2>
                 <DivIn>
@@ -235,7 +239,7 @@ const Test = () => {
                 </DivIn>
                 <DivIn>
                 <LabelF>Total</LabelF>
-                <InputF disabled type="text"  placeholder='dh'></InputF>
+                <Input disabled type="text"  placeholder='dh'></Input>
                 </DivIn>
                 </DivForm4>    
                  </DivForm3>
