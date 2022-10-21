@@ -111,6 +111,12 @@ const linksArray = [
         path: "/tableuser",
        
     },
+    {
+        label: "Test",
+        icon:  <BsReceiptCutoff />,
+        path: "/testing",
+       
+    }
  
  
   

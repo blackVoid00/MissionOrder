@@ -13,10 +13,11 @@ import CreerMS from "./components/CreerMS";
 import CreerBs from "./components/CreerBs";
 import TableCaisse from "./components/TableCaisse";
 import MuiTableTest from "./components/MuiTableTest";
+import Test from "./components/Test";
 const Routing = () => {
     return (
         <Routes>
-           
+             <Route exact path="/testing" element={<Layout><Test></Test></Layout>}></Route>
             <Route exact path="/app" element={<Layout></Layout>}></Route>
             <Route exact path="/home" element={<Home></Home>}></Route>
             <Route exact path="/filter" element={<Layout><FilterByRole></FilterByRole></Layout>}></Route>
