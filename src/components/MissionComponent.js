@@ -18,7 +18,12 @@ const MissionComponent = () => {
   //     getUsers()
    
   // })
-
+  const uploadFile=()=>{
+    const input = document.getElementById('file-input');
+    if (input) {
+       input.click();
+    }
+    }
     const [isDisabled,setDisabled]=useState(true)
     const [c,setClicked]=useState(false)
     
@@ -231,16 +236,11 @@ const MissionComponent = () => {
                   </DivM>
                   <DivM>
                           <LabelM>Fiche Intervention</LabelM>
-                          <Wrapper>
-                          <InputMFILE  type="file"  ></InputMFILE>
-                          </Wrapper>
-                          &nbsp; &nbsp; &nbsp; &nbsp;
-          <IconContext.Provider value={{ color: '#1c539b', size: '30px'}}>
-           
-            <AiOutlineCloudUpload></AiOutlineCloudUpload>
-  
-       
-            </IconContext.Provider>
+                          
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
 
                           </DivM>
                        
@@ -264,109 +264,74 @@ const MissionComponent = () => {
          <DivM>
            <LabelM> Gasoil :</LabelM>
             <InputM type="text" placeholder='frais gazoil' ></InputM>
-            <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-            <Wrapper>
-            <InputMFILE  type="file"  ></InputMFILE>
-          </Wrapper>
-          &nbsp; &nbsp; &nbsp; &nbsp;
-          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
-            <AiOutlineCloudUpload></AiOutlineCloudUpload>   
-            </IconContext.Provider>
+          
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
 
         </DivM> 
         <DivM>
            <LabelM> Parking :</LabelM>
             <InputM type="text" placeholder='frais parking'></InputM>
-            <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-            <Wrapper>
-            <InputMFILE  type="file"  ></InputMFILE>
-          </Wrapper>
-          &nbsp; &nbsp; &nbsp; &nbsp;
-          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
            
-            <AiOutlineCloudUpload></AiOutlineCloudUpload>
-  
-       
-            </IconContext.Provider>
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
 
         </DivM> 
         <DivM>
            <LabelM> Hotel :</LabelM>
             <InputM type="text" placeholder='frais hotel'></InputM>
-            <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-          <Wrapper>
-            <InputMFILE  type="file"  ></InputMFILE>
-          </Wrapper>
-          &nbsp; &nbsp; &nbsp; &nbsp;
-          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+          
            
-            <AiOutlineCloudUpload></AiOutlineCloudUpload>
-  
-       
-            </IconContext.Provider>
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
            
         </DivM> 
         <DivM>
            <LabelM> Repas :</LabelM>
             <InputM type="text" placeholder='frais repas'></InputM>
-            <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-            <Wrapper>
-            <InputMFILE  type="file"  ></InputMFILE>
-          </Wrapper>
-          &nbsp; &nbsp; &nbsp; &nbsp;
-          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+         
            
-            <AiOutlineCloudUpload></AiOutlineCloudUpload>
-  
-       
-            </IconContext.Provider>
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
 
         </DivM>
         <DivM>
            <LabelM> Taxi :</LabelM>
             <InputM type="text" placeholder='frais taxi'></InputM>
-            <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-            <Wrapper>
-            <InputMFILE  type="file"  ></InputMFILE>
-          </Wrapper>
-          &nbsp; &nbsp; &nbsp; &nbsp;
-          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
-           
-            <AiOutlineCloudUpload></AiOutlineCloudUpload>
-  
-       
-            </IconContext.Provider>
+          
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
 
         </DivM>
         <DivM>
            <LabelM> Ach/tech :</LabelM>
             <InputM type="text" placeholder='frais achat tech' ></InputM>
-            <LabelMFile>P.J</LabelMFile>&nbsp; &nbsp; &nbsp; &nbsp;
-            <Wrapper>
-            <InputMFILE  type="file"  ></InputMFILE>
-          </Wrapper>
-          &nbsp; &nbsp; &nbsp; &nbsp;
-          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+          
            
-            <AiOutlineCloudUpload></AiOutlineCloudUpload>
-  
-       
-            </IconContext.Provider>
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
         </DivM>  
         <DivM>
            <LabelM> divers :</LabelM>
             <InputM type="text" placeholder='autre'></InputM>
-            <LabelMFile>P.J</LabelMFile> &nbsp; &nbsp; &nbsp; &nbsp;
-            <Wrapper>
-            <InputMFILE  type="file"  ></InputMFILE>
-          </Wrapper>
-          &nbsp; &nbsp; &nbsp; &nbsp;
-          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
            
-            <AiOutlineCloudUpload></AiOutlineCloudUpload>
-  
-       
-            </IconContext.Provider>
+           
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
 
         </DivM>
         <Description>

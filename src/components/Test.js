@@ -1,13 +1,19 @@
-import React from 'react'
+import React ,{useEffect,useState} from 'react'
 import styles from 'styled-components'
 import {AiOutlineCloudUpload} from "react-icons/ai"
 import { IconContext } from "react-icons";
+import BootstrapTable from 'react-bootstrap-table-next';
+import cellEditFactory,{Type} from 'react-bootstrap-table2-editor';
+import axios from "axios"
 
-
+const Main=styles.div`
+display: flex;
+margin-left:100px !important;
+`
 const DivP=styles.div`
 display: flex;
-margin-left:5%;
 background-color:#1c539b;
+margin-top:5px;
 
 `
 const DivP1=styles.div`
@@ -18,7 +24,18 @@ height:100%;
 width:100%;
 color:white;
 `
+const DivP12=styles.div`
+display: inline-block;
+margin-bottom:10px;
+background-color:red;
+width:150px;
+height:50px;
+`
+const DivP2=styles.div`
+margin-left:120px;
+margin-bottom:10px;
 
+`
 const DivTitle1=styles.div`
 margin-left:20%;
 margin-top:5%;
@@ -30,15 +47,15 @@ font-weight:bold !important;
 color:white;
 `
 const InputT=styles.input`
-
-height:40px  !important;
+margin-top:5px !important;  !important;
 width:200px  !important;
 text-align: left !important;
-border: 10px solid transparent  !important;
-border-radius:2px  !important;
+border: 1px solid transparent  !important;
 &:focus{
 outline: none  !important;
-}`
+}
+
+`
 
 
 const ContainerP=styles.div`
@@ -47,6 +64,7 @@ display: flex;
 const DivIn=styles.div`
 margin-top:5%;
 `
+
 const Label=styles.label`
 width: 160px !important;
 font-weight:bold !important;
@@ -62,12 +80,10 @@ margin-top:5%;
 margin-bottom:5%;
 `
 const Input=styles.input`
-margin-top:5px !important;
-height:40px  !important;
+margin-top:5px !important;  !important;
 width:200px  !important;
 text-align: left !important;
-border: 10px solid transparent  !important;
-border-radius:2px  !important;
+border: 1px solid transparent  !important;
 &:focus{
 outline: none  !important;
 }
@@ -75,11 +91,18 @@ outline: none  !important;
 const InputF=styles.input`
 margin-top:10px !important;
 margin-left:50px !important;
-height:35px  !important;
-width:70px  !important;
+width:100px  !important;
 text-align: left !important;
-border: 10px solid transparent  !important;
-border-radius:2px  !important;
+border: 1px solid transparent  !important;
+&:focus{
+outline: none  !important;
+}
+`
+const InputD=styles.input`
+width:200px  !important;
+height:60px;
+text-align: left !important;
+border: 1px solid transparent  !important;
 &:focus{
 outline: none  !important;
 }
@@ -90,22 +113,23 @@ display:inline-block !important;
 const DivForm2=styles.div`
 display:inline-block !important;
 margin-top:15px;
+margin-left:62px !important;
 `
 const DivForm3=styles.div`
 display:inline-block !important;
-margin-left:65px;
-width:400px !important;
+margin-left:50px;
+margin-top:-30px !important;
+width:100% !important;
 `
 const DivForm4=styles.div`
 display:inline-block !important;
 
 `
 const Select=styles.select`
-height:40px  !important;
+margin-top:5px !important;  !important;
 width:200px  !important;
 text-align: left !important;
-border: 10px solid transparent  !important;
-border-radius:2px  !important;
+border: 1px solid transparent  !important;
 &:focus{
 outline: none  !important;
 }
@@ -120,17 +144,40 @@ margin-top: 60px !important;
 margin-left: 50px !important;
 margin-bottom: 10px !important;
 `
+const DivB=styles.div`
+margin-top:50px !important;
 
-
+`
 const Test = () => {
+    const url="https://localhost:7140/api/Boncaisses";
+    const [users,setUsers] =useState([])
 
+    useEffect(()=>{
+        axios.get(url).then((response) => {
+            setUsers(response.data);
+         });
+       
+    },[])
+
+    const onAfterSaveCell=(value, name)=>{
+    
+
+        alert("user saved successfully")
+  
+         }
     const uploadFile=()=>{
     const input = document.getElementById('file-input');
     if (input) {
        input.click();
     }
     }
+    const columns=[
+        
+        {dataField:"idBc",text:"Id BonCaisse"},
+        {dataField:"creditBc",text:"Crédit"},
+       ]
   return (
+    <Main>
     <DivP>
     <DivP1>
            <DivTitle1>
@@ -172,11 +219,13 @@ const Test = () => {
                 </Select>
             </DivIn>
             <DivIn>
-                <Label>Durée Intervention:</Label>
-                <Input type="text" disabled></Input>
+                <Label>Description:</Label>
+                <InputD type="text" ></InputD>
             </DivIn>
+            
            </DivForm>
            <DivForm2>
+           
                 <DivIn>
                 <Label>Heure Départ</Label>
                 <Input type="time"></Input>
@@ -185,6 +234,11 @@ const Test = () => {
                 <Label>Heure Retour</Label>
                 <Input type="time"></Input>
                 </DivIn>
+                <DivIn>
+                <Label>Durée Intervention:</Label>
+                <Input type="text" disabled></Input>
+                </DivIn>
+            
                  <DivForm3>
                  <HeaderT>Frais Mission</HeaderT> 
                  <DivForm4>
@@ -241,14 +295,29 @@ const Test = () => {
                 <LabelF>Total</LabelF>
                 <Input disabled type="text"  placeholder='dh'></Input>
                 </DivIn>
-                </DivForm4>    
+                <DivB>
+                <button>Soumettre</button>  <button>Ajouter sous mission</button> <button>Valider</button>
+                </DivB>
+                </DivForm4> 
                  </DivForm3>
+               
             </DivForm2>
             </ContainerP>
       
     </DivP1>
-   
+    <DivP12>
+   </DivP12>
   </DivP>
+   <DivP2>
+   <BootstrapTable keyField='idUser'
+        data={users}
+        columns={columns}
+         cellEdit={ cellEditFactory({ 
+          mode: 'click' , 
+          afterSaveCell: onAfterSaveCell}) }
+       ></BootstrapTable>
+   </DivP2>
+   </Main>
   )
 }
 
