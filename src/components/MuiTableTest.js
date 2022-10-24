@@ -63,6 +63,7 @@ const CustomTableCell = ({ row, name, onChange }) => {
 };
 
 const  MuiTableTest=()=> {
+  const [query,setQuery]=useState("")
   const [rows, setRows] = useState([
   ]);
   const updateUser=async ({ idUser,nom, prenom,matricule, mail , pwd, role ,identifiant, idService,cin, numeroTel, dateDebutContrat,dateFinContrat, status})=>{
@@ -165,8 +166,10 @@ const onToggleEditMode = idUser => {
 
   return (
     <MainDiv>
+     
     <Paper className={classes.root}>
       <Table sx={{ minWidth: 400 }} size="small" aria-label="a dense table">
+      <Input onChange={(e)=>setQuery(e.target.value)} placeholder="filter by name" style={{ border: "1px solid black !important"}}></Input>
         <TableHead>
           <TableRow>
             <TableCell align="left">Nom</TableCell>
@@ -186,7 +189,7 @@ const onToggleEditMode = idUser => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {rows.filter((row)=>row.nom.toLowerCase().includes(query)).map(row => (
             <TableRow key={row.idUser}>
               <CustomTableCell {...{ row, name: "nom", onChange }} />
               <CustomTableCell {...{ row, name: "prenom", onChange }} />

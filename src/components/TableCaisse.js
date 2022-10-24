@@ -116,9 +116,7 @@ const TableUser = () => {
         data={users}
         columns={columns}
         pagination={paginationFactory()} 
-         cellEdit={ cellEditFactory({ 
-          mode: 'click' , 
-          afterSaveCell: onAfterSaveCell}) }
+        
         defaultSorted={ defaultSorted } 
         ></BootStrapTable>
         {show ? <ModalContenu></ModalContenu> : null}

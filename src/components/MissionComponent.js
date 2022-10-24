@@ -5,6 +5,7 @@ import {MainM, MainDiv,MainDiv2,Wrapper,Div1,SousDiv1,SousDiv2,Div2,Div3,InputM,
 import {AiOutlineCloudUpload} from "react-icons/ai"
 import { IconContext } from "react-icons";
 import axios from "axios";
+import "./modal.css"
 const MissionComponent = () => {
   // const url = "https://localhost:7140/api/Utilisateurs"
   // const [data,setData] = useState([])
@@ -152,16 +153,11 @@ const MissionComponent = () => {
                            </DivM>
                           <DivM>
                           <LabelM>Fiche Intervention</LabelM>
-                          <Wrapper>
-                           <InputMFILE  type="file" ></InputMFILE>
-                          </Wrapper>
-                          &nbsp; &nbsp; &nbsp; &nbsp;
-          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
-           
-            <AiOutlineCloudUpload></AiOutlineCloudUpload>
-  
-       
-            </IconContext.Provider>
+                          <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
+
                           </DivM>
                           <DivM>
                            <ButtonM onClick={handleShow}>Autre Mission</ButtonM>
@@ -169,15 +165,15 @@ const MissionComponent = () => {
             </SousDiv2>
             <Modal
                 aria-labelledby="contained-modal-title-vcenter"
-                fullscreen="sm-down"
-                size="xl"
+                fullscreen={true}
+                className="special_modal"
                 show={show}
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
                 style={{color: "black"}}>
-                <Modal.Header closeButton>
-                  <Modal.Title  style={{color: "black"}}>Sous Mission</Modal.Title>
+                <Modal.Header closeButton variant="white">
+                  <Modal.Title  style={{color: "white"}}>Sous Mission</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   <MainM>
@@ -245,6 +241,82 @@ const MissionComponent = () => {
                           </DivM>
                        
                   </Div2M>
+                  <SousDiv1>
+         <DivM>
+           <LabelM> Gasoil :</LabelM>
+            <InputModal type="text" placeholder='frais gazoil' ></InputModal>
+          
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
+
+        </DivM> 
+        <DivM>
+           <LabelM> Parking :</LabelM>
+            <InputModal type="text" placeholder='frais parking'></InputModal>
+           
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
+
+        </DivM> 
+        <DivM>
+           <LabelM> Hotel :</LabelM>
+            <InputModal type="text" placeholder='frais hotel'></InputModal>
+          
+           
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
+           
+        </DivM> 
+        <DivM>
+           <LabelM> Repas :</LabelM>
+            <InputModal type="text" placeholder='frais repas'></InputModal>
+         
+           
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
+
+        </DivM>
+        <DivM>
+           <LabelM> Taxi :</LabelM>
+            <InputModal type="text" placeholder='frais taxi'></InputModal>
+          
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
+
+        </DivM>
+        <DivM>
+           <LabelM> Ach/tech :</LabelM>
+            <InputModal type="text" placeholder='frais achat tech' ></InputModal>
+          
+           
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
+        </DivM>  
+        <DivM>
+           <LabelM> divers :</LabelM>
+            <InputModal type="text" placeholder='autre'></InputModal>
+           
+           
+            <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                </IconContext.Provider>
+
+        </DivM>
+        
+         </SousDiv1>
                   
                   </MainM>
                 </Modal.Body>
@@ -343,7 +415,8 @@ const MissionComponent = () => {
         <LabelM> Total</LabelM>    
         <InputM  type="text" disabled></InputM>
         </DivM>
-        <DivM> <ButtonM>Soumettre</ButtonM>  </DivM>
+        <DivM> <ButtonM>Soumettre</ButtonM>  
+        </DivM>
         </Final>
          </SousDiv1>
          

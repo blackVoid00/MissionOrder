@@ -14,7 +14,7 @@ font-size:30px !important;
 export const MainDiv=styles.div`
 display:inline-block;
 justify-content:center;
-border:2px solid black;
+
 margin-right:0px;
 margin-top:1%;
 width:100vh;
@@ -23,8 +23,8 @@ background-color:#1c539b;
 export const MainDiv2 = styles.div`
 display:inline-block;
 background-color:#1c539b;
-border:2px solid black;
-margin-left:1%;
+
+
 margin-top:1%;
 width:70vh;
 height:700px;
@@ -68,7 +68,7 @@ outline: none  !important;
 }
 `
 export const Description=styles.div`
-margin-top:50px;
+margin-top:10px;
 
 `
 export const InputD=styles.input`
@@ -131,7 +131,7 @@ margin-top:10px;
 height:30px;
 width:300px;
 text-align: left !important;
-border: 1px solid black !important;
+border: 1px solid transparent !important;
 border-radius:2px  !important;
 &:focus{
 outline: none  !important;
@@ -141,7 +141,7 @@ export const LabelModal=styles.label`
 display: inline-block;
 width: 160px;
 font-weight:bold !important;
-color:black !important;
+color:white!important;
 `
 export const Div1M=styles.div`
 display: inline-block;
@@ -149,5 +149,5 @@ margin-right:100px ! important;
 `
 export const Div2M=styles.div`
 display:inline-block;
-margin-left:50px;
+margin-left:5px;
 `
