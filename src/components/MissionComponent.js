@@ -1,11 +1,12 @@
 import React, { useState,useEffect  } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import {MainM, MainDiv,MainDiv2,Wrapper,Div1,SousDiv1,SousDiv2,Div2,Div3,InputM,Description,InputMFILE,InputD,Div1M,Div2M,LabelM,LabelMFile,DivM,ButtonM,Final,InputModal,LabelModal} from "./StyleMsC"
+import {MainM, MainDiv,MainDiv2,InputModalT,InputMT,Wrapper,Div1,SousDiv1,SousDiv2,Div2,Div3,InputM,Description,InputMFILE,InputD,Div1M,Div2M,LabelM,LabelMFile,DivM,ButtonM,Final,InputModal,LabelModal} from "./StyleMsC"
 import {AiOutlineCloudUpload} from "react-icons/ai"
 import { IconContext } from "react-icons";
 import axios from "axios";
 import "./modal.css"
+
 const MissionComponent = () => {
   // const url = "https://localhost:7140/api/Utilisateurs"
   // const [data,setData] = useState([])
@@ -140,16 +141,12 @@ const MissionComponent = () => {
                       </DivM> 
                         
                            <DivM>
-                               <LabelM> Dépot de document</LabelM>
-                               <InputM type="checkbox"></InputM> 
-                           </DivM>
-                           <DivM>
-                               <LabelM>Récup de document</LabelM>
-                               <InputM type="checkbox"></InputM> 
-                           </DivM>
-                           <DivM>
-                               <LabelM> Dépannage</LabelM>
-                               <InputM type="checkbox"></InputM> 
+                             <LabelM>Nature Mission</LabelM>
+                              <select className='Select-Ms'>
+                                <option value="">Dépot de document</option>
+                                <option value="">Récup de document</option>
+                                <option value="">Dépannage</option>
+                              </select>
                            </DivM>
                           <DivM>
                           <LabelM>Fiche Intervention</LabelM>
@@ -173,7 +170,7 @@ const MissionComponent = () => {
                 keyboard={false}
                 style={{color: "black"}}>
                 <Modal.Header closeButton variant="white">
-                  <Modal.Title  style={{color: "white"}}>Sous Mission</Modal.Title>
+                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Sous Mission</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   <MainM>
@@ -219,22 +216,18 @@ const MissionComponent = () => {
                      <InputModal type="text" placeholder='entrer le lieu'></InputModal>
                   </DivM>
                   <DivM>
-                      <LabelM> Dépot de document</LabelM>
-                      <InputM type="checkbox"></InputM> 
-                  </DivM>
-                  <DivM>
-                      <LabelM> Récup de document</LabelM>
-                      <InputM type="checkbox"></InputM> 
-                  </DivM>
-                  <DivM>
-                      <LabelM> Dépannage</LabelM>
-                      <InputM type="checkbox"></InputM> 
-                  </DivM>
+                             <LabelM>Nature Mission</LabelM>
+                              <select className='Select-Modal'>
+                                <option value="">Dépot de document</option>
+                                <option value="">Récup de document</option>
+                                <option value="">Dépannage</option>
+                              </select>
+                           </DivM>
                   <DivM>
                           <LabelM>Fiche Intervention</LabelM>
                           
             <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                 </IconContext.Provider>
 
@@ -247,7 +240,7 @@ const MissionComponent = () => {
             <InputModal type="text" placeholder='frais gazoil' ></InputModal>
           
             <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                 </IconContext.Provider>
 
@@ -257,7 +250,7 @@ const MissionComponent = () => {
             <InputModal type="text" placeholder='frais parking'></InputModal>
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                 </IconContext.Provider>
 
@@ -268,7 +261,7 @@ const MissionComponent = () => {
           
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                 </IconContext.Provider>
            
@@ -279,7 +272,7 @@ const MissionComponent = () => {
          
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                 </IconContext.Provider>
 
@@ -289,7 +282,7 @@ const MissionComponent = () => {
             <InputModal type="text" placeholder='frais taxi'></InputModal>
           
             <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                 </IconContext.Provider>
 
@@ -300,7 +293,7 @@ const MissionComponent = () => {
           
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                 </IconContext.Provider>
         </DivM>  
@@ -310,12 +303,15 @@ const MissionComponent = () => {
            
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                 </IconContext.Provider>
 
         </DivM>
-        
+        <DivM>
+        <LabelM> Total</LabelM>    
+        <InputModalT  type="text" disabled></InputModalT>
+        </DivM>
          </SousDiv1>
                   
                   </MainM>
@@ -413,7 +409,7 @@ const MissionComponent = () => {
         <Final>
         <DivM>
         <LabelM> Total</LabelM>    
-        <InputM  type="text" disabled></InputM>
+        <InputMT  type="text" disabled></InputMT>
         </DivM>
         <DivM> <ButtonM>Soumettre</ButtonM>  
         </DivM>

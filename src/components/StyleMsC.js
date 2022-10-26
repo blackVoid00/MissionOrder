@@ -36,7 +36,7 @@ justify-content:space-between;
 `
 export const SousDiv1=styles.div`
 display:grid;
-margin-left:20px
+margin-left:50px
 `
 export const SousDiv2=styles.div`
 display:grid;
@@ -131,7 +131,30 @@ margin-top:10px;
 height:30px;
 width:300px;
 text-align: left !important;
+border: 1px solid !important;
+border-radius:2px  !important;
+&:focus{
+outline: none  !important;
+}
+`
+export const InputMT=styles.input`
+
+height:30px;
+width:100px;
+text-align: left !important;
 border: 1px solid transparent !important;
+border-radius:2px  !important;
+&:focus{
+outline: none  !important;
+}
+`
+export const InputModalT=styles.input`
+margin-bottom:10px;
+margin-top:10px;
+height:30px;
+width:100px;
+text-align: left !important;
+border: 1px solid !important;
 border-radius:2px  !important;
 &:focus{
 outline: none  !important;
@@ -141,7 +164,7 @@ export const LabelModal=styles.label`
 display: inline-block;
 width: 160px;
 font-weight:bold !important;
-color:white!important;
+color:black!important;
 `
 export const Div1M=styles.div`
 display: inline-block;

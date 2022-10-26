@@ -6,7 +6,7 @@ import cellEditFactory,{Type} from 'react-bootstrap-table2-editor';
 import axios from 'axios'
 const TableUser = () => {
 
-    const url="https://localhost:7140/api/Boncaisses";
+    const url="https://localhost:7285/api/Boncaisses";
     const [users,setUsers] =useState([])
     const [modalInfo ,setModalInfo] =useState([])
     const [showModal,setShowModal]=useState(false)
