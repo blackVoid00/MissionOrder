@@ -6,7 +6,7 @@ import cellEditFactory,{Type} from 'react-bootstrap-table2-editor';
 import axios from 'axios'
 const TableUser = () => {
 
-    const url="https://localhost:7285/api/Boncaisses";
+    const url="https://localhost:7111/api/Boncaisses";
     const [users,setUsers] =useState([])
     const [modalInfo ,setModalInfo] =useState([])
     const [showModal,setShowModal]=useState(false)
@@ -66,23 +66,23 @@ const TableUser = () => {
 
     const columns=[
         {dataField:"dateMs",text:"Date Mission"},
-        {dataField:"libelleBc",text:"Désignation"},
+        {dataField:"libelleMs",text:"désignation"},
         {dataField:"prenomB",text:"Prénom Bénéficiaire"},
         {dataField:"nomB",text:"Nom Bénéficiaire"},
         {dataField: "totalMs",text:"Débit"},
-        {dataField:"creditBc",text:"Crédit"},
-        {dataField:"soldeBc",text:"Solde",
+        {dataField:"creditSBc",text:"Crédit"},
+        {dataField:"soldeSBc",text:"Solde",
         formatter: (cellContent ,row) => {
-          if ( row.soldeBc< 0) {
+          if ( row.soldeSBc < 0) {
             return (
               <span style={{color:"red",fontWeight:"bold"}}>
-                {row.soldeBc}
+                {row.soldeSBc}
               </span>
             )
           }   
           return(
             <span style={{color:"green",fontWeight:"bold"}}>
-              {row.soldeBc} </span>
+              {row.soldeSBc} </span>
           )    
       },},
         {dataField: "idBc",text:"Numero Bon Caisse"},
@@ -91,7 +91,7 @@ const TableUser = () => {
             setModalInfo(row)
             toggle()
           } }},
-        {dataField:"libelleMs",text:"Objet Mission"},
+        
         {dataField:"etatMs",text:"Etat Mission", editor: {
           type: Type.SELECT,
           options: [{
