@@ -4,6 +4,7 @@ import paginationFactory from 'react-bootstrap-table2-paginator'
 import {Modal , Button } from 'react-bootstrap'
 import cellEditFactory,{Type} from 'react-bootstrap-table2-editor';
 import axios from 'axios'
+import { ReplyRounded } from '@mui/icons-material';
 const TableUser = () => {
 
     const url="https://localhost:7111/api/Boncaisses";
@@ -63,6 +64,14 @@ const TableUser = () => {
          });
        
     },[])
+    // const handleClick=(row)=>{
+    //  alert(`${row.idSBc}`)
+    //  }
+    const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
+          return(
+            <button onClick={()=>alert(`${row.idSBc}`)}>Solder</button>
+          )
+    }
 
     const columns=[
         {dataField:"dateMs",text:"Date Mission"},
@@ -101,18 +110,23 @@ const TableUser = () => {
             value: 'O',
             label: 'O'
           }]
-        }}
+        }},{
+          
+            dataField: "Solder",
+            text: "Solder",
+            formatter: ButtonCell
+        }
     ]
     const defaultSorted = [{
       dataField: 'dateMs',
       order: 'desc'
     }];
-    
+   
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>
         <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Caisse Du Mois Octobre 2022</h1>
         <BootStrapTable      
-        keyField='idUser'
+        keyField='idSBc'
         data={users}
         columns={columns}
         pagination={paginationFactory()} 

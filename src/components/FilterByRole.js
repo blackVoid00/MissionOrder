@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { InputM, MainDiv,ButtonM, H1  } from './StyleMsC';
 import Table from 'react-bootstrap/Table';
 import styles from 'styled-components'
@@ -11,11 +11,16 @@ const FilterByRole = () => {
   const [role,setRole] =useState(0);
   const [show,setShow] = useState(false);
   const [users,setUsers]=useState([]);
+  const [filterUser,setFilterUser] = useState([]);
+ useEffect(()=>{
+     axios.get('https://localhost:7111/api/Utilisateurs').then((res)=>{
+      setUsers(res.data)
+     })
 
- 
+ })
   const Filter=()=>{
-    axios.get(`https://localhost:7140/api/FilterUser/${role}`).then((response) => {
-     setUsers(response.data);
+    axios.get(`https://localhost:7111/api/FilterUser/${role}`).then((response) => {
+      setFilterUser(response.data);
     })
     setShow(true)
   }
@@ -38,7 +43,7 @@ const FilterByRole = () => {
           <th>Prenom</th>
           {/* <th>Code</th> */}
         </tr>
-    {users.map((u)=>
+    {filterUser.map((u)=>
           <tr>
           <td>{u.infoNom} </td>
           <td> {u.infoPrenom} </td>
@@ -46,7 +51,36 @@ const FilterByRole = () => {
             <option>{u.infoCin}</option>
             </select></td> */}
           </tr>
- )}  </Table> : null}
+ )}  </Table> :<Table responsive="lg">
+ <tr>
+       <th>Nom</th>
+       <th>Prenom</th>
+       <th>Matricule</th>
+       <th>Mail</th>
+       <th>Identifiant</th>
+       <th>Cin</th>
+       <th>Num tel</th>
+       <th>Date debut contrat</th>
+       <th>Date fin contrat</th>
+       {/* <th>Code</th> */}
+     </tr>
+ {users.map((u)=>
+       <tr>
+       <td>{u.nom} </td>
+       <td> {u.prenom} </td>
+       <td> {u.matricule} </td>
+       <td> {u.mail} </td>
+       <td> {u.identifiant} </td>
+       <td> {u.cin} </td>
+       <td> {u.numeroTel} </td>
+       <td> {u.dateDebutContrat} </td>
+       <td> {u.dateFinContrat} </td>
+     
+       {/* <td ><select>
+         <option>{u.infoCin}</option>
+         </select></td> */}
+       </tr>
+)}  </Table>  }
   
   </div>
   )
