@@ -2,7 +2,7 @@ import React ,{useState,useEffect} from 'react'
 import BootStrapTable from "react-bootstrap-table-next"
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import {Modal , Button } from 'react-bootstrap'
-import cellEditFactory,{Type} from 'react-bootstrap-table2-editor';
+import {Type} from 'react-bootstrap-table2-editor';
 import axios from 'axios'
 import { ReplyRounded } from '@mui/icons-material';
 const TableUser = () => {

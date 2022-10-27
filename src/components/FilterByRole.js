@@ -26,7 +26,7 @@ const FilterByRole = () => {
   }
   console.log(users)
   return (
-   <div style={{marginLeft: '500px', marginTop: '100px'}}>
+   <div style={{marginLeft: '10px', marginTop: '100px'}}>
    <br></br><br></br><br></br>
    <H1>Filter by Role</H1>
    <br></br><br></br><br></br>
@@ -37,36 +37,36 @@ const FilterByRole = () => {
   {/* <Input type="number" onChange={(e)=>setRole(e.target.value)}></Input> */}
   <ButtonM onClick={Filter}>Filter</ButtonM>
   <br></br><br></br><br></br>
-  {show ?  <Table striped bordered hover responsive="sm">
-    <tr>
-          <th>Nom</th>
-          <th>Prenom</th>
+  {show ?  <Table bordered hover size="xl">
+    <tr height="40">
+          <th width="100">Nom</th>
+          <th width="100">Prenom</th>
           {/* <th>Code</th> */}
         </tr>
     {filterUser.map((u)=>
           <tr>
-          <td>{u.infoNom} </td>
+          <td height="40">{u.infoNom} </td>
           <td> {u.infoPrenom} </td>
           {/* <td ><select>
             <option>{u.infoCin}</option>
             </select></td> */}
           </tr>
- )}  </Table> :<Table responsive="lg">
- <tr>
-       <th>Nom</th>
-       <th>Prenom</th>
-       <th>Matricule</th>
-       <th>Mail</th>
-       <th>Identifiant</th>
-       <th>Cin</th>
-       <th>Num tel</th>
-       <th>Date debut contrat</th>
-       <th>Date fin contrat</th>
+ )}  </Table> :<Table bordered hover size="xl">
+ <tr height="40">
+       <th width="100">Nom</th>
+       <th width="100">Prenom</th>
+       <th width="120">Matricule</th>
+       <th width="170">Mail</th>
+       <th width="100">Identifiant</th>
+       <th width="120">Cin</th>
+       <th width="170">Num tel</th>
+       <th width="200">Date debut contrat</th>
+       <th width="200">Date fin contrat</th>
        {/* <th>Code</th> */}
      </tr>
  {users.map((u)=>
        <tr>
-       <td>{u.nom} </td>
+       <td height="40">{u.nom} </td>
        <td> {u.prenom} </td>
        <td> {u.matricule} </td>
        <td> {u.mail} </td>
