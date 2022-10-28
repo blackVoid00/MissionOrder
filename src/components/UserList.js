@@ -52,7 +52,7 @@ const UserList = () => {
 const navigate=useNavigate()
 const [val,setValue]=useState("")
 
-const url="https://localhost:7140/api/Utilisateurs";
+const url="https://localhost:7111/api/Utilisateurs";
 
     const [users,setUsers]=useState([])
 
@@ -63,7 +63,7 @@ const url="https://localhost:7140/api/Utilisateurs";
   },[])
 
    const deleteItem = (ID) => {
-          axios.delete(`https://localhost:7140/api/Utilisateurs/${ID}`).then((response) => {
+          axios.delete(`https://localhost:7111/api/Utilisateurs/${ID}`).then((response) => {
             });
           setUsers(users.filter((user) => {return user.idUser !== ID}));
       };
