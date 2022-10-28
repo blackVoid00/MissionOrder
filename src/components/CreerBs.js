@@ -26,6 +26,7 @@ margin-top:50px;
 `
 const Div=styles.div`
 display:flex;
+margin-left:70px;
 `
 // const SousDiv1=styles.div`
 // display:inline-block;
@@ -148,11 +149,10 @@ const CreerBs = () => {
              </Select>
         </DivInput>
        <Div>
-       <Button onClick={creatBc}>Create</Button>
       <Button onClick={()=>{alert("")}}>Ajouter</Button>
       <Button onClick={()=>{alert("")}}>Retirer</Button>
        </Div>
-     
+       <Button onClick={creatBc}>Create</Button>
     </Div2>
    </MainDiv>
   )
