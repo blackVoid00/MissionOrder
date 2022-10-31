@@ -9,11 +9,14 @@ import styles from 'styled-components'
 import {GrFormAdd} from 'react-icons/gr'
 import {AiOutlineMinusCircle} from 'react-icons/ai'
 import {IconContext} from 'react-icons'
+
+const MainContainer = styles.div`
+display:flex;
+`
 const MainDiv = styles.div`
 display:flex;
-
 margin-left:10px;
-margin-top:10%;
+margin-top:160px;
 `
 const Div2 = styles.div`
 margin-left: 90px;
@@ -33,6 +36,11 @@ margin-top:50px;
 const Div=styles.div`
 display:flex;
 margin-left:70px;
+`
+const Div1=styles.div`
+display:inline-block;
+margin-left:170px;
+margin-top:250px;
 `
 const Select=styles.select`
 margin-right:50px;
@@ -77,15 +85,11 @@ const Button=styles.button`
 position: relative;
 border-width: 0px;
 border-style: solid;
-background-color:#B0C4DE ;
 font-weight:bold !important;
-font-weight:bold ;
-box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
-width:140px;
-height:30px;
-margin-left:40px;
 margin-top:50px;
+margin-left:10px;
 margin-bottom:50px;
+background-color:transparent !important;
 text-align:center !important;
 cursor:pointer;
 &:focus{
@@ -110,11 +114,15 @@ const DetailsBc = () => {
            .then((response)=>{setSbc(response.data);})
      })
      const columns=[
-        {dataField:"idSbc",text:"N° Operation"},
-        {dataField:"idMs",text:"N° Mission"},
-        {dataField:"libelleOp",text:"Désignation"},
+        // {dataField:"idSbc",text:"N° Operation"},
+       
         {dataField:"dateCreation",text:"Date Création"},
+        {dataField:"libelleOp",text:"Type operation"},
+        {dataField:"solde",text:"Débit"},
         {dataField:"creditSbc",text:"Credit"},
+        {dataField:"depense",text:"Dépenses"},
+        {dataField:"idMs",text:"N° Mission"},
+      
     ]
    
     const [users,setUsers]=useState([])
@@ -130,47 +138,55 @@ const DetailsBc = () => {
       
 
   return (
+    <MainContainer>
    <MainDiv>
-    
     <Div2>
+         <DivInput>
+            <Label>Numero Bon de caisse :</Label>
+             <Input type="text" disabled ></Input>
+        </DivInput>
         <DivInput>
             <Label>Date Creation :</Label>
              <Input type="text" disabled ></Input>
         </DivInput>
-        <DivInput>
-            <Label>Date expiration :</Label>
-             <Input type="text" disabled></Input>
-        </DivInput>
+       
         <DivInput>
             <Label>Bénéficiaire :</Label>
             <Input type="text" disabled></Input>
         </DivInput>
         <DivInput>
-            <Label>Libellé :</Label>
-             <Input type="text" disabled></Input>
+            <Label>Missions :</Label>
+             <Input type="text" disabled ></Input>
         </DivInput>
+        
        <Div>
-       <Button onClick={()=>{alert("")}}>Ajouter</Button>
-       <Button onClick={()=>{alert("")}}>Retirer</Button>
+       <Button onClick={()=>{alert("")}}><IconContext.Provider value={{ color: 'black', size: '30px'}}>
+      <GrFormAdd ></GrFormAdd>
+      </IconContext.Provider></Button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <Button onClick={()=>{alert("")}}><IconContext.Provider value={{ color: 'black', size: '30px'}}>
+      <AiOutlineMinusCircle ></AiOutlineMinusCircle>
+      </IconContext.Provider></Button>
+       </Div>
+       </Div2>
       {/* <div><Button onClick={()=>{alert("")}}>Ajouter</Button><IconContext.Provider value={{ color: 'white', size: '25px'}}>
       <GrFormAdd ></GrFormAdd>
       </IconContext.Provider></div>
       <div><Button onClick={()=>{alert("")}}>Retirer</Button><IconContext.Provider value={{ color: 'black', size: '25px'}}>
       <AiOutlineMinusCircle ></AiOutlineMinusCircle>
       </IconContext.Provider></div> */}
-       </Div>
-    </Div2>
-    <div style={{marginLeft: '150px',marginTop: '100px'}}>
-        <h1 style={{color:"black",fontWeight:"bold",fontSize:"20px" ,marginBottom:"50px"}}>Operations effectuées sur le bon caisse N° {id}</h1>
-        <BootStrapTable      
-        keyField='idSBc'
-        data={sbc}
-        columns={columns}
-        pagination={paginationFactory()}  
-        ></BootStrapTable>
-    </div>
    </MainDiv>
-   
+    <Div1>
+    <h1 style={{color:"black",fontWeight:"bold",fontSize:"20px" ,marginBottom:"50px"}}>Operations effectuées sur le bon caisse N° {id}</h1>
+     <BootStrapTable      
+     keyField='idSBc'
+     data={sbc}
+     columns={columns}
+     pagination={paginationFactory()}  
+     ></BootStrapTable>
+
+    </Div1>
+     </MainContainer>
   )
 }
 
