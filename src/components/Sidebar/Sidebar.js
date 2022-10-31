@@ -108,7 +108,7 @@ const linksArray = [
     {
         label: "Caisse",
         icon:  <BsReceiptCutoff />,
-        path: "/tableuser",
+        path: "/caisse",
        
     },
     {
