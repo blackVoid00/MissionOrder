@@ -40,7 +40,7 @@ margin-left:200px;
 `
 const Div1=styles.div`
 display:inline-block;
-margin-left:170px;
+margin-left:40px;
 margin-top:250px;
 `
 const Select=styles.select`
@@ -51,6 +51,19 @@ height:40px;
 width:200px;
 text-align: left !important;
 border: 10px solid transparent  !important;
+border-radius:2px  !important;
+&:focus{
+outline: none  !important;
+}
+`
+const SelectM=styles.select`
+margin-left:50px;
+margin-bottom:10px;
+margin-top:10px;
+height:30px;
+width:200px;
+text-align: left !important;
+border: 1px solid black !important;
 border-radius:2px  !important;
 &:focus{
 outline: none  !important;
@@ -84,6 +97,21 @@ outline: none  !important;
 font-weight:bold !important;
 color:black !important;
 font-size:16px;
+`
+const InputM=styles.input`
+margin-left:50px;
+margin-bottom:10px;
+margin-top:10px;
+height:35px;
+width:200px;
+text-align: left !important;
+border: 1px solid black !important;
+border-radius:2px  !important;
+&:focus{
+outline: none  !important;
+}
+color:black !important;
+
 `
 const Button=styles.button`
 position: relative;
@@ -133,7 +161,7 @@ const DetailsBc = () => {
      
       {dataField:"dateSbc",text:"Date opération"},
       {dataField:"type",text:"Type  Operation"},
-      {dataField:"creditSbc",text:"Credit"},
+      {dataField:"creditSbc",text:"Crédit"},
       {dataField:"debit",text:"Débit"},
       {dataField:"dateDepense",text:"Date Dépenses"},
       {dataField:"idMs",text:"N° Mission"},
@@ -200,27 +228,51 @@ const DetailsBc = () => {
         style={{color: "black"}}>
          
          <Modal.Header closeButton variant="white">
-                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Sous Bc</Modal.Title>
+                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Opérations</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 <DivInput>
                       <Label>Date Creation</Label>
-                      <Input type="text"></Input>
+                      <InputM type="date"/>
                     </DivInput>
                     <DivInput>
                       <Label>Crédit</Label>
-                      <Input type="text"></Input>
+                      <InputM type="text"placeholder='entrer le crédit'/>
                     </DivInput>
                     <DivInput>
                       <Label>Débit</Label>
-                      <Input type="text"></Input>
+                      <InputM type="text" placeholder='entrer le débit'/> 
                     </DivInput>
-                    <DivInput>
-                      <Label>Débit</Label>
-                     <Select>
-                      <option></option>
-                     </Select>
-                    </DivInput>
+                  
+                      <Label>Type Opération :</Label>
+                      <DivInput>
+                        <Label>Les sorties de caisse liées aux OM :</Label>
+                        <SelectM>
+                        <option>Déplacements </option>
+                        <option>Frais de taxis</option>
+                        <option>Frais d’envoi de courriers </option>
+                        </SelectM>
+                      </DivInput>
+                      <DivInput>
+                        <Label>Autres sorties de caisse : </Label>
+                        <SelectM>
+                        <option>Règlement de facture </option>
+                        <option>Achat administratif</option>
+                        <option>Achat technique </option>
+                        <option>Autres Achats </option>
+                        <option>Frais de femme de ménage</option>
+                        <option>Avance sur salaire  </option>
+                        </SelectM>
+                      </DivInput>
+                      <DivInput>
+                        <Label>Entrées de caisse : </Label>
+                        <SelectM>
+                        <option>Mise à disposition BQ </option>
+                        <option>Remboursement avance sur salaire</option>
+                        </SelectM>
+                      </DivInput>
+                 
+                    
                 </Modal.Body>
                 <Modal.Footer>
                   

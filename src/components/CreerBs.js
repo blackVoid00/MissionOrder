@@ -120,7 +120,7 @@ const CreerBs = () => {
        
   return (
    <MainDiv>
-     <H1>Fomulaire Bon de caisse</H1>
+    
     <Div2>
         <DivInput>
             <Label>Date Creation :</Label>
