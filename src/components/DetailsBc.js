@@ -8,22 +8,23 @@ import { useState } from 'react';
 import styles from 'styled-components'
 import {GrFormAdd} from 'react-icons/gr'
 import {AiOutlineMinusCircle} from 'react-icons/ai'
+import {FaBalanceScale} from 'react-icons/fa'
 import {IconContext} from 'react-icons'
-
+import moment from 'moment';
+import { Modal } from 'react-bootstrap';
 const MainContainer = styles.div`
 display:flex;
 `
 const MainDiv = styles.div`
 display:flex;
-margin-left:10px;
+margin-left:0px;
 margin-top:160px;
 `
 const Div2 = styles.div`
-margin-left: 90px;
+margin-left: 20px;
 display:inline-block;
 border:2px solid black;
-width:100%;
-height:100%;
+
 background-color:#1c539b;
 justify-content:space-between;
 `
@@ -34,8 +35,8 @@ margin-left:90px;
 margin-top:50px;
 `
 const Div=styles.div`
-display:flex;
-margin-left:70px;
+display:flex !important;
+margin-left:200px;
 `
 const Div1=styles.div`
 display:inline-block;
@@ -72,14 +73,17 @@ const Input=styles.input`
 margin-right:50px;
 margin-bottom:10px;
 margin-top:10px;
-height:35px;
-width:150px;
+height:40px;
+width:300px;
 text-align: left !important;
 border: 10px solid transparent  !important;
 border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 const Button=styles.button`
 position: relative;
@@ -89,7 +93,9 @@ font-weight:bold !important;
 margin-top:50px;
 margin-left:10px;
 margin-bottom:50px;
-background-color:transparent !important;
+background-color:#B0C4DE ;
+height:30px;
+width:200px;
 text-align:center !important;
 cursor:pointer;
 &:focus{
@@ -98,76 +104,131 @@ outline: none  !important;
 `
 
 const DetailsBc = () => {
-    const url1="https://localhost:7111/api/Boncaisses"
-    const {id} = useParams()
-    const  [sbc,setSbc]=useState([])
-     const url2=`https://localhost:7111/api/SBC/${id}`
-   const [bc,setBc]=useState([])
-     useEffect(()=>{
-    
-        axios.get(url1).then((response) => {
 
-            setBc(response.data)
+    const {id} = useParams()
     
-             });
-             axios.get(url2)
-           .then((response)=>{setSbc(response.data);})
-     })
-     const columns=[
-        // {dataField:"idSbc",text:"N° Operation"},
-       
-        {dataField:"dateCreation",text:"Date Création"},
-        {dataField:"libelleOp",text:"Type operation"},
-        {dataField:"solde",text:"Débit"},
-        {dataField:"creditSbc",text:"Credit"},
-        {dataField:"depense",text:"Dépenses"},
-        {dataField:"idMs",text:"N° Mission"},
-      
-    ]
-   
+    const url1=`https://localhost:7111/api/Boncaisses/${id}`
+    const url2=`https://localhost:7111/api/SBC/${id}`
+    const [bc,setBc]=useState([])
+    const [sbc,setSbc]=useState([])
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    useEffect(()=>{
+      axios.get(url1).then((response) => {setBc(response.data)});
+      axios.get(url2).then((response)=>  {setSbc(response.data)})
+   })
+  
+   var date=moment(bc.dateCreationBc).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+   var time =moment(bc.dateCreationBc).format('YYYY-MM-DDThh:mm:ss').split('T')[1]
+
     const [users,setUsers]=useState([])
     const [dateC,setDateC]=useState("")
     const [dateE,setDateE]=useState("")
     const [value,setOptionUser]=useState("")
     const [libelle,setOptionLibelle]=useState("")
 
-    const creatBc=()=>{
-
-    }
-
-      
-
+    const columns=[
+      // {dataField:"idSbc",text:"N° Operation"},
+     
+      {dataField:"dateSbc",text:"Date opération"},
+      {dataField:"type",text:"Type  Operation"},
+      {dataField:"creditSbc",text:"Credit"},
+      {dataField:"debit",text:"Débit"},
+      {dataField:"dateDepense",text:"Date Dépenses"},
+      {dataField:"idMs",text:"N° Mission"},
+      {dataField:"libelleOp",text:"Projet Mission"},
+      {dataField:"depense",text:"Dépenses"},
+  ]
+  // , formatter:
+  //     (row,cellContent) =>{
+  //       return(
+  //         <>
+  //         {moment(row.dateDepense).format('YYYY-MM-DDThh:mm:ss').split('T')[0] }
+  //         </>
+  //       )}
   return (
     <MainContainer>
    <MainDiv>
     <Div2>
          <DivInput>
-            <Label>Numero Bon de caisse :</Label>
-             <Input type="text" disabled ></Input>
+            <Label>N° Bon de caisse :</Label>
+             <Input type="text" disabled value={bc.idBonCaisse} ></Input>
         </DivInput>
         <DivInput>
             <Label>Date Creation :</Label>
-             <Input type="text" disabled ></Input>
+             <Input type="text" disabled value={date}></Input>
+        </DivInput>
+        <DivInput>
+            <Label>Heure Creation:</Label>
+             <Input type="text" disabled value={time}></Input>
+        </DivInput>
+        <DivInput>
+            <Label>Libellé :</Label>
+             <Input type="text" disabled value={bc.libellé}></Input>
         </DivInput>
        
         <DivInput>
             <Label>Bénéficiaire :</Label>
-            <Input type="text" disabled></Input>
+            <Input type="text" disabled value={bc.beneficiaire}></Input>
         </DivInput>
         <DivInput>
             <Label>Missions :</Label>
-             <Input type="text" disabled ></Input>
+            <Select>
+              {sbc.map((s)=>{return( <><option>{s.idMs}</option></>)})}
+            </Select>
         </DivInput>
         
        <Div>
-       <Button onClick={()=>{alert("")}}><IconContext.Provider value={{ color: 'black', size: '30px'}}>
-      <GrFormAdd ></GrFormAdd>
+       <Button onClick={handleShow}>Ajouter/Retirer</Button>
+       <Button onClick={()=>{alert("")}}><IconContext.Provider value={{ color: 'black', size: '20px'}}>
+       <FaBalanceScale onClick={()=>{alert("solder")}}></FaBalanceScale>
       </IconContext.Provider></Button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       <Button onClick={()=>{alert("")}}><IconContext.Provider value={{ color: 'black', size: '30px'}}>
-      <AiOutlineMinusCircle ></AiOutlineMinusCircle>
-      </IconContext.Provider></Button>
+       
        </Div>
+       {/* {showC ? <div>
+        <label>Crédit</label>
+        <input type='text'></input></div> : null} */}
+        <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        size="lg"
+        className="special_modal"
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Sous Bc</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <DivInput>
+                      <Label>Date Creation</Label>
+                      <Input type="text"></Input>
+                    </DivInput>
+                    <DivInput>
+                      <Label>Crédit</Label>
+                      <Input type="text"></Input>
+                    </DivInput>
+                    <DivInput>
+                      <Label>Débit</Label>
+                      <Input type="text"></Input>
+                    </DivInput>
+                    <DivInput>
+                      <Label>Débit</Label>
+                     <Select>
+                      <option></option>
+                     </Select>
+                    </DivInput>
+                </Modal.Body>
+                <Modal.Footer>
+                  
+                  <Button variant="success" >Soumettre</Button>
+                 
+                </Modal.Footer>
+         
+         </Modal>
        </Div2>
       {/* <div><Button onClick={()=>{alert("")}}>Ajouter</Button><IconContext.Provider value={{ color: 'white', size: '25px'}}>
       <GrFormAdd ></GrFormAdd>
@@ -177,15 +238,16 @@ const DetailsBc = () => {
       </IconContext.Provider></div> */}
    </MainDiv>
     <Div1>
-    <h1 style={{color:"black",fontWeight:"bold",fontSize:"20px" ,marginBottom:"50px"}}>Operations effectuées sur le bon caisse N° {id}</h1>
+    <h1 style={{color:"black",fontWeight:"bold",fontSize:"20px" ,marginBottom:"50px"}}>Operations effectuées sur le bon caisse N° {id}:</h1>
      <BootStrapTable      
      keyField='idSBc'
      data={sbc}
      columns={columns}
      pagination={paginationFactory()}  
      ></BootStrapTable>
-
+ 
     </Div1>
+  
      </MainContainer>
   )
 }

@@ -27,6 +27,19 @@ const ListeBC = () => {
         {dataField:"libellé",text:"Libellé"},
         {dataField:"créditTotal",text:"Crédit Total"},
         {dataField:"soldeTotal",text:" Solde"},
+        {dataField:"etat",text:"Etat", formatter: (cellContent ,row) => {
+            if ( row.etat==0) {
+              return (
+                <span style={{color:"red",fontWeight:"bold"}}>
+                  non soldé
+                </span>
+              )
+            }   
+            return(
+              <span style={{color:"green",fontWeight:"bold"}}>
+               soldé </span>
+            )    
+        },},
         {datafield:"Details",text:"Details", formatter: ButtonCell}
     ]
   return (
