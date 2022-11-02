@@ -41,7 +41,7 @@ margin-left:200px;
 const Div1=styles.div`
 display:inline-block;
 margin-left:40px;
-margin-top:250px;
+margin-top:200px;
 `
 const Select=styles.select`
 margin-right:50px;
@@ -137,14 +137,17 @@ const DetailsBc = () => {
     
     const url1=`https://localhost:7111/api/Boncaisses/${id}`
     const url2=`https://localhost:7111/api/SBC/${id}`
+    const url3=`https://localhost:7111/api/BcAllSbc/${id}`
     const [bc,setBc]=useState([])
     const [sbc,setSbc]=useState([])
+    const [sbc2,setSbc2]=useState([])
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     useEffect(()=>{
       axios.get(url1).then((response) => {setBc(response.data)});
       axios.get(url2).then((response)=>  {setSbc(response.data)})
+     
    })
   
    var date=moment(bc.dateCreationBc).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
@@ -168,6 +171,14 @@ const DetailsBc = () => {
       {dataField:"libelleOp",text:"Projet Mission"},
       {dataField:"depense",text:"Dépenses"},
   ]
+  const columns2=[
+    // {dataField:"idSbc",text:"N° Operation"},
+   
+    {dataField:"dateCreationSbc",text:"Date opération"},
+    {dataField:"type",text:"Type  Operation"},
+    {dataField:"credit",text:"Crédit"},
+    {dataField:"debit",text:"Débit"},
+]
   // , formatter:
   //     (row,cellContent) =>{
   //       return(
@@ -290,16 +301,21 @@ const DetailsBc = () => {
       </IconContext.Provider></div> */}
    </MainDiv>
     <Div1>
-    <h1 style={{color:"black",fontWeight:"bold",fontSize:"20px" ,marginBottom:"50px"}}>Operations effectuées sur le bon caisse N° {id}:</h1>
+    <h1 style={{color:"black",fontWeight:"bold",fontSize:"20px" ,marginBottom:"50px"}}>Détails OM du Bon Caisse N° {id}:</h1>
      <BootStrapTable      
      keyField='idSBc'
      data={sbc}
      columns={columns}
      pagination={paginationFactory()}  
      ></BootStrapTable>
- 
-    </Div1>
-  
+       {/* <BootStrapTable      
+     keyField='idSBonCaisse'
+     data={sbc2}
+     columns={columns2}
+     pagination={paginationFactory()}  
+     ></BootStrapTable>
+     */}
+  </Div1>
      </MainContainer>
   )
 }
