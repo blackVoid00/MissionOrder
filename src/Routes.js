@@ -16,10 +16,12 @@ import MuiTableTest from "./components/MuiTableTest";
 import Test from "./components/Test";
 import ListeBC from "./components/ListeBC";
 import DetailsBc from "./components/DetailsBc";
+import CompteUsers from "./components/CompteUsers";
 const Routing = () => {
     return (
         <Routes>
              <Route exact path="/testing" element={<Layout><Test></Test></Layout>}></Route>
+             <Route exact path="/compteuser" element={<Layout><CompteUsers></CompteUsers></Layout>}></Route>
             <Route exact path="/app" element={<Layout></Layout>}></Route>
             <Route exact path="/home" element={<Home></Home>}></Route>
             <Route exact path="/filter" element={<Layout><FilterByRole></FilterByRole></Layout>}></Route>

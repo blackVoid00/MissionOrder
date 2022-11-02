@@ -17,6 +17,7 @@ import {
     AiOutlineLeft,AiOutlineFileText,AiOutlineForm,AiOutlineUserAdd
    
 } from "react-icons/ai";
+import {FaMoneyCheck} from "react-icons/fa";
 
 import {MdOutlineFilterAlt} from "react-icons/md";
 import { BsReceiptCutoff} from "react-icons/bs";
@@ -112,11 +113,13 @@ const linksArray = [
        
     },
     {
-        label: "Test",
-        icon:  <BsReceiptCutoff />,
-        path: "/testing",
+        label: "Compte Utilisateur",
+        icon:  <FaMoneyCheck />,
+        path: "/compteuser",
        
     }
+  
+ 
  
  
   
