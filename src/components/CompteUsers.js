@@ -43,7 +43,17 @@ margin-top:160px;
 
 const CompteUsers = () => {
     const [users,setUsers]=useState([])
-    const [details,setDetails]=useState([])
+    const [CreditDebit,setCreditDebit]=useState([])
+    const [Depense,setTotalDepense]=useState([])
+    const T= CreditDebit.map( c => {
+      const matched = Depense.find(d => c.idBc === d.idBc)
+      console.log("test")
+      console.log(`here ${{...c,...matched}}`)
+        return {...c,...matched}
+        
+    }
+  )
+  console.log(T)
     const [show,setShow] = useState(false)
     const [p,setP]=useState(0)
     const url="https://localhost:7111/api/Utilisateurs"
@@ -54,11 +64,15 @@ const CompteUsers = () => {
         });
    })
     const Filter =() => {
-           axios.get(`https://localhost:7111/api/CompteUser/${p}`).then((response) => {
-            setDetails(response.data)
+           axios.get(`https://localhost:7111/api/GetDebitCreditTotal/${p}`).then((response) => {
+            setCreditDebit(response.data)
+           });
+           axios.get(`https://localhost:7111/api/GetDepenseTotal/${p}`).then((response) => {
+            setTotalDepense(response.data)
            });
            setShow(true)
     } 
+    console.log(T)
   return (
     <Div>
         
@@ -77,13 +91,14 @@ const CompteUsers = () => {
           <th width="200">Total Dépense</th>
           {/* <th>Code</th> */}
         </tr>
-    {details.map((d)=>
+    {T.map((d)=>
           <tr>
           <td height="40">{d.idBc}</td>
           <td>{d.sommeCredit}</td>
           <td>{d.sommeDebit}</td>
           <td>{d.sommeDepense}</td>
           </tr>
+          
  )}  </Table>: <h1>Rien</h1>}
     </Div>
   )
