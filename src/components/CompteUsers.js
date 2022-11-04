@@ -47,13 +47,11 @@ const CompteUsers = () => {
     const [Depense,setTotalDepense]=useState([])
     const T= CreditDebit.map( c => {
       const matched = Depense.find(d => c.idBc === d.idBc)
-      console.log("test")
-      console.log(`here ${{...c,...matched}}`)
-        return {...c,...matched}
-        
+        return {...c,...matched,solde:Number(c.sommeCredit)-(Number(matched?.sommeDepense) + Number(c.sommeDebit))}
+     
     }
   )
-  console.log(T)
+
     const [show,setShow] = useState(false)
     const [p,setP]=useState(0)
     const url="https://localhost:7111/api/Utilisateurs"
@@ -72,34 +70,36 @@ const CompteUsers = () => {
            });
            setShow(true)
     } 
-    console.log(T)
+   
   return (
     <Div>
         
         <Select onChange={(e)=>setP(e.target.value)}>
             {users.map((user) =>{
                 return(
-                <option value={user.idUser}>{user.nom} {user.prenom}</option>
+                <option key={user.idUser} value={user.idUser}>{user.nom} {user.prenom}</option>
             )})}
         </Select>
         <Button style={{}} onClick={Filter}>Filter</Button>
-        {show ?  <Table bordered hover size="xl">
-    <tr>
-          <th width="200">N° Bon caisse</th>
-          <th width="100">Crédit Total</th>
-          <th width="100">Total Rendu</th>
-          <th width="200">Total Dépense</th>
-          {/* <th>Code</th> */}
+        {show?
+        <Table bordered hover size="xl">
+          <tbody>
+         <tr>
+          <th>N° Bon caisse</th>
+          <th>Crédit Total</th>
+          <th>Total Rendu</th>
+          <th>Total Dépense</th>
+          <th>Solde</th>
         </tr>
     {T.map((d)=>
-          <tr>
-          <td height="40">{d.idBc}</td>
+          <tr key={d.idBc}>
+          <td>{d.idBc}</td>
           <td>{d.sommeCredit}</td>
           <td>{d.sommeDebit}</td>
           <td>{d.sommeDepense}</td>
+          <td>{d.solde}</td>
           </tr>
-          
- )}  </Table>: <h1>Rien</h1>}
+ )}</tbody></Table>: <h1>Rien</h1>}
     </Div>
   )
 }

@@ -38,50 +38,23 @@ const FilterByRole = () => {
   <ButtonM onClick={Filter}>Filter</ButtonM>
   <br></br><br></br><br></br>
   {show ?  <Table bordered hover size="xl">
-    <tr height="40">
-          <th width="100">Nom</th>
-          <th width="100">Prenom</th>
+    <tbody>
+    <tr>
+          <th>Nom</th>
+          <th>Prenom</th>
           {/* <th>Code</th> */}
         </tr>
     {filterUser.map((u)=>
           <tr>
-          <td height="40">{u.infoNom} </td>
+          <td>{u.infoNom} </td>
           <td> {u.infoPrenom} </td>
           {/* <td ><select>
             <option>{u.infoCin}</option>
             </select></td> */}
           </tr>
- )}  </Table> :<Table bordered hover size="xl">
- <tr height="40">
-       <th width="100">Nom</th>
-       <th width="100">Prenom</th>
-       <th width="120">Matricule</th>
-       <th width="170">Mail</th>
-       <th width="100">Identifiant</th>
-       <th width="120">Cin</th>
-       <th width="170">Num tel</th>
-       <th width="200">Date debut contrat</th>
-       <th width="200">Date fin contrat</th>
-       {/* <th>Code</th> */}
-     </tr>
- {users.map((u)=>
-       <tr>
-       <td height="40">{u.nom} </td>
-       <td> {u.prenom} </td>
-       <td> {u.matricule} </td>
-       <td> {u.mail} </td>
-       <td> {u.identifiant} </td>
-       <td> {u.cin} </td>
-       <td> {u.numeroTel} </td>
-       <td> {u.dateDebutContrat} </td>
-       <td> {u.dateFinContrat} </td>
-     
-       {/* <td ><select>
-         <option>{u.infoCin}</option>
-         </select></td> */}
-       </tr>
-)}  </Table>  }
+ )} </tbody> </Table> :null }
   
+                 
   </div>
   )
 }
