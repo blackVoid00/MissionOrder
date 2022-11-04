@@ -119,11 +119,12 @@ cursor: pointer;
 font-weight:bold ;
 width:${props => props.large ? "200px" : "140px"};
 height:30px;
-margin-left:55%;
-margin-top:5px;
+margin-left:${props=>props.left? "400px":"55%"};
+margin-top:${props=>props.top? " 52px":"5px"};
+margin-bottom:${props=>props.bottom? "10px":"0px"};
 `
 export const Final=styles.div`
-margin-top:50px;
+margin-top:0px;
 `
 export const InputModal=styles.input`
 margin-bottom:10px;

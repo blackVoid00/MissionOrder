@@ -7,48 +7,60 @@ import { IconContext } from "react-icons";
 import axios from "axios";
 import "./modal.css"
 
-const MissionComponent = () => {
-  // const url = "https://localhost:7140/api/Utilisateurs"
-  // const [data,setData] = useState([])
 
-  // const getUsers=async( )=> { 
-  //   await axios.get(url).then((response) => {
-  //    setData(response.data)
-  //   })
-  // }
-  // useEffect(()=>{
-  //     getUsers()
-   
-  // })
+const MissionComponent = () => {
+  const url = "https://localhost:7111/api/Utilisateurs"
+  const [data,setData] = useState([])
+  const [gasoil,setGazoil]=useState(0)
+  const [parking,setParking] = useState(0)
+  const [hotel,setHotel] = useState(0)
+  const [repas,setRepas] = useState(0)
+  const [taxi,setTaxi] = useState(0)
+  const [ach,setAch] = useState(0)
+  const [divers,setDivers] = useState(0)
+  const [gm,setGm] = useState(0)
+   const[g,setG] = useState(0)
+  const [total,setTotal] = useState("")
+  const getUsers=async( )=> { 
+    await axios.get(url).then((response) => {
+     setData(response.data)
+    })
+  }
+  var sommeF=0
+  useEffect(()=>{
+      getUsers()
+      setTotal(parseInt(gasoil)+ parseInt(parking)+ parseInt(repas)+ parseInt(ach)+parseInt(taxi)+parseInt(hotel)+parseInt(divers))      
+  })
+  
   const uploadFile=()=>{
     const input = document.getElementById('file-input');
     if (input) {
        input.click();
     }
     }
-    const [isDisabled,setDisabled]=useState(true)
-    const [c,setClicked]=useState(false)
+    // const [isDisabled,setDisabled]=useState(true)
+    // const [c,setClicked]=useState(false)
     
-    const [users,setUsers]=useState([{
-        name:"Ahmed",
-        age:"20",
-        Role:"user"
-     },{
-       name:"Wiam",
-       age:"40",
-       Role:"admin"
-     },{
-       name:"Asma",
-       age:"30",
-       Role:"editor"
-     }
+    // const [users,setUsers]=useState([{
+    //     name:"Ahmed",
+    //     age:"20",
+    //     Role:"user"
+    //  },{
+    //    name:"Wiam",
+    //    age:"40",
+    //    Role:"admin"
+    //  },{
+    //    name:"Asma",
+    //    age:"30",
+    //    Role:"editor"
+    //  }
     
-    ] )
-    const [role,setRole]=useState(0)
-    // const AddOther=()=>{
-    //     setClicked(!c)
+    // ] )
+    // const [role,setRole]=useState(0)
+    // // const AddOther=()=>{
+    // //     setClicked(!c)
       
-    // }
+    // // }
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -100,7 +112,7 @@ const MissionComponent = () => {
 
                       <DivM>
                        <LabelM>Projet :</LabelM>
-                       <InputM type="text" placeholder='entrer le projet'></InputM>
+                       <InputM type="text" placeholder='entrer le projet...'></InputM>
                       </DivM>
                       
                       <DivM>
@@ -113,16 +125,17 @@ const MissionComponent = () => {
                       </DivM>
                       <DivM>
                        <LabelM> Durée Intervention :</LabelM>
-                       <InputM type="text" disabled></InputM>
+                       <InputM type="text" disabled value='test'></InputM>
                       </DivM>
                       <DivM>
                        <LabelM>Véhicule utilisé :</LabelM>
-                       <InputM type="text" placeholder='entrer le véhicule utilisé'></InputM>
+                       <InputM type="text" placeholder='entrer le véhicule utilisé...'></InputM>
                       </DivM>
                       <DivM>
                        <LabelM> Accompagné par :</LabelM>
-                       <InputM type="text"></InputM>
-                      
+                       <select className='Select-Ms'>
+                               {data.map((user)=><option>{user.nom} {user.prenom}</option>)}
+                              </select>
                       </DivM>
                    </SousDiv1>
                        <SousDiv2>
@@ -137,7 +150,7 @@ const MissionComponent = () => {
                       </DivM> 
                       <DivM>
                        <LabelM> lieu :</LabelM>
-                       <InputM type="text" placeholder='entrer le lieu' ></InputM>
+                       <InputM type="text" placeholder='entrer le lieu...' ></InputM>
                       </DivM> 
                         
                            <DivM>
@@ -147,6 +160,12 @@ const MissionComponent = () => {
                                 <option value="">Récup de document</option>
                                 <option value="">Dépannage</option>
                               </select>
+                           </DivM>
+                           <DivM>
+                         
+                          <LabelM>Description :</LabelM>
+                          <InputD  type="text" placeholder='entrer les details...'></InputD>
+                 
                            </DivM>
                           <DivM>
                           <LabelM>Fiche Intervention</LabelM>
@@ -162,7 +181,7 @@ const MissionComponent = () => {
             </SousDiv2>
             <Modal
                 aria-labelledby="contained-modal-title-vcenter"
-                fullscreen={true}
+               size="xl"
                 className="special_modal"
                 show={show}
                 onHide={handleClose}
@@ -177,7 +196,7 @@ const MissionComponent = () => {
                     <Div1M> 
                     <DivM>
                     <LabelModal>Projet :</LabelModal>
-                     <InputModal type="text" placeholder='entrer le projet'></InputModal>
+                     <InputModal type="text" placeholder='entrer le projet...'></InputModal>
                   </DivM>
                   <DivM>
                     <LabelModal>Date de depart :</LabelModal>
@@ -189,15 +208,17 @@ const MissionComponent = () => {
                   </DivM>
                   <DivM>
                     <LabelModal>Durée Intervention :</LabelModal>
-                     <InputModal type="text" disabled placeholder='durée'></InputModal>
+                     <InputModal type="text" disabled value='test'></InputModal>
                   </DivM>
                   <DivM>
                     <LabelModal>Véhicule utilisé</LabelModal>
-                     <InputModal type="text" placeholder='entrer le véhicule'></InputModal>
+                     <InputModal type="text" placeholder='entrer le véhicule...'></InputModal>
                   </DivM>
                   <DivM>
                     <LabelModal>Accompagné par :</LabelModal>
-                     <InputModal type="text" placeholder='entrer le nom complet '></InputModal>
+                    <select className='Select-Ms'>
+                               {data.map((user)=><option>{user.nom} {user.prenom}</option>)}
+                              </select>
         
                   </DivM>
                   </Div1M>
@@ -213,7 +234,7 @@ const MissionComponent = () => {
                   </DivM>
                   <DivM>
                     <LabelModal>Lieu</LabelModal>
-                     <InputModal type="text" placeholder='entrer le lieu'></InputModal>
+                     <InputModal type="text" placeholder='entrer le lieu...'></InputModal>
                   </DivM>
                   <DivM>
                              <LabelM>Nature Mission</LabelM>
@@ -224,6 +245,7 @@ const MissionComponent = () => {
                               </select>
                            </DivM>
                   <DivM>
+                 
                           <LabelM>Fiche Intervention</LabelM>
                           
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -234,10 +256,11 @@ const MissionComponent = () => {
                           </DivM>
                        
                   </Div2M>
-                  <SousDiv1>
+                
+                  {/* <SousDiv1>
          <DivM>
            <LabelM> Gasoil :</LabelM>
-            <InputModal type="text" placeholder='frais gazoil' ></InputModal>
+            <InputModal type="text" placeholder='frais gazoil...' onChange={(e)=>setGm(e.target.value)}></InputModal>
           
             <input id="file-input" type="file" style={{display :"none"}}></input>
                 <IconContext.Provider value={{ color: 'black', size: '30px'}}>
@@ -247,7 +270,7 @@ const MissionComponent = () => {
         </DivM> 
         <DivM>
            <LabelM> Parking :</LabelM>
-            <InputModal type="text" placeholder='frais parking'></InputModal>
+            <InputModal type="text" placeholder='frais parking...'></InputModal>
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
                 <IconContext.Provider value={{ color: 'black', size: '30px'}}>
@@ -257,7 +280,7 @@ const MissionComponent = () => {
         </DivM> 
         <DivM>
            <LabelM> Hotel :</LabelM>
-            <InputModal type="text" placeholder='frais hotel'></InputModal>
+            <InputModal type="text" placeholder='frais hotel...'></InputModal>
           
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -268,7 +291,7 @@ const MissionComponent = () => {
         </DivM> 
         <DivM>
            <LabelM> Repas :</LabelM>
-            <InputModal type="text" placeholder='frais repas'></InputModal>
+            <InputModal type="text" placeholder='frais repas...'></InputModal>
          
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -279,7 +302,7 @@ const MissionComponent = () => {
         </DivM>
         <DivM>
            <LabelM> Taxi :</LabelM>
-            <InputModal type="text" placeholder='frais taxi'></InputModal>
+            <InputModal type="text" placeholder='frais taxi...'></InputModal>
           
             <input id="file-input" type="file" style={{display :"none"}}></input>
                 <IconContext.Provider value={{ color: 'black', size: '30px'}}>
@@ -289,7 +312,7 @@ const MissionComponent = () => {
         </DivM>
         <DivM>
            <LabelM> Ach/tech :</LabelM>
-            <InputModal type="text" placeholder='frais achat tech' ></InputModal>
+            <InputModal type="text" placeholder='frais achat tech...' ></InputModal>
           
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -299,7 +322,7 @@ const MissionComponent = () => {
         </DivM>  
         <DivM>
            <LabelM> divers :</LabelM>
-            <InputModal type="text" placeholder='autre'></InputModal>
+            <InputModal type="text" placeholder='autre...'></InputModal>
            
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -312,13 +335,14 @@ const MissionComponent = () => {
         <LabelM> Total</LabelM>    
         <InputModalT  type="text" disabled></InputModalT>
         </DivM>
-         </SousDiv1>
+        <ButtonM left top bottom>Soumettre</ButtonM>  
+         </SousDiv1> */}
                   
                   </MainM>
                 </Modal.Body>
                 <Modal.Footer>
                   
-                  <Button variant="success" >Soumettre</Button>
+                  <Button variant="success"  >Soumettre</Button>
                  
                 </Modal.Footer>
             </Modal>
@@ -331,7 +355,7 @@ const MissionComponent = () => {
             <SousDiv1>
          <DivM>
            <LabelM> Gasoil :</LabelM>
-            <InputM type="text" placeholder='frais gazoil' ></InputM>
+            <InputM type="text" placeholder='frais gazoil...' onChange={(e)=>setGazoil(e.target.value)} ></InputM>
           
             <input id="file-input" type="file" style={{display :"none"}}></input>
                 <IconContext.Provider value={{ color: 'white', size: '30px'}}>
@@ -341,7 +365,7 @@ const MissionComponent = () => {
         </DivM> 
         <DivM>
            <LabelM> Parking :</LabelM>
-            <InputM type="text" placeholder='frais parking'></InputM>
+            <InputM type="text" placeholder='frais parking...' onChange={(e)=>setParking(e.target.value)}></InputM>
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
                 <IconContext.Provider value={{ color: 'white', size: '30px'}}>
@@ -351,7 +375,7 @@ const MissionComponent = () => {
         </DivM> 
         <DivM>
            <LabelM> Hotel :</LabelM>
-            <InputM type="text" placeholder='frais hotel'></InputM>
+            <InputM type="text" placeholder='frais hotel...' onChange={(e)=>setHotel(e.target.value)}></InputM>
           
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -362,7 +386,7 @@ const MissionComponent = () => {
         </DivM> 
         <DivM>
            <LabelM> Repas :</LabelM>
-            <InputM type="text" placeholder='frais repas'></InputM>
+            <InputM type="text" placeholder='frais repas...' onChange={(e)=>setRepas(e.target.value)}></InputM>
          
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -373,7 +397,7 @@ const MissionComponent = () => {
         </DivM>
         <DivM>
            <LabelM> Taxi :</LabelM>
-            <InputM type="text" placeholder='frais taxi'></InputM>
+            <InputM type="text" placeholder='frais taxi...' onChange={(e)=>setTaxi(e.target.value)}></InputM>
           
             <input id="file-input" type="file" style={{display :"none"}}></input>
                 <IconContext.Provider value={{ color: 'white', size: '30px'}}>
@@ -383,7 +407,7 @@ const MissionComponent = () => {
         </DivM>
         <DivM>
            <LabelM> Ach/tech :</LabelM>
-            <InputM type="text" placeholder='frais achat tech' ></InputM>
+            <InputM type="text" placeholder='frais achat tech...' onChange={(e)=>setAch(e.target.value)} ></InputM>
           
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -393,7 +417,7 @@ const MissionComponent = () => {
         </DivM>  
         <DivM>
            <LabelM> divers :</LabelM>
-            <InputM type="text" placeholder='autre'></InputM>
+            <InputM type="text" placeholder='autre...' onChange={(e)=>setDivers(e.target.value)}></InputM>
            
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -402,17 +426,14 @@ const MissionComponent = () => {
                 </IconContext.Provider>
 
         </DivM>
-        <Description>
-            <LabelM>Description :</LabelM>
-            <InputD  type="text" size="50"></InputD>
-        </Description>
+        
         <Final>
         <DivM>
         <LabelM> Total</LabelM>    
-        <InputMT  type="text" disabled></InputMT>
+        <InputMT  type="text" disabled value={total}></InputMT>
         </DivM>
-        <DivM> <ButtonM>Soumettre</ButtonM>  
-        </DivM>
+         <ButtonM left top bottom>Soumettre</ButtonM>  
+       
         </Final>
          </SousDiv1>
          
