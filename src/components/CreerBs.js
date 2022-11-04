@@ -149,8 +149,6 @@ const CreerBs = () => {
              </Select>
         </DivInput>
        <Div>
-      <Button onClick={()=>{alert("")}}>Ajouter</Button>
-      <Button onClick={()=>{alert("")}}>Retirer</Button>
        </Div>
        <Button onClick={creatBc}>Create</Button>
     </Div2>

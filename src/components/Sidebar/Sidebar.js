@@ -107,7 +107,7 @@ const linksArray = [
        
     },
     {
-        label: "Caisse",
+        label: "Bon Caisse",
         icon:  <BsReceiptCutoff />,
         path: "/caisse",
        

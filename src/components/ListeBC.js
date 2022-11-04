@@ -3,7 +3,7 @@ import BootStrapTable from "react-bootstrap-table-next"
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import axios from 'axios'
 import {useNavigate} from "react-router-dom"
-
+import {ButtonM } from './StyleMsC';
 
 const ListeBC = () => {
     const navigate = useNavigate()
@@ -44,7 +44,9 @@ const ListeBC = () => {
     ]
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>
-        <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des bons de caisse</h1>
+      <ButtonM large >Créer Bon de caisse</ButtonM>
+      <br></br>  <br></br>  <br></br>
+        {/* <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des bons de caisse</h1> */}
         <BootStrapTable      
         keyField='idBonCaisse'
         data={bc}

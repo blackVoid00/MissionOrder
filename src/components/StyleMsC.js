@@ -117,7 +117,7 @@ background-color:#B0C4DE ;
 font-weight:bold !important;
 cursor: pointer;
 font-weight:bold ;
-width:140px;
+width:${props => props.large ? "200px" : "140px"};
 height:30px;
 margin-left:55%;
 margin-top:5px;
