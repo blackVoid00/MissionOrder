@@ -23,15 +23,13 @@ background-color:#1c539b;
 export const MainDiv2 = styles.div`
 display:inline-block;
 background-color:#1c539b;
-
-
 margin-top:1%;
 width:70vh;
 height:700px;
 `
 export const Div1 =styles.div`
 margin-top:4%;
-display:flex;
+display:${props => props.inline ? "inline-block" : "flex"};
 justify-content:space-between;
 `
 export const SousDiv1=styles.div`
@@ -97,8 +95,9 @@ border:1px solid black !important;
 `
 export const LabelM=styles.label`
 display: inline-block;
-width: 160px;
+width: ${props => props.l ? "200px" : "160px"};
 font-weight:bold !important;
+color:${props => props.color ? "black" : "white"}
 `
 export const LabelMFile=styles.label`
 margin-left:10px;
@@ -119,7 +118,7 @@ cursor: pointer;
 font-weight:bold ;
 width:${props => props.large ? "200px" : "140px"};
 height:30px;
-margin-left:${props=>props.left? "400px":"55%"};
+margin-left:${props=>props.left? "400px":"0px"};
 margin-top:${props=>props.top? " 52px":"5px"};
 margin-bottom:${props=>props.bottom? "10px":"0px"};
 `

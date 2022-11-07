@@ -18,13 +18,12 @@ import {
    
 } from "react-icons/ai";
 import {FaMoneyCheck} from "react-icons/fa";
-
 import {MdOutlineFilterAlt} from "react-icons/md";
 import { BsReceiptCutoff} from "react-icons/bs";
 import { CgUserList } from "react-icons/cg";
 import {GiReceiveMoney,} from "react-icons/gi";
 import {BiTargetLock} from "react-icons/bi";
-
+import {TbListDetails} from "react-icons/tb";
 import { useLocation } from "react-router-dom";
 import {IconContext} from 'react-icons'
 const Sidebar = () => {
@@ -114,7 +113,7 @@ const linksArray = [
     },
     {
         label: "Mission List",
-        icon:  <BsReceiptCutoff />,
+        icon:  <TbListDetails />,
         path: "/missionlist",
        
     },

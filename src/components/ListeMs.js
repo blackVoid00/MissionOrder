@@ -9,7 +9,7 @@ const ListeMs = () => {
     const navigate = useNavigate()
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
-            <button  onClick={()=>navigate(`/detailMs/${row.idMission}`)  }>Details</button>
+            <ButtonM  onClick={()=>navigate(`/detailms/${row.idMission}`)  }>Details</ButtonM>
         )
         
         }
@@ -41,7 +41,7 @@ const ListeMs = () => {
                fermée </span>
             )    
         },},
-        {datafield:"Details",text:"Details", formatter: ButtonCell}
+        {datafield:"Actions",text:"Actions", formatter: ButtonCell}
     ]
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>

@@ -18,6 +18,7 @@ import ListeBC from "./components/ListeBC";
 import DetailsBc from "./components/DetailsBc";
 import CompteUsers from "./components/CompteUsers";
 import ListeMs from "./components/ListeMs";
+import DetailsMs from "./components/DetailsMs";
 const Routing = () => {
     return (
         <Routes>
@@ -38,6 +39,7 @@ const Routing = () => {
             <Route exact path="/userdetail/:id" element={<Layout><DetailUser></DetailUser></Layout>}></Route>
             <Route exact path="/userupdate/:id" element={<Layout><UserUpdate></UserUpdate></Layout>}></Route>
             <Route exact path="/detailbc/:id" element={<Layout><DetailsBc></DetailsBc></Layout>}></Route>
+            <Route exact path="/detailms/:id" element={<Layout><DetailsMs></DetailsMs></Layout>}></Route>
         </Routes>
         
  

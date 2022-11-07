@@ -25,3 +25,20 @@
     .Select-Modal:focus{
       outline: none  !important;
       }
+    
+    
+      .swiper {
+        width: 600px;
+        height: 500px;
+      }
+      .swiper-slide {
+        text-align: left;
+        font-size: 18px;
+        background:#1c539b;
+        display: inline-block;
+        justify-content:space-between;
+        padding-left: 20px;
+      }
+      
+     
+      
