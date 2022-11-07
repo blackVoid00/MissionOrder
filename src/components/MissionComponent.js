@@ -18,16 +18,16 @@ const MissionComponent = () => {
   const [taxi,setTaxi] = useState(0)
   const [ach,setAch] = useState(0)
   const [divers,setDivers] = useState(0)
-  const [gasoil2,setGazoil2]=useState(0)
-  const [parking2,setParking2] = useState(0)
-  const [hotel2,setHotel2] = useState(0)
-  const [repas2,setRepas2] = useState(0)
-  const [taxi2,setTaxi2] = useState(0)
-  const [ach2,setAch2] = useState(0)
-  const [divers2,setDivers2] = useState(0)
-  const [total,setTotal] = useState(0)
-  const [total2,setTotal2] = useState(0)
-  const [tab,setTab] = useState([])
+  // const [gasoil2,setGazoil2]=useState(0)
+  // const [parking2,setParking2] = useState(0)
+  // const [hotel2,setHotel2] = useState(0)
+  // const [repas2,setRepas2] = useState(0)
+  // const [taxi2,setTaxi2] = useState(0)
+  // const [ach2,setAch2] = useState(0)
+  // const [divers2,setDivers2] = useState(0)
+  // const [total,setTotal] = useState(0)
+  // const [total2,setTotal2] = useState(0)
+   const [tab,setTab] = useState([])
   const getUsers=async( )=> { 
     await axios.get(url).then((response) => {
      setData(response.data)
@@ -38,7 +38,7 @@ const MissionComponent = () => {
   useEffect(()=>{
       getUsers()
       setTotal(()=>parseInt(gasoil)+ parseInt(parking)+ parseInt(repas)+ parseInt(ach)+parseInt(taxi)+parseInt(hotel)+parseInt(divers))
-      setTotal2(()=>parseInt(gasoil2)+ parseInt(parking2)+ parseInt(repas2)+ parseInt(ach2)+parseInt(taxi2)+parseInt(hotel2)+parseInt(divers2))  
+      // setTotal2(()=>parseInt(gasoil2)+ parseInt(parking2)+ parseInt(repas2)+ parseInt(ach2)+parseInt(taxi2)+parseInt(hotel2)+parseInt(divers2))  
   })
   const setFinalTotal=()=>{
     tab.push(total) 
@@ -196,7 +196,7 @@ const MissionComponent = () => {
                            <ButtonM onClick={handleShow}>Autre Mission</ButtonM>
                           </DivM>
             </SousDiv2>
-            <Modal
+            {/* <Modal
                 aria-labelledby="contained-modal-title-vcenter"
                size="xl"
                 className="special_modal"
@@ -362,7 +362,7 @@ const MissionComponent = () => {
                   <Button variant="success"  >Soumettre</Button>
                  
                 </Modal.Footer>
-            </Modal>
+            </Modal> */}
                </Div2>
           {/* {c ?<SousMission name={"Valider"} ></SousMission> : null} */}
         

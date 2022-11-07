@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate,useParams } from 'react-router-dom';
-import { Div1, H1, InputM, LabelM } from './StyleMsC';
+import { Div1, LabelM } from './StyleMsC';
 const Divv=styles.div`
 margin-top:220px;
 margin-left:424px;
@@ -20,6 +20,12 @@ color:white !important;
 const DivSwiper=styles.div`
 display:inline-block;
 color:black !important;
+`
+const H1=styles.h1`
+color:black;
+font-weight:bold !important;
+font-size:20px !important;
+width:100% !important;
 `
 const DetailsMs = () => {
     
@@ -48,7 +54,7 @@ const DetailsMs = () => {
         
        <SwiperSlide>
        <Div1 inline>
-            <LabelM l color="true" >Numero sous Mission:</LabelM>
+            <LabelM l color="true" >N°:</LabelM>
             <p>{d.idSousMission}</p> 
        </Div1>
         <Div1 inline>
