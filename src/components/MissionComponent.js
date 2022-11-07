@@ -18,20 +18,37 @@ const MissionComponent = () => {
   const [taxi,setTaxi] = useState(0)
   const [ach,setAch] = useState(0)
   const [divers,setDivers] = useState(0)
-  const [gm,setGm] = useState(0)
-   const[g,setG] = useState(0)
-  const [total,setTotal] = useState("")
+  const [gasoil2,setGazoil2]=useState(0)
+  const [parking2,setParking2] = useState(0)
+  const [hotel2,setHotel2] = useState(0)
+  const [repas2,setRepas2] = useState(0)
+  const [taxi2,setTaxi2] = useState(0)
+  const [ach2,setAch2] = useState(0)
+  const [divers2,setDivers2] = useState(0)
+  const [total,setTotal] = useState(0)
+  const [total2,setTotal2] = useState(0)
+  const [tab,setTab] = useState([])
   const getUsers=async( )=> { 
     await axios.get(url).then((response) => {
      setData(response.data)
     })
   }
+  
   var sommeF=0
   useEffect(()=>{
       getUsers()
-      setTotal(parseInt(gasoil)+ parseInt(parking)+ parseInt(repas)+ parseInt(ach)+parseInt(taxi)+parseInt(hotel)+parseInt(divers))      
+      setTotal(()=>parseInt(gasoil)+ parseInt(parking)+ parseInt(repas)+ parseInt(ach)+parseInt(taxi)+parseInt(hotel)+parseInt(divers))
+      setTotal2(()=>parseInt(gasoil2)+ parseInt(parking2)+ parseInt(repas2)+ parseInt(ach2)+parseInt(taxi2)+parseInt(hotel2)+parseInt(divers2))  
   })
-  
+  const setFinalTotal=()=>{
+    tab.push(total) 
+    console.log(tab)   
+  }
+  const setFinalTotal2=()=>{
+    tab.push(total2) 
+    console.log(tab)   
+  }
+  var storage=localStorage.setItem("total",total)
   const uploadFile=()=>{
     const input = document.getElementById('file-input');
     if (input) {
@@ -257,10 +274,10 @@ const MissionComponent = () => {
                        
                   </Div2M>
                 
-                  {/* <SousDiv1>
+                  <SousDiv1>
          <DivM>
            <LabelM> Gasoil :</LabelM>
-            <InputModal type="text" placeholder='frais gazoil...' onChange={(e)=>setGm(e.target.value)}></InputModal>
+            <InputModal type="text" placeholder='frais gazoil...' onChange={(e)=>setGazoil2(e.target.value)}></InputModal>
           
             <input id="file-input" type="file" style={{display :"none"}}></input>
                 <IconContext.Provider value={{ color: 'black', size: '30px'}}>
@@ -270,17 +287,17 @@ const MissionComponent = () => {
         </DivM> 
         <DivM>
            <LabelM> Parking :</LabelM>
-            <InputModal type="text" placeholder='frais parking...'></InputModal>
+            <InputModal type="text" placeholder='frais parking...' onChange={(e)=>setParking2(e.target.value)} ></InputModal>
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
                 <IconContext.Provider value={{ color: 'black', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile} ></AiOutlineCloudUpload>
                 </IconContext.Provider>
 
         </DivM> 
         <DivM>
            <LabelM> Hotel :</LabelM>
-            <InputModal type="text" placeholder='frais hotel...'></InputModal>
+            <InputModal type="text" placeholder='frais hotel...' onChange={(e)=>setHotel2(e.target.value)}></InputModal>
           
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -291,7 +308,7 @@ const MissionComponent = () => {
         </DivM> 
         <DivM>
            <LabelM> Repas :</LabelM>
-            <InputModal type="text" placeholder='frais repas...'></InputModal>
+            <InputModal type="text" placeholder='frais repas...' onChange={(e)=>setRepas2(e.target.value)}></InputModal>
          
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -302,7 +319,7 @@ const MissionComponent = () => {
         </DivM>
         <DivM>
            <LabelM> Taxi :</LabelM>
-            <InputModal type="text" placeholder='frais taxi...'></InputModal>
+            <InputModal type="text" placeholder='frais taxi...' onChange={(e)=>setTaxi2(e.target.value)}></InputModal>
           
             <input id="file-input" type="file" style={{display :"none"}}></input>
                 <IconContext.Provider value={{ color: 'black', size: '30px'}}>
@@ -312,7 +329,7 @@ const MissionComponent = () => {
         </DivM>
         <DivM>
            <LabelM> Ach/tech :</LabelM>
-            <InputModal type="text" placeholder='frais achat tech...' ></InputModal>
+            <InputModal type="text" placeholder='frais achat tech...' onChange={(e)=>setAch2(e.target.value)} ></InputModal>
           
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -322,7 +339,7 @@ const MissionComponent = () => {
         </DivM>  
         <DivM>
            <LabelM> divers :</LabelM>
-            <InputModal type="text" placeholder='autre...'></InputModal>
+            <InputModal type="text" placeholder='autre...' onChange={(e)=>setDivers2(e.target.value)}></InputModal>
            
            
             <input id="file-input" type="file" style={{display :"none"}}></input>
@@ -335,8 +352,8 @@ const MissionComponent = () => {
         <LabelM> Total</LabelM>    
         <InputModalT  type="text" disabled></InputModalT>
         </DivM>
-        <ButtonM left top bottom>Soumettre</ButtonM>  
-         </SousDiv1> */}
+        <ButtonM left top bottom onClick={setFinalTotal2}>Soumettre</ButtonM>  
+         </SousDiv1>
                   
                   </MainM>
                 </Modal.Body>
@@ -432,7 +449,7 @@ const MissionComponent = () => {
         <LabelM> Total</LabelM>    
         <InputMT  type="text" disabled value={total}></InputMT>
         </DivM>
-         <ButtonM left top bottom>Soumettre</ButtonM>  
+         <ButtonM left top bottom onClick={setFinalTotal}>Soumettre</ButtonM>  
        
         </Final>
          </SousDiv1>

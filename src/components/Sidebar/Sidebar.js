@@ -107,9 +107,15 @@ const linksArray = [
        
     },
     {
-        label: "Bon Caisse",
+        label: "BonCaisse List",
         icon:  <BsReceiptCutoff />,
-        path: "/caisse",
+        path: "/bcaisselist",
+       
+    },
+    {
+        label: "Mission List",
+        icon:  <BsReceiptCutoff />,
+        path: "/missionlist",
        
     },
     {
