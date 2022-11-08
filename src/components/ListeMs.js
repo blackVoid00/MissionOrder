@@ -32,13 +32,13 @@ const ListeMs = () => {
             if ( row.etatMission =="O") {
               return (
                 <span style={{color:"red",fontWeight:"bold"}}>
-                non fermée
+               ouverte
                 </span>
               )
             }   
             return(
               <span style={{color:"green",fontWeight:"bold"}}>
-               fermée </span>
+               cloturée </span>
             )    
         },},
         {datafield:"Actions",text:"Actions", formatter: ButtonCell}

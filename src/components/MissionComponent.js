@@ -25,7 +25,7 @@ const MissionComponent = () => {
   // const [taxi2,setTaxi2] = useState(0)
   // const [ach2,setAch2] = useState(0)
   // const [divers2,setDivers2] = useState(0)
-  // const [total,setTotal] = useState(0)
+  const [total,setTotal] = useState(0)
   // const [total2,setTotal2] = useState(0)
    const [tab,setTab] = useState([])
   const getUsers=async( )=> { 
@@ -41,13 +41,16 @@ const MissionComponent = () => {
       // setTotal2(()=>parseInt(gasoil2)+ parseInt(parking2)+ parseInt(repas2)+ parseInt(ach2)+parseInt(taxi2)+parseInt(hotel2)+parseInt(divers2))  
   })
   const setFinalTotal=()=>{
+    let initialVal=0
     tab.push(total) 
-    console.log(tab)   
+    let tab2=tab.reduce((c,p)=>c+p,initialVal)
+    console.log(tab)
+    console.log(tab2)   
   }
-  const setFinalTotal2=()=>{
-    tab.push(total2) 
-    console.log(tab)   
-  }
+  // const setFinalTotal2=()=>{
+  //   tab.push(total2) 
+  //   console.log(tab)   
+  // }
   var storage=localStorage.setItem("total",total)
   const uploadFile=()=>{
     const input = document.getElementById('file-input');
@@ -193,7 +196,7 @@ const MissionComponent = () => {
 
                           </DivM>
                           <DivM>
-                           <ButtonM onClick={handleShow}>Autre Mission</ButtonM>
+                           {/* <ButtonM onClick={handleShow}>Autre Mission</ButtonM> */}
                           </DivM>
             </SousDiv2>
             {/* <Modal

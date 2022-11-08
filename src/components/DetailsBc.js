@@ -137,7 +137,7 @@ const DetailsBc = () => {
     
     const url1=`https://localhost:7111/api/Boncaisses/${id}`
     const url2=`https://localhost:7111/api/SBC/${id}`
-    const url3=`https://localhost:7111/api/BcAllSbc/${id}`
+    const url3=`https://localhost:7111/api/GetAllPerformedOperations/${id}`
     const [bc,setBc]=useState([])
     const [sbc,setSbc]=useState([])
     const [sbc2,setSbc2]=useState([])
@@ -147,7 +147,7 @@ const DetailsBc = () => {
     useEffect(()=>{
       axios.get(url1).then((response) => {setBc(response.data)});
       axios.get(url2).then((response)=>  {setSbc(response.data)})
-     
+      axios.get(url3).then((response)=>  {setSbc2(response.data)})
    })
   
    var date=moment(bc.dateCreationBc).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
@@ -162,13 +162,12 @@ const DetailsBc = () => {
     const columns=[
       // {dataField:"idSbc",text:"N° Operation"},
      
-      {dataField:"dateSbc",text:"Date opération"},
-      {dataField:"type",text:"Type  Operation"},
-      {dataField:"creditSbc",text:"Crédit"},
-      {dataField:"debit",text:"Débit"},
+      // {dataField:"dateSbc",text:"Date opération"},
+      // {dataField:"type",text:"Type  Operation"},
+      // {dataField:"creditSbc",text:"Crédit"},
+      // {dataField:"debit",text:"Débit"},
       {dataField:"dateDepense",text:"Date Dépenses"},
       {dataField:"idMs",text:"N° Mission"},
-      {dataField:"libelleOp",text:"Projet Mission"},
       {dataField:"depense",text:"Dépenses"},
   ]
   const columns2=[
@@ -308,13 +307,13 @@ const DetailsBc = () => {
      columns={columns}
      pagination={paginationFactory()}  
      ></BootStrapTable>
-       {/* <BootStrapTable      
+       <BootStrapTable      
      keyField='idSBonCaisse'
      data={sbc2}
      columns={columns2}
      pagination={paginationFactory()}  
      ></BootStrapTable>
-     */}
+    
   </Div1>
      </MainContainer>
   )
