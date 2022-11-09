@@ -21,18 +21,19 @@ margin-left:0px;
 margin-top:160px;
 `
 const Div2 = styles.div`
-margin-left: 20px;
+margin-left: 200px;
 display:inline-block;
-border:2px solid black;
-
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+margin-top:0px;
 background-color:#1c539b;
 justify-content:space-between;
 `
 const H1 = styles.h1`
-font-size:44px !important;
-color:black;
-margin-left:90px;
-margin-top:50px;
+font-size:30px !important;
+color:white;
+font-weight:bold;
+padding:10px 10px 10px 10px !important;
+text-align:center !important;
 `
 const Div=styles.div`
 display:flex !important;
@@ -40,8 +41,8 @@ margin-left:200px;
 `
 const Div1=styles.div`
 display:inline-block;
-margin-left:40px;
-margin-top:200px;
+margin-left:300px;
+margin-top:100px;
 `
 const Select=styles.select`
 margin-right:50px;
@@ -123,7 +124,7 @@ margin-left:10px;
 margin-bottom:50px;
 background-color:#B0C4DE ;
 height:30px;
-width:200px;
+width:${props=>props.l ? "50px" : "200px"};
 text-align:center !important;
 cursor:pointer;
 &:focus{
@@ -189,6 +190,7 @@ const DetailsBc = () => {
     <MainContainer>
    <MainDiv>
     <Div2>
+     
          <DivInput>
             <Label>N° Bon de caisse :</Label>
              <Input type="text" disabled value={bc.idBonCaisse} ></Input>
@@ -219,7 +221,7 @@ const DetailsBc = () => {
         
        <Div>
        <Button onClick={handleShow}>Ajouter/Retirer</Button>
-       <Button onClick={()=>{alert("")}}><IconContext.Provider value={{ color: 'black', size: '20px'}}>
+       <Button l onClick={()=>{alert("")}}><IconContext.Provider value={{ color: 'black', size: '20px'}}>
        <FaBalanceScale onClick={()=>{alert("solder")}}></FaBalanceScale>
       </IconContext.Provider></Button>
        
@@ -300,7 +302,7 @@ const DetailsBc = () => {
       </IconContext.Provider></div> */}
    </MainDiv>
     <Div1>
-    <h1 style={{color:"black",fontWeight:"bold",fontSize:"20px" ,marginBottom:"50px"}}>Détails OM du Bon Caisse N° {id}:</h1>
+  
      <BootStrapTable      
      keyField='idSBc'
      data={sbc}

@@ -6,17 +6,17 @@ import styles from 'styled-components'
 const MainDiv = styles.div`
 display:flex;
 width:100%;
-margin-left:10%;
-margin-top:10%;
+margin-left:60%;
+margin-top:40%;
 `
 const Div2 = styles.div`
 margin-left: 90px;
 display:inline-block;
-border:2px solid black;
 width:100%;
 height:100%;
 background-color:#1c539b;
 justify-content:space-between;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 `
 const H1 = styles.h1`
 font-size:44px !important;

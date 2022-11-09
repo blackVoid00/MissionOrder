@@ -26,6 +26,9 @@ const MissionComponent = () => {
   // const [ach2,setAch2] = useState(0)
   // const [divers2,setDivers2] = useState(0)
   const [total,setTotal] = useState(0)
+  const [ha,setHa]=useState("")
+  const [hd,setHd]=useState("")
+  const [duree,setDuration]=useState(0)
   // const [total2,setTotal2] = useState(0)
    const [tab,setTab] = useState([])
   const getUsers=async( )=> { 
@@ -33,17 +36,23 @@ const MissionComponent = () => {
      setData(response.data)
     })
   }
-  
+  const duration=()=>{
+    var difference =(ha-hd) / 1000;
+    difference /= (60 * 60);
+    return Math.abs(Math.round(difference));
+  }
   var sommeF=0
   useEffect(()=>{
       getUsers()
       setTotal(()=>parseInt(gasoil)+ parseInt(parking)+ parseInt(repas)+ parseInt(ach)+parseInt(taxi)+parseInt(hotel)+parseInt(divers))
+      setDuration(duration())
       // setTotal2(()=>parseInt(gasoil2)+ parseInt(parking2)+ parseInt(repas2)+ parseInt(ach2)+parseInt(taxi2)+parseInt(hotel2)+parseInt(divers2))  
   })
   const setFinalTotal=()=>{
     let initialVal=0
     tab.push(total) 
     let tab2=tab.reduce((c,p)=>c+p,initialVal)
+    setTotal(0)
     console.log(tab)
     console.log(tab2)   
   }
@@ -141,11 +150,11 @@ const MissionComponent = () => {
                       </DivM>
                       <DivM>
                        <LabelM>  Heure de départ :</LabelM>
-                       <InputM type="time"></InputM>
+                       <InputM type="time" onChange={(e)=>setHd(e.target.value)}></InputM>
                       </DivM>
                       <DivM>
                        <LabelM> Durée Intervention :</LabelM>
-                       <InputM type="text" disabled value='test'></InputM>
+                       <InputM type="text" disabled value={duree}></InputM>
                       </DivM>
                       <DivM>
                        <LabelM>Véhicule utilisé :</LabelM>
@@ -166,7 +175,7 @@ const MissionComponent = () => {
                       </DivM>
                       <DivM>
                        <LabelM> Heure de retour :</LabelM>
-                       <InputM type="time"></InputM>
+                       <InputM type="time"  onChange={(e)=>setHa(e.target.value)}></InputM>
                       </DivM> 
                       <DivM>
                        <LabelM> lieu :</LabelM>

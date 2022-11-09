@@ -19,7 +19,7 @@ const FilterByRole = () => {
 
  })
   const Filter=()=>{
-    axios.get(`https://localhost:7111/api/FilterUser/${role}`).then((response) => {
+    axios.get(`https://localhost:7111/api/GetUtilisateursByRole/${role}`).then((response) => {
       setFilterUser(response.data);
     })
     setShow(true)

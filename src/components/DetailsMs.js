@@ -38,52 +38,8 @@ const DetailsMs = () => {
     })
   return (
    <Divv>
-    <H1>Liste des Sous Mission de la Mission N° {id}</H1>
-    <Swiper
-        slidesPerView={1}
-        spaceBetween={50}
-        centeredSlides={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        {data.map((d)=>(
-        <DivSwiper key={d.idSousMission}> 
-        
-       <SwiperSlide>
-       <Div1 inline>
-            <LabelM l color="true" >N°:</LabelM>
-            <p>{d.idSousMission}</p> 
-       </Div1>
-        <Div1 inline>
-            <LabelM l color="true">Projet :</LabelM>
-            <p> {d.projet}</p> 
-         </Div1>
-         <Div1 inline>
-            <LabelM l color>Date Départ :</LabelM>
-            <p> {d.dateDepart}</p> 
-         </Div1>
-         <Div1 inline>
-            <LabelM l color>Date Retour :</LabelM>
-            <p> {d.dateRetour}</p> 
-         </Div1>
-         <Div1 inline>
-            <LabelM l color>Durée Intervention :</LabelM>
-            <p> {d.dureeIntervention}</p> 
-         </Div1>
-         <Div1 inline>
-            <LabelM l color>Lieu :</LabelM>
-            <p> {d.lieu}</p> 
-         </Div1>
-         <Div1 inline>
-            <LabelM l color>Nature Intervention :</LabelM>
-            <p> {d.nature}</p> 
-         </Div1>
-            </SwiperSlide></DivSwiper>))}
-     
-      </Swiper>
+    <H1>Depenses effectuées sur la Mission N° {id}</H1>
+  
   </Divv>
   )
 }

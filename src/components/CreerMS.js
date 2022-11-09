@@ -17,7 +17,7 @@ height:400px;
 const Div2 = styles.div`
 margin-left: 90px;
 display:flex;
-border:2px solid black;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 width:100%;
 height:400px;
 background-color:#1c539b;
@@ -57,7 +57,7 @@ const Input=styles.input`
 margin-right:50px;
 margin-bottom:10px;
 margin-top:10px;
-height:30px;
+height:40px;
 width:300px;
 text-align: left !important;
 border: 10px solid transparent  !important;
