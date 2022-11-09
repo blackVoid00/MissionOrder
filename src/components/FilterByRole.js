@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { InputM, MainDiv,ButtonM, H1  } from './StyleMsC';
 import Table from 'react-bootstrap/Table';
 import styles from 'styled-components'
-
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator'
 const Input=styles.input`
 border: 1px solid black;
 `
@@ -24,35 +25,31 @@ const FilterByRole = () => {
     })
     setShow(true)
   }
+  const columns=[
+    {dataField: 'infoNom',text:'Nom'},
+    {dataField: 'infoPrenom',text:'Prenom'},
+  ]
   console.log(users)
   return (
    <div style={{marginLeft: '10px', marginTop: '100px'}}>
-   <br></br><br></br><br></br>
+   
    <H1>Filter by Role</H1>
    <br></br><br></br><br></br>
    <select  onChange={(e)=>setRole(e.target.value)}>
     <option value="0">admin</option>
     <option value="1">utilisateur</option>
-   </select>
+   </select>&nbsp;&nbsp;&nbsp;
   {/* <Input type="number" onChange={(e)=>setRole(e.target.value)}></Input> */}
   <ButtonM onClick={Filter}>Filter</ButtonM>
   <br></br><br></br><br></br>
-  {show ?  <Table bordered hover size="xl">
-    <tbody>
-    <tr>
-          <th>Nom</th>
-          <th>Prenom</th>
-          {/* <th>Code</th> */}
-        </tr>
-    {filterUser.map((u)=>
-          <tr>
-          <td>{u.infoNom} </td>
-          <td> {u.infoPrenom} </td>
-          {/* <td ><select>
-            <option>{u.infoCin}</option>
-            </select></td> */}
-          </tr>
- )} </tbody> </Table> :null }
+  {show ? 
+<BootstrapTable
+keyField='idUser'
+columns={columns}
+data={filterUser}
+pagination={paginationFactory()}
+></BootstrapTable>
+ : null }
   
                  
   </div>

@@ -36,8 +36,8 @@ const useStyles = makeStyles( ({
     height: 10
   },
   input: {
-    width: 130,
-    height: 40
+    width: "auto",
+    height:"auto"
   }
 }));
 
@@ -166,10 +166,10 @@ const onToggleEditMode = idUser => {
 
   return (
     <MainDiv>
-     
+       <input onChange={(e)=>setQuery(e.target.value)} placeholder="filter by name" style={{ border: "2px solid black !important"}}></input>
+       <br></br> <br></br> <br></br>
     <Paper className={classes.root}>
-      <Table sx={{ minWidth: 400 }} size="small" aria-label="a dense table">
-      <Input onChange={(e)=>setQuery(e.target.value)} placeholder="filter by name" style={{ border: "1px solid black !important"}}></Input>
+      <Table size="small" >
         <TableHead>
           <TableRow>
             <TableCell align="left">Nom</TableCell>
@@ -221,7 +221,7 @@ const onToggleEditMode = idUser => {
                     </IconButton>
                   </>
                 ) : (
-                    <>
+                    <div style={{display: 'flex'}}>
                   <IconButton
                     aria-label="edit"
                     onClick={() => onToggleEditMode(row.idUser)}
@@ -233,15 +233,15 @@ const onToggleEditMode = idUser => {
                    onClick={() => onToggleDeleteMode(row.idUser)}
                 >
                     <DeleteIcon />
-                 </IconButton>
-                 <IconButton
+                 </IconButton> 
+                  <IconButton
                    aria-label="details"
                    onClick={() => onToggleDetailsMode(row.idUser)}
                 >
               <FormatListBulletedIcon />
-                 </IconButton>
+                 </IconButton> 
                  
-                 </>
+                 </div>
                 )}
               </TableCell>
              
