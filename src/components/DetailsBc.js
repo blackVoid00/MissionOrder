@@ -6,8 +6,6 @@ import axios from 'axios'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styles from 'styled-components'
-import {GrFormAdd} from 'react-icons/gr'
-import {AiOutlineMinusCircle} from 'react-icons/ai'
 import {FaBalanceScale} from 'react-icons/fa'
 import {IconContext} from 'react-icons'
 import moment from 'moment';

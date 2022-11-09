@@ -1,21 +1,15 @@
 import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import "swiper/css";
-import "swiper/css/pagination";
 import styles from "styled-components";
-import { Pagination } from "swiper";
 import "./modal.css";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate,useParams } from 'react-router-dom';
-import { Div1, LabelM } from './StyleMsC';
-const Divv=styles.div`
+import { useParams } from 'react-router-dom';
+import BootStrapTable from "react-bootstrap-table-next"
+import paginationFactory from 'react-bootstrap-table2-paginator'
+const Div=styles.div`
 margin-top:220px;
-margin-left:424px;
-width:500px;
-height:500px;
-color:white !important;
+margin-left:54px;
 `
 const DivSwiper=styles.div`
 display:inline-block;
@@ -32,15 +26,34 @@ const DetailsMs = () => {
     const {id}=useParams()
     const [data,setData]=useState([])
     useEffect(()=>{
-        axios.get(`https://localhost:7111/api/GetSubMissionsOfaGivenMission/${id}`).then((response) => {
+        axios.get(`https://localhost:7111/api/GetAllPerformedOperationsOfaGivenMission/${id}`).then((response) => {
             setData(response.data)
         })
     })
+   
+    const columns=[
+      {dataField:"idSousMission",text:"N° Operation"},
+      {dataField:"datec",text:"Date Création"},
+      {dataField:"gasoil",text:"Frais Gasoil"},
+      {dataField:"taxi",text:"Frais Taxi"},
+      {dataField:"repas",text:"Frais Repas"},
+      {dataField:"hotel",text:"Frais Hotel"},
+      {dataField:"parking",text:"Frais Parking"},
+      {dataField:"divers",text:"Frais Divers"},
+      {dataField:"achTech",text:"Frais Achat/Tech"},
+      {dataField:"totalSm",text:"Total Frais"},
+    
+  ]
   return (
-   <Divv>
+   <Div>
     <H1>Depenses effectuées sur la Mission N° {id}</H1>
-  
-  </Divv>
+    <BootStrapTable      
+     keyField='idSBc'
+     data={data}
+     columns={columns}
+     pagination={paginationFactory()}  
+     ></BootStrapTable>
+  </Div>
   )
 }
 
