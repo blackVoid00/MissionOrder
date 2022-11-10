@@ -10,11 +10,11 @@ width:100%
 `
 const MainDiv=styles.div`
 background-color:#1c539b;
-border:2px solid black;
 justify-content:space-between;
 display:flex;
 width:100%;
 height:800px;
+box-shadow: rgba(0, 0, 0, 0.1) 0 5px 40px, rgba(0, 0, 0, 0.1) 0 5px 10px  !important;
 `
 const Div1 =styles.div`
 margin-top:5%;

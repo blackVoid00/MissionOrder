@@ -93,7 +93,7 @@ const Login = () => {
     }).then((response)=>{
         if(response.status==200){
             localStorage.setItem("loginId", identifiant);
-            navigate("/app")
+            navigate("/home")
         } 
     });
       

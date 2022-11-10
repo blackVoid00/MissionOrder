@@ -14,6 +14,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/DoneAllTwoTone";
 import RevertIcon from "@mui/icons-material/NotInterestedOutlined";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import TablePagination from '@mui/material/TablePagination';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 const MainDiv = styles.div`
@@ -64,8 +65,19 @@ const CustomTableCell = ({ row, name, onChange }) => {
 
 const  MuiTableTest=()=> {
   const [query,setQuery]=useState("")
-  const [rows, setRows] = useState([
-  ]);
+  const [rows, setRows] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+ 
   const updateUser=async ({ idUser,nom, prenom,matricule, mail , pwd, role ,identifiant, idService,cin, numeroTel, dateDebutContrat,dateFinContrat, status})=>{
     try {
 
@@ -250,6 +262,15 @@ const onToggleEditMode = idUser => {
           ))}
         </TableBody>
       </Table>
+      <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
     </Paper> 
   </MainDiv>
   );
