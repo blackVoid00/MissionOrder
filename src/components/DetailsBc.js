@@ -165,14 +165,18 @@ const DetailsBc = () => {
       // {dataField:"type",text:"Type  Operation"},
       // {dataField:"creditSbc",text:"Crédit"},
       // {dataField:"debit",text:"Débit"},
-      {dataField:"dateDepense",text:"Date Dépenses"},
+      {dataField:"dateDepense",text:"Date Dépenses",formatter : (row,cellContent)=>{
+        return moment(cellContent.dateDepense).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+      }},
       {dataField:"idMs",text:"N° Mission"},
       {dataField:"depense",text:"Dépenses"},
   ]
   const columns2=[
     // {dataField:"idSbc",text:"N° Operation"},
    
-    {dataField:"dateCreationSbc",text:"Date opération"},
+    {dataField:"dateCreationSbc",text:"Date opération",formatter : (row,cellContent)=>{
+      return moment(cellContent.dateCreationSbc).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+    }},
     {dataField:"type",text:"Type  Operation"},
     {dataField:"credit",text:"Crédit"},
     {dataField:"debit",text:"Débit"},
@@ -196,10 +200,6 @@ const DetailsBc = () => {
         <DivInput>
             <Label>Date Creation :</Label>
              <Input type="text" disabled value={date}></Input>
-        </DivInput>
-        <DivInput>
-            <Label>Heure Creation:</Label>
-             <Input type="text" disabled value={time}></Input>
         </DivInput>
         <DivInput>
             <Label>Libellé :</Label>

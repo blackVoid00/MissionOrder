@@ -2,9 +2,9 @@ import React ,{useState,useEffect} from 'react'
 import axios from 'axios'
 import Table from 'react-bootstrap/Table';
 import styles from 'styled-components'
+import icon from '../assets/iconUser.png'
 
 const Button=styles.button`
-position: relative;
 border-width: 0px;
 border-style: solid;
 font-weight:bold !important;
@@ -20,23 +20,26 @@ cursor:pointer;
 outline: none  !important;
 }
 `
-const Select=styles.select`
-margin-left:50px;
+const P=styles.p`
+text-align:center;
 margin-bottom:10px;
 margin-top:10px;
-height:30px;
-width:200px;
+color:black !important;
 text-align: left !important;
-border: 1px solid black !important;
-border-radius:2px  !important;
-&:focus{
-outline: none  !important;
-}
 `
 const Div = styles.div`
 display:inline-block;
 margin-left:10px;
 margin-top:160px;
+`
+const Card= styles.div`
+display:inline-block;
+margin-left:10px;
+margin-top:160px;
+`
+const Image= styles.img`
+width:150px;
+height:150px;
 `
 
 
@@ -74,13 +77,21 @@ const CompteUsers = () => {
   return (
     <Div>
         
-        <Select onChange={(e)=>setP(e.target.value)}>
+        {/* <Select onChange={(e)=>setP(e.target.value)}> */}
+        
             {users.map((user) =>{
                 return(
-                <option key={user.idUser} value={user.idUser}>{user.nom} {user.prenom}</option>
+                  <> 
+                  <Card>
+                  <Image src={icon}></Image>
+                  <P key={user.idUser}>{user.nom} {user.prenom}</P>
+                  <Button>Check</Button>
+                  </Card>
+                </>
+               
             )})}
-        </Select>
-        <Button style={{}} onClick={Filter}>Filter</Button>
+      
+        {/* <Button style={{}} onClick={Filter}>Filter</Button>
         {show?
         <Table bordered hover size="xl">
           <tbody>
@@ -99,7 +110,7 @@ const CompteUsers = () => {
           <td>{d.sommeDepense}</td>
           <td>{d.solde}</td>
           </tr>
- )}</tbody></Table>: <h1>Rien</h1>}
+ )}</tbody></Table>: <h1>Rien</h1>} */}
     </Div>
   )
 }

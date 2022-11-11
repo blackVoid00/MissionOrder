@@ -4,7 +4,7 @@ import paginationFactory from 'react-bootstrap-table2-paginator'
 import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import {ButtonM } from './StyleMsC';
-
+import moment from 'moment';
 const ListeBC = () => {
     const navigate = useNavigate()
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
@@ -23,7 +23,9 @@ const ListeBC = () => {
     },[])
     const columns=[
         {dataField:"idBonCaisse",text:"Numero "},
-        {dataField:"dateCreation",text:"Date Creation"},
+        {dataField:"dateCreation",text:"Date Creation",formatter : (row,cellContent)=>{
+          return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+        }},
         {dataField:"libellé",text:"Libellé"},
         {dataField:"créditTotal",text:"Crédit Total"},
         {dataField:"soldeTotal",text:" Solde"},

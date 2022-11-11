@@ -28,16 +28,18 @@
     
     
       .swiper {
-        width: 600px;
+        width: 500px;
         height: 500px;
+        margin-top: 200px;
+        margin-left: 400px !important;
       }
       .swiper-slide {
         text-align: left;
         font-size: 18px;
-        background:#1c539b;
+        background:#7398c9;
         display: inline-block;
         justify-content:space-between;
-        padding-left: 20px;
+       
       }
       
      

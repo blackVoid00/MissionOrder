@@ -21,12 +21,14 @@ import ListeMs from "./components/ListeMs";
 import DetailsMs from "./components/DetailsMs";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import DetailsCU from "./components/DetailsCU";
 const Routing = () => {
     return (
         <Routes>
             <Route exact path="/" element={<ProtectedRoute></ProtectedRoute>}>
                     <Route  path="/testing" element={<Layout><Test></Test></Layout>}></Route>
                     <Route  path="/compteuser" element={<Layout><CompteUsers></CompteUsers></Layout>}></Route>
+                    <Route  path="/cuswipe" element={<Layout><DetailsCU></DetailsCU></Layout>}></Route>
                     <Route  path="/app" element={<Layout></Layout>}></Route>
                     <Route  path="/home" element={<Home></Home>}></Route>
                     <Route  path="/filter" element={<Layout><FilterByRole></FilterByRole></Layout>}></Route>

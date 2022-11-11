@@ -120,7 +120,7 @@ const linksArray = [
     {
         label: "Compte Utilisateur",
         icon:  <FaMoneyCheck />,
-        path: "/compteuser",
+        path: "/cuswipe",
        
     }
   
