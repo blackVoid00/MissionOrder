@@ -23,11 +23,10 @@ const ListeMs = () => {
     },[])
     const columns=[
         {dataField:"objetMission",text:"Libellé"},
-        {dataField:"numeroMission",text:"Numero Mission"},
+        {dataField:"idMission",text:"Numero Mission"},
         {dataField:"idSbonCaisse",text:"Numero Bon caisse"},
         {dataField:"dateCreation",text:"Date Creation"},
         {dataField:"totalMission",text:"Total Dépenses"},
-        {dataField:"idUser",text:"Numero User"},
         {dataField:"etatMission",text:"Etat Mission", formatter: (cellContent ,row) => {
             if ( row.etatMission =="O") {
               return (
