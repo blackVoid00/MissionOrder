@@ -4,7 +4,7 @@ import image from "../assets/upload.png"
 export const MainM=styles.div`
 display:flex;
 justify-content:center;
-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
 `
 export const H1=styles.h1`
 color:black;
@@ -27,7 +27,7 @@ background-color:#1c539b;
 margin-top:1%;
 width:70vh;
 height:700px;
-`
+` 
 export const Div1 =styles.div`
 margin-top:4%;
 display:${props => props.inline ? "inline-block" : "flex"};

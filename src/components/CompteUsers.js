@@ -47,7 +47,7 @@ const CompteUsers = () => {
     const [Depense,setTotalDepense]=useState([])
     const T= CreditDebit.map( c => {
       const matched = Depense.find(d => c.idBc === d.idBc)
-        return {...c,...matched,solde:Number(c.sommeCredit)-(Number(matched?.sommeDepense) + Number(c.sommeDebit))}
+                 return {...c,...matched,solde:Number(c.sommeCredit)-(Number(matched?.sommeDepense) + Number(c.sommeDebit))}
      
     }
   )

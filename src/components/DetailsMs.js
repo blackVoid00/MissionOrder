@@ -7,13 +7,24 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BootStrapTable from "react-bootstrap-table-next"
 import paginationFactory from 'react-bootstrap-table2-paginator'
+import { Div1, InputM, LabelM } from './StyleMsC';
 const Div=styles.div`
-margin-top:220px;
-margin-left:54px;
+width: 100%;
+display:flex;
 `
-const DivSwiper=styles.div`
+const First=styles.div`
+display:inline-block;
+background-color:#1c539b;
+width:50%;
+margin-left:5%;
+margin-top:5%;
+`
+const Second=styles.div`
 display:inline-block;
 color:black !important;
+width:50%;
+margin-left:5%;
+margin-top:5%;
 `
 const H1=styles.h1`
 color:black;
@@ -25,12 +36,17 @@ const DetailsMs = () => {
     
     const {id}=useParams()
     const [data,setData]=useState([])
+    const [details,setDetails]=useState([])
     useEffect(()=>{
         axios.get(`https://localhost:7111/api/GetAllPerformedOperationsOfaGivenMission/${id}`).then((response) => {
             setData(response.data)
         })
     })
-   
+   useEffect(()=>{
+    axios.get(`https://localhost:7111/api/Missions/${id}`).then((response) => {
+      setDetails(response.data)
+    })
+   })
     const columns=[
       {dataField:"idSousMission",text:"N° Operation"},
       {dataField:"datec",text:"Date Création"},
@@ -46,13 +62,23 @@ const DetailsMs = () => {
   ]
   return (
    <Div>
+   <First>
+   <Div1 inline>
+    <LabelM>Projet Mission</LabelM>
+    <InputM value={details.idMission} disabled></InputM>
+   </Div1>
+   </First>
+    <Second>
     <H1>Depenses effectuées sur la Mission N° {id}</H1>
     <BootStrapTable      
      keyField='idSBc'
      data={data}
      columns={columns}
-     pagination={paginationFactory()}  
+     pagination={paginationFactory()} 
+     condensed 
      ></BootStrapTable>
+    </Second>
+    
   </Div>
   )
 }
