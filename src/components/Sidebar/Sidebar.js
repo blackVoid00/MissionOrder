@@ -1,135 +1,67 @@
-import React, { useState } from "react";
-import {
-    SDivider,
-    SLink,
-    SLinkContainer,
-    SLinkIcon,
-    SLinkLabel,
-    SSidebar,
-    SLogo,
-    SSidebarButton,
-} from "./styles";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { SidebarData } from './SidebarData';
+import SubMenu from './SubMenu';
+import { IconContext } from 'react-icons/lib';
 
 import  logo from "../../assets/logo.jpg";
 
-import {
- 
-    AiOutlineLeft,AiOutlineFileText,AiOutlineForm,AiOutlineUserAdd
-   
-} from "react-icons/ai";
-import {FaMoneyCheck} from "react-icons/fa";
-import {MdOutlineFilterAlt} from "react-icons/md";
-import { BsReceiptCutoff} from "react-icons/bs";
-import { CgUserList } from "react-icons/cg";
-import {GiReceiveMoney,} from "react-icons/gi";
-import {BiTargetLock} from "react-icons/bi";
-import {TbListDetails} from "react-icons/tb";
-import { useLocation } from "react-router-dom";
-import {IconContext} from 'react-icons'
-const Sidebar = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-    const { pathname } = useLocation();
+ const Logo = styled.div`
+    width: 5%;
 
-
-
-    return (
-        <SSidebar isOpen={sidebarOpen}>
-            <>
-                <SSidebarButton isOpen={sidebarOpen} onClick={() => setSidebarOpen((p) => !p)}>
-                    <IconContext.Provider value={{ color: '#1c539b', size: '20px'}}>
-                         <AiOutlineLeft />
-                    </IconContext.Provider>
-                   
-                </SSidebarButton>
-            </>
-            <SLogo>
-                <img src={logo} alt="logo" />
-            </SLogo>
-          
-            <SDivider />
-            <IconContext.Provider value={{ color: 'white', size: '30px' }}>
-            {linksArray.map(({ icon, label, path }) => (
-                <SLinkContainer key={label} isActive={pathname === path}>
-                    <SLink to={path} style={!sidebarOpen ? { width: `fit-content` } : {}}>
-                        <SLinkIcon>{icon}</SLinkIcon>
-                        {sidebarOpen && (
-                            <>
-                                <SLinkLabel>{label}</SLinkLabel>
-                              
-                            </>
-                        )}
-                    </SLink>
-                </SLinkContainer>
-            ))}
-            </IconContext.Provider>
-    
-            
-        </SSidebar>
-    );
-};
-
-const linksArray = [
-    {
-        label: "Add User",
-        icon: <AiOutlineUserAdd />,
-        path: "/user",
-       
-    },
-    {
-        label: "Users List",
-        icon:  <CgUserList/>,
-        path: "/userlist",
-      
-    },
-    {
-        label: "Form Mission",
-        icon:  <BiTargetLock />,
-        path: "/creerMs",
-       
-    },
-    {
-        label: "Filter",
-        icon:  <MdOutlineFilterAlt />,
-        path: "/filter",
-       
-    },
-    {
-        label: "Mission Fill",
-        icon:  <AiOutlineForm />,
-        path: "/mission",
-       
-    },
-    {
-        label: "Form BonCaisse",
-        icon:  <GiReceiveMoney />,
-        path: "/creerBs",
-       
-    },
-    {
-        label: "BonCaisse List",
-        icon:  <BsReceiptCutoff />,
-        path: "/bcaisselist",
-       
-    },
-    {
-        label: "Mission List",
-        icon:  <TbListDetails />,
-        path: "/missionlist",
-       
-    },
-    {
-        label: "Compte Utilisateur",
-        icon:  <FaMoneyCheck />,
-        path: "/cuswipe",
-       
+    img {
+        width: 120px;
+        height: auto;
+     
     }
-  
- 
- 
- 
-  
-];
+    cursor: pointer;
 
+    
+`;
+const SidebarNav = styled.nav`
+background: #1c539b;
+margin-top:120px;
+  width: 200px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
+  transition: 350ms;
+  z-index: 10;
+`;
 
+const SidebarWrap = styled.div`
+  width: 100%;
+`;
+
+const Sidebar = () => {
+  const [sidebar, setSidebar] = useState(true);
+
+ 
+const showSidebar=()=>{
+    setSidebar(!sidebar);
+}
+  return (
+    <>
+     <Logo>
+   <img src={logo} alt="logo" />
+        </Logo>
+           
+      <IconContext.Provider value={{ color: '#fff' }}>
+       
+        <SidebarNav sidebar={sidebar}>
+          <SidebarWrap>
+    
+            {SidebarData.map((item, index) => {
+              return <SubMenu item={item} key={index} />;
+            })}
+          </SidebarWrap>
+        </SidebarNav>
+      </IconContext.Provider>
+    </>
+  );
+};
 
 export default Sidebar;

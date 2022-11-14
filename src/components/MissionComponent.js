@@ -28,6 +28,14 @@ const MissionComponent = () => {
   const [total,setTotal] = useState(0)
   const [ha,setHa]=useState("")
   const [hd,setHd]=useState("")
+  const [projet,setProjet]=useState("")
+  const [dated,setDd]=useState("")
+  const [vehicule,setVehicule]=useState("")
+  const [acc,setAcc]=useState("")
+  const [dater,setDr]=useState("")
+  const [lieu,setLieu]=useState("")
+  const [nature,setNature]=useState("")
+  const [desc,setD]=useState("")
   const [duree,setDuration]=useState(0)
   // const [total2,setTotal2] = useState(0)
    const [tab,setTab] = useState([])
@@ -45,7 +53,7 @@ const MissionComponent = () => {
   useEffect(()=>{
       getUsers()
       setTotal(()=>parseInt(gasoil)+ parseInt(parking)+ parseInt(repas)+ parseInt(ach)+parseInt(taxi)+parseInt(hotel)+parseInt(divers))
-      setDuration(duration())
+      
       // setTotal2(()=>parseInt(gasoil2)+ parseInt(parking2)+ parseInt(repas2)+ parseInt(ach2)+parseInt(taxi2)+parseInt(hotel2)+parseInt(divers2))  
   })
   const setFinalTotal=()=>{
@@ -66,6 +74,13 @@ const MissionComponent = () => {
     if (input) {
        input.click();
     }
+    }
+    const createmS=()=>{
+      axios.put("https://localhost:7111/api/Missions",{
+      
+      }).then((response)=>{
+            alert("user inserted successfully")
+    })
     }
     // const [isDisabled,setDisabled]=useState(true)
     // const [c,setClicked]=useState(false)
@@ -141,12 +156,12 @@ const MissionComponent = () => {
 
                       <DivM>
                        <LabelM>Projet :</LabelM>
-                       <InputM type="text" placeholder='entrer le projet...'></InputM>
+                       <InputM type="text" placeholder='entrer le projet...' onChange={(e)=>setProjet(e.target.value)}></InputM>
                       </DivM>
                       
                       <DivM>
                        <LabelM>  Date de départ :</LabelM>
-                       <InputM type="date" ></InputM>
+                       <InputM type="date" onChange={(e)=>setDd(e.target.value)}></InputM>
                       </DivM>
                       <DivM>
                        <LabelM>  Heure de départ :</LabelM>
@@ -154,16 +169,22 @@ const MissionComponent = () => {
                       </DivM>
                       <DivM>
                        <LabelM> Durée Intervention :</LabelM>
-                       <InputM type="text" disabled value={duree}></InputM>
+                       <InputM type="text" disabled value={duree} onChange={(e)=>setDuration(e.target.value)}></InputM>
                       </DivM>
                       <DivM>
                        <LabelM>Véhicule utilisé :</LabelM>
-                       <InputM type="text" placeholder='entrer le véhicule utilisé...'></InputM>
+                       <select className='Select-Ms'onChange={(e)=>setVehicule(e.target.value)}>
+                               <option>Dacia Lodgy </option>
+                               <option>Renault Kango  </option>
+                               <option>Renault Express </option>
+                               <option>Autre</option>
+                              </select>
                       </DivM>
                       <DivM>
                        <LabelM> Accompagné par :</LabelM>
-                       <select className='Select-Ms'>
+                       <select className='Select-Ms' onChange={(e)=>setAcc(e.target.value)}>
                                {data.map((user)=><option>{user.nom} {user.prenom}</option>)}
+                               <option>Personne</option>
                               </select>
                       </DivM>
                    </SousDiv1>
@@ -171,7 +192,7 @@ const MissionComponent = () => {
                            
                        <DivM>
                        <LabelM> Date de retour :</LabelM>
-                       <InputM type="date"></InputM>
+                       <InputM type="date" onChange={(e)=>setDr(e.target.value)}></InputM>
                       </DivM>
                       <DivM>
                        <LabelM> Heure de retour :</LabelM>
@@ -179,21 +200,22 @@ const MissionComponent = () => {
                       </DivM> 
                       <DivM>
                        <LabelM> lieu :</LabelM>
-                       <InputM type="text" placeholder='entrer le lieu...' ></InputM>
+                       <InputM type="text" placeholder='entrer le lieu...' onChange={(e)=>setLieu(e.target.value)} ></InputM>
                       </DivM> 
                         
                            <DivM>
                              <LabelM>Nature Mission</LabelM>
-                              <select className='Select-Ms'>
+                              <select className='Select-Ms' onChange={(e)=>setNature(e.target.value)}>
                                 <option value="">Dépot de document</option>
                                 <option value="">Récup de document</option>
                                 <option value="">Dépannage</option>
+                                <option value="">Autre</option>
                               </select>
                            </DivM>
                            <DivM>
                          
                           <LabelM>Description :</LabelM>
-                          <InputD  type="text" placeholder='entrer les details...'></InputD>
+                          <InputD  type="text" placeholder='entrer les details...' onChange={(e)=>setD(e.target.value)}></InputD>
                  
                            </DivM>
                           <DivM>

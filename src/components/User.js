@@ -112,7 +112,7 @@ const User = () => {
     const [dateFinContrat,setDateF]=useState("")
     const [status,setStatus]=useState("")
  const postUser=()=>{
-    axios.post("https://localhost:7048/api/Utilisateurs",{
+    axios.post("https://localhost:7111/api/Utilisateurs",{
         nom:  nom,
         prenom: prenom,
         matricule: matricule,
