@@ -2,6 +2,8 @@ import React from 'react';
 import * as IoIcons from 'react-icons/io';
 import * as RiIcons from 'react-icons/ri';
 import * as BiIcons from 'react-icons/bi';
+import * as BsIcons from 'react-icons/bs';
+import * as AiIcons from 'react-icons/ai';
 
 export const SidebarData = [
   {
@@ -39,12 +41,12 @@ export const SidebarData = [
         {
           title: 'Libellé',
           path: '',
-          icon: <IoIcons.IoIosPaper />
+          icon: <RiIcons.RiText />
         },
         {
           title: 'Creer BonCaisse',
           path: '',
-          icon: <IoIcons.IoIosPaper />
+          icon: <AiIcons.AiOutlineFileAdd />
         }
       ]
   },
@@ -57,14 +59,9 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: 'Libellé',
-        path: '',
-        icon: <IoIcons.IoIosPaper />
-      },
-      {
         title: 'Creer Mission',
         path: '/',
-        icon: <IoIcons.IoIosPaper />
+        icon: <AiIcons.AiOutlineFileAdd />
       }
     ]
   },
