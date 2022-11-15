@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from 'styled-components'
-import logo from '../assets/logo.jpg'
+import logo from '../assets/logo.png'
 import {useNavigate} from 'react-router-dom'
 import axios from "axios"
 const  H1= styles.h1`

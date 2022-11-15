@@ -2,72 +2,93 @@ import React from 'react';
 import * as IoIcons from 'react-icons/io';
 import * as RiIcons from 'react-icons/ri';
 import * as BiIcons from 'react-icons/bi';
-import * as BsIcons from 'react-icons/bs';
+import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 
 export const SidebarData = [
   {
     title: 'Utilisateurs',
-    path: '/creerms',
+    path: '/userlist',
     icon: <BiIcons.BiUser />,
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
+    iconClosed: <AiIcons.AiOutlinePlus />,
+    iconOpened: <BiIcons.BiMinus />,
 
     subNav: [
       {
-        title: 'Fiche Profil',
-        path: '/',
-        icon: <IoIcons.IoIosPaper />
-      },
-      {
         title: 'Liste utilisateur',
-        path: '/',
-        icon: <IoIcons.IoIosPaper />
+        path: '/userlist',
+        icon:<AiIcons.AiOutlineUnorderedList/>
       },
       {
         title: 'Compte Utilisateur',
-        path: '/',
-        icon: <IoIcons.IoIosPaper />
+        path: '/compteuser',
+        icon: <FaIcons.FaRegMoneyBillAlt />
+      },
+      {
+        title: 'Stats Utilisateur',
+        path: '/app',
+        icon: <AiIcons.AiOutlineAreaChart />
       }
+   
     ]
   },
   {
     title: 'Bon Caisse',
-    path: '/CreerBs',
+    path: '/bcaisselist',
     icon: <IoIcons.IoIosPaper />,
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
+    iconClosed: <AiIcons.AiOutlinePlus />,
+    iconOpened: <BiIcons.BiMinus />,
     subNav: [
-        {
-          title: 'Libellé',
-          path: '',
-          icon: <RiIcons.RiText />
-        },
+      
         {
           title: 'Creer BonCaisse',
-          path: '',
+          path: '/creerBs',
           icon: <AiIcons.AiOutlineFileAdd />
+        },
+        {
+          title:'Liste Bon caisse',
+          path:'/bcaisselist',
+          icon:<AiIcons.AiOutlineUnorderedList/>
+        },
+        {
+          title: 'Stats Bon Caisse',
+          path: '/app',
+          icon: <AiIcons.AiOutlineAreaChart />
         }
       ]
   },
   {
     title: 'Mission',
-    path: '/creerMs',
+    path: '/missionlist',
     icon: <BiIcons.BiTask />,
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
+    iconClosed: <AiIcons.AiOutlinePlus />,
+    iconOpened: <BiIcons.BiMinus />,
 
     subNav: [
       {
         title: 'Creer Mission',
-        path: '/',
+        path: '/creerMs',
         icon: <AiIcons.AiOutlineFileAdd />
+      },
+      {
+        title: 'Stats Mission',
+        path: '/app',
+        icon: <AiIcons.AiOutlineAreaChart />
       }
     ]
   },
   {
     title: 'Caisse',
-    path: '/',
-    icon: <BiIcons.BiCalculator />
+    path: '/app',
+    icon: <BiIcons.BiCalculator />,
+    iconClosed: <AiIcons.AiOutlinePlus />,
+    iconOpened: <BiIcons.BiMinus />,
+    subNav: [
+      {
+        title: 'Alimentation Caisse',
+        path: '/app',
+        icon: <FaIcons.FaCashRegister/>
+      }
+    ]
   }
 ];

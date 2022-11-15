@@ -13,3 +13,6 @@ export const SMain = styled.main`
         font-size: 14px;
     }
 `;
+export const DivNavv=styled.div`
+diplay:inline-block;
+`

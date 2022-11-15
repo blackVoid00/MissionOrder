@@ -1,16 +1,21 @@
 import React from "react";
+import NavbarComponent from "../Navbar/NavbarComponent";
 import Sidebar from "../Sidebar/Sidebar";
-import { SLayout, SMain } from "./styles";
+import { SLayout, SMain,DivNavv } from "./styles";
 
 const Layout = ({ children }) => {
     return (
-        <SLayout>
+        <DivNavv>
+              <NavbarComponent/>
+              <SLayout>
+           
+           <Sidebar />
+           <SMain>{children}</SMain>
           
           
-            <Sidebar />
-            <SMain>{children}</SMain>
-          
-        </SLayout>
+       </SLayout>
+        </DivNavv>
+       
     );
 };
 

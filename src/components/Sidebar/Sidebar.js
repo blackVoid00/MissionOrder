@@ -4,23 +4,19 @@ import { SidebarData } from './SidebarData';
 import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
 
-import  logo from "../../assets/logo.jpg";
+import  logo from "../../assets/logo.png";
 
  const Logo = styled.div`
-    width: 5%;
-
     img {
-        width: 120px;
-        height: auto;
-     
+        width:auto;
+        height:100px;
+        margin-left:45px;
+        margin-top:25px;
     }
-    cursor: pointer;
-
-    
+    cursor: pointer;   
 `;
 const SidebarNav = styled.nav`
-background: #1c539b;
-margin-top:120px;
+ background: #1c539b;
   width: 200px;
   height: 100vh;
   display: flex;
@@ -40,20 +36,20 @@ const Sidebar = () => {
   const [sidebar, setSidebar] = useState(true);
 
  
-const showSidebar=()=>{
-    setSidebar(!sidebar);
-}
+// const showSidebar=()=>{
+//     setSidebar(!sidebar);
+// }
   return (
     <>
-     <Logo>
-   <img src={logo} alt="logo" />
-        </Logo>
+ 
            
-      <IconContext.Provider value={{ color: '#fff' }}>
+      <IconContext.Provider value={{ color: 'white',size:"20px" }}>
        
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
-    
+          <Logo>
+         <img src={logo} alt="logo" />
+        </Logo>
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}

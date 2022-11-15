@@ -12,7 +12,6 @@ import FilterByRole from "./components/FilterByRole";
 import CreerMS from "./components/CreerMS";
 import CreerBs from "./components/CreerBs";
 import TableCaisse from "./components/TableCaisse";
-import MuiTableTest from "./components/MuiTableTest";
 import Test from "./components/Test";
 import ListeBC from "./components/ListeBC";
 import DetailsBc from "./components/DetailsBc";
@@ -22,17 +21,18 @@ import DetailsMs from "./components/DetailsMs";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import DetailsCU from "./components/DetailsCU";
+import ListeUser from "./components/ListeUser";
 const Routing = () => {
     return (
         <Routes>
             <Route exact path="/" element={<ProtectedRoute></ProtectedRoute>}>
                     <Route  path="/testing" element={<Layout><Test></Test></Layout>}></Route>
                     <Route  path="/compteuser" element={<Layout><CompteUsers></CompteUsers></Layout>}></Route>
-                    <Route  path="/cuswipe" element={<Layout><DetailsCU></DetailsCU></Layout>}></Route>
+                    <Route  path="/cuswipe/:id" element={<Layout><DetailsCU></DetailsCU></Layout>}></Route>
                     <Route  path="/app" element={<Layout></Layout>}></Route>
                     <Route  path="/home" element={<Home></Home>}></Route>
                     <Route  path="/filter" element={<Layout><FilterByRole></FilterByRole></Layout>}></Route>
-                    <Route  path="/userlist" element={<Layout><MuiTableTest></MuiTableTest></Layout>}></Route>
+                    <Route  path="/userlist" element={<Layout><ListeUser></ListeUser></Layout>}></Route>
                     <Route  path="/creerMs" element={<Layout><CreerMS></CreerMS></Layout>}></Route>
                     <Route  path="/creerBs" element={<Layout><CreerBs></CreerBs></Layout>}></Route>
                     <Route path="/bcaisselist" element={<Layout><ListeBC></ListeBC></Layout>}></Route>
