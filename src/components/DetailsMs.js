@@ -7,7 +7,6 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BootStrapTable from "react-bootstrap-table-next"
 import paginationFactory from 'react-bootstrap-table2-paginator'
-import { Div1, InputM, LabelM } from './StyleMsC';
 import moment from 'moment';
 const Div=styles.div`
 width: 100%;
@@ -20,7 +19,11 @@ height:auto;
 margin-left:2%;
 margin-top:5%;
 padding:20px;
-justify-content:align-center;
+box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+`
+const Div1 =styles.div`
+margin-bottom:10px;
+display:flex;
 `
 const Second=styles.div`
 display:inline-block;
@@ -36,13 +39,16 @@ font-size:20px !important;
 width:100% !important;
 `
 const Title=styles.p`
-text-align:left;
+display:inline-block;
+width: 160px;
 font-weight:bold !important;
 font-size:15px !important;
 `
 const P =styles.p`
-text-align:left;
+justify-content:center;
 margin-left:20px;
+font-weight:bold !important;
+font-size:15px !important;
 `
 
 const DetailsMs = () => {
@@ -83,7 +89,7 @@ const DetailsMs = () => {
    <Div>
    <First>
    <Div1 >
-    <Title>N° Mission :</Title>
+    <Title>N° Mission </Title>
     <P>{details.numeroMission}</P>
    </Div1>
    <Div1 >

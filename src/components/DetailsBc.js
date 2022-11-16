@@ -16,15 +16,17 @@ display:flex;
 const MainDiv = styles.div`
 display:flex;
 margin-left:0px;
-margin-top:160px;
+margin-top:100px;
 `
 const Div2 = styles.div`
 margin-left: 200px;
 display:inline-block;
-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 margin-top:0px;
 background-color:#1c539b;
 justify-content:space-between;
+padding-top:20px;
+padding-left:20px;
 `
 const H1 = styles.h1`
 font-size:30px !important;
@@ -69,13 +71,12 @@ outline: none  !important;
 }
 `
 const DivInput=styles.div`
-display:flex;
-margin-top: 20px;
-margin-left: 50px;
+margin-bottom:10px;
+
 `
 
 const Label=styles.label`
-display: inline-block;
+display:inline-block;
 width: 160px;
 font-weight:bold !important;
 `
@@ -96,7 +97,7 @@ outline: none  !important;
 font-weight:bold !important;
 color:black !important;
 font-size:16px;
-`
+` 
 const InputM=styles.input`
 margin-left:50px;
 margin-bottom:10px;
@@ -119,10 +120,11 @@ border-style: solid;
 font-weight:bold !important;
 margin-top:50px;
 margin-left:10px;
+margin-right:10px;
 margin-bottom:50px;
 background-color:#B0C4DE ;
 height:30px;
-width:${props=>props.l ? "50px" : "200px"};
+width:${props=>props.l ? "50px" : "100px"};
 text-align:center !important;
 cursor:pointer;
 &:focus{
@@ -177,7 +179,7 @@ const DetailsBc = () => {
     {dataField:"dateCreationSbc",text:"Date opération",formatter : (row,cellContent)=>{
       return moment(cellContent.dateCreationSbc).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
     }},
-    {dataField:"type",text:"Type  Operation"},
+    {dataField:"type",text:"Libellé"},
     {dataField:"credit",text:"Crédit"},
     {dataField:"debit",text:"Débit"},
 ]
@@ -202,7 +204,7 @@ const DetailsBc = () => {
              <Input type="text" disabled value={date}></Input>
         </DivInput>
         <DivInput>
-            <Label>Libellé :</Label>
+            <Label>Opération :</Label>
              <Input type="text" disabled value={bc.libellé}></Input>
         </DivInput>
        
@@ -218,7 +220,8 @@ const DetailsBc = () => {
         </DivInput>
         
        <Div>
-       <Button onClick={handleShow}>Ajouter/Retirer</Button>
+       <Button onClick={handleShow}>Ajouter</Button>
+       <Button onClick={handleShow}>Retirer</Button>
        <Button l onClick={()=>{alert("")}}><IconContext.Provider value={{ color: 'black', size: '20px'}}>
        <FaBalanceScale onClick={()=>{alert("solder")}}></FaBalanceScale>
       </IconContext.Provider></Button>
@@ -254,7 +257,7 @@ const DetailsBc = () => {
                       <InputM type="text" placeholder='entrer le débit'/> 
                     </DivInput>
                   
-                      <Label>Type Opération :</Label>
+                      <Label> Libellé Opérations :</Label>
                       <DivInput>
                         <Label>Les sorties de caisse liées aux OM :</Label>
                         <SelectM>
@@ -300,19 +303,20 @@ const DetailsBc = () => {
       </IconContext.Provider></div> */}
    </MainDiv>
     <Div1>
-  
+    <BootStrapTable      
+     keyField='idSBonCaisse'
+     data={sbc2}
+     columns={columns2}
+     pagination={paginationFactory()}  
+     ></BootStrapTable>
+     <br></br> <br></br> <br></br>
      <BootStrapTable      
      keyField='idSBc'
      data={sbc}
      columns={columns}
      pagination={paginationFactory()}  
      ></BootStrapTable>
-       <BootStrapTable      
-     keyField='idSBonCaisse'
-     data={sbc2}
-     columns={columns2}
-     pagination={paginationFactory()}  
-     ></BootStrapTable>
+ 
     
   </Div1>
      </MainContainer>

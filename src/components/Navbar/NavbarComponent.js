@@ -6,6 +6,7 @@ import * as AiIcons from "react-icons/ai"
 import * as RiIcons from "react-icons/ri"
 import "./styleNav.css"
 import { FaCashRegister ,FaCarSide} from 'react-icons/fa';
+import  logo from "../../assets/logo.png";
 const DivNav=styled.div`
 
 `

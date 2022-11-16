@@ -5,11 +5,11 @@ import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import {ButtonM } from './StyleMsC';
 import moment from 'moment';
-const ListeBC = () => {
+const ListeBC = () => { 
     const navigate = useNavigate()
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
-            <button  onClick={()=>navigate(`/detailbc/${row.idBonCaisse}`)  }>Details</button>
+            <ButtonM  onClick={()=>navigate(`/detailbc/${row.idBonCaisse}`)  }>Details</ButtonM>
         )
         
         }
@@ -26,13 +26,13 @@ const ListeBC = () => {
         {dataField:"dateCreation",text:"Date Creation",formatter : (row,cellContent)=>{
           return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
         }},
-        {dataField:"libellé",text:"Libellé"},
+        {dataField:"libellé",text:"Opération"},
         {dataField:"créditTotal",text:"Crédit Total"},
-        {dataField:"soldeTotal",text:" Solde"},
+        {dataField:"soldeTotal",text:" Débit Total"},
         {dataField:"etat",text:"Etat", formatter: (cellContent ,row) => {
             if ( row.etat==0) {
               return (
-                <span style={{color:"red",fontWeight:"bold"}}>
+                <span style={{color:"#b71c1c",fontWeight:"bold"}}>
                   non soldé
                 </span>
               )
@@ -54,6 +54,8 @@ const ListeBC = () => {
         data={bc}
         columns={columns}
         pagination={paginationFactory()}  
+        headerClasses="header-class"
+        rowClasses="row-class"
         ></BootStrapTable>
       
         

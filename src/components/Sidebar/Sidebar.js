@@ -11,12 +11,13 @@ import  logo from "../../assets/logo.png";
         width:auto;
         height:100px;
         margin-left:45px;
-        margin-top:25px;
+        
     }
     cursor: pointer;   
 `;
 const SidebarNav = styled.nav`
- background: #1c539b;
+ background:white;
+ box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   width: 200px;
   height: 100vh;
   display: flex;
@@ -43,13 +44,11 @@ const Sidebar = () => {
     <>
  
            
-      <IconContext.Provider value={{ color: 'white',size:"20px" }}>
+      <IconContext.Provider value={{ color: ' #b71c1c',size:"20px" }}>
        
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
-          <Logo>
-         <img src={logo} alt="logo" />
-        </Logo>
+          <Logo> <img className='img' src={logo} alt="logo" /></Logo>
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}

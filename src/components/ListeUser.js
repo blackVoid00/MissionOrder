@@ -282,12 +282,13 @@ import paginationFactory from 'react-bootstrap-table2-paginator'
 import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import {ButtonM } from './StyleMsC';
-
+import moment from 'moment'
+import "./tableStyle.css"
 const ListeUser = () => {
     const navigate = useNavigate()
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
-            <ButtonM  onClick={()=>navigate(`/detailms/${row.idMission}`)  }>Details</ButtonM>
+            <ButtonM>Details</ButtonM>
         )
         
         }
@@ -305,14 +306,18 @@ const ListeUser = () => {
         {dataField:"matricule",text:"Matricule"},
         {dataField:"mail",text:"Email"},
         {dataField:"identifiant",text:"Identifiant"},
-        {dataField:"cin",text:"Total Dépenses"},
+        {dataField:"cin",text:"Cin"},
         {dataField:"numeroTel",text:"N° Tél"},
-        {dataField:"dateDebutContrat",text:"Début Contrat"},
-        {dataField:"dateFinContrat",text:"Fin Contrat"},
+        {dataField:"dateDebutContrat",text:"Début Contrat",formatter : (row,cellContent)=>{
+          return moment(cellContent.dateDebutContrat).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+        }},
+        {dataField:"dateFinContrat",text:"Fin Contrat",formatter : (row,cellContent)=>{
+          return moment(cellContent.dateFinContrat).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+        }},
         {dataField:"status",text:"Statut", formatter: (cellContent ,row) => {
             if ( row.status =="1") {
               return (
-                <span style={{color:"red",fontWeight:"bold"}}>
+                <span style={{color:"#b71c1c",fontWeight:"bold"}}>
                interdit
                 </span>
               )
@@ -326,14 +331,16 @@ const ListeUser = () => {
     ]
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>
-      <ButtonM large >Ajouter Utilisateur</ButtonM>
+      <ButtonM onClick={()=>navigate("/user")  }large >Ajouter Utilisateur</ButtonM>
       <br></br>  <br></br>  <br></br>
         {/* <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des bons de caisse</h1> */}
         <BootStrapTable      
         keyField='idUser'
         data={user}
-        columns={columns}
+        columns={columns} 
         pagination={paginationFactory()}  
+        headerClasses="header-class"
+        rowClasses="row-class"
         ></BootStrapTable>
       
         

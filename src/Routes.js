@@ -22,6 +22,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import DetailsCU from "./components/DetailsCU";
 import ListeUser from "./components/ListeUser";
+import Home2 from "./components/Home2"
 const Routing = () => {
     return (
         <Routes>
@@ -29,7 +30,7 @@ const Routing = () => {
                     <Route  path="/testing" element={<Layout><Test></Test></Layout>}></Route>
                     <Route  path="/compteuser" element={<Layout><CompteUsers></CompteUsers></Layout>}></Route>
                     <Route  path="/cuswipe/:id" element={<Layout><DetailsCU></DetailsCU></Layout>}></Route>
-                    <Route  path="/app" element={<Layout></Layout>}></Route>
+                    <Route  path="/app" element={<Layout><Home2></Home2></Layout>}></Route>
                     <Route  path="/home" element={<Home></Home>}></Route>
                     <Route  path="/filter" element={<Layout><FilterByRole></FilterByRole></Layout>}></Route>
                     <Route  path="/userlist" element={<Layout><ListeUser></ListeUser></Layout>}></Route>

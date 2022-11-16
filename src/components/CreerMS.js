@@ -10,13 +10,10 @@ width:100%;
 height:100%;
 margin-left:10%;
 margin-top:10%;
+box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+background-color:#1c539b;
 `
 
-const Div2 = styles.div`
-background-color:#1c539b;
-justify-content:space-between;
-padding:20px;
-`
 const H1 = styles.h1`
 font-size:44px !important;
 color:black;
@@ -30,12 +27,12 @@ padding-left:20px;
 margin-top:40px;
 `
 const DivInput=styles.div`
-display:flex;
+margin-bottom:10px;
 `
 
 const Label=styles.label`
-display: inline-block;
-width: 160px;
+display:inline-block;
+width: 120px;
 font-weight:bold !important;
 `
 
@@ -88,29 +85,29 @@ const CreerMS = () => {
     {/* <Div>
      <H1>Nouvelle Mission</H1>
     </Div> */}
-    <Div2>
+   
         <SousDiv1>
         <DivInput>
-        <Label>Utilisateur :</Label>
+        <Label>Utilisateur</Label>
         <select className='Select-Ms'>
         {users.map((user)=><option value={user.iduser}>{user.nom} {user.prenom}</option>)}
         </select>
       </DivInput>
       <DivInput>
-        <Label>Objet Mission :</Label>
+        <Label>Objet Mission</Label>
         <Input placeholder='entrer objet mission'></Input>
       </DivInput>
       <br></br> 
        <DivInput>
-        <Label>Date :</Label>
+        <Label>Date </Label>
         <Input l type="date"></Input>
       </DivInput>
        <DivInput>
-        <Label>Numero Mission :</Label>
+        <Label>N° Mission </Label>
         <Input placeholder='entrer num Mission'></Input>
       </DivInput>
       <DivInput>
-        <Label>Bon de Caisse :</Label>
+        <Label>Bon de Caisse </Label>
         <Input placeholder='entrer num boncaisse'></Input>
       </DivInput>
       <DivInput>
@@ -118,7 +115,7 @@ const CreerMS = () => {
       </DivInput>
     
         </SousDiv1>
-    </Div2>
+   
     </MainDiv>
     </>
   )

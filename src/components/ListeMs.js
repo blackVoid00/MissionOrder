@@ -4,7 +4,7 @@ import paginationFactory from 'react-bootstrap-table2-paginator'
 import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import {ButtonM } from './StyleMsC';
-
+import moment from 'moment'
 const ListeMs = () => {
     const navigate = useNavigate()
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
@@ -13,6 +13,9 @@ const ListeMs = () => {
         )
         
         }
+        
+ 
+
     const url="https://localhost:7111/api/Missions"
     const [ms,setMs]=useState([])
     useEffect(()=>{
@@ -22,15 +25,17 @@ const ListeMs = () => {
        
     },[])
     const columns=[
+      {dataField:"dateCreation",text:"Date Creation",formatter : (row,cellContent)=>{
+        return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+      }},
         {dataField:"objetMission",text:"Libellé"},
-        {dataField:"idMission",text:"Numero Mission"},
-        {dataField:"idSbonCaisse",text:"Numero Bon caisse"},
-        {dataField:"dateCreation",text:"Date Creation"},
+        {dataField:"idMission",text:"N° Mission"},
+        {dataField:"idSbonCaisse",text:"N° Bon caisse"},
         {dataField:"totalMission",text:"Total Dépenses"},
         {dataField:"etatMission",text:"Etat Mission", formatter: (cellContent ,row) => {
             if ( row.etatMission =="O") {
               return (
-                <span style={{color:"red",fontWeight:"bold"}}>
+                <span style={{color:"#b71c1c",fontWeight:"bold"}}>
                ouverte
                 </span>
               )
@@ -39,7 +44,7 @@ const ListeMs = () => {
               <span style={{color:"green",fontWeight:"bold"}}>
                cloturée </span>
             )    
-        },},
+        }},
         {datafield:"Actions",text:"Actions", formatter: ButtonCell}
     ]
   return (
@@ -51,8 +56,10 @@ const ListeMs = () => {
         keyField='idMission'
         data={ms}
         columns={columns}
-        pagination={paginationFactory()}  
-        ></BootStrapTable>
+        pagination={paginationFactory()} 
+        headerClasses="header-class"
+        rowClasses="row-class" 
+        ></BootStrapTable> 
       
         
     </div>

@@ -15,8 +15,11 @@ display:inline-block;
 width:100%;
 height:100%;
 background-color:#1c539b;
+padding-left:20px;
+padding-right:50px;
+padding-top:20px;
 justify-content:space-between;
-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 `
 const H1 = styles.h1`
 font-size:44px !important;
@@ -27,6 +30,7 @@ margin-top:50px;
 const Div=styles.div`
 display:flex;
 margin-left:70px;
+
 `
 // const SousDiv1=styles.div`
 // display:inline-block;
@@ -40,7 +44,8 @@ margin-left:70px;
 // margin-top: 50px;
 // `
 const Select=styles.select`
-margin-right:50px;
+margin-right:10px;
+margin-left:20px;
 margin-bottom:10px;
 margin-top:10px;
 height:40px;
@@ -53,20 +58,18 @@ outline: none  !important;
 }
 `
 const DivInput=styles.div`
-display:flex;
-margin-top: 20px;
-margin-left: 50px;
+margin-bottom:10px;
 `
 
 const Label=styles.label`
-display: inline-block;
-width: 160px;
+display:inline-block;
+width: 120px;
 font-weight:bold !important;
 `
 
 
 const Input=styles.input`
-margin-right:50px;
+margin-left:20px;
 margin-bottom:10px;
 margin-top:10px;
 height:35px;
@@ -123,15 +126,15 @@ const CreerBs = () => {
     
     <Div2>
         <DivInput>
-            <Label>Date Creation :</Label>
+            <Label>Date Creation </Label>
              <Input type="date" onChange={(e)=>setDateC(e.target.value)}></Input>
         </DivInput>
         <DivInput>
-            <Label>Date expiration :</Label>
+            <Label>Date expiration </Label>
              <Input type="date" onChange={(e)=>setDateE(e)}></Input>
         </DivInput>
         <DivInput>
-            <Label>Bénéficiaire :</Label>
+            <Label>Bénéficiaire </Label>
              <Select onChange={(e)=>setOptionUser(e.target.value)}>
                {users.map((user) => {return(
                     <>
@@ -141,16 +144,17 @@ const CreerBs = () => {
              </Select>
         </DivInput>
         <DivInput>
-            <Label>Libellé :</Label>
+            <Label>Libellé </Label>
              <Select onChange={(e)=>setOptionLibelle(e.target.value)}>
-                <option>Les sorties de caisse liées aux OM</option>
-                <option>Autres sorties de caisse </option>
-                <option>Entrées de caisse</option>
+                <option>Réglement Facture</option>
+                <option>Frais OM </option>
+                <option>Frais femme ménage</option>
+                <option>Avance Sur salaire</option>
              </Select>
         </DivInput>
        <Div>
        </Div>
-       <Button onClick={creatBc}>Create</Button>
+       <Button onClick={creatBc}>Créer</Button>
     </Div2>
    </MainDiv>
   )

@@ -16,7 +16,7 @@ width:50%;
 `
 const Div=styles.div`
 display:flex;
-margin-left:150px;
+margin-left:250px;
 margin-top:100px;
 max-width:100%;
 `
@@ -47,16 +47,13 @@ const Home = () => {
 const GoCaisse=()=>{
   navigate("/app")
 }
-const GoMission=()=>{
-     navigate("/mission")
-}
+
   return (
     <MainDiv>
         <Container1>
         <H1>Welcome to your Dashboard</H1> 
         <Div>
-        <Button onClick={GoCaisse}>Admin</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <Button onClick={GoMission}>User</Button>
+        <Button onClick={GoCaisse}>Consulter</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </Div>
         </Container1>
         <Container2>
