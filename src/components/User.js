@@ -174,7 +174,7 @@ const User = () => {
                 <Select name="idService" onChange={(e)=>setService(e.target.value)}>
                     <Option value='1'>Informatique</Option>
                     <Option value='2'>Technique</Option>
-                    <Option value='3'>Administration</Option>
+                    <Option value='3'>Administratif</Option>
                     <Option value='4'>Commercial</Option>
                 </Select>
             </Div>
@@ -200,7 +200,7 @@ const User = () => {
                 <Input name="dateFinContrat" type="date" onChange={(e)=>setDateF(e.target.value)} ></Input>
             </Div>
             <Div>
-                <Label>Status</Label>
+                <Label>Statut</Label>
                 <Select>
                     <Option value="0">Autorisé</Option>
                     <Option value="1">Interdit</Option>

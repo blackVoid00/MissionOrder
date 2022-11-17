@@ -129,10 +129,7 @@ const CreerBs = () => {
             <Label>Date Creation </Label>
              <Input type="date" onChange={(e)=>setDateC(e.target.value)}></Input>
         </DivInput>
-        <DivInput>
-            <Label>Date expiration </Label>
-             <Input type="date" onChange={(e)=>setDateE(e)}></Input>
-        </DivInput>
+       
         <DivInput>
             <Label>Bénéficiaire </Label>
              <Select onChange={(e)=>setOptionUser(e.target.value)}>
@@ -144,12 +141,13 @@ const CreerBs = () => {
              </Select>
         </DivInput>
         <DivInput>
-            <Label>Libellé </Label>
+            <Label> Opération</Label>
              <Select onChange={(e)=>setOptionLibelle(e.target.value)}>
                 <option>Réglement Facture</option>
                 <option>Frais OM </option>
                 <option>Frais femme ménage</option>
                 <option>Avance Sur salaire</option>
+                <option>Achats</option>
              </Select>
         </DivInput>
        <Div>

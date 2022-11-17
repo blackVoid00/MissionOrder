@@ -28,9 +28,9 @@ const ListeMs = () => {
       {dataField:"dateCreation",text:"Date Creation",formatter : (row,cellContent)=>{
         return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
-        {dataField:"objetMission",text:"Libellé"},
-        {dataField:"idMission",text:"N° Mission"},
-        {dataField:"idSbonCaisse",text:"N° Bon caisse"},
+         {dataField:"idMission",text:"N° Mission"},
+         {dataField:"idSbonCaisse",text:"N° Bon caisse"},
+        {dataField:"objetMission",text:"Projet"},
         {dataField:"totalMission",text:"Total Dépenses"},
         {dataField:"etatMission",text:"Etat Mission", formatter: (cellContent ,row) => {
             if ( row.etatMission =="O") {
