@@ -66,13 +66,13 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: 'Creer Mission',
-        path: '/creerMs',
-        icon: <AiIcons.AiOutlineFileAdd />
-      },
-      {
         title: 'Stats Mission',
         path: '/app',
+        icon: <AiIcons.AiOutlineAreaChart />
+      },
+      {
+        title: 'Mission User',
+        path: '/mission',
         icon: <AiIcons.AiOutlineAreaChart />
       }
     ]

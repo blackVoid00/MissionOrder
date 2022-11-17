@@ -52,6 +52,8 @@ outline: 0;
 &:focus{
 outline: none  !important;
 }
+text-align:center;
+
 `
 const Select=styles.select`
 &:focus{
@@ -175,7 +177,7 @@ const User = () => {
                     <Option value='1'>Informatique</Option>
                     <Option value='2'>Technique</Option>
                     <Option value='3'>Administratif</Option>
-                    <Option value='4'>Commercial</Option>
+                    <Option value='5'>Commercial</Option>
                 </Select>
             </Div>
             <br></br><br></br>

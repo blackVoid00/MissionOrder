@@ -283,6 +283,7 @@ import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import {ButtonM } from './StyleMsC';
 import moment from 'moment'
+import {AiOutlineUserAdd} from "react-icons/ai"
 import "./tableStyle.css"
 const ListeUser = () => {
     const navigate = useNavigate()
@@ -301,20 +302,44 @@ const ListeUser = () => {
        
     },[])
     const columns=[
-        {dataField:"nom",text:"Nom"},
-        {dataField:"prenom",text:"Prénom"},
-        {dataField:"matricule",text:"Matricule"},
-        {dataField:"mail",text:"Email"},
-        {dataField:"identifiant",text:"Identifiant"},
-        {dataField:"cin",text:"Cin"},
-        {dataField:"numeroTel",text:"N° Tél"},
-        {dataField:"dateDebutContrat",text:"Début Contrat",formatter : (row,cellContent)=>{
+        {dataField:"infoNom",text:"Nom"},
+        {dataField:"infoPrenom",text:"Prénom"},
+        {dataField:"infoMatricule",text:"Matricule"},
+        {dataField:"infoMail",text:"Email"},
+        {dataField:"infoIdentifiant",text:"Identifiant"},
+        {dataField:"infoCin",text:"Cin"},
+        {dataField:"infoLibelle",text:"Service"},
+        {dataField:"infoNumeroTel",text:"N° Tél"},
+        {dataField:"infoDateDebutContrat",text:"Début Contrat",formatter : (row,cellContent)=>{
           return moment(cellContent.dateDebutContrat).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
         }},
-        {dataField:"dateFinContrat",text:"Fin Contrat",formatter : (row,cellContent)=>{
+        {dataField:"infoDateFinContrat",text:"Fin Contrat",formatter : (row,cellContent)=>{
           return moment(cellContent.dateFinContrat).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
         }},
-        {dataField:"status",text:"Statut", formatter: (cellContent ,row) => {
+        {dataField:"infoRole",text:"Role", formatter: (cellContent ,row) => {
+          if ( row.infoRole =="0") {
+            return (
+              <span >
+                Utilisateur
+              </span>
+            )
+          }   if ( row.infoRole =="1") {
+            return (
+              <span >
+               Superviseur
+              </span>
+            )
+          }
+          if ( row.infoRole =="2") {
+            return (
+              <span>
+               Administrateur
+              </span>
+            )
+          }    
+           
+      },},
+        {dataField:"infoStatus",text:"Statut", formatter: (cellContent ,row) => {
             if ( row.status =="1") {
               return (
                 <span style={{color:"#b71c1c",fontWeight:"bold"}}>
@@ -331,7 +356,7 @@ const ListeUser = () => {
     ]
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>
-      <ButtonM onClick={()=>navigate("/user")  }large >Ajouter Utilisateur</ButtonM>
+      <ButtonM onClick={()=>navigate("/user")  }large ><AiOutlineUserAdd/>Ajouter</ButtonM>
       <br></br>  <br></br>  <br></br>
         {/* <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des bons de caisse</h1> */}
         <BootStrapTable      

@@ -44,7 +44,7 @@ const Sidebar = () => {
     <>
  
            
-      <IconContext.Provider value={{ color: ' #b71c1c',size:"20px" }}>
+      <IconContext.Provider value={{ color: ' #1c539b;',size:"20px" }}>
        
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>

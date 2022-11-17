@@ -113,11 +113,10 @@ export const ButtonM=styles.button`
 position: relative;
 border-width: 0px;
 border-style: solid;
-background-color:#B0C4DE ;
+background-color:transparent ;
 font-weight:bold !important;
 cursor: pointer;
 font-weight:bold ;
-width:${props => props.large ? "200px" : "140px"};
 height:30px;
 margin-left:${props=>props.left? "400px":"0px"};
 margin-top:${props=>props.top? " 52px":"5px"};

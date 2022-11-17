@@ -22,10 +22,10 @@ const ListeBC = () => {
        
     },[])
     const columns=[
-        {dataField:"idBonCaisse",text:"Numero "},
         {dataField:"dateCreation",text:"Date Creation",formatter : (row,cellContent)=>{
           return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
         }},
+        {dataField:"idBonCaisse",text:"Numero "},
         {dataField:"libellé",text:"Opération"},
         {dataField:"créditTotal",text:"Crédit Total"},
         {dataField:"soldeTotal",text:" Débit Total"},

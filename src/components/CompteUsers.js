@@ -94,8 +94,8 @@ const CompteUsers = () => {
                   <> 
                   <Card>
                   <Image src={icon}></Image>
-                  <P key={user.idUser}>{user.nom} {user.prenom}</P>
-                  <Button onClick={()=>navigate(`/cuswipe/${user.idUser}`)}>Check</Button>
+                  <P key={user.infoId}>{user.infoNom} {user.infoPrenom}</P>
+                  <Button onClick={()=>navigate(`/cuswipe/${user.infoId}`)}>Check</Button>
                   </Card>
                 </>
                

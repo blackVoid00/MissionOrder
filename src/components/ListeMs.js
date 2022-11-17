@@ -5,11 +5,15 @@ import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import {ButtonM } from './StyleMsC';
 import moment from 'moment'
+import {AiOutlineFileAdd,AiOutlineArrowRight} from "react-icons/ai"
+import { IconContext } from 'react-icons/lib';
+
+
 const ListeMs = () => {
     const navigate = useNavigate()
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
-            <ButtonM  onClick={()=>navigate(`/detailms/${row.idMission}`)  }>Details</ButtonM>
+            <ButtonM  onClick={()=>navigate(`/detailms/${row.idMission}`)  }>consulter &nbsp; <IconContext.Provider value={{ color: '#1c539b',size:"20px" }}><AiOutlineArrowRight/></IconContext.Provider></ButtonM>
         )
         
         }
@@ -32,11 +36,13 @@ const ListeMs = () => {
          {dataField:"idSbonCaisse",text:"N° Bon caisse"},
         {dataField:"objetMission",text:"Projet"},
         {dataField:"totalMission",text:"Total Dépenses"},
+        {dataField:"valideResponsable",text:"ValiderResp"},
+        {dataField:"valideRh",text:"ValiderAdmin"},
         {dataField:"etatMission",text:"Etat Mission", formatter: (cellContent ,row) => {
             if ( row.etatMission =="O") {
               return (
                 <span style={{color:"#b71c1c",fontWeight:"bold"}}>
-               ouverte
+               en cours...
                 </span>
               )
             }   
@@ -45,11 +51,11 @@ const ListeMs = () => {
                cloturée </span>
             )    
         }},
-        {datafield:"Actions",text:"Actions", formatter: ButtonCell}
+        {datafield:"Actions",text:"Details", formatter: ButtonCell}
     ]
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>
-      <ButtonM large >Créer Mission</ButtonM>
+      <ButtonM large onClick={()=>navigate('/creerMs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineFileAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>
       <br></br>  <br></br>  <br></br>
         {/* <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des bons de caisse</h1> */}
         <BootStrapTable      

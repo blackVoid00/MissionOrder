@@ -8,6 +8,8 @@ import { useParams } from 'react-router-dom';
 import BootStrapTable from "react-bootstrap-table-next"
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import moment from 'moment';
+import {AiOutlineMinus} from "react-icons/ai"
+import {IconContext} from "react-icons/lib"
 const Div=styles.div`
 width: 100%;
 display:flex;
@@ -73,14 +75,30 @@ const DetailsMs = () => {
         return moment(cellContent.datec).format("YYYY-MM-DDThh:mm:ss").split("T")[0]
        }
     },
-      {dataField:"gasoil",text:"Gasoil"},
-      {dataField:"taxi",text:"Taxi"},
+      {dataField:"gasoil",text:"Gasoil",formatter: (cellContent ,row) => {
+        if ( row.gasoil==0) {
+          return (
+             <IconContext.Provider value={{ color: '#FF8C00',size:"20px" }}> 
+            <AiOutlineMinus/>
+             </IconContext.Provider>
+          )}
+          <span style={{color:"#b71c1c",fontWeight:"bold"}}>
+              {row.gasoil}
+                </span>
+        }},
+      {dataField:"taxi",text:"Taxi",formatter: (cellContent ,row) => {
+        if ( row.taxi == 0) {
+          return (
+             <IconContext.Provider value={{ color: '#FF8C00',size:"20px" }}> 
+            <AiOutlineMinus/>
+             </IconContext.Provider>
+          )}}},
       {dataField:"repas",text:"Repas"},
       {dataField:"hotel",text:"Hotel"},
       {dataField:"parking",text:"Parking"},
       {dataField:"divers",text:"Divers"},
       {dataField:"achTech",text:"Achat/Tech"},
-      {dataField:"totalSm",text:"Frais"},
+      {dataField:"totalSm",text:"Total"},
     
   ]
   var dateD=moment(details.dateD).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
@@ -143,7 +161,8 @@ const DetailsMs = () => {
      data={data}
      columns={columns}
      pagination={paginationFactory()} 
-     condensed 
+     headerClasses="header-class"
+     rowClasses="row-class" 
      ></BootStrapTable>
     </Second>
     
