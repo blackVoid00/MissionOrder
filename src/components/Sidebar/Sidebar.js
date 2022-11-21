@@ -11,12 +11,12 @@ import  logo from "../../assets/logo.png";
         width:auto;
         height:100px;
         margin-left:45px;
-        
+        margin-top:20px;
     }
     cursor: pointer;   
 `;
 const SidebarNav = styled.nav`
- background:white;
+ background:#1c539b;
  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   width: 200px;
   height: 100vh;
@@ -44,7 +44,7 @@ const Sidebar = () => {
     <>
  
            
-      <IconContext.Provider value={{ color: ' #1c539b;',size:"20px" }}>
+      <IconContext.Provider value={{ color: 'white',size:"20px" }}>
        
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>

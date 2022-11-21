@@ -88,7 +88,11 @@ const CreerMS = () => {
    
         <SousDiv1>
         <DivInput>
-        <Label>Utilisateur</Label>
+        <Label>Date Création</Label>
+        <Input l type="date"></Input>
+      </DivInput>
+        <DivInput>
+        <Label>Bénéficiaire</Label>
         <select className='Select-Ms'>
         {users.map((user)=><option value={user.infoId}>{user.infoNom} {user.infoPrenom}</option>)}
         </select>
@@ -97,11 +101,16 @@ const CreerMS = () => {
         <Label>Projet</Label>
         <Input placeholder='entrer objet mission'></Input>
       </DivInput>
-      <br></br> 
-       <DivInput>
-        <Label>Date </Label>
+      <DivInput>
+        <Label>Date de début</Label>
         <Input l type="date"></Input>
       </DivInput>
+      <DivInput>
+        <Label>Date de fin</Label>
+        <Input l type="date"></Input>
+      </DivInput>
+      <br></br> 
+       
     
       <DivInput>
       <Button>Create</Button> 

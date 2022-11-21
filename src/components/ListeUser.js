@@ -283,13 +283,15 @@ import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import {ButtonM } from './StyleMsC';
 import moment from 'moment'
-import {AiOutlineUserAdd} from "react-icons/ai"
+import {AiOutlineUserAdd,AiFillEye} from "react-icons/ai"
+import {MdDoNotDisturbOn,MdCheckCircle} from "react-icons/md"
 import "./tableStyle.css"
+import { IconContext } from 'react-icons'
 const ListeUser = () => {
     const navigate = useNavigate()
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
-            <ButtonM>Details</ButtonM>
+           <IconContext.Provider value={{ color: '#1c539b',size:"20px"}}><AiFillEye  onClick={()=>navigate(`/editUser/${row.infoId}`)  }/></IconContext.Provider>
         )
         
         }
@@ -340,23 +342,21 @@ const ListeUser = () => {
            
       },},
         {dataField:"infoStatus",text:"Statut", formatter: (cellContent ,row) => {
-            if ( row.status =="1") {
+            if ( row.infoStatus == "1") {
               return (
-                <span style={{color:"#b71c1c",fontWeight:"bold"}}>
-               interdit
-                </span>
+               <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}><MdDoNotDisturbOn /></IconContext.Provider>
+              
               )
             }   
             return(
-              <span style={{color:"green",fontWeight:"bold"}}>
-               autorisé </span>
+              <IconContext.Provider value={{color:"green",size:"20px"}}><MdCheckCircle/></IconContext.Provider>
             )    
         },},
-        {datafield:"Actions",text:"Actions", formatter: ButtonCell}
+        {datafield:"Actions",text:"Consulter", formatter: ButtonCell}
     ]
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>
-      <ButtonM onClick={()=>navigate("/user")  }large ><AiOutlineUserAdd/>Ajouter</ButtonM>
+      <ButtonM onClick={()=>navigate("/addUser")  }large ><IconContext.Provider value={{color: '#1c539b',size:"35px"}}><AiOutlineUserAdd/></IconContext.Provider>Ajouter</ButtonM>
       <br></br>  <br></br>  <br></br>
         {/* <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des bons de caisse</h1> */}
         <BootStrapTable      

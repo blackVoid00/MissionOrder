@@ -5,15 +5,16 @@ import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import {ButtonM } from './StyleMsC';
 import moment from 'moment'
-import {AiOutlineFileAdd,AiOutlineArrowRight} from "react-icons/ai"
+import {AiOutlineFileAdd,AiFillEye,AiFillCheckCircle,AiOutlineFileDone} from "react-icons/ai"
 import { IconContext } from 'react-icons/lib';
-
-
+import {BiLoaderCircle} from 'react-icons/bi';
+import {MdRemoveDone} from 'react-icons/md';
+import {ImCancelCircle} from 'react-icons/im';
 const ListeMs = () => {
     const navigate = useNavigate()
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
-            <ButtonM  onClick={()=>navigate(`/detailms/${row.idMission}`)  }>consulter &nbsp; <IconContext.Provider value={{ color: '#1c539b',size:"20px" }}><AiOutlineArrowRight/></IconContext.Provider></ButtonM>
+            <IconContext.Provider value={{ color: '#1c539b',size:"20px" }}><AiFillEye  onClick={()=>navigate(`/detailms/${row.idMission}`)  }/></IconContext.Provider>
         )
         
         }
@@ -36,22 +37,49 @@ const ListeMs = () => {
          {dataField:"idSbonCaisse",text:"N° Bon caisse"},
         {dataField:"objetMission",text:"Projet"},
         {dataField:"totalMission",text:"Total Dépenses"},
-        {dataField:"valideResponsable",text:"ValiderResp"},
-        {dataField:"valideRh",text:"ValiderAdmin"},
-        {dataField:"etatMission",text:"Etat Mission", formatter: (cellContent ,row) => {
+        {dataField:"valideResponsable",text:"ValiderResp", formatter: (cellContent ,row) => {
+          if ( row.valideResponsable =="N") {
+            return (
+              <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
+             <MdRemoveDone/>
+              </IconContext.Provider>
+            )
+          }   
+          return(
+            <IconContext.Provider value={{color:"green",size:"20px"}}>
+             <AiFillCheckCircle/>
+              </IconContext.Provider>
+          )    
+      }},
+        {dataField:"valideRh",text:"ValiderAdmin", formatter: (cellContent ,row) => {
+          if ( row.valideRh=="N") {
+            return (
+              <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
+             <MdRemoveDone/>
+              </IconContext.Provider>
+            )
+          }   
+          return(
+            <IconContext.Provider value={{color:"green",size:"20px"}}>
+             <AiFillCheckCircle/>
+              </IconContext.Provider>
+          )    
+      }},
+        {dataField:"etatMission",text:"Statut", formatter: (cellContent ,row) => {
             if ( row.etatMission =="O") {
               return (
-                <span style={{color:"#b71c1c",fontWeight:"bold"}}>
-               en cours...
-                </span>
+                <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
+               <BiLoaderCircle/>
+                </IconContext.Provider>
               )
             }   
             return(
-              <span style={{color:"green",fontWeight:"bold"}}>
-               cloturée </span>
+              <IconContext.Provider value={{color:"green",size:"20px"}}>
+               <AiOutlineFileDone/>
+                </IconContext.Provider>
             )    
         }},
-        {datafield:"Actions",text:"Details", formatter: ButtonCell}
+        {datafield:"Actions",text:"Consulter", formatter: ButtonCell}
     ]
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>

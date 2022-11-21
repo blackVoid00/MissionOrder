@@ -39,7 +39,8 @@ const Routing = () => {
                     <Route path="/bcaisselist" element={<Layout><ListeBC></ListeBC></Layout>}></Route>
                     <Route  path="/missionlist" element={<Layout><ListeMs></ListeMs></Layout>}></Route>
                     <Route path="/mission" element={<Layout><Mission></Mission></Layout>}></Route>
-                    <Route  path="/user" element={<Layout><User></User></Layout>}></Route>
+                    <Route  path="/addUser" element={<Layout><User></User></Layout>}></Route>
+                    <Route  path="/editUser/:id" element={<Layout><User></User></Layout>}></Route>
                     <Route  path="/userdetail/:id" element={<Layout><DetailUser></DetailUser></Layout>}></Route>
                     <Route  path="/userupdate/:id" element={<Layout><UserUpdate></UserUpdate></Layout>}></Route>
                     <Route path="/detailbc/:id" element={<Layout><DetailsBc></DetailsBc></Layout>}></Route>

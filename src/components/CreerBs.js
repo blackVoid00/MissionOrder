@@ -135,7 +135,7 @@ const CreerBs = () => {
              <Select onChange={(e)=>setOptionUser(e.target.value)}>
                {users.map((user) => {return(
                     <>
-                    <option value={user.idUser}>{user.nom}</option>
+                    <option value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>
                     </>
                )})}
              </Select>

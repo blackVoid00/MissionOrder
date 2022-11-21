@@ -1,5 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import styles from "styled-components"
 
 const MainDiv=styles.div`
@@ -97,6 +99,9 @@ margin-top:220px;
 margin-bottom:30px;
 `
 const User = () => {
+    const {id}=useParams()
+    const isAddmode=!id;
+
     const [nom,setNom]=useState("")
     const [prenom,setPrenom]=useState("")
     const [matricule,setMat]=useState("")
@@ -110,8 +115,28 @@ const User = () => {
     const [dateDebutContrat,setDateD]=useState("")
     const [dateFinContrat,setDateF]=useState("")
     const [status,setStatus]=useState("")
+
+
+
  const postUser=()=>{
+    isAddmode?
     axios.post("https://localhost:7111/api/Utilisateurs",{
+        nom:  nom,
+        prenom: prenom,
+        matricule: matricule,
+        mail: mail,
+        pwd: pwd,
+        role:role ,
+        identifiant: identifiant,
+        idService: idService,
+        cin:  cin,
+        numeroTel: numeroTel,
+        dateDebutContrat: dateDebutContrat,
+        dateFinContrat:dateFinContrat,
+        status:status
+      }).then((response)=>{
+            alert("user inserted successfully")
+    }):axios.put("https://localhost:7111/api/Utilisateurs",{
         nom:  nom,
         prenom: prenom,
         matricule: matricule,
@@ -130,42 +155,54 @@ const User = () => {
     })
  }
  console.log(status)  
+ const [users,setUsers]=useState([])
+ useEffect(()=>{
+    const fields=["matricule", "nom", "prenom", "mail", "pwd","identifiant","cin","numeroTel","idService","role","dateDebutContrat","dateFinContrat","status"]
+    if(!isAddmode){
+        axios.get(`https://localhost:7111/api/Utilisateurs/${id}`).then((response)=>{
+            setUsers(response.data)
+
+        })
+    }
+ })
+ console.log(users)
  return (
    
         <MainDiv>
         
         <Div1>
+        <h1>{isAddmode ? "Add User" : "Update User"}</h1>
             <Div>
                 <Label> Matricule </Label>
-                <Input type="text" name="matricule"onChange={(e)=>setMat(e.target.value)} placeholder='entrer le matricule' ></Input>
+                <Input type="text" value={users[0].infoMatricule} name="matricule"onChange={(e)=>setMat(e.target.value)} placeholder='entrer le matricule' ></Input>
             </Div>
             <Div>
                 <Label> Nom </Label>
-                <Input type="text" name="nom" onChange={(e)=>setNom(e.target.value)} placeholder='entrer le nom'></Input>
+                <Input type="text"  value={users[0].infoNom} name="nom" onChange={(e)=>setNom(e.target.value)} placeholder='entrer le nom'></Input>
             </Div>
             <Div>
                 <Label> Prénom </Label>
-                <Input type="text" name="prenom"onChange={(e)=>setPrenom(e.target.value)} placeholder='entrer le prénom'></Input>
+                <Input type="text"  value={users[0].infoPrenom} name="prenom"onChange={(e)=>setPrenom(e.target.value)} placeholder='entrer le prénom'></Input>
             </Div>
             <Div>
                 <Label> Adresse mail </Label>
-                <Input type="text" name="mail" onChange={(e)=>setEmail(e.target.value)} placeholder='entrer le mail'></Input>
+                <Input type="text" name="mail"value={users[0].infoMail} onChange={(e)=>setEmail(e.target.value)} placeholder='entrer le mail'></Input>
             </Div>
             <Div>
                 <Label> Identifiant </Label>
-                <Input type="text" name="identifiant" onChange={(e)=>setId(e.target.value)} placeholder='entrer un identifiant'></Input>
+                <Input type="text"  value={users[0].infoIdentifiant} name="identifiant" onChange={(e)=>setId(e.target.value)} placeholder='entrer un identifiant'></Input>
             </Div>
             <Div>
                 <Label> Mot de passe </Label>
-                <Input type="password" name="pwd" onChange={(e)=>setPwd(e.target.value)} placeholder='entrer le mdp'></Input>
+                <Input type="password" value={users[0].infoPwd} name="pwd" onChange={(e)=>setPwd(e.target.value)} placeholder='entrer le mdp'></Input>
             </Div>
             <Div>
                 <Label> CIN </Label>
-                <Input type="text" name="cin"onChange={(e)=>setCin(e.target.value)} placeholder='entrer code cin'></Input>
+                <Input type="text" value={users[0].infoCin } name="cin"onChange={(e)=>setCin(e.target.value)} placeholder='entrer code cin'></Input>
             </Div>
             <Div>
                 <Label> Numéro de tel </Label>
-                <Input type="text" name="numeroTel" onChange={(e)=>setTel(e.target.value)} placeholder='entrer numéro de tel'></Input>
+                <Input type="text" value={users[0].infoNumeroTel} name="numeroTel" onChange={(e)=>setTel(e.target.value)} placeholder='entrer numéro de tel'></Input>
             </Div>
             </Div1>
 
@@ -173,7 +210,7 @@ const User = () => {
             <Div2>
             <Div>
                 <Label>Service </Label>
-                <Select name="idService" onChange={(e)=>setService(e.target.value)}>
+                <Select name="idService" onChange={(e)=>setService(e.target.value)} value={users[0].infoNumService}>
                     <Option value='1'>Informatique</Option>
                     <Option value='2'>Technique</Option>
                     <Option value='3'>Administratif</Option>
@@ -185,7 +222,7 @@ const User = () => {
             
             <Div>
                 <Label> Role </Label>
-                <Select name="role" onChange={(e)=>setRole(e.target.value)}>
+                <Select name="role" onChange={(e)=>setRole(e.target.value)} value={users[0].infoRole}>
                     <Option value="0">utilisateur</Option>
                     <Option value="1">Superviseur</Option>
                     <Option  value="2">Administrateur</Option>
@@ -195,23 +232,27 @@ const User = () => {
             <Div>
            
                 <Label> Date Début contrat</Label>
-                <Input type="date" name="dateDebutContrat" onChange={(e)=>setDateD(e.target.value)} ></Input>
+                <Input type="date" name="dateDebutContrat" value={users[0].infoDateDebutContrat} onChange={(e)=>setDateD(e.target.value)} ></Input>
             </Div>
             <Div>
                 <Label> Date Fin contrat</Label>
-                <Input name="dateFinContrat" type="date" onChange={(e)=>setDateF(e.target.value)} ></Input>
+                <Input name="dateFinContrat" type="date"  value={users[0].infoDateFinContrat} onChange={(e)=>setDateF(e.target.value)} ></Input>
             </Div>
             <Div>
                 <Label>Statut</Label>
-                <Select>
+                <Select name="status" value={users[0].infoStatus}>
                     <Option value="0">Autorisé</Option>
                     <Option value="1">Interdit</Option>
                 </Select>
             </Div>
             <DivB>
-                <Button onClick={postUser}>Ajouter</Button>
+                {isAddmode?  <> <Button onClick={postUser}>Ajouter</Button>
                 <Button disabled >Supprimer</Button>
-                <Button disabled>Modifier</Button>
+                <Button disabled>Modifier</Button></>: <> <Button disabled onClick={postUser}>Ajouter</Button>
+                <Button>Supprimer</Button>
+                <Button>Modifier</Button></>}
+               
+               
             </DivB>
                 
                 </Div2>
