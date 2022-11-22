@@ -27,21 +27,6 @@
       }
     
     
-      .swiper {
-        width: 500px;
-        height: 500px;
-        margin-top: 200px;
-        margin-left: 400px !important;
-      }
-      .swiper-slide {
-        text-align: left;
-        font-size: 18px;
-        background:#7398c9;
-        display: inline-block;
-        justify-content:space-between;
-       
-      }
-      
   .MainDiv {
     margin-bottom: 200px;
     margin-top: 200px;

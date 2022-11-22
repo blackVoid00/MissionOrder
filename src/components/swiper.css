@@ -1,0 +1,13 @@
+
+.swiper {
+    width:900px;
+    margin-top: 200px;
+    margin-left: 350px;
+  }
+  
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background:white;
+    
+  }

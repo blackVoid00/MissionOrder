@@ -1,17 +1,22 @@
 import React ,{useState,useEffect} from 'react'
 import axios from 'axios'
-import Table from 'react-bootstrap/Table';
 import styles from 'styled-components'
 import icon from '../assets/iconUser.png'
 import {useNavigate} from "react-router-dom"
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import "./swiper.css"
+import { IconContext } from 'react-icons'
+import {FcSearch} from 'react-icons/fc'
+
+
 const Button=styles.button`
 border-width: 0px;
 border-style: solid;
 font-weight:bold !important;
-margin-top:50px;
-
-margin-bottom:50px;
-background-color:#B0C4DE ;
+background-color:transparent;
 height:30px;
 width:200px;
 text-align:center !important;
@@ -19,28 +24,30 @@ cursor:pointer;
 &:focus{
 outline: none  !important;
 }
+margin-bottom:40px;
+
 `
 const P=styles.p`
 text-align:center;
-margin-bottom:10px;
-margin-top:10px;
-margin-left:40px;
-color:black !important;
+padding-top:50px;
+padding-left:60px;
+margin-right:50px;
+color:#1c539b; !important;
 text-align: left !important;
-`
-const Div = styles.div`
-display:inline-block;
-margin-left:50px;
-margin-top:160px;
+font-weight:bold;
+font-size:20px;
 `
 const Card= styles.div`
 display:inline-block;
-margin-left:100px;
+margin-top:20px;
+margin-bottom:20px;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
 `
 const Image= styles.img`
 width:150px;
 height:150px;
-margin-left:20px;
+margin-top:40px;
+
 `
 
 
@@ -79,7 +86,7 @@ const CompteUsers = () => {
    
  
   return (
-    <Div>
+    <>
         
          {/* <select onChange={(e)=>setP(e.target.value)}>
             {users.map((user)=>{
@@ -88,18 +95,26 @@ const CompteUsers = () => {
 
         </select>  */}
           
-        
-            {users.map((user) =>{
+        <Swiper   modules={[Navigation, Pagination, Scrollbar, A11y]}
+      spaceBetween={50}
+      slidesPerView={1}
+      navigation
+      pagination={{ clickable: true }}
+      scrollbar={{ draggable: true }}
+      className="mySwiper"> 
+        {users.map((user) =>{
                 return(
-                  <> 
+                  <SwiperSlide >
                   <Card>
                   <Image src={icon}></Image>
                   <P key={user.infoId}>{user.infoNom} {user.infoPrenom}</P>
-                  <Button onClick={()=>navigate(`/cuswipe/${user.infoId}`)}>Check</Button>
+                  <Button  onClick={()=>navigate(`/cuswipe/${user.infoId}`)} >Consulter &nbsp; <IconContext.Provider value={{size:"20px"}}><FcSearch onClick={()=>navigate(`/cuswipe/${user.infoId}`)}/></IconContext.Provider></Button>
                   </Card>
-                </>
+                </SwiperSlide >
                
             )})} 
+        </Swiper>
+            
       
          {/* <Button style={{}} onClick={Filter}>Filter</Button>
         {show?
@@ -121,7 +136,7 @@ const CompteUsers = () => {
           <td>{d.solde}</td>
           </tr>
  )}</tbody></Table>: <h1>Rien</h1>}  */}
-    </Div>
+    </>
   )
 }
 

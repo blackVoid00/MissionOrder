@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import styles from "styled-components"
 import { useForm } from "react-hook-form";
 import {moment} from "moment"
@@ -101,6 +101,8 @@ margin-bottom:30px;
 `
 const User = () => {
     const {id}=useParams()
+    const navigate = useNavigate()
+   
     const isAddmode=!id;
     const [nom,setNom]=useState("")
     const [prenom,setPrenom]=useState("")
@@ -114,7 +116,7 @@ const User = () => {
     const [numeroTel,setTel]=useState("")
     const [dateDebutContrat,setDateD]=useState("")
     const [dateFinContrat,setDateF]=useState("")
-    const [status,setStatus]=useState("")
+    const [status,setStatus]=useState(0)
 
  const postUser=()=>{
     isAddmode?
@@ -133,8 +135,8 @@ const User = () => {
         dateFinContrat:dateFinContrat,
         status:status
       }).then((response)=>{
-            alert("user inserted successfully")
-    }):axios.put("https://localhost:7111/api/Utilisateurs",{
+        alert("user inserted successfully");
+    }):axios.put(`https://localhost:7111/api/Utilisateurs/${id}`,{
         nom:  nom,
         prenom: prenom,
         matricule: matricule,
@@ -151,6 +153,12 @@ const User = () => {
       }).then((response)=>{
             alert("user inserted successfully")
     })
+ }
+ const deleteUser=()=>{
+    axios.delete(`https://localhost:7111/api/Utilisateurs/${id}`).then((response)=>{
+       navigate("/userlist")
+    })
+
  }
  console.log(status)  
  const [users,setUsers]=useState({})
@@ -227,10 +235,10 @@ const User = () => {
             <Div>
                 <Label>Service </Label>
                 <Select {...register('infoNumService')}  onChange={(e)=>setService(e.target.value)}>
-                    <Option value='1'>Informatique</Option>
-                    <Option value='2'>Technique</Option>
-                    <Option value='3'>Administratif</Option>
-                    <Option value='5'>Commercial</Option>
+                    <Option value='1'>Département ingénierie informatique</Option>
+                    <Option value='2'> Département technique</Option>
+                    <Option value='3'>Département Administratif</Option>
+                    <Option value='5'> Département commercial</Option>
                 </Select>
             </Div>
             <br></br><br></br>
@@ -241,14 +249,14 @@ const User = () => {
                 <Select {...register('infoRole')} onChange={(e)=>setRole(e.target.value)}>
                     <Option value="0">utilisateur</Option>
                     <Option value="1">Superviseur</Option>
-                    <Option  value="2">Administrateur</Option>
+                    <Option value="2">Administrateur</Option>
                 </Select>
             </Div>
             <br></br><br></br>
             <Div>
            
                 <Label> Date Début contrat</Label>
-                <Input type="text"  {...register('infoDateDebutContrat')}  onChange={(e)=>setDateD(e.target.value)} ></Input>
+                <Input type="date"  {...register('infoDateDebutContrat')}  onChange={(e)=>setDateD(e.target.value)} ></Input>
             </Div>
             <Div>
                 <Label> Date Fin contrat</Label>
@@ -256,7 +264,7 @@ const User = () => {
             </Div>
             <Div>
                 <Label>Statut</Label>
-                <Select  {...register('infoStatus')} >
+                <Select  {...register('infoStatus')} onChange={(e)=>setStatus(e.target.value)} >
                     <Option value="0">Autorisé</Option>
                     <Option value="1">Interdit</Option>
                 </Select>
@@ -265,7 +273,7 @@ const User = () => {
                 {isAddmode?  <> <Button onClick={postUser}>Ajouter</Button>
                 <Button disabled >Supprimer</Button>
                 <Button disabled>Modifier</Button></>: <> <Button disabled >Ajouter</Button>
-                <Button >Supprimer</Button>
+                <Button onClick={deleteUser} >Supprimer</Button>
                 <Button onClick={postUser}>Modifier</Button></>}
                
                

@@ -7,7 +7,7 @@ import moment from 'moment'
 import {AiOutlineCheck} from 'react-icons/ai'
 import {GiReceiveMoney,GiPayMoney} from 'react-icons/gi'
 import { IconContext } from 'react-icons/lib';
-
+import imgD from "../assets/compteDebi.png"
 const DetailsCU = () => {
     const {id}=useParams();
    
@@ -40,22 +40,22 @@ const columns=[
     {dataField:"sommeDebit",text:"Total Rendu"},
     {dataField:"sommeDepense",text:"Total Dépenses"},
     {dataField:"solde",text:"Solde"},
-    {dataField:"solde",text:"Etat",formatter: (cellContent ,row) => {
+    {dataField:"solde",text:"Statut",formatter: (cellContent ,row) => {
       if ( row.solde < 0) {
         return (
-           <IconContext.Provider value={{ color: '#FF8C00',size:"20px" }}> 
+           <IconContext.Provider value={{ color: '#b71c1c',size:"30px" }}> 
           <GiPayMoney/>
            </IconContext.Provider>
         )
       }if(row.solde >0){
         return (
-           <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}> 
+           <IconContext.Provider value={{ color: 'green',size:"30px" }}> 
            <GiReceiveMoney/>
            </IconContext.Provider>
         )
       }if(row.solde==0){
         return(
-          <IconContext.Provider value={{ color: 'green',size:"20px" }}> 
+          <IconContext.Provider value={{ color: 'green',size:"30px" }}> 
           <AiOutlineCheck/>
           </IconContext.Provider>
          
@@ -67,8 +67,11 @@ const columns=[
   return (
 
 
-
-   <div style={{marginLeft: '100px',marginTop: '100px'}}>
+<div style={{display:"flex"}}>
+<div style={{marginTop: '100px'}}>
+          <img src={imgD} style={{width:"600px"}} ></img>
+        </div>
+<div style={{marginLeft: '100px',marginTop: '200px'}}>
         <BootStrapTable      
         keyField='idBc'
         data={T}
@@ -78,7 +81,9 @@ const columns=[
         rowClasses="row-class" 
         ></BootStrapTable> 
     </div> 
-    
+  
+</div>
+  
 //         <Table bordered hover size="xl">
 //           <tbody>
 //          <tr>

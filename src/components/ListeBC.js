@@ -3,7 +3,7 @@ import BootStrapTable from "react-bootstrap-table-next"
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import axios from 'axios'
 import {useNavigate} from "react-router-dom"
-import {ButtonM } from './StyleMsC';
+import {ButtonM, Div1, InputM, LabelM } from './StyleMsC';
 import moment from 'moment';
 import {AiOutlineFileAdd,AiFillEye} from "react-icons/ai"
 import {TbDiscount,TbDiscOff}  from "react-icons/tb"
@@ -33,7 +33,7 @@ const ListeBC = () => {
         {dataField:"libellé",text:"Opération"},
         {dataField:"créditTotal",text:"Crédit Total"},
         {dataField:"soldeTotal",text:" Débit Total"},
-        {dataField:"etat",text:"Etat", formatter: (cellContent ,row) => {
+        {dataField:"etat",text:"Statut", formatter: (cellContent ,row) => {
             if ( row.etat==0) {
               return (
                 <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
@@ -53,6 +53,8 @@ const ListeBC = () => {
       <ButtonM large onClick={()=>navigate('/creerBs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineFileAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>
       <br></br>  <br></br>  <br></br>
         {/* <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des bons de caisse</h1> */}
+       <div  style={{display:"flex",width:"100%"}}>
+        <div>
         <BootStrapTable      
         keyField='idBonCaisse'
         data={bc}
@@ -61,7 +63,17 @@ const ListeBC = () => {
         headerClasses="header-class"
         rowClasses="row-class"
         ></BootStrapTable>
-      
+        </div>
+        <div style={{display:"inline-block" , width:"350px",marginLeft: '300px',backgroundColor:"#1c539b"}}>
+          <h1 style={{color:"black"}}>Filter</h1>
+          <Div1>
+           <LabelM></LabelM>
+           <InputM></InputM>
+          </Div1>
+        </div>
+       </div>
+       
+     
         
     </div>
   )

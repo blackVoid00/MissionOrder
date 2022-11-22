@@ -6,10 +6,36 @@
     color:white;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
     padding:0px;
+    
 }
 .row-class{
     border:transparent;
     font-weight: bold;
     font-weight: 10px !important;
     padding:0px;
+}
+.react-bootstrap-table-pagination-list {
+    text-align: center;
+    transform: translateX(-50%);
+
+  }
+  
+  .react-bootstrap-table-page-btns-ul {
+    float: none;
+    
+  }
+  .page-item .page-link {
+   
+    background:white;
+    
+    color:black !important;
+    font-weight: bold;
+  }
+
+  .active .page-link{ 
+    background:#1c539b;
+   
+    color:white !important;
+    font-weight: bold;
+
 }

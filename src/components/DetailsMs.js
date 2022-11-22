@@ -75,24 +75,8 @@ const DetailsMs = () => {
         return moment(cellContent.datec).format("YYYY-MM-DDThh:mm:ss").split("T")[0]
        }
     },
-      {dataField:"gasoil",text:"Gasoil",formatter: (cellContent ,row) => {
-        if ( row.gasoil==0) {
-          return (
-             <IconContext.Provider value={{ color: '#FF8C00',size:"20px" }}> 
-            <AiOutlineMinus/>
-             </IconContext.Provider>
-          )}
-          <span style={{color:"#b71c1c",fontWeight:"bold"}}>
-              {row.gasoil}
-                </span>
-        }},
-      {dataField:"taxi",text:"Taxi",formatter: (cellContent ,row) => {
-        if ( row.taxi == 0) {
-          return (
-             <IconContext.Provider value={{ color: '#FF8C00',size:"20px" }}> 
-            <AiOutlineMinus/>
-             </IconContext.Provider>
-          )}}},
+      {dataField:"gasoil",text:"Gasoil"},
+      {dataField:"taxi",text:"Taxi"},
       {dataField:"repas",text:"Repas"},
       {dataField:"hotel",text:"Hotel"},
       {dataField:"parking",text:"Parking"},

@@ -307,7 +307,9 @@ const DetailsBc = () => {
      keyField='idSBonCaisse'
      data={sbc2}
      columns={columns2}
-     pagination={paginationFactory()}  
+     pagination={paginationFactory()}
+     headerClasses="header-class"
+     rowClasses="row-class"  
      ></BootStrapTable>
      <br></br> <br></br> <br></br>
      <BootStrapTable      
@@ -315,6 +317,8 @@ const DetailsBc = () => {
      data={sbc}
      columns={columns}
      pagination={paginationFactory()}  
+     headerClasses="header-class"
+     rowClasses="row-class"
      ></BootStrapTable>
  
     
