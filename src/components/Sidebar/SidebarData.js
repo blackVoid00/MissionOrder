@@ -4,8 +4,13 @@ import * as RiIcons from 'react-icons/ri';
 import * as BiIcons from 'react-icons/bi';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-
+import * as FcIcons from 'react-icons/fc';
 export const SidebarData = [
+  {
+    title:"Acceuil",
+    path:"/app",
+    icon:<FcIcons.FcHome/>
+  },
   {
     title: 'Utilisateurs',
     path: '/userlist',
