@@ -6,7 +6,11 @@ import {Bar,Pie,Line} from 'react-chartjs-2';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import {Chart as ChartJS} from 'chart.js/auto';
+import Chart  from 'chart.js/auto';
+
+
+
+//styled components
 const DivHome=styled.div`
     margin-top:150px;
     margin-left:100px;
@@ -17,40 +21,45 @@ const DivChart=styled.div`
    height:500px;
    margin-left:100px;
 `
+//Home component
 const Home2 = () => {
-  const url="https://localhost:7111/api/SBC"
+  //The api's url
+  const url="https://localhost:7111/api/Missions"
 
-  const [sbc,setSBc]=useState([])
-  useEffect(()=>{
-    getData()
-    getChart()
-   },[])
+  //declare a new state variable which will call missions, this variable will get an array of json objects (missions)
+  const [missions,setMissions]=useState([])
+ //declare a new state variable which will call chartData, this variable will contain a json object defining the sub properties of the chart's data property
   const [chartData,setChartData] =useState({
-    labels:sbc.map((s)=>s.type),
+    labels:[],
     datasets: [
       {
-        label: 'sous bons de caisse',
-        backgroundColor: ["#ed64a6", "#4c51bf"],
-        data:sbc.map((s)=>s.credit) ,
-        hoverOffset: 5
+        label: '',
+        backgroundColor: [],
+        data:[] ,
+        hoverOffset: 0
       },
     ],
   
 })
+// defining a "useEffect" hook that will call two functions when the app is running (updating the Dom automatically)
+  useEffect(()=>{
+    getData()
+    getChart()
+   })
+//this function get the data from the api's url
 const getData=() => {
   axios.get(url).then((response) =>{
-    setSBc(response.data) 
+    setMissions(response.data) 
   })}
-
+//this function initialize the chart's data property with the api's data
 const getChart=()=>{
-  getData()
  let config={
-      labels:sbc.map((s)=>s.type),
+      labels:missions.map((s)=>s.idMission),
       datasets: [
         {
-          label: 'sous bons de caisse',
-          backgroundColor: ["#ffaaa5", "#1c539b","#fcf8f3","#ffd3b6","#698474"],
-          data:sbc.map((s)=>s.credit) ,
+          label: 'Total Dépenses pour Missions',
+          backgroundColor: ["#ffaaa5", "#1c539b"],
+          data:missions.map((s)=>s.totalMission) ,
           hoverOffset: 5,
           barPercentage: 0.1,
         },
@@ -59,9 +68,6 @@ const getChart=()=>{
   };
   setChartData(config)
 }
-  useEffect(()=>{
-   getChart()
-  },[])
   const options = {
     title: {
       display: true,
@@ -70,27 +76,25 @@ const getChart=()=>{
     scales: {
       y:{
         title:{
-        text:"Crédit alloués",
+        text:"Total Dépenses",
         display:true}
       },
       x:{
         title:{
-          text:"Type operation",
+          text:"Numéro Mission",
           display:true
         },
        
       }
     }
   }; 
-  console.log(sbc)
-    const identifant=localStorage.getItem('loginId');
-    
+ 
   return (
     <DivHome>
         {/* <h1 style={{fontSize:"45px",color:"black",fontWeight:"bold"}}>Bienvenue</h1> */}
         <img style={{maxWidth:"100%"}} src={mission}></img>
         <DivChart>
-        <Line data={chartData} options={options}></Line>
+        <Bar data={chartData} options={options}></Bar>
         </DivChart>
         
     </DivHome>

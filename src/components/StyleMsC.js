@@ -29,9 +29,9 @@ width:70vh;
 height:700px;
 ` 
 export const Div1 =styles.div`
-margin-top:4%;
 display:${props => props.inline ? "inline-block" : "flex"};
-justify-content:space-between;
+margin-top:5%;
+display:inline-block;
 `
 export const SousDiv1=styles.div`
 display:grid;
@@ -96,6 +96,8 @@ border:1px solid black !important;
 `
 export const LabelM=styles.label`
 display: inline-block;
+font-weight:bold !important;
+margin-left:30px;
 width: ${props => props.l ? "200px" : "160px"};
 font-weight:bold !important;
 color:${props => props.color ? "black" : "white"}

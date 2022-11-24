@@ -67,7 +67,7 @@ const ListeBC = () => {
         <div style={{display:"inline-block" , width:"350px",marginLeft: '300px',backgroundColor:"#1c539b"}}>
           <h1 style={{color:"black"}}>Filter</h1>
           <Div1>
-           <LabelM></LabelM>
+           <LabelM>Nom Prenom</LabelM>
            <InputM></InputM>
           </Div1>
         </div>
