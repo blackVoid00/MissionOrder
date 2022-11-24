@@ -6,5 +6,7 @@ body{
     font-family:'Nunito Sans', sans-serif;
     letter-spacing:0.6px;
     color:white;
+    background-color:#F0F0F0;
+  
 }
 `

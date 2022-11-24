@@ -69,7 +69,7 @@ const columns=[
 
 <div style={{display:"flex"}}>
 <div style={{marginTop: '100px'}}>
-          <img src={imgD} style={{width:"600px"}} ></img>
+          <img src={imgD} style={{width:"auto"}} ></img>
         </div>
 <div style={{marginLeft: '100px',marginTop: '200px'}}>
         <BootStrapTable      

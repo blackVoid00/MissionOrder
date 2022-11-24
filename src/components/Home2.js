@@ -77,15 +77,23 @@ const getChart=()=>{
       y:{
         title:{
         text:"Total Dépenses",
-        display:true}
+        display:true},
+        grid: {
+          display: false
+        }
       },
+      
       x:{
         title:{
           text:"Numéro Mission",
           display:true
         },
+        grid: {
+          display: false
+        }
        
-      }
+      },
+      
     }
   }; 
  
