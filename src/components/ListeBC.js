@@ -3,21 +3,29 @@ import BootStrapTable from "react-bootstrap-table-next"
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import axios from 'axios'
 import {useNavigate} from "react-router-dom"
-import {ButtonM, Div1, InputM, LabelM,Select } from './StyleMsC';
+import {ButtonM, Div1, InputM, LabelM,Select ,LabelR,Label1,Label2} from './StyleMsC';
 import moment from 'moment';
-import {AiOutlineFileAdd,AiFillEye} from "react-icons/ai"
+import {AiOutlineFileAdd,AiFillEye,AiOutlineFilter} from "react-icons/ai"
 import {TbDiscount,TbDiscOff}  from "react-icons/tb"
 import { IconContext } from 'react-icons/lib';
 const ListeBC = () => { 
   const urlUser="https://localhost:7111/api/Utilisateurs"
   const [users,setUsers]=useState([])
     const navigate = useNavigate()
+    const [checkBox,setCheckBox]=useState(false)
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
             
             <IconContext.Provider value={{ color: '#1c539b',size:"20px" }}><AiFillEye   onClick={()=>navigate(`/detailbc/${row.idBonCaisse}`)  }/></IconContext.Provider>
         )
         
+        }
+      const CheckOneTime=(element)=>{
+          var tab = document.getElementsByName("checkbox");
+          for(let i=0;i<tab.length;i++){
+            tab[i].checked=false;
+          }
+          element.target.checked=true;
         }
     const url="https://localhost:7111/api/Boncaisses"
     const [bc,setBc]=useState([])
@@ -56,11 +64,11 @@ const ListeBC = () => {
         {datafield:"Details",text:"Consulter", formatter: ButtonCell}
     ]
   return (
-    <div style={{marginLeft: '100px',marginTop: '200px'}}>
+    <div style={{marginLeft: '100px',marginTop: '100px'}}>
        <div  style={{display:"flex",width:"auto"}}>
        <div style={{display:"inline-block" , width:"450px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
           <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
-          <div style={{display:"flex"}}>
+          
           <Div1>
            <LabelM l w>Du</LabelM>
            <InputM b type="date"></InputM>
@@ -69,7 +77,7 @@ const ListeBC = () => {
            <LabelM l w>Au</LabelM>
            <InputM b type="date"></InputM>
           </Div1>
-          </div>
+          
           
           <Div1>
            <LabelM l w>Bénéficiaire</LabelM>
@@ -108,9 +116,27 @@ const ListeBC = () => {
             <option>Décembre</option>
            </Select>
           </Div1>
-          <Div1>
-          <ButtonM>Filter</ButtonM>
-          </Div1>
+          <br></br> v
+          <div style={{display:"flex"}}>
+            <LabelR w>Statut</LabelR>
+             <div style={{display:"flex"}}>
+             <div style={{display:"flex"}}>
+              <Label1> Soldé</Label1>
+              <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime}></input>
+              </div>
+              &nbsp;
+              <div style={{display:"flex"}}>
+              <Label2 >Non Soldé</Label2>
+              <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime} ></input>
+              </div>
+             </div>
+          </div>
+          <div style={{marginLeft:"300px",marginTop:"30px",marginBottom:"50px"}}>
+          <ButtonM>Filter &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"35px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
+          </div>
+        
+          
+          
         </div>
         <div style={{display:"inline-block",marginLeft: '100px',width:"900px"}}>
         <ButtonM large onClick={()=>navigate('/creerBs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineFileAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>

@@ -1,7 +1,5 @@
-
 import React from 'react'
 import styled from "styled-components"
-import mission from '../assets/mission.png'
 import {Bar,Pie,Line} from 'react-chartjs-2';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -19,7 +17,7 @@ const DivHome=styled.div`
 const DivChart=styled.div`
    width:500px;
    height:500px;
-   margin-left:100px;
+   
 `
 //Home component
 const Home2 = () => {
@@ -58,7 +56,7 @@ const getChart=()=>{
       datasets: [
         {
           label: 'Total Dépenses pour Missions',
-          backgroundColor: ["#ffaaa5", "#1c539b"],
+          backgroundColor: ["#b71c1c", "#1c539b"],
           data:missions.map((s)=>s.totalMission) ,
           hoverOffset: 5,
           barPercentage: 0.1,
@@ -100,7 +98,7 @@ const getChart=()=>{
   return (
     <DivHome>
         {/* <h1 style={{fontSize:"45px",color:"black",fontWeight:"bold"}}>Bienvenue</h1> */}
-        <img style={{maxWidth:"100%"}} src={mission}></img>
+      
         <DivChart>
         <Bar data={chartData} options={options}></Bar>
         </DivChart>

@@ -1,18 +1,19 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from "styled-components"
-import picOrdre from '../assets/ordre.png'
+import mission from '../assets/mission.png'
 const MainDiv = styles.div`
 max-width:100%;
 display:flex;
 `
 const Container1 = styles.div`
-width:50%;
+
 margin-left:200px;
 margin-top:300px;
 `
 const Container2 = styles.div`
-width:50%;
+margin-left:200px;
+margin-top:150px;
 `
 const Div=styles.div`
 display:flex;
@@ -29,7 +30,8 @@ const Button=styles.button`
 position: relative;
 border-width: 0px;
 border-style: solid;
-background-color:#B0C4DE ;
+background-color:#1c539b ;
+
 font-weight:bold !important;
 font-size:25px !important;
 cursor: pointer;
@@ -57,7 +59,7 @@ const GoCaisse=()=>{
         </Div>
         </Container1>
         <Container2>
-            <Image src={picOrdre}></Image>
+            <Image src={mission}></Image>
         </Container2>
          
     </MainDiv>

@@ -55,7 +55,7 @@ padding:5px 5px 5px 5px;
 margin-top:10px;
 `
 export const Select=styles.select`
-margin-bottom:10px;
+margin-bottom:20px;
 margin-top:10px;
 margin-right:10px;
 height:35px !important;
@@ -73,6 +73,27 @@ display: inline-block;
 width: ${props=>props.w?"150px":"170px"};
 font-weight:bold !important;
 color:${props=>props.l? "#1c539b":"white"};
+margin-left:10px;
+`
+export const LabelR=styles.label`
+display: inline-block;
+width:150px;
+font-weight:bold !important;
+color:#1c539b !important;
+margin-left:10px;
+`
+export const Label1=styles.label`
+display: inline-block;
+width:60px;
+font-weight:bold !important;
+color:#1c539b !important;
+margin-left:10px;
+`
+export const Label2=styles.label`
+display: inline-block;
+width:90px;
+font-weight:bold !important;
+color:#1c539b !important;
 margin-left:10px;
 `
 export const InputM=styles.input`
@@ -132,14 +153,16 @@ export const ButtonM=styles.button`
 position: relative;
 border-width: 0px;
 border-style: solid;
-background-color:transparent ;
+background-color:${props=>props.color?"#b71c1c":"transparent"} ;
 font-weight:bold !important;
 cursor: pointer;
 font-weight:bold ;
 height:30px;
+width:${props=>props.w? "200px":""}
 margin-left:${props=>props.left? "400px":"0px"};
 margin-top:${props=>props.top? " 52px":"5px"};
 margin-bottom:${props=>props.bottom? "10px":"0px"};
+color:${props=>props.l? "white":"#1c539b"};
 `
 export const Final=styles.div`
 margin-top:0px;

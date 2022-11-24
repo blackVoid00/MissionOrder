@@ -9,7 +9,7 @@ export const SidebarData = [
   {
     title:"Acceuil",
     path:"/app",
-    icon:<FcIcons.FcHome/>
+    icon:<AiIcons.AiOutlineHome/>
   },
   {
     title: 'Utilisateurs',

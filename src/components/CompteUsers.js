@@ -39,14 +39,14 @@ margin-right:50px;
 color:#1c539b; !important;
 text-align: left !important;
 font-weight:bold;
-font-size:20px;
+font-size:15px;
 `
 const Card= styles.div`
 display:inline-block;
 margin-top:20px;
 margin-bottom:20px;
 box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
-
+background-color:white;
 `
 const Image= styles.img`
 width:120px;
@@ -76,7 +76,7 @@ const CompteUsers = () => {
   
       <Swiper   modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}
-      slidesPerView={1}
+      slidesPerView={3}
       navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
