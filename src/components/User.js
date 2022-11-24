@@ -47,7 +47,6 @@ margin-right:10px;
 height:35px !important;
 width: ${props=> props.inDate? "100px":"200px"};
 background: #fff;
-color: $input-text-color;
 font: inherit;
 box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
 border: 0;

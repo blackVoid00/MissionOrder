@@ -8,7 +8,7 @@ export const SLayout = styled.div`
 `;
 
 export const SMain = styled.main`
-    padding-left: calc(${v.smSpacing} * 20);
+    padding-left: calc(${v.smSpacing} * 25);
     h1 {
         font-size: 14px;
     }

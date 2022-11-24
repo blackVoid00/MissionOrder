@@ -28,11 +28,7 @@ margin-top:1%;
 width:70vh;
 height:700px;
 ` 
-export const Div1 =styles.div`
-display:${props => props.inline ? "inline-block" : "flex"};
-margin-top:5%;
-display:inline-block;
-`
+
 export const SousDiv1=styles.div`
 display:grid;
 margin-left:50px
@@ -53,18 +49,46 @@ margin-top:5%;
 display:flex;
 height:auto;
 `
-
-export const InputM=styles.input`
+export const Div1 =styles.div`
+display:inline-block !important;
+padding:5px 5px 5px 5px;
+margin-top:10px;
+`
+export const Select=styles.select`
 margin-bottom:10px;
 margin-top:10px;
-height:40px;
+margin-right:10px;
+height:35px !important;
 width:200px;
-text-align: left !important;
-border: 10px solid transparent  !important;
-border-radius:2px  !important;
+font: inherit;
+border: 2px solid #F0F0F0;
+outline: 0;
 &:focus{
 outline: none  !important;
 }
+text-align:center !important;
+`
+export const LabelM=styles.label`
+display: inline-block;
+width: ${props=>props.w?"150px":"170px"};
+font-weight:bold !important;
+color:${props=>props.l? "#1c539b":"white"};
+margin-left:10px;
+`
+export const InputM=styles.input`
+margin-bottom:10px;
+margin-top:10px;
+margin-right:10px;
+height:35px !important;
+width: ${props=> props.inDate? "100px":"200px"};
+background: ${props=> props.b?"	#F0F0F0" :"#fff"};
+font: inherit;
+border: 0;
+outline: 0;
+&:focus{
+outline: none  !important;
+}
+text-align:left !important;
 `
 export const Description=styles.div`
 margin-top:10px;
@@ -94,14 +118,7 @@ overflow: hidden;
 background-image:url(${image});
 border:1px solid black !important;
 `
-export const LabelM=styles.label`
-display: inline-block;
-font-weight:bold !important;
-margin-left:30px;
-width: ${props => props.l ? "200px" : "160px"};
-font-weight:bold !important;
-color:${props => props.color ? "black" : "white"}
-`
+
 export const LabelMFile=styles.label`
 margin-left:10px;
 margin-top:10px;

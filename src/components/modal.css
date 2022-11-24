@@ -32,4 +32,27 @@
     margin-top: 200px;
     margin-left:200px;
   }   
+  input[type="date"] {
+    
+    display: -webkit-inline-flex;
+    font-family: monospace;
+    overflow: hidden;
+    padding: 0;
+    -webkit-padding-start: 1px;
+}
+
+input::-webkit-datetime-edit {
+ 
+   -webkit-user-modify: read-only !important;
+   display: inline-block;
+   min-width: 0;
+   overflow: hidden;
+}
+
+input::-webkit-datetime-edit-fields-wrapper {
+   -webkit-user-modify: read-only !important;
+   display: inline-block;
+   padding: 1px 0;
+   white-space: pre;
+}
       
