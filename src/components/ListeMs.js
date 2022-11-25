@@ -90,7 +90,34 @@ const ListeMs = () => {
         keyField='idMission'
         data={ms}
         columns={columns}
-        pagination={paginationFactory()} 
+        pagination={paginationFactory({
+          sizePerPageList: [ {
+            text: '5', value: 5
+          }, {
+            text: '10', value: 10
+          }, {
+            text: '20', value: 20
+          },
+          {
+            text: '50', value: 50
+          },
+          {
+            text: 'All', value: ms.length
+          } ], 
+       
+          withFirstAndLast: false,
+          alwaysShowAllBtns: true, 
+          firstPageText: 'First', 
+          prePageText: 'Prev', 
+          nextPageText: 'Next',
+          lastPageText: 'Last',
+          nextPageTitle: 'Go to next',
+          prePageTitle: 'Go to previous', 
+          firstPageTitle: 'Go to first', 
+          lastPageTitle: 'Go to last', 
+          
+         
+        })} 
         headerClasses="header-class"
         rowClasses="row-class" 
         ></BootStrapTable> 

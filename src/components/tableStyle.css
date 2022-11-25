@@ -4,10 +4,24 @@
     border: transparent;
     padding:10px;
     color:white;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
+   
     padding:0px;
     
 }
+.footer{
+  border: transparent;
+  background-color: '#1c539b';
+  color:"white";
+  font-size:"bold";
+
+}
+/* .react-bs-container-body tr {
+  border-top-style: hidden !important;
+}
+
+.react-bs-container-header tr {
+  border-bottom-style: hidden !important;
+} */
 .row-class{
     border:transparent;
     font-weight: bold;
@@ -26,15 +40,15 @@
   }
   .page-item .page-link {
    
-    background:white;
-    
+    background:transparent;
+    border:transparent !important;
     color:black !important;
     font-weight: bold;
   }
 
   .active .page-link{ 
     background:#1c539b;
-   
+    border:transparent;
     color:white !important;
     font-weight: bold;
 

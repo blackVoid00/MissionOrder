@@ -43,13 +43,13 @@ const ListeBC = () => {
        
     },[])
     const columns=[
-        {dataField:"dateCreation",text:"Date Création",formatter : (row,cellContent)=>{
+        {dataField:"dateCreation",text:"Date Création",footer:"Total",formatter : (row,cellContent)=>{
           return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
         }, sort: true},
-        {dataField:"idBonCaisse",text:"N° Bc ", sort: true},
-        {dataField:"beneficiaire",text:"Bénéficiaire"},
+        {dataField:"idBonCaisse",text:"N° Bc ",footer:"", sort: true },
+        {dataField:"beneficiaire",footer:"",text:"Bénéficiaire"},
        
-        {dataField:"libellé",text:"Type Opération",formatter: (cellContent ,row) => {
+        {dataField:"libellé",text:"Type Opération",footer:"" ,formatter: (cellContent ,row) => {
           if ( row.libellé==1) {
             return (
               <span>Réglement Facture</span>
@@ -74,7 +74,7 @@ const ListeBC = () => {
           }    
       }},
         
-        {dataField:"soldeTotal",text:"Total Débit",formatter: (cellContent ,row) => {
+        {dataField:"soldeTotal",text:"Total Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),formatter: (cellContent ,row) => {
           if ( row.soldeTotal==0) {
             return (
               <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
@@ -85,7 +85,7 @@ const ListeBC = () => {
           return(
            <span>{row.soldeTotal}</span>
           )    
-      }},{dataField:"créditTotal",text:"Total Crédit ",formatter: (cellContent ,row) => {
+      }},{dataField:"créditTotal",text:"Total Crédit ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),formatter: (cellContent ,row) => {
         if ( row.créditTotal==0) {
           return (
             <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
@@ -98,7 +98,7 @@ const ListeBC = () => {
         )    
     }},
        
-        {dataField:"etat",text:"Statut", formatter: (cellContent ,row) => {
+        {dataField:"etat",text:"Statut",footer:"", formatter: (cellContent ,row) => {
             if ( row.etat==0) {
               return (
                 <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
@@ -111,7 +111,7 @@ const ListeBC = () => {
               <FaBalanceScale/></IconContext.Provider>
             )  }   
         },},
-        {datafield:"Details",text:"Actions", formatter: ButtonCell}
+        {datafield:"Details",text:"Actions",footer:"", formatter: ButtonCell}
     ]
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>
@@ -205,14 +205,44 @@ const ListeBC = () => {
         <div style={{display:"inline-block",marginLeft: '100px',width:"900px"}}>
         <ButtonM large onClick={()=>navigate('/creerBs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineFileAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>
         <br></br> <br></br> <br></br>
+        <div>
         <BootStrapTable      
         keyField='idBonCaisse'
         data={bc}
         columns={columns}
-        pagination={paginationFactory()}  
+        pagination={paginationFactory({
+          sizePerPageList: [ {
+            text: '5', value: 5
+          }, {
+            text: '10', value: 10
+          }, {
+            text: '20', value: 20
+          },
+          {
+            text: '50', value: 50
+          },
+          {
+            text: 'All', value: bc.length
+          } ], 
+       
+          withFirstAndLast: false,
+          alwaysShowAllBtns: true, 
+          firstPageText: 'First', 
+          prePageText: 'Prev', 
+          nextPageText: 'Next',
+          lastPageText: 'Last',
+          nextPageTitle: 'Go to next',
+          prePageTitle: 'Go to previous', 
+          firstPageTitle: 'Go to first', 
+          lastPageTitle: 'Go to last', 
+          
+         
+        })}  
         headerClasses="header-class"
         rowClasses="row-class"
+        columnClasses="column-class"
         ></BootStrapTable>
+        </div>
         </div>
        
        </div>

@@ -194,7 +194,7 @@ const User = () => {
         <MainDiv>
         
         <Div1>
-        <h1>{isAddmode ? "Add User" : "Update User"}</h1>
+      
             <Div>
                 <Label> Matricule </Label>
                 <Input type="text" {...register('infoMatricule')} onChange={(e)=>setMat(e.target.value)} placeholder='entrer le matricule' ></Input>
