@@ -143,11 +143,11 @@ const CreerBs = () => {
         <DivInput>
             <Label> Opération</Label>
              <Select onChange={(e)=>setOptionLibelle(e.target.value)}>
-                <option>Réglement Facture</option>
-                <option>Frais OM </option>
-                <option>Frais femme ménage</option>
-                <option>Avance Sur salaire</option>
-                <option>Achats</option>
+                <option value="1">Réglement Facture</option>
+                <option value="2">Frais OM </option>
+                <option value="3">Frais femme ménage</option>
+                <option value="4">Avance Sur salaire</option>
+                <option vamue="5">Achats</option>
              </Select>
         </DivInput>
        <Div>

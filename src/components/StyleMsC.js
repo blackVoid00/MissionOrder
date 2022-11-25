@@ -73,28 +73,43 @@ display: inline-block;
 width: ${props=>props.w?"150px":"170px"};
 font-weight:bold !important;
 color:${props=>props.l? "#1c539b":"white"};
-margin-left:10px;
+margin-left:20px;
 `
 export const LabelR=styles.label`
 display: inline-block;
 width:150px;
 font-weight:bold !important;
 color:#1c539b !important;
-margin-left:10px;
+margin-left:20px;
 `
 export const Label1=styles.label`
 display: inline-block;
 width:60px;
 font-weight:bold !important;
 color:#1c539b !important;
-margin-left:10px;
+margin-left:20px;
 `
 export const Label2=styles.label`
 display: inline-block;
 width:90px;
 font-weight:bold !important;
 color:#1c539b !important;
-margin-left:10px;
+
+`
+export const InputDate=styles.input`
+margin-bottom:10px;
+margin-top:10px;
+margin-right:10px;
+height:35px !important;
+width:120px;
+background:#F0F0F0;
+font: inherit;
+border: 0;
+outline: 0;
+&:focus{
+outline: none  !important;
+}
+text-align:left !important;
 `
 export const InputM=styles.input`
 margin-bottom:10px;

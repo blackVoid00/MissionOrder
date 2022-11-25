@@ -3,10 +3,12 @@ import BootStrapTable from "react-bootstrap-table-next"
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import axios from 'axios'
 import {useNavigate} from "react-router-dom"
-import {ButtonM, Div1, InputM, LabelM,Select ,LabelR,Label1,Label2} from './StyleMsC';
+import {ButtonM, Div1, InputDate, InputM , LabelM,Select ,LabelR,Label1,Label2} from './StyleMsC';
 import moment from 'moment';
 import {AiOutlineFileAdd,AiFillEye,AiOutlineFilter} from "react-icons/ai"
 import {TbDiscount,TbDiscOff}  from "react-icons/tb"
+import {MdMoneyOffCsred}  from "react-icons/md"
+import {FaBalanceScale}  from "react-icons/fa"
 import { IconContext } from 'react-icons/lib';
 const ListeBC = () => { 
   const urlUser="https://localhost:7111/api/Utilisateurs"
@@ -41,44 +43,100 @@ const ListeBC = () => {
        
     },[])
     const columns=[
-        {dataField:"dateCreation",text:"Date Creation",formatter : (row,cellContent)=>{
+        {dataField:"dateCreation",text:"Date Création",formatter : (row,cellContent)=>{
           return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
-        }},
-        {dataField:"idBonCaisse",text:"Numero ", sort: true},
-        {dataField:"libellé",text:"Opération"},
-        {dataField:"créditTotal",text:"Crédit Total"},
-        {dataField:"soldeTotal",text:" Débit Total"},
+        }, sort: true},
+        {dataField:"idBonCaisse",text:"N° Bc ", sort: true},
+        {dataField:"beneficiaire",text:"Bénéficiaire"},
+       
+        {dataField:"libellé",text:"Type Opération",formatter: (cellContent ,row) => {
+          if ( row.libellé==1) {
+            return (
+              <span>Réglement Facture</span>
+            )
+          }   
+          if ( row.libellé==2) {
+            return (
+              <span>Frais OM</span>
+            )
+          }  if ( row.libellé==3) {
+            return (
+              <span>Frais femme ménage</span>
+            )
+          }  if ( row.libellé==4) {
+            return (
+              <span>Avance Sur salaire</span>
+            )
+          }  if ( row.libellé==5) {
+            return (
+              <span>Achats</span>
+            )
+          }    
+      }},
+        
+        {dataField:"soldeTotal",text:"Total Débit",formatter: (cellContent ,row) => {
+          if ( row.soldeTotal==0) {
+            return (
+              <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
+              <MdMoneyOffCsred/>
+              </IconContext.Provider>
+            )
+          }   
+          return(
+           <span>{row.soldeTotal}</span>
+          )    
+      }},{dataField:"créditTotal",text:"Total Crédit ",formatter: (cellContent ,row) => {
+        if ( row.créditTotal==0) {
+          return (
+            <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
+            <MdMoneyOffCsred/>
+            </IconContext.Provider>
+          )
+        }   
+        return(
+         <span>{row.créditTotal}</span>
+        )    
+    }},
+       
         {dataField:"etat",text:"Statut", formatter: (cellContent ,row) => {
             if ( row.etat==0) {
               return (
                 <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
-                <TbDiscOff/>
+                <TbDiscount/>
                 </IconContext.Provider>
               )
-            }   
+            }if ( row.etat==1){  
             return(
               <IconContext.Provider value={{color:"green",size:"20px"}}>
-              <TbDiscount/></IconContext.Provider>
-            )    
+              <FaBalanceScale/></IconContext.Provider>
+            )  }   
         },},
-        {datafield:"Details",text:"Consulter", formatter: ButtonCell}
+        {datafield:"Details",text:"Actions", formatter: ButtonCell}
     ]
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>
        <div  style={{display:"flex",width:"auto"}}>
-       <div style={{display:"inline-block" , width:"450px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
+       <div style={{display:"inline-block" , width:"460px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
           <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
-          
+          <div style={{display:"flex",marginLeft: '10px'}}>
           <Div1>
            <LabelM l w>Du</LabelM>
-           <InputM b type="date"></InputM>
+           <InputDate b type="date"></InputDate>
           </Div1>
           <Div1>
            <LabelM l w>Au</LabelM>
-           <InputM b type="date"></InputM>
+           <InputDate b type="date"></InputDate>
           </Div1>
-          
-          
+          <div  style={{marginTop:"50px",marginRight:'50px'}}>
+          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
+          </div>
+          </div>
+          <Div1>
+           <LabelM l w>Date</LabelM>
+           <InputM b type="date"></InputM>&nbsp;
+          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
+   
+          </Div1>
           <Div1>
            <LabelM l w>Bénéficiaire</LabelM>
            <Select>
@@ -88,6 +146,7 @@ const ListeBC = () => {
                     </>
                )})}
            </Select>
+           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
           </Div1>
           <Div1>
            <LabelM l w>Opération</LabelM>
@@ -98,6 +157,7 @@ const ListeBC = () => {
            <option>Avance Sur salaire</option>
            <option>Achats</option>
            </Select>
+           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
           </Div1>
           <Div1>
            <LabelM l w>Mois</LabelM>
@@ -115,8 +175,9 @@ const ListeBC = () => {
             <option>Novembre</option>
             <option>Décembre</option>
            </Select>
+           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
           </Div1>
-          <br></br> v
+          <br></br>  <br></br> 
           <div style={{display:"flex"}}>
             <LabelR w>Statut</LabelR>
              <div style={{display:"flex"}}>
@@ -124,15 +185,18 @@ const ListeBC = () => {
               <Label1> Soldé</Label1>
               <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime}></input>
               </div>
-              &nbsp;
+              &nbsp;&nbsp;
               <div style={{display:"flex"}}>
               <Label2 >Non Soldé</Label2>
-              <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime} ></input>
+              <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime} ></input>&nbsp;&nbsp;&nbsp;
+              <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
               </div>
+              
              </div>
+             
           </div>
           <div style={{marginLeft:"300px",marginTop:"30px",marginBottom:"50px"}}>
-          <ButtonM>Filter &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"35px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
+          <ButtonM>Filter All &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
           </div>
         
           
