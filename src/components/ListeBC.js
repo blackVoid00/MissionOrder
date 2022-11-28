@@ -10,7 +10,10 @@ import {TbDiscount,TbDiscOff}  from "react-icons/tb"
 import {MdMoneyOffCsred}  from "react-icons/md"
 import {FaBalanceScale}  from "react-icons/fa"
 import { IconContext } from 'react-icons/lib';
+import {BiExport} from 'react-icons/bi';
+import ToolkitProvider, { CSVExport } from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
 const ListeBC = () => { 
+  const { ExportCSVButton } = CSVExport;
   const urlUser="https://localhost:7111/api/Utilisateurs"
   const [users,setUsers]=useState([])
     const navigate = useNavigate()
@@ -186,45 +189,64 @@ const ListeBC = () => {
            
         </div>
         <div style={{display:"inline-block",marginLeft: '100px',width:"900px"}}>
-        <ButtonM large onClick={()=>navigate('/creerBs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineFileAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>
-        <br></br> <br></br> <br></br>
-        <div>
-        <BootStrapTable      
-        keyField='idBonCaisse'
-        data={bc}
-        columns={columns}
-        pagination={paginationFactory({
-          sizePerPageList: [ {
-            text: '5', value: 5
-          }, {
-            text: '10', value: 10
-          }, {
-            text: '20', value: 20
-          },
-          {
-            text: '50', value: 50
-          },
-          {
-            text: 'All', value: bc.length
-          } ], 
        
-          withFirstAndLast: false,
-          alwaysShowAllBtns: true, 
-          firstPageText: 'First', 
-          prePageText: 'Prev', 
-          nextPageText: 'Next',
-          lastPageText: 'Last',
-          nextPageTitle: 'Go to next',
-          prePageTitle: 'Go to previous', 
-          firstPageTitle: 'Go to first', 
-          lastPageTitle: 'Go to last', 
-          
-         
-        })}  
-        headerClasses="header-class"
-        rowClasses="row-class"
-        columnClasses="column-class"
-        ></BootStrapTable>
+        <div>
+              
+  <ToolkitProvider
+    keyField='idBonCaisse'
+    data={bc}
+    columns={columns}
+   
+  exportCSV
+>
+  {
+    props => (
+      <>
+     
+         <div style={{display: 'flex',justifyContent:"space-between"}}>
+         <ButtonM large onClick={()=>navigate('/creerBs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineFileAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>
+         <ExportCSVButton { ...props.csvProps }><IconContext.Provider value={{color:"#1c539b",size:"30px"}}><BiExport/></IconContext.Provider>&nbsp;Exporter csv</ExportCSVButton>
+         </div>
+         <br></br><br></br>
+      <BootStrapTable      
+    { ...props.baseProps }
+    pagination={paginationFactory({
+      sizePerPageList: [ {
+        text: '5', value: 5
+      }, {
+        text: '10', value: 10
+      }, {
+        text: '20', value: 20
+      },
+      {
+        text: '50', value: 50
+      },
+      {
+        text: 'All', value: bc.length
+      } ], 
+   
+      withFirstAndLast: false,
+      alwaysShowAllBtns: true, 
+      firstPageText: 'First', 
+      prePageText: 'Prev', 
+      nextPageText: 'Next',
+      lastPageText: 'Last',
+      nextPageTitle: 'Go to next',
+      prePageTitle: 'Go to previous', 
+      firstPageTitle: 'Go to first', 
+      lastPageTitle: 'Go to last', 
+      
+     
+    })} 
+    headerClasses="header-class"
+    rowClasses="row-class" ></BootStrapTable> 
+     
+  </>
+     
+    )
+  }
+</ToolkitProvider>
+      
         </div>
         </div>
        

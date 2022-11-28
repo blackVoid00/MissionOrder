@@ -287,7 +287,10 @@ import {AiOutlineUserAdd,AiFillEye} from "react-icons/ai"
 import {MdDoNotDisturbOn,MdCheckCircle} from "react-icons/md"
 import "./tableStyle.css"
 import { IconContext } from 'react-icons'
+import {BiExport} from 'react-icons/bi';
+import ToolkitProvider, { CSVExport } from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
 const ListeUser = () => {
+  const { ExportCSVButton } = CSVExport;
     const navigate = useNavigate()
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
@@ -341,7 +344,7 @@ const ListeUser = () => {
           }    
            
       },},
-        {dataField:"infoStatus",text:"Statut", formatter: (cellContent ,row) => {
+        {dataField:"infoStatus",text:"Statut",  csvExport: false,formatter: (cellContent ,row) => {
             if ( row.infoStatus == "1") {
               return (
                <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}><MdDoNotDisturbOn /></IconContext.Provider>
@@ -352,48 +355,66 @@ const ListeUser = () => {
               <IconContext.Provider value={{color:"green",size:"20px"}}><MdCheckCircle/></IconContext.Provider>
             )    
         },},
-        {datafield:"Actions",text:"Consulter", formatter: ButtonCell}
+        {datafield:"Actions",text:"Consulter",  csvExport: false,formatter: ButtonCell}
     ]
   return (
     <div style={{marginLeft: '100px',marginTop: '100px'}}>
-      <ButtonM onClick={()=>navigate("/addUser")  }large ><IconContext.Provider value={{color: '#1c539b',size:"35px"}}><AiOutlineUserAdd/></IconContext.Provider>Ajouter</ButtonM>
-      <br></br>  <br></br>  <br></br>
-        {/* <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des bons de caisse</h1> */}
-        <BootStrapTable      
-        keyField='idUser'
-        data={user}
-        columns={columns} 
-        pagination={paginationFactory({
-          sizePerPageList: [ {
-            text: '5', value: 5
-          }, {
-            text: '10', value: 10
-          }, {
-            text: '20', value: 20
-          },
-          {
-            text: '50', value: 50
-          },
-          {
-            text: 'All', value: user.length
-          } ], 
-       
-          withFirstAndLast: false,
-          alwaysShowAllBtns: true, 
-          firstPageText: 'First', 
-          prePageText: 'Prev', 
-          nextPageText: 'Next',
-          lastPageText: 'Last',
-          nextPageTitle: 'Go to next',
-          prePageTitle: 'Go to previous', 
-          firstPageTitle: 'Go to first', 
-          lastPageTitle: 'Go to last', 
-          
-         
-        })}  
-        headerClasses="header-class"
-        rowClasses="row-class"
-        ></BootStrapTable>
+      
+      
+        <ToolkitProvider
+      keyField='idUser'
+      data={user}
+      columns={columns} 
+   
+  exportCSV
+>
+  {
+    props => (
+      <>
+     
+         <div style={{display: 'flex',justifyContent:"space-between"}}>
+         <ButtonM onClick={()=>navigate("/addUser")  }large ><IconContext.Provider value={{color: '#1c539b',size:"35px"}}><AiOutlineUserAdd/></IconContext.Provider>Ajouter</ButtonM>
+         <ExportCSVButton { ...props.csvProps }><IconContext.Provider value={{color:"#1c539b",size:"30px"}}><BiExport/></IconContext.Provider>&nbsp;Exporter csv</ExportCSVButton>
+         </div>
+         <br></br><br></br>
+      <BootStrapTable      
+    { ...props.baseProps }
+    pagination={paginationFactory({
+      sizePerPageList: [ {
+        text: '5', value: 5
+      }, {
+        text: '10', value: 10
+      }, {
+        text: '20', value: 20
+      },
+      {
+        text: '50', value: 50
+      },
+      {
+        text: 'All', value: user.length
+      } ], 
+   
+      withFirstAndLast: false,
+      alwaysShowAllBtns: true, 
+      firstPageText: 'First', 
+      prePageText: 'Prev', 
+      nextPageText: 'Next',
+      lastPageText: 'Last',
+      nextPageTitle: 'Go to next',
+      prePageTitle: 'Go to previous', 
+      firstPageTitle: 'Go to first', 
+      lastPageTitle: 'Go to last', 
+      
+     
+    })} 
+    headerClasses="header-class"
+    rowClasses="row-class" ></BootStrapTable> 
+     
+  </>
+     
+    )
+  }
+</ToolkitProvider> 
       
         
     </div>

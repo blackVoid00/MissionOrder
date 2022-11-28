@@ -7,10 +7,14 @@ import moment from 'moment'
 import {AiOutlineFileAdd,AiFillEye,AiFillCheckCircle,AiOutlineFileDone,AiOutlineFilter} from "react-icons/ai"
 import {ButtonM, Div1, InputDate, InputM , LabelM,Select ,LabelR,Label1,Label2} from './StyleMsC';
 import { IconContext } from 'react-icons/lib';
-import {BiLoaderCircle} from 'react-icons/bi';
+import {BiLoaderCircle,BiExport} from 'react-icons/bi';
 import {MdRemoveDone} from 'react-icons/md';
 import {ImCancelCircle} from 'react-icons/im';
+import ToolkitProvider, { CSVExport } from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
+
+
 const ListeMs = () => {
+  const { ExportCSVButton } = CSVExport;
     const navigate = useNavigate()
     const [checkBox,setCheckBox]=useState(false)
     const CheckOneTime=(element)=>{
@@ -140,12 +144,12 @@ const ListeMs = () => {
             <LabelR w>Statut</LabelR>
              <div style={{display:"flex"}}>
              <div style={{display:"flex"}}>
-              <Label1> Soldé</Label1>
+              <Label1>Fermée</Label1>
               <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime}></input>
               </div>
               &nbsp;&nbsp;
               <div style={{display:"flex"}}>
-              <Label2 >Non Soldé</Label2>
+              <Label2 >Ouverte</Label2>
               <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime} ></input>&nbsp;&nbsp;&nbsp;
               <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
               </div>
@@ -159,47 +163,67 @@ const ListeMs = () => {
            </div>
        
     <div style={{marginLeft: '50px',marginTop: '30px'}}>
-      <ButtonM large onClick={()=>navigate('/creerMs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineFileAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>
-      <br></br>  <br></br>  <br></br>
+     
         {/* <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des bons de caisse</h1> */}
-        <BootStrapTable      
-        keyField='idMission'
-        data={ms}
-        columns={columns}
-        pagination={paginationFactory({
-          sizePerPageList: [ {
-            text: '5', value: 5
-          }, {
-            text: '10', value: 10
-          }, {
-            text: '20', value: 20
-          },
-          {
-            text: '50', value: 50
-          },
-          {
-            text: 'All', value: ms.length
-          } ], 
-       
-          withFirstAndLast: false,
-          alwaysShowAllBtns: true, 
-          firstPageText: 'First', 
-          prePageText: 'Prev', 
-          nextPageText: 'Next',
-          lastPageText: 'Last',
-          nextPageTitle: 'Go to next',
-          prePageTitle: 'Go to previous', 
-          firstPageTitle: 'Go to first', 
-          lastPageTitle: 'Go to last', 
-          
-         
-        })} 
-        headerClasses="header-class"
-        rowClasses="row-class" 
-        ></BootStrapTable> 
+        
+        <ToolkitProvider
+    keyField='idMission'
+    data={ms}
+    columns={columns}
+   
+  exportCSV
+>
+  {
+    props => (
+      <>
+     
+         <div style={{display: 'flex',justifyContent:"space-between"}}>
+         <ButtonM large onClick={()=>navigate('/creerMs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineFileAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>
+         <ExportCSVButton { ...props.csvProps }><IconContext.Provider value={{color:"#1c539b",size:"30px"}}><BiExport/></IconContext.Provider>&nbsp;Exporter csv</ExportCSVButton>
+         </div>
+         <br></br><br></br>
+      <BootStrapTable      
+    { ...props.baseProps }
+    pagination={paginationFactory({
+      sizePerPageList: [ {
+        text: '5', value: 5
+      }, {
+        text: '10', value: 10
+      }, {
+        text: '20', value: 20
+      },
+      {
+        text: '50', value: 50
+      },
+      {
+        text: 'All', value: ms.length
+      } ], 
+   
+      withFirstAndLast: false,
+      alwaysShowAllBtns: true, 
+      firstPageText: 'First', 
+      prePageText: 'Prev', 
+      nextPageText: 'Next',
+      lastPageText: 'Last',
+      nextPageTitle: 'Go to next',
+      prePageTitle: 'Go to previous', 
+      firstPageTitle: 'Go to first', 
+      lastPageTitle: 'Go to last', 
+      
+     
+    })} 
+    headerClasses="header-class"
+    rowClasses="row-class" ></BootStrapTable> 
+     
+  </>
+     
+    )
+  }
+</ToolkitProvider>
+</div>
        </div>
        </div> 
-    </div>
+   
     </>
   )
 }

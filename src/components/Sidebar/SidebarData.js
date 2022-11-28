@@ -19,11 +19,7 @@ export const SidebarData = [
     iconOpened: <BiIcons.BiMinus />,
 
     subNav: [
-      {
-        title: 'Liste utilisateur',
-        path: '/userlist',
-        icon:<AiIcons.AiOutlineUnorderedList/>
-      },
+     
       {
         title: 'Compte Utilisateur',
         path: '/compteuser',
@@ -51,11 +47,6 @@ export const SidebarData = [
           icon: <AiIcons.AiOutlineFileAdd />
         },
         {
-          title:'Liste Bon caisse',
-          path:'/bcaisselist',
-          icon:<AiIcons.AiOutlineUnorderedList/>
-        },
-        {
           title: 'Stats Bon Caisse',
           path: '/app',
           icon: <AiIcons.AiOutlineAreaChart />
@@ -71,15 +62,16 @@ export const SidebarData = [
 
     subNav: [
       {
+        title: 'Mission fill',
+        path: '/mission',
+        icon: <AiIcons.AiFillFileAdd />
+      },
+      {
         title: 'Stats Mission',
         path: '/app',
         icon: <AiIcons.AiOutlineAreaChart />
       },
-      {
-        title: 'Mission User',
-        path: '/mission',
-        icon: <AiIcons.AiOutlineAreaChart />
-      }
+      
     ]
   },
   {

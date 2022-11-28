@@ -168,7 +168,7 @@ export const ButtonM=styles.button`
 position: relative;
 border-width: 0px;
 border-style: solid;
-background-color:${props=>props.color?"#b71c1c":"transparent"} ;
+background-color:${props=>props.color?"#1c539b":"transparent"} ;
 font-weight:bold !important;
 cursor: pointer;
 font-weight:bold ;
