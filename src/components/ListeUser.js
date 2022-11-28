@@ -344,7 +344,7 @@ const ListeUser = () => {
           }    
            
       },},
-        {dataField:"infoStatus",text:"Statut",  csvExport: false,formatter: (cellContent ,row) => {
+        {dataField:"infoStatus",text:"Statut",formatter: (cellContent ,row) => {
             if ( row.infoStatus == "1") {
               return (
                <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}><MdDoNotDisturbOn /></IconContext.Provider>

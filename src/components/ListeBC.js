@@ -114,7 +114,7 @@ const ListeBC = () => {
               <FaBalanceScale/></IconContext.Provider>
             )  }   
         },},
-        {datafield:"Details",text:"Actions",footer:"", formatter: ButtonCell}
+        {datafield:"Details",text:"Actions", csvExport: false,footer:"", formatter: ButtonCell}
     ]
   return (
     <div style={{marginLeft: '50px',marginTop: '100px'}}>

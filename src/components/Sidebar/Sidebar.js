@@ -5,6 +5,7 @@ import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
 
 import  logo from "../../assets/logo.png";
+import { useNavigate } from 'react-router-dom';
 
  const Logo = styled.div`
     img {
@@ -36,7 +37,7 @@ const SidebarWrap = styled.div`
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(true);
 
- 
+  const navigate=useNavigate()
 // const showSidebar=()=>{
 //     setSidebar(!sidebar);
 // }
@@ -48,7 +49,7 @@ const Sidebar = () => {
        
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
-          <Logo> <img className='img' src={logo} alt="logo" /></Logo>
+          <Logo><img className='img' src={logo} alt="logo"  /></Logo>
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}

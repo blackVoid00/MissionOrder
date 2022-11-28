@@ -42,11 +42,6 @@ export const SidebarData = [
     subNav: [
       
         {
-          title: 'Creer BonCaisse',
-          path: '/creerBs',
-          icon: <AiIcons.AiOutlineFileAdd />
-        },
-        {
           title: 'Stats Bon Caisse',
           path: '/app',
           icon: <AiIcons.AiOutlineAreaChart />

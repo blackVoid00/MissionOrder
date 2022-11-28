@@ -30,7 +30,7 @@ const Button=styles.button`
 position: relative;
 border-width: 0px;
 border-style: solid;
-background-color:#1c539b ;
+background-color:transparent	 ;
 
 font-weight:bold !important;
 font-size:25px !important;

@@ -98,7 +98,7 @@ const ListeMs = () => {
                 </IconContext.Provider>
             )    
         }},
-        {datafield:"Actions",text:"Consulter",footer:"", formatter: ButtonCell}
+        {datafield:"Actions",text:"Consulter", csvExport: false,footer:"", formatter: ButtonCell}
     ]
   return (
   <>
