@@ -114,7 +114,7 @@ const ListeBC = () => {
         {datafield:"Details",text:"Actions",footer:"", formatter: ButtonCell}
     ]
   return (
-    <div style={{marginLeft: '100px',marginTop: '100px'}}>
+    <div style={{marginLeft: '50px',marginTop: '100px'}}>
        <div  style={{display:"flex",width:"auto"}}>
        <div style={{display:"inline-block" , width:"460px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
           <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
@@ -159,24 +159,7 @@ const ListeBC = () => {
            </Select>
            <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
           </Div1>
-          <Div1>
-           <LabelM l w>Mois</LabelM>
-           <Select>
-            <option>Janvier</option>
-            <option>Frévier</option>
-            <option>Mars</option>
-            <option>Avril</option>
-            <option>Mai</option>
-            <option>Juin</option>
-            <option>Juillet</option>
-            <option>Aout</option>
-            <option>Septembre</option>
-            <option>Octobre</option>
-            <option>Novembre</option>
-            <option>Décembre</option>
-           </Select>
-           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
-          </Div1>
+        
           <br></br>  <br></br> 
           <div style={{display:"flex"}}>
             <LabelR w>Statut</LabelR>
@@ -195,12 +178,12 @@ const ListeBC = () => {
              </div>
              
           </div>
-          <div style={{marginLeft:"300px",marginTop:"30px",marginBottom:"50px"}}>
+          <div style={{marginLeft:"50px",marginTop:"30px",marginBottom:"50px"}}>
           <ButtonM>Filter All &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
           </div>
         
           
-          
+           
         </div>
         <div style={{display:"inline-block",marginLeft: '100px',width:"900px"}}>
         <ButtonM large onClick={()=>navigate('/creerBs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineFileAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>

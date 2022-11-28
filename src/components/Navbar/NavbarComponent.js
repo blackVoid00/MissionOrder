@@ -6,8 +6,10 @@ import * as AiIcons from "react-icons/ai"
 import * as RiIcons from "react-icons/ri"
 import "./styleNav.css"
 import { FaCashRegister ,FaCarSide} from 'react-icons/fa';
+import { GiCash} from 'react-icons/gi';
 import  logo from "../../assets/logo.png";
 import { IconContext } from 'react-icons/lib';
+import { InputM } from '../StyleMsC';
 const DivNav=styled.div`
 
 `
@@ -17,14 +19,16 @@ const NavbarComponent=()=>{
     <DivNav>
     <Navbar className="nav" variant="dark">
         
-          <Navbar.Brand href="#"></Navbar.Brand>
-          {/* <h4 className='Brand'><FaCashRegister/> &nbsp; RIFL MISSION &nbsp;<FaCarSide/></h4>  */}
+          <Navbar.Brand href="#"><h4 className='Brand'><IconContext.Provider value={{color:"#b71c1c",size:"40px"}}> <FaCarSide/></IconContext.Provider>&nbsp; &nbsp;<IconContext.Provider value={{color:"#1c539b;",size:"40px"}}> <GiCash/></IconContext.Provider></h4> </Navbar.Brand>
+          
+        
           <Nav className="navish">
           <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}>
             <Nav.Link href="#"><h4><RiIcons.RiAdminLine/>&nbsp; Admin</h4> </Nav.Link>
             <Nav.Link href="#"><h4><AiIcons.AiFillSetting/>&nbsp; Setting</h4></Nav.Link>
             <Nav.Link href="#"><h4><AiIcons.AiOutlineLogout/> &nbsp; Logout</h4></Nav.Link>
             </IconContext.Provider>
+          
           </Nav>
         
       </Navbar>

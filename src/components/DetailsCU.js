@@ -32,15 +32,15 @@ const DetailsCU = () => {
 )
 console.log(T)
 const columns=[
-  {dataField:"dateCreation",text:"Date Creation",formatter : (row,cellContent)=>{
+  {dataField:"dateCreation",text:"Date Creation",footer:'Total',formatter : (row,cellContent)=>{
     return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
   }},
-    {dataField:"idBc",text:"N° Bon caisse"},
-    {dataField:"sommeCredit",text:"Total Crédit"},
-    {dataField:"sommeDebit",text:"Total Rendu"},
-    {dataField:"sommeDepense",text:"Total Dépenses"},
-    {dataField:"solde",text:"Solde"},
-    {dataField:"solde",text:"Statut",formatter: (cellContent ,row) => {
+    {dataField:"idBc",text:"N° Bon caisse",footer:""},
+    {dataField:"sommeCredit",text:"Total Crédit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+    {dataField:"sommeDebit",text:"Total Rendu", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+    {dataField:"sommeDepense",text:"Total Dépenses", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+    {dataField:"solde",text:"Solde", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+    {dataField:"solde",text:"Statut",footer:"",formatter: (cellContent ,row) => {
       if ( row.solde < 0) {
         return (
            <IconContext.Provider value={{ color: '#b71c1c',size:"30px" }}> 

@@ -25,14 +25,14 @@ box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px
 margin-top:0px;
 background-color:#1c539b;
 justify-content:space-between;
-padding-top:20px;
+margin-top:10px;
 padding-left:20px;
 `
 const H1 = styles.h1`
-font-size:30px !important;
-color:white;
+font-size:20px !important;
+color:black;
 font-weight:bold;
-padding:10px 10px 10px 10px !important;
+margin-bottom: 15px !important;
 text-align:center !important;
 `
 const Div=styles.div`
@@ -72,7 +72,7 @@ outline: none  !important;
 `
 const DivInput=styles.div`
 margin-bottom:10px;
-
+margin-top:30px;
 `
 
 const Label=styles.label`
@@ -167,21 +167,22 @@ const DetailsBc = () => {
       // {dataField:"type",text:"Type  Operation"},
       // {dataField:"creditSbc",text:"Crédit"},
       // {dataField:"debit",text:"Débit"},
-      {dataField:"dateDepense",text:"Date Dépenses",formatter : (row,cellContent)=>{
+      {dataField:"dateDepense",text:"Date Dépenses",footer:"Total",formatter : (row,cellContent)=>{
         return moment(cellContent.dateDepense).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
-      {dataField:"idMs",text:"N° Mission"},
-      {dataField:"depense",text:"Dépenses"},
+      {dataField:"idMs",text:"N° Mission",footer:""},
+      {dataField:"depense",text:"Dépenses",footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
   ]
   const columns2=[
     // {dataField:"idSbc",text:"N° Operation"},
    
-    {dataField:"dateCreationSbc",text:"Date opération",formatter : (row,cellContent)=>{
+    {dataField:"dateCreationSbc",text:"Date opération",footer:"Total",formatter : (row,cellContent)=>{
       return moment(cellContent.dateCreationSbc).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
     }},
-    {dataField:"type",text:"Libellé"},
-    {dataField:"credit",text:"Crédit"},
-    {dataField:"debit",text:"Débit"},
+    {dataField:"type",text:"Libellé",footer:""},
+    {dataField:"debit",text:"Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+    {dataField:"credit",text:"Crédit",footer:columnData => columnData.reduce((acc, item) => acc + item, 0)}
+   
 ]
   // , formatter:
   //     (row,cellContent) =>{
@@ -303,6 +304,7 @@ const DetailsBc = () => {
       </IconContext.Provider></div> */}
    </MainDiv>
     <Div1>
+    <H1>Tableau Débit/Crédit</H1>
     <BootStrapTable      
      keyField='idSBonCaisse'
      data={sbc2}
@@ -339,6 +341,7 @@ const DetailsBc = () => {
      rowClasses="row-class"  
      ></BootStrapTable>
      <br></br> <br></br> <br></br>
+     <H1>Tableau dépenses</H1>
      <BootStrapTable      
      keyField='idSBc'
      data={sbc}
