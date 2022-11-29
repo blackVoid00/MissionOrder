@@ -11,8 +11,14 @@ import {BiLoaderCircle,BiExport} from 'react-icons/bi';
 import {MdRemoveDone} from 'react-icons/md';
 import {ImCancelCircle} from 'react-icons/im';
 import ToolkitProvider, { CSVExport } from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
+import styles from "styled-components"
 
-
+const H1=styles.h1`
+color:black;
+font-weight:bold !important;
+font-size:30px !important;
+margin-top:120px;
+`
 const ListeMs = () => {
   const { ExportCSVButton } = CSVExport;
     const navigate = useNavigate()
@@ -52,8 +58,33 @@ const ListeMs = () => {
       {dataField:"dateCreation",text:"Date Creation", footer:"Total",formatter : (row,cellContent)=>{
         return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
-         {dataField:"idMission",text:"N° Mission",footer:""},
-         {dataField:"idSbonCaisse",text:"N° Bon caisse",footer:""},
+      {dataField:"beneficiaire",text:"Bénéficiaire",footer:""},
+         {dataField:"idBonCaisse",text:"N° Bon caisse",footer:""},
+        {dataField:"typeOperation",text:"Type Opération",formatter: (cellContent ,row) => {
+          if ( row.typeOperation==1) {
+            return (
+              <span>Réglement Facture</span>
+            )
+          }   
+          if ( row.typeOperation==2) {
+            return (
+              <span>Frais OM</span>
+            )
+          }  if ( row.typeOperation==3) {
+            return (
+              <span>Frais femme ménage</span>
+            )
+          }  if ( row.typeOperation==4) {
+            return (
+              <span>Avance Sur salaire</span>
+            )
+          }  if ( row.typeOperation==5) {
+            return (
+              <span>Achats</span>
+            )
+          }    
+      },footer:""},
+      {dataField:"idMission",text:"N° Mission",footer:""},
         {dataField:"objetMission",text:"Projet",footer:""},
         {dataField:"totalMission",text:"Total Dépenses", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
         {dataField:"valideResponsable",text:"ValiderResp",footer:"", formatter: (cellContent ,row) => {
@@ -102,10 +133,11 @@ const ListeMs = () => {
     ]
   return (
   <>
-  <div style={{marginLeft: '50px',marginTop: '100px'}}>
-  <div  style={{display:"flex",width:"auto"}}>
-     
-       <div style={{display:"inline-block" , width:"460px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
+  <div style={{marginTop: '20px'}}>
+  <div  style={{display:"inline-block",width:"auto"}}>
+  <div style={{display:"flex"}}>
+    <H1>Tableau Des Ordres de Missions</H1>
+       <div style={{display:"inline-block",height:"auto" ,marginLeft:"260px", width:"auto",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
           <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
           <div style={{display:"flex",marginLeft: '10px'}}>
           <Div1>
@@ -114,15 +146,16 @@ const ListeMs = () => {
           </Div1>
           <Div1>
            <LabelM l w>Au</LabelM>
-           <InputDate b type="date"></InputDate>
+           <InputDate b type="date"></InputDate>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
           </Div1>
-          <div  style={{marginTop:"50px",marginRight:'50px'}}>
-          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
-          </div>
+         
+         
+        
           </div>
           <Div1>
            <LabelM l w>Date</LabelM>
-           <InputM b type="date"></InputM>&nbsp;
+           <InputM b type="date"></InputM>&nbsp;&nbsp;&nbsp;
           <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
    
           </Div1>
@@ -144,10 +177,10 @@ const ListeMs = () => {
             <LabelR w>Statut</LabelR>
              <div style={{display:"flex"}}>
              <div style={{display:"flex"}}>
-              <Label1>Fermée</Label1>
+              <Label1>Fermée</Label1>&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime}></input>
               </div>
-              &nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <div style={{display:"flex"}}>
               <Label2 >Ouverte</Label2>
               <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime} ></input>&nbsp;&nbsp;&nbsp;
@@ -157,12 +190,13 @@ const ListeMs = () => {
              </div>
              
           </div>
-          <div style={{marginLeft:"300px",marginTop:"30px",marginBottom:"50px"}}>
+          <div style={{marginLeft:"700px",marginTop:"30px",marginBottom:"50px"}}>
           <ButtonM>Filter All &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
           </div>
            </div>
+          </div>
        
-    <div style={{marginLeft: '50px',marginTop: '30px'}}>
+    <div style={{marginTop: '30px'}}>
      
         {/* <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des bons de caisse</h1> */}
         

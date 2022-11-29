@@ -19,7 +19,7 @@ const NavbarComponent=()=>{
     <DivNav>
     <Navbar className="nav" variant="dark">
         
-          <Navbar.Brand href="#"><h4 className='Brand'><IconContext.Provider value={{color:"#b71c1c",size:"40px"}}> <FaCarSide/></IconContext.Provider>&nbsp; &nbsp;<IconContext.Provider value={{color:"#1c539b;",size:"40px"}}> <GiCash/></IconContext.Provider></h4> </Navbar.Brand>
+          <Navbar.Brand href="#"><h4 className='Brand'><IconContext.Provider value={{color:"#b71c1c",size:"40px"}}> <FaCarSide/></IconContext.Provider>&nbsp;&nbsp;<IconContext.Provider value={{color:"#1c539b;",size:"40px"}}> <GiCash/></IconContext.Provider></h4> </Navbar.Brand>
           
         
           <Nav className="navish">

@@ -161,12 +161,7 @@ const DetailsBc = () => {
     const [libelle,setOptionLibelle]=useState("")
 
     const columns=[
-      // {dataField:"idSbc",text:"N° Operation"},
-     
-      // {dataField:"dateSbc",text:"Date opération"},
-      // {dataField:"type",text:"Type  Operation"},
-      // {dataField:"creditSbc",text:"Crédit"},
-      // {dataField:"debit",text:"Débit"},
+    
       {dataField:"dateDepense",text:"Date Dépenses",footer:"Total",formatter : (row,cellContent)=>{
         return moment(cellContent.dateDepense).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
@@ -184,13 +179,7 @@ const DetailsBc = () => {
     {dataField:"credit",text:"Crédit",footer:columnData => columnData.reduce((acc, item) => acc + item, 0)}
    
 ]
-  // , formatter:
-  //     (row,cellContent) =>{
-  //       return(
-  //         <>
-  //         {moment(row.dateDepense).format('YYYY-MM-DDThh:mm:ss').split('T')[0] }
-  //         </>
-  //       )}
+ 
   return (
     <MainContainer>
    <MainDiv>
@@ -206,7 +195,11 @@ const DetailsBc = () => {
         </DivInput>
         <DivInput>
             <Label>Opération :</Label>
-             <Input type="text" disabled value={bc.libellé}></Input>
+             {bc.libellé =="1" ? <> <Input type="text" disabled value='Réglement Facture'></Input></> : null}
+             {bc.libellé =="2" ? <> <Input type="text" disabled value='Frais OM'></Input></> : null}
+             {bc.libellé =="3" ? <> <Input type="text" disabled value='Frais Femme Ménage'></Input></> : null}
+             {bc.libellé =="4" ? <> <Input type="text" disabled value='Avance sur Salaire'></Input></> : null}
+             {bc.libellé =="5" ? <> <Input type="text" disabled value='Achat'></Input></> : null}
         </DivInput>
        
         <DivInput>
@@ -231,7 +224,7 @@ const DetailsBc = () => {
        {/* {showC ? <div>
         <label>Crédit</label>
         <input type='text'></input></div> : null} */}
-        <Modal
+        {/* <Modal
         aria-labelledby="contained-modal-title-vcenter"
         size="lg"
         className="special_modal"
@@ -295,7 +288,8 @@ const DetailsBc = () => {
                 </Modal.Footer>
          
          </Modal>
-       </Div2>
+      */}
+       </Div2> 
       {/* <div><Button onClick={()=>{alert("")}}>Ajouter</Button><IconContext.Provider value={{ color: 'white', size: '25px'}}>
       <GrFormAdd ></GrFormAdd>
       </IconContext.Provider></div>

@@ -24,13 +24,14 @@ const DetailsCU = () => {
        });
        
    })
+
    const T= CreditDebit.map( c => {
     const matched = Depense.find(d => c.idBc === d.idBc)
                return {...c,...matched,solde:Number(c.sommeCredit)-(Number(matched?.sommeDepense) + Number(c.sommeDebit))}
    
   }
 )
-console.log(T)
+
 const columns=[
   {dataField:"dateCreation",text:"Date Creation",footer:'Total',formatter : (row,cellContent)=>{
     return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 

@@ -15,15 +15,16 @@ background-color:#1c539b;
 `
 
 const H1 = styles.h1`
-font-size:44px !important;
-color:black;
-margin-left:90px;
-margin-top:50px;
-float: left;
+font-size:30px !important;
+color:white;
+margin-left:0px;
+margin-right:50px;
+margin-bottom:50px;
+font-weight:bold;
 `
 const SousDiv1=styles.div`
 display:inline-block;
-padding-left:20px;
+margin-left:50px;
 margin-top:40px;
 `
 const DivInput=styles.div`
@@ -32,7 +33,7 @@ margin-bottom:10px;
 
 const Label=styles.label`
 display:inline-block;
-width: 120px;
+width: 160px;
 font-weight:bold !important;
 `
 
@@ -71,6 +72,8 @@ outline: none  !important;
 const CreerMS = () => {
   const url = "https://localhost:7111/api/Utilisateurs"
   const [users,setUsers] =useState([])
+  const [bcNumbersList,setBcList]=useState([])
+  const [value,setOptionUser]=useState()
   const getUsers=async( )=> { 
     await axios.get(url).then((response) => {
      setUsers(response.data)
@@ -78,23 +81,31 @@ const CreerMS = () => {
   }
   useEffect(()=> {
     getUsers()
+    axios.get(`https://localhost:7111/api/GetAllBcOfAGivenUser/${value}`).then((response) => {
+               setBcList(response.data)
+              
+          })
   })
   return (
     <>
     <MainDiv>
-    {/* <Div>
-     <H1>Nouvelle Mission</H1>
-    </Div> */}
-   
+    
         <SousDiv1>
+        <H1>Formulaire Création Mission</H1>
         <DivInput>
         <Label>Date Création</Label>
         <Input l type="date"></Input>
       </DivInput>
         <DivInput>
         <Label>Bénéficiaire</Label>
-        <select className='Select-Ms'>
+        <select className='Select-Ms'  onChange={(e)=>setOptionUser(e.target.value)}>
         {users.map((user)=><option value={user.infoId}>{user.infoNom} {user.infoPrenom}</option>)}
+        </select>
+      </DivInput>
+      <DivInput>
+        <Label>N° Bon Caisse</Label>
+        <select className='Select-Ms'>
+        {bcNumbersList.map((bc)=><option value={bc.idBonCaisse}>{bc.idBonCaisse}</option>)}
         </select>
       </DivInput>
       <DivInput>
@@ -113,7 +124,7 @@ const CreerMS = () => {
        
     
       <DivInput>
-      <Button>Create</Button> 
+      <Button>Créer</Button> 
       </DivInput>
     
         </SousDiv1>

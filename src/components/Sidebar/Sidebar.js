@@ -5,23 +5,25 @@ import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
 
 import  logo from "../../assets/logo.png";
+import  icon from "../../assets/iconUser.png";
 import { useNavigate } from 'react-router-dom';
 
- const Logo = styled.div`
-    img {
-        width:auto;
-        height:100px;
-        margin-left:45px;
-        margin-top:20px;
-    }
-    cursor: pointer;   
+
+const Header = styled.div`
+img {
+    width:auto;
+    height:100px;
+    margin-left:45px;
+   margin-top:30px;
+}
+cursor: pointer;   
 `;
 const SidebarNav = styled.nav`
  background:white;
  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  width: 250px;
+  width: 200px;
   height: 100vh;
-  display: flex;
+  display: inline-block;
   justify-content: center;
   position: fixed;
   top: 0;
@@ -32,6 +34,7 @@ const SidebarNav = styled.nav`
 
 const SidebarWrap = styled.div`
   width: 100%;
+  margin-top:70px;
 `;
 
 const Sidebar = () => {
@@ -48,12 +51,15 @@ const Sidebar = () => {
       <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}>
        
         <SidebarNav sidebar={sidebar}>
+        <Header><img  src={logo}  /></Header>
           <SidebarWrap>
-          <Logo><img className='img' src={logo} alt="logo"  /></Logo>
+       
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}
+           
           </SidebarWrap>
+         
         </SidebarNav>
       </IconContext.Provider>
     </>

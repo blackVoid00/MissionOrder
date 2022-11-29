@@ -77,29 +77,33 @@ const ListeBC = () => {
           }    
       }},
         
-        {dataField:"soldeTotal",text:"Total Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),formatter: (cellContent ,row) => {
-          if ( row.soldeTotal==0) {
-            return (
-              <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
-              <MdMoneyOffCsred/>
-              </IconContext.Provider>
-            )
-          }   
-          return(
-           <span>{row.soldeTotal}</span>
-          )    
-      }},{dataField:"créditTotal",text:"Total Crédit ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),formatter: (cellContent ,row) => {
-        if ( row.créditTotal==0) {
-          return (
-            <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
-            <MdMoneyOffCsred/>
-            </IconContext.Provider>
-          )
-        }   
-        return(
-         <span>{row.créditTotal}</span>
-        )    
-    }},
+        {dataField:"soldeTotal",text:"Total Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)
+      //   ,formatter: (cellContent ,row) => {
+      //     if ( row.soldeTotal==0) {
+      //       return (
+      //         <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
+      //         <MdMoneyOffCsred/>
+      //         </IconContext.Provider>
+      //       )
+      //     }   
+      //     return(
+      //      <span>{row.soldeTotal}</span>
+      //     )    
+      // }
+    },{dataField:"créditTotal",text:"Total Crédit ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),
+    //   formatter: (cellContent ,row) => {
+    //     if ( row.créditTotal==0) {
+    //       return (
+    //         <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
+    //         <MdMoneyOffCsred/>
+    //         </IconContext.Provider>
+    //       )
+    //     }   
+    //     return(
+    //      <span>{row.créditTotal}</span>
+    //     )    
+    // }},   
+      },
        
         {dataField:"etat",text:"Statut",footer:"", formatter: (cellContent ,row) => {
             if ( row.etat==0) {

@@ -70,7 +70,7 @@ text-align:center !important;
 `
 export const LabelM=styles.label`
 display: inline-block;
-width: ${props=>props.w?"150px":"170px"};
+width: ${props=>props.w?"100px":"170px"};
 font-weight:bold !important;
 color:${props=>props.l? "#1c539b":"white"};
 margin-left:20px;
