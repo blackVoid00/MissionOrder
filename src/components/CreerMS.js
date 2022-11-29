@@ -15,7 +15,7 @@ background-color:#1c539b;
 `
 
 const H1 = styles.h1`
-font-size:30px !important;
+font-size:25px !important;
 color:white;
 margin-left:0px;
 margin-right:50px;
@@ -73,14 +73,19 @@ const CreerMS = () => {
   const url = "https://localhost:7111/api/Utilisateurs"
   const [users,setUsers] =useState([])
   const [bcNumbersList,setBcList]=useState([])
-  const [value,setOptionUser]=useState()
-  const getUsers=async( )=> { 
-    await axios.get(url).then((response) => {
-     setUsers(response.data)
-    })
+  const [value,setOptionUser]=useState(0)
+  const [dateCreation,setDateCreation]=useState("")
+  const [numBc,setNumBc]=useState(0)
+  const [projet,setProjet]=useState("")
+  const [dateDebut,setDateDebut]=useState("")
+  const [dateFin,setDateFin]=useState("")
+  const sendData=()=>{
+
   }
   useEffect(()=> {
-    getUsers()
+   axios.get(url).then((response) => {
+     setUsers(response.data)
+    })
     axios.get(`https://localhost:7111/api/GetAllBcOfAGivenUser/${value}`).then((response) => {
                setBcList(response.data)
               
@@ -94,7 +99,7 @@ const CreerMS = () => {
         <H1>Formulaire Création Mission</H1>
         <DivInput>
         <Label>Date Création</Label>
-        <Input l type="date"></Input>
+        <Input l type="date" onChange={(e)=>setDateCreation(e.target.value)}></Input>
       </DivInput>
         <DivInput>
         <Label>Bénéficiaire</Label>
@@ -104,27 +109,27 @@ const CreerMS = () => {
       </DivInput>
       <DivInput>
         <Label>N° Bon Caisse</Label>
-        <select className='Select-Ms'>
+        <select className='Select-Ms' onChange={(e)=>setNumBc(e.target.value)}>
         {bcNumbersList.map((bc)=><option value={bc.idBonCaisse}>{bc.idBonCaisse}</option>)}
         </select>
       </DivInput>
       <DivInput>
         <Label>Projet</Label>
-        <Input placeholder='entrer objet mission'></Input>
+        <Input placeholder='entrer objet mission' onChange={(e)=>setProjet(e.target.value)}></Input>
       </DivInput>
       <DivInput>
         <Label>Date de début</Label>
-        <Input l type="date"></Input>
+        <Input l type="date" onChange={(e)=>setDateDebut(e.target.value)}></Input>
       </DivInput>
       <DivInput>
         <Label>Date de fin</Label>
-        <Input l type="date"></Input>
+        <Input l type="date" onChange={(e)=>setDateFin(e.target.value)}></Input>
       </DivInput>
       <br></br> 
        
     
       <DivInput>
-      <Button>Créer</Button> 
+      <Button onClick={sendData}>Créer</Button> 
       </DivInput>
     
         </SousDiv1>
