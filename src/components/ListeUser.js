@@ -396,14 +396,10 @@ const ListeUser = () => {
    
       withFirstAndLast: false,
       alwaysShowAllBtns: true, 
-      firstPageText: 'First', 
       prePageText: 'Prev', 
       nextPageText: 'Next',
-      lastPageText: 'Last',
-      nextPageTitle: 'Go to next',
-      prePageTitle: 'Go to previous', 
-      firstPageTitle: 'Go to first', 
-      lastPageTitle: 'Go to last', 
+      hideSizePerPage:true
+    
       
      
     })} 

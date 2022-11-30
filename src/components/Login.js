@@ -1,80 +1,72 @@
 import React, { useEffect, useState } from 'react'
 import styles from 'styled-components'
-import logo from '../assets/logo.png'
+import logo from '../assets/ordre.png'
 import {useNavigate} from 'react-router-dom'
 import axios from "axios"
+import { IconContext } from 'react-icons'
+import {AiFillLock,AiOutlineMail} from 'react-icons/ai'
+
 const  H1= styles.h1`
 color:black;
-width:40%;
-margin-left:42%;
+font-weight:bolder;
 text-align:left;
-margin-top:80px;
-margin-bottom:5px;
-font-size:24px;
+font-size:34px;
+margin-top:50px;
+margin-left:0px;
 `
-const  H2= styles.h2`
-color:red;
-width:40%;
-margin-left:30%;
-text-align:left;
-margin-top:80px;
-margin-bottom:5px;
-font-size:24px;
-`
+
+
 const Container =styles.div`
-width:90%;
-height:60%;
-position:absolute;
+width:900px;
+height:500px;
+background-color:white;
+display:flex;
+justify-content:space-between;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
+margin-left:450px;
+margin-top:200px;
 `
-const SecondContainer=styles.div`
+const Container1=styles.div`
 display:inline-block;
 width:40%;
-height:90%;
-left:35%;
-bottom:10%;
-position: relative;
-background-color:#1c539b;
-box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.15);
+
 `
-const Label=styles.label`
-font-size: 17px;
-color:white;
-margin-left:15%;
+const Container2=styles.div`
+width:50%;
+margin-left:150px !important;
+margin-top:50px !important;
+`
+const Div=styles.div`
+display:inline-block;
 
 `
 const Input =styles.input`
-
 text-align: left !important;
-box-shadow: rgba(0, 0, 0, 0.1) 0 5px 40px, rgba(0, 0, 0, 0.1) 0 5px 10px  !important;
-border: 10px solid transparent  !important;
-border-radius:2px  !important;
-margin-left:26%;
+border:none  !important;
+border-bottom:2px solid #D9D9D9 !important;
+margin-left:10px;
 &:focus{
     outline: none  !important;
 }
-margin-top:15%;
+margin-top:40px;
+
 `
 const Button=styles.button`
-position: relative;
 border-width: 0px;
-border-style: solid;
-text-color:black;
-background-color:white;
+color:white;
+background-color:#1c539b;
 cursor: pointer;
-font-size:13px !important;
+font-size:16px !important;
 font-weight:bold !important;
-box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
-width:140px;
+width:100px;
 height:30px;
-left:70%;
-top:10%;
+margin-top:50px;
+margin-left:10px;
 `
 const Image=styles.img`
-width:9%;
-margin-top:0%;
-margin-left:0%;
-margin-right:0%;
-margin-bottom:0%;
+width:400px;
+hight:400px;
+
 `
 const Login = () => {
     const url="https://localhost:7111/api/Login"
@@ -107,8 +99,9 @@ const Login = () => {
     // }
    }
   return (
-    <>
-    <H1>Veuillez vous identifiez</H1>
+ 
+    <Container>
+    {/* <H1>Veuillez vous identifiez</H1>
     <Image src={logo}></Image>
     <Container>
         <SecondContainer>
@@ -119,9 +112,21 @@ const Login = () => {
         <Button onClick={LoginApp}>Connect</Button>  
         {loginstatus && (<H2>Incorrect information</H2>)}
         </SecondContainer>
+    </Container> */}
+    <Container1>
+        <Image src={logo}></Image>
+    </Container1>
+    <Container2>
+        <H1>Log In</H1>
+        <Div>
+          <div><IconContext.Provider value={{size:'15px',color:'black'}}><AiOutlineMail/></IconContext.Provider><Input type="text" placeholder='entrer votre email'></Input></div>
+         <div><IconContext.Provider value={{size:'15px',color:'black'}}><AiFillLock/></IconContext.Provider><Input type="password" placeholder='entrer votre mot de passe'></Input></div> 
+         <Button>Valider</Button> 
+        </Div>
+        
+    </Container2>
     </Container>
-    
-    </>
+
   )
 }
 

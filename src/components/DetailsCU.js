@@ -94,14 +94,10 @@ const columns=[
        
           withFirstAndLast: false,
           alwaysShowAllBtns: true, 
-          firstPageText: 'First', 
+          hideSizePerPage:true,
           prePageText: 'Prev', 
           nextPageText: 'Next',
-          lastPageText: 'Last',
-          nextPageTitle: 'Go to next',
-          prePageTitle: 'Go to previous', 
-          firstPageTitle: 'Go to first', 
-          lastPageTitle: 'Go to last', 
+         
           
          
         })} 

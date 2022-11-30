@@ -136,7 +136,7 @@ const DetailsBc = () => {
 
     const {id} = useParams()
     
-    const url1=`https://localhost:7111/api/Boncaisses/${id}`
+    const url1=`https://localhost:7111/api/GetBoncaisse2/${id}`
     const url2=`https://localhost:7111/api/SBC/${id}`
     const url3=`https://localhost:7111/api/GetAllPerformedOperations/${id}`
     const [bc,setBc]=useState([])
@@ -320,14 +320,10 @@ const DetailsBc = () => {
    
       withFirstAndLast: false,
       alwaysShowAllBtns: true, 
-      firstPageText: 'First', 
+      hideSizePerPage:true,
       prePageText: 'Prev', 
       nextPageText: 'Next',
-      lastPageText: 'Last',
-      nextPageTitle: 'Go to next',
-      prePageTitle: 'Go to previous', 
-      firstPageTitle: 'Go to first', 
-      lastPageTitle: 'Go to last', 
+     
       
      
     })}
@@ -358,13 +354,10 @@ const DetailsBc = () => {
       withFirstAndLast: false,
       alwaysShowAllBtns: true, 
       firstPageText: 'First', 
-      prePageText: 'Prev', 
+      hideSizePerPage:true,
       nextPageText: 'Next',
       lastPageText: 'Last',
-      nextPageTitle: 'Go to next',
-      prePageTitle: 'Go to previous', 
-      firstPageTitle: 'Go to first', 
-      lastPageTitle: 'Go to last', 
+      
       
      
     })}  

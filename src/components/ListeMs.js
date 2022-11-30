@@ -137,7 +137,7 @@ const ListeMs = () => {
   <div  style={{display:"inline-block",width:"auto"}}>
   <div style={{display:"flex"}}>
     <H1>Tableau Des Ordres de Missions</H1>
-       <div style={{display:"inline-block",height:"auto" ,marginLeft:"260px", width:"auto",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
+       <div style={{display:"inline-block",height:"300px" ,marginLeft:"260px", width:"auto",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
           <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
           <div style={{display:"flex",marginLeft: '10px'}}>
           <Div1>
@@ -190,7 +190,7 @@ const ListeMs = () => {
              </div>
              
           </div>
-          <div style={{marginLeft:"700px",marginTop:"30px",marginBottom:"50px"}}>
+          <div style={{marginLeft:"700px",marginTop:"0px",marginBottom:"50px"}}>
           <ButtonM>Filter All &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
           </div>
            </div>
@@ -235,14 +235,11 @@ const ListeMs = () => {
    
       withFirstAndLast: false,
       alwaysShowAllBtns: true, 
-      firstPageText: 'First', 
+      hideSizePerPage:true,
       prePageText: 'Prev', 
       nextPageText: 'Next',
-      lastPageText: 'Last',
-      nextPageTitle: 'Go to next',
-      prePageTitle: 'Go to previous', 
-      firstPageTitle: 'Go to first', 
-      lastPageTitle: 'Go to last', 
+   
+     
       
      
     })} 

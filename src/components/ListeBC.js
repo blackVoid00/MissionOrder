@@ -12,6 +12,7 @@ import {FaBalanceScale}  from "react-icons/fa"
 import { IconContext } from 'react-icons/lib';
 import {BiExport} from 'react-icons/bi';
 import ToolkitProvider, { CSVExport } from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
+import { ConstructionOutlined } from '@mui/icons-material'
 const ListeBC = () => { 
   const { ExportCSVButton } = CSVExport;
   const urlUser="https://localhost:7111/api/Utilisateurs"
@@ -32,8 +33,10 @@ const ListeBC = () => {
           }
           element.target.checked=true;
         }
-    const url="https://localhost:7111/api/Boncaisses"
+    const url="https://localhost:7111/api/GetBoncaisses"
+    const url2="https://localhost:7111/api/GetDepenseOfEachBc"
     const [bc,setBc]=useState([])
+    const [Depense,setDepense]=useState([])
     useEffect(()=>{
         axios.get(url).then((response) => {
             setBc(response.data);
@@ -43,8 +46,17 @@ const ListeBC = () => {
           setUsers(response.data)
  
            });
+           axios.get(url2).then((response)=>{
+            setDepense(response.data)
+           })
        
     },[])
+    const T= bc.map(c => {
+      const matched = Depense.find(d => c.idBonCaisse === d.idBc)
+                 return {...c,...matched,solde:Number(c.créditTotal)-(Number(matched?.sommeDepense) + Number(c.soldeTotal))}
+     
+    })
+    console.log(T)
     const columns=[
         {dataField:"dateCreation",text:"Date Création",footer:"Total",formatter : (row,cellContent)=>{
           return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
@@ -103,8 +115,10 @@ const ListeBC = () => {
     //      <span>{row.créditTotal}</span>
     //     )    
     // }},   
+      },{dataField:"sommeDepense",text:"Total Dépense ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),
+        },
+        {dataField:"solde",text:"Solde ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),
       },
-       
         {dataField:"etat",text:"Statut",footer:"", formatter: (cellContent ,row) => {
             if ( row.etat==0) {
               return (
@@ -121,7 +135,7 @@ const ListeBC = () => {
         {datafield:"Details",text:"Actions", csvExport: false,footer:"", formatter: ButtonCell}
     ]
   return (
-    <div style={{marginLeft: '50px',marginTop: '100px'}}>
+    <div style={{marginLeft: '0px',marginTop: '100px'}}>
        <div  style={{display:"flex",width:"auto"}}>
        <div style={{display:"inline-block" , width:"460px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
           <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
@@ -192,13 +206,13 @@ const ListeBC = () => {
           
            
         </div>
-        <div style={{display:"inline-block",marginLeft: '100px',width:"900px"}}>
+        <div style={{display:"inline-block",marginLeft: '50px',width:"auto"}}>
        
         <div>
               
   <ToolkitProvider
     keyField='idBonCaisse'
-    data={bc}
+    data={T}
     columns={columns}
    
   exportCSV
@@ -230,17 +244,10 @@ const ListeBC = () => {
       } ], 
    
       withFirstAndLast: false,
-      alwaysShowAllBtns: true, 
-      firstPageText: 'First', 
+      alwaysShowAllBtns: true,  
       prePageText: 'Prev', 
       nextPageText: 'Next',
-      lastPageText: 'Last',
-      nextPageTitle: 'Go to next',
-      prePageTitle: 'Go to previous', 
-      firstPageTitle: 'Go to first', 
-      lastPageTitle: 'Go to last', 
-      
-     
+      hideSizePerPage:true
     })} 
     headerClasses="header-class"
     rowClasses="row-class" ></BootStrapTable> 
