@@ -91,39 +91,22 @@ const Login = () => {
       
     
   
-    // if(email=="nouhaila" && password=="nouha"){
-    //      //setLoginstatus(true)
-    //      navigate("/app")
-    // }else{
-    //     setLoginstatus(true)
-    // }
+    
    }
   return (
  
     <Container>
-    {/* <H1>Veuillez vous identifiez</H1>
-    <Image src={logo}></Image>
-    <Container>
-        <SecondContainer>
-        <Label>Identifiant: &nbsp; </Label>
-        <Input type="text" placeholder="enter your email" onChange={(e)=>{setIdentifiant(e.target.value)}}></Input> <br></br><br></br><br></br>
-        <Label>Password: &nbsp; </Label>
-        <Input type="password" placeholder="enter your password"  onChange={(e)=>{setPassword(e.target.value)}}></Input><br></br><br></br><br></br>
-        <Button onClick={LoginApp}>Connect</Button>  
-        {loginstatus && (<H2>Incorrect information</H2>)}
-        </SecondContainer>
-    </Container> */}
     <Container1>
         <Image src={logo}></Image>
     </Container1>
     <Container2>
         <H1>Log In</H1>
         <Div>
-          <div><IconContext.Provider value={{size:'15px',color:'black'}}><AiOutlineMail/></IconContext.Provider><Input type="text" placeholder='entrer votre email'></Input></div>
-         <div><IconContext.Provider value={{size:'15px',color:'black'}}><AiFillLock/></IconContext.Provider><Input type="password" placeholder='entrer votre mot de passe'></Input></div> 
-         <Button>Valider</Button> 
+          <div><IconContext.Provider value={{size:'15px',color:'black'}}><AiOutlineMail/></IconContext.Provider><Input type="text" placeholder='entrer votre email' onChange={(e)=>{setIdentifiant(e.target.value)}}></Input></div>
+         <div><IconContext.Provider value={{size:'15px',color:'black'}}><AiFillLock/></IconContext.Provider><Input type="password" placeholder='entrer votre mot de passe' onChange={(e)=>{setPassword(e.target.value)}}></Input></div> 
+         <Button onClick={LoginApp}>Valider</Button> 
         </Div>
-        
+        {loginstatus && (<h2>Incorrect information</h2>)}
     </Container2>
     </Container>
 
