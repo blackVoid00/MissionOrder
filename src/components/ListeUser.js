@@ -180,7 +180,7 @@ const ListeUser = () => {
         <>
        
            <div style={{display: 'flex',justifyContent:"space-between"}}>
-           <ButtonM large onClick={()=>navigate('/creerMs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineUserAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>
+           <ButtonM large onClick={()=>navigate('/addUser')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineUserAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>
            <ExportCSVButton { ...props.csvProps }><IconContext.Provider value={{color:"#1c539b",size:"30px"}}><BiExport/></IconContext.Provider>&nbsp;Exporter csv</ExportCSVButton>
            </div>
            <br></br><br></br>

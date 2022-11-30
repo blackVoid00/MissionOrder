@@ -3,20 +3,32 @@ import styles from 'styled-components'
 import axios from "axios";
 import { useEffect } from 'react';
 import { useState } from 'react';
-
+import mspic from "../assets/msPic.png"
 const MainDiv = styles.div`
 display:flex;
-width:100%;
-height:100%;
-margin-left:10%;
-margin-top:10%;
-box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-background-color:#1c539b;
+width:auto;
+background-color: white;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+margin-top:100px;
+margin-left:150px; 
 `
-
+const Select=styles.select`
+margin-right:50px;
+margin-bottom:10px;
+margin-top:10px;
+height:40px;
+width:200px;
+text-align: left !important;
+border: 10px solid transparent  !important;
+border-radius:2px  !important;
+&:focus{
+outline: none  !important;
+}
+background:#F0F0F0;
+`
 const H1 = styles.h1`
-font-size:25px !important;
-color:white;
+font-size:30px !important;
+color:black;
 margin-left:0px;
 margin-right:50px;
 margin-bottom:50px;
@@ -35,6 +47,7 @@ const Label=styles.label`
 display:inline-block;
 width: 160px;
 font-weight:bold !important;
+color:black;
 `
 
 
@@ -50,6 +63,7 @@ border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
+background:#F0F0F0;
 `
 const Button=styles.button`
 border-width: 0px;
@@ -57,11 +71,10 @@ border-style: solid;
 background-color:#B0C4DE ;
 font-weight:bold !important;
 font-weight:bold ;
-box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
 width:140px;
 height:30px;
 margin-left:219px;
-margin-top:50px;
+margin-bottom:30px;
 text-align:center !important;
 cursor:pointer;
 &:focus{
@@ -103,15 +116,15 @@ const CreerMS = () => {
       </DivInput>
         <DivInput>
         <Label>Bénéficiaire</Label>
-        <select className='Select-Ms'  onChange={(e)=>setOptionUser(e.target.value)}>
+        <Select   onChange={(e)=>setOptionUser(e.target.value)}>
         {users.map((user)=><option value={user.infoId}>{user.infoNom} {user.infoPrenom}</option>)}
-        </select>
+        </Select>
       </DivInput>
       <DivInput>
         <Label>N° Bon Caisse</Label>
-        <select className='Select-Ms' onChange={(e)=>setNumBc(e.target.value)}>
+        <Select  onChange={(e)=>setNumBc(e.target.value)}>
         {bcNumbersList.map((bc)=><option value={bc.idBonCaisse}>{bc.idBonCaisse}</option>)}
-        </select>
+        </Select>
       </DivInput>
       <DivInput>
         <Label>Projet</Label>
@@ -128,12 +141,14 @@ const CreerMS = () => {
       <br></br> 
        
     
-      <DivInput>
+      
       <Button onClick={sendData}>Créer</Button> 
-      </DivInput>
-    
+      
+     
         </SousDiv1>
-   
+        <div style={{marginTop:'80px'}}>
+          <img src={mspic}></img>
+     </div>
     </MainDiv>
     </>
   )

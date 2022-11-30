@@ -21,9 +21,8 @@ margin-top:100px;
 const Div2 = styles.div`
 margin-left: 0px;
 display:inline-block;
-box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-margin-top:0px;
-background-color:#1c539b;
+background-color: white;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 justify-content:space-between;
 margin-top:0px;
 padding-left:20px;
@@ -56,6 +55,7 @@ border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
+background:#F0F0F0;
 `
 const SelectM=styles.select`
 margin-left:50px;
@@ -64,11 +64,12 @@ margin-top:10px;
 height:30px;
 width:200px;
 text-align: left !important;
-border: 1px solid black !important;
 border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
+border: none;
+background:#F0F0F0;
 `
 const DivInput=styles.div`
 margin-bottom:10px;
@@ -79,6 +80,7 @@ const Label=styles.label`
 display:inline-block;
 width: 160px;
 font-weight:bold !important;
+color:black;
 `
 
 
@@ -97,6 +99,7 @@ outline: none  !important;
 font-weight:bold !important;
 color:black !important;
 font-size:16px;
+background:#F0F0F0;
 ` 
 const InputM=styles.input`
 margin-left:50px;
@@ -105,13 +108,13 @@ margin-top:10px;
 height:35px;
 width:200px;
 text-align: left !important;
-border: 1px solid black !important;
+border: none;
 border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
 color:black !important;
-
+background:#F0F0F0;
 `
 const Button=styles.button`
 position: relative;
@@ -191,7 +194,7 @@ const DetailsBc = () => {
     <MainContainer>
    <MainDiv>
     <Div2>
-     
+     <div>
          <DivInput>
             <Label>N° Bon de caisse :</Label>
              <Input type="text" disabled value={bc.idBonCaisse} ></Input>
@@ -229,7 +232,7 @@ const DetailsBc = () => {
       </IconContext.Provider></Button>
        
        </Div>
-       
+       </div>
        {/* {showC ? <div>
         <label>Crédit</label>
         <input type='text'></input></div> : null} */}

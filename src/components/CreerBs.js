@@ -1,31 +1,31 @@
 import React ,{useState, useEffect} from 'react'
 import axios from 'axios'
 import styles from 'styled-components'
-
+import bcpic from "../assets/bcPic2.png"
 
 const MainDiv = styles.div`
 display:flex;
-width:100%;
-margin-left:60%;
-margin-top:40%;
+width:auto;
+margin-top:100px;
+margin-left:150px;
 `
 const Div2 = styles.div`
-margin-left: 90px;
-display:inline-block;
+display:flex;
 width:100%;
 height:100%;
-background-color:#1c539b;
-padding-left:20px;
-padding-right:50px;
+padding-left:60px;
+padding-right:40px;
 padding-top:20px;
 justify-content:space-between;
-box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+background-color: white;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
 `
 const H1 = styles.h1`
-font-size:44px !important;
+font-size:30px !important;
+font-weight:bold;
 color:black;
-margin-left:90px;
-margin-top:50px;
+margin-bottom:80px;
+margin-top:20px;
 `
 const Div=styles.div`
 display:flex;
@@ -56,15 +56,19 @@ border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
+background:#F0F0F0;
 `
 const DivInput=styles.div`
 margin-bottom:10px;
+margin-top:20px;
 `
 
 const Label=styles.label`
 display:inline-block;
 width: 120px;
 font-weight:bold !important;
+color:black;
+
 `
 
 
@@ -72,8 +76,9 @@ const Input=styles.input`
 margin-left:20px;
 margin-bottom:10px;
 margin-top:10px;
-height:35px;
-width:150px;
+height:40px;
+width:200px;
+background:#F0F0F0;
 text-align: left !important;
 border: 10px solid transparent  !important;
 border-radius:2px  !important;
@@ -88,10 +93,9 @@ border-style: solid;
 background-color:#B0C4DE ;
 font-weight:bold !important;
 font-weight:bold ;
-box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
 width:140px;
 height:30px;
-margin-left:40px;
+margin-left:240px;
 margin-top:50px;
 margin-bottom:50px;
 text-align:center !important;
@@ -124,9 +128,12 @@ const CreerBs = () => {
        
   return (
    <MainDiv>
-    
+     
     <Div2>
-        <DivInput>
+    
+      <div>
+      <div><H1>Formulaire de création de Bon de Caisse</H1></div>
+      <DivInput>
             <Label>Date Creation </Label>
              <Input type="date" onChange={(e)=>setDateC(e.target.value)}></Input>
         </DivInput>
@@ -154,6 +161,10 @@ const CreerBs = () => {
        <Div>
        </Div>
        <Button onClick={creatBc}>Créer</Button>
+      </div>
+      <div>
+          <img src={bcpic}></img>
+     </div>
     </Div2>
    </MainDiv>
   )
