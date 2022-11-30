@@ -19,13 +19,13 @@ margin-left:0px;
 margin-top:100px;
 `
 const Div2 = styles.div`
-margin-left: 200px;
+margin-left: 0px;
 display:inline-block;
 box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 margin-top:0px;
 background-color:#1c539b;
 justify-content:space-between;
-margin-top:10px;
+margin-top:0px;
 padding-left:20px;
 `
 const H1 = styles.h1`
@@ -41,7 +41,7 @@ margin-left:200px;
 `
 const Div1=styles.div`
 display:inline-block;
-margin-left:300px;
+margin-left:400px;
 margin-top:100px;
 `
 const Select=styles.select`
@@ -142,9 +142,14 @@ const DetailsBc = () => {
     const [bc,setBc]=useState([])
     const [sbc,setSbc]=useState([])
     const [sbc2,setSbc2]=useState([])
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [showA, setShowA] = useState(false);
+    const [showB, setShowB] = useState(false);
+    const handleCloseA = () => setShowA(false);
+    const handleShowA = () => setShowA(true);
+    const handleCloseB = () => setShowB(false);
+    const handleShowB = () => setShowB(true);
+    const [debitD,setDebitD]=useState(0);
+    const [creditE,setCreditE]=useState(0);
     useEffect(()=>{
       axios.get(url1).then((response) => {setBc(response.data)});
       axios.get(url2).then((response)=>  {setSbc(response.data)})
@@ -165,8 +170,10 @@ const DetailsBc = () => {
       {dataField:"dateDepense",text:"Date Dépenses",footer:"Total",formatter : (row,cellContent)=>{
         return moment(cellContent.dateDepense).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
+      {dataField:"libelleOp",text:"Projet",footer: ""},
       {dataField:"idMs",text:"N° Mission",footer:""},
       {dataField:"depense",text:"Dépenses",footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+   ,
   ]
   const columns2=[
     // {dataField:"idSbc",text:"N° Operation"},
@@ -214,28 +221,29 @@ const DetailsBc = () => {
         </DivInput>
         
        <Div>
-       <Button onClick={handleShow}>Ajouter</Button>
-       <Button onClick={handleShow}>Retirer</Button>
+       <Button onClick={handleShowA}>Ajouter</Button>
+       <Button onClick={handleShowB}>Retirer</Button>
+       <Button >Modifier</Button>
        <Button l onClick={()=>{alert("")}}><IconContext.Provider value={{ color: 'black', size: '20px'}}>
        <FaBalanceScale onClick={()=>{alert("solder")}}></FaBalanceScale>
       </IconContext.Provider></Button>
        
        </Div>
+       
        {/* {showC ? <div>
         <label>Crédit</label>
         <input type='text'></input></div> : null} */}
-        {/* <Modal
+        <Modal
         aria-labelledby="contained-modal-title-vcenter"
-        size="lg"
         className="special_modal"
-        show={show}
-        onHide={handleClose}
+        show={showA}
+        onHide={handleCloseA}
         backdrop="static"
         keyboard={false}
         style={{color: "black"}}>
          
          <Modal.Header closeButton variant="white">
-                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Opérations</Modal.Title>
+                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Sortie de Caisse</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 <DivInput>
@@ -246,49 +254,71 @@ const DetailsBc = () => {
                       <Label>Crédit</Label>
                       <InputM type="text"placeholder='entrer le crédit'/>
                     </DivInput>
-                    <DivInput>
-                      <Label>Débit</Label>
-                      <InputM type="text" placeholder='entrer le débit'/> 
+                      <DivInput>
+                      <Label> Libellé Décaissements :</Label>
+                        <SelectM>
+                        <option>Avance sur salaire</option>
+                        <option>Réglement Facture</option>
+                        <option>Achat Administratif</option>
+                        <option>Achat Technique</option>
+                        <option>Faris de Femme Menage</option>
+                        <option>Autres Achats</option>
+                        <option>Frais envoie de courriers</option>
+                        <option>Frais OM</option>
+                        </SelectM>
+                      </DivInput>
+                      <DivInput>
+                      <Label>Désignation</Label>
+                    <InputM type="text" placeholder='entrer une désignation'/> 
                     </DivInput>
-                  
-                      <Label> Libellé Opérations :</Label>
-                      <DivInput>
-                        <Label>Les sorties de caisse liées aux OM :</Label>
-                        <SelectM>
-                        <option>Déplacements </option>
-                        <option>Frais de taxis</option>
-                        <option>Frais d’envoi de courriers </option>
-                        </SelectM>
-                      </DivInput>
-                      <DivInput>
-                        <Label>Autres sorties de caisse : </Label>
-                        <SelectM>
-                        <option>Règlement de facture </option>
-                        <option>Achat administratif</option>
-                        <option>Achat technique </option>
-                        <option>Autres Achats </option>
-                        <option>Frais de femme de ménage</option>
-                        <option>Avance sur salaire  </option>
-                        </SelectM>
-                      </DivInput>
-                      <DivInput>
-                        <Label>Entrées de caisse : </Label>
-                        <SelectM>
-                        <option>Mise à disposition BQ </option>
-                        <option>Remboursement avance sur salaire</option>
-                        </SelectM>
-                      </DivInput>
-                 
-                    
                 </Modal.Body>
                 <Modal.Footer>
-                  
-                  <Button variant="success" >Soumettre</Button>
+                  <Button variant="success" >Valider</Button>
                  
                 </Modal.Footer>
          
          </Modal>
-      */}
+         <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+        show={showB}
+        onHide={handleCloseB}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Entrée de Caisse</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <DivInput>
+                      <Label>Date Creation</Label>
+                      <InputM type="date"/>
+                    </DivInput>
+                    <DivInput>
+                      <Label>Débit</Label>
+                      <InputM type="text"placeholder='entrer le débit'/> 
+                    </DivInput>
+                      <DivInput>
+                      <Label> Libellé Encaissements :</Label>
+                        <SelectM>
+                        <option>Remboursement d'une Avance sur salaire</option>
+                        <option>Remboursement reçu/BC non dépensé</option>
+                        <option>Argent restant d'une mission</option>
+                        
+                        </SelectM>
+                      </DivInput>
+                      <DivInput>
+                      <Label>Désignation</Label>
+                    <InputM type="text" placeholder='entrer une désignation'/> 
+                    </DivInput>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="success" >Valider</Button>
+                 
+                </Modal.Footer>
+         
+         </Modal>
        </Div2> 
       {/* <div><Button onClick={()=>{alert("")}}>Ajouter</Button><IconContext.Provider value={{ color: 'white', size: '25px'}}>
       <GrFormAdd ></GrFormAdd>
@@ -353,10 +383,9 @@ const DetailsBc = () => {
    
       withFirstAndLast: false,
       alwaysShowAllBtns: true, 
-      firstPageText: 'First', 
       hideSizePerPage:true,
+      prePageText: 'Prev', 
       nextPageText: 'Next',
-      lastPageText: 'Last',
       
       
      

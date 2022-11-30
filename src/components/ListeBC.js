@@ -6,13 +6,19 @@ import {useNavigate} from "react-router-dom"
 import {ButtonM, Div1, InputDate, InputM , LabelM,Select ,LabelR,Label1,Label2} from './StyleMsC';
 import moment from 'moment';
 import {AiOutlineFileAdd,AiFillEye,AiOutlineFilter} from "react-icons/ai"
-import {TbDiscount,TbDiscOff}  from "react-icons/tb"
-import {MdMoneyOffCsred}  from "react-icons/md"
+import {TbDiscount}  from "react-icons/tb"
 import {FaBalanceScale}  from "react-icons/fa"
 import { IconContext } from 'react-icons/lib';
 import {BiExport} from 'react-icons/bi';
 import ToolkitProvider, { CSVExport } from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
-import { ConstructionOutlined } from '@mui/icons-material'
+import styles from "styled-components"
+
+const H1=styles.h1`
+color:black;
+font-weight:bold !important;
+font-size:30px !important;
+
+`
 const ListeBC = () => { 
   const { ExportCSVButton } = CSVExport;
   const urlUser="https://localhost:7111/api/Utilisateurs"
@@ -136,7 +142,9 @@ const ListeBC = () => {
     ]
   return (
     <div style={{marginLeft: '0px',marginTop: '100px'}}>
+      <div style={{marginTop:"0px",marginBottom:"50px"}}><H1>Tableau Des Bons De Caisse</H1></div>
        <div  style={{display:"flex",width:"auto"}}>
+       
        <div style={{display:"inline-block" , width:"460px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
           <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
           <div style={{display:"flex",marginLeft: '10px'}}>

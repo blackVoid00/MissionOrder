@@ -4,9 +4,7 @@ import Layout from "./components/Layout/Layout";
 import Login from "./components/Login";
 import Mission from "./components/Mission";
 import User from "./components/User";
-import UserList from "./components/UserList";
 import DetailUser from "./components/DetailUser"
-import UserUpdate from "./components/UserUpdate";
 import Home from "./components/Home";
 import FilterByRole from "./components/FilterByRole";
 import CreerMS from "./components/CreerMS";
@@ -42,7 +40,7 @@ const Routing = () => {
                     <Route  path="/addUser" element={<Layout><User></User></Layout>}></Route>
                     <Route  path="/editUser/:id" element={<Layout><User></User></Layout>}></Route>
                     <Route  path="/userdetail/:id" element={<Layout><DetailUser></DetailUser></Layout>}></Route>
-                    <Route  path="/userupdate/:id" element={<Layout><UserUpdate></UserUpdate></Layout>}></Route>
+                  
                     <Route path="/detailbc/:id" element={<Layout><DetailsBc></DetailsBc></Layout>}></Route>
                     <Route path="/detailms/:id" element={<Layout><DetailsMs></DetailsMs></Layout>}></Route>
             </Route>

@@ -108,26 +108,7 @@ const columns=[
   
 </div>
   
-//         <Table bordered hover size="xl">
-//           <tbody>
-//          <tr>
-//           <th>N° Bon caisse</th>
-//           <th>Crédit Total</th>
-//           <th>Total Rendu</th>
-//           <th>Total Dépense</th>
-//           <th>Solde</th>
-//         </tr>
-//     {T.map((d)=>
-//           <tr key={d.idBc}>
-//           <td>{d.idBc}</td>
-//           <td>{d.sommeCredit}</td>
-//           <td>{d.sommeDebit}</td>
-//           <td>{d.sommeDepense}</td>
-//           <td>{d.solde}</td>
-//           </tr>
-//  )}</tbody>
- 
-//  </Table> 
+
   );
 };
 export default DetailsCU;
