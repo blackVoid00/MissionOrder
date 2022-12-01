@@ -34,6 +34,14 @@ font-weight:bold;
 margin-bottom: 15px !important;
 text-align:center !important;
 `
+const Title = styles.h1`
+font-size:20px !important;
+color:black;
+font-weight:bold;
+margin-bottom: 55px !important;
+margin-top:20px;
+text-align:center !important;
+`
 const Div=styles.div`
 display:flex !important;
 margin-left:200px;
@@ -95,7 +103,7 @@ margin-right:50px;
 margin-bottom:10px;
 margin-top:10px;
 height:40px;
-width:300px;
+width:200px;
 text-align: left !important;
 border: 10px solid transparent  !important;
 border-radius:2px  !important;
@@ -112,7 +120,7 @@ margin-left:50px;
 margin-bottom:10px;
 margin-top:10px;
 height:35px;
-width:200px;
+width:100px;
 text-align: left !important;
 border: none;
 border-radius:2px  !important;
@@ -203,17 +211,15 @@ const DetailsBc = () => {
     <MainContainer>
    <MainDiv>
     <Div2>
+      <Title>Details du Bon de Caisse {bc.idBonCaisse}</Title>
      <div>
-         <DivInput>
-            <Label>N° Bon de caisse :</Label>
-             <Input type="text" disabled value={bc.idBonCaisse} ></Input>
-        </DivInput>
+        
         <DivInput>
-            <Label>Date Creation :</Label>
+            <Label>Date Creation </Label>
              <Input type="text" disabled value={date}></Input>
         </DivInput>
         <DivInput>
-            <Label>Opération :</Label>
+            <Label>Opération </Label>
              {bc.libellé =="1" ? <> <Input type="text" disabled value='Réglement Facture'></Input></> : null}
              {bc.libellé =="2" ? <> <Input type="text" disabled value='Frais OM'></Input></> : null}
              {bc.libellé =="3" ? <> <Input type="text" disabled value='Frais Femme Ménage'></Input></> : null}
@@ -222,11 +228,11 @@ const DetailsBc = () => {
         </DivInput>
        
         <DivInput>
-            <Label>Bénéficiaire :</Label>
+            <Label>Bénéficiaire </Label>
             <Input type="text" disabled value={bc.beneficiaire}></Input>
         </DivInput>
         <DivInput>
-            <Label>Missions :</Label>
+            <Label>Missions </Label>
             <Select>
               {sbc.map((s)=>{return( <><option>{s.idMs}</option></>)})}
             </Select>
