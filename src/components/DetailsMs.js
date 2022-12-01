@@ -11,17 +11,35 @@ import moment from 'moment';
 import {AiOutlineMinus} from "react-icons/ai"
 import {IconContext} from "react-icons/lib"
 const Div=styles.div`
-width: 100%;
+width: auto;
 display:flex;
 `
+const Button=styles.button`
+position: relative;
+border-width: 0px;
+border-style: solid;
+font-weight:bold !important;
+margin-top:50px;
+margin-left:10px;
+margin-right:10px;
+margin-bottom:50px;
+background-color:#B0C4DE ;
+height:30px;
+width:${props=>props.l ? "50px" : "100px"};
+text-align:center !important;
+cursor:pointer;
+&:focus{
+outline: none  !important;
+}
+`
 const First=styles.div`
-background-color:#1c539b;
-width:350px;
+width:450px;
 height:auto;
-margin-left:2%;
+margin-left:20px;
 margin-top:5%;
 padding:20px;
-box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+background-color: white;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 `
 const Div1 =styles.div`
 margin-bottom:10px;
@@ -45,12 +63,23 @@ display:inline-block;
 width: 160px;
 font-weight:bold !important;
 font-size:15px !important;
+color:black;
 `
-const P =styles.p`
+const P =styles.input`
 justify-content:center;
 margin-left:20px;
+height:40px;
+width:200px;
+text-align: left !important;
+border: 10px solid transparent  !important;
+border-radius:2px  !important;
+&:focus{
+outline: none  !important;
+}
 font-weight:bold !important;
-font-size:15px !important;
+color:black !important;
+font-size:16px;
+background:#F0F0F0;
 `
 
 const DetailsMs = () => {
@@ -92,50 +121,53 @@ const DetailsMs = () => {
    <First>
    <Div1 >
     <Title>N° Mission </Title>
-    <P>{details.numeroMission}</P>
+    <P value={details.numeroMission}></P>
    </Div1>
    <Div1 >
-    <Title>Nom :</Title>
-    <P> {details.nomUser} </P>
+    <Title>Nom </Title>
+    <P value={details.nomUser}></P>
    </Div1>
    <Div1 >
-    <Title>Prénom :</Title>
-    <P>{details.prenomUser} </P>
+    <Title>Prénom </Title>
+    <P value={details.prenomUser}></P>
    </Div1>
    <Div1 >
-    <Title>Nature Mission :</Title>
-    <P>{details.nature}</P>
+    <Title>Nature Mission </Title>
+    <P value={details.nature}></P>
    </Div1>
    <Div1 >
-    <Title>Date Départ  :</Title>
-    <P>{
-    dateD} </P>
+    <Title>Date Départ  </Title>
+    <P value={dateD}></P>
    </Div1>
    <Div1 >
-    <Title>Heure Départ :</Title>
-    <P>{details.heureDepart}</P>
+    <Title>Heure Départ </Title>
+    <P value={details.heureDepart}></P>
    </Div1>
    <Div1 >
-    <Title>Date Retour : </Title>
-    <P> {dateR} </P>
+    <Title>Date Retour  </Title>
+    <P value={dateR} ></P>
    </Div1>
    <Div1 >
-    <Title>Heure Retour :</Title>
-    <P> {details.heureRetour} </P>
+    <Title>Heure Retour </Title>
+    <P value={details.heureRetour}></P>
    </Div1>
    <Div1 >
-    <Title>Lieu :</Title>
-    <P>{details.lieu}</P>
+    <Title>Lieu </Title>
+    <P value={details.lieu}></P>
    </Div1>
    <Div1 >
-    <Title>Vehicule :</Title>
-    <P>{details.vehicule} </P>
+    <Title>Vehicule </Title>
+    <P value={details.vehicule}></P>
    </Div1>
    <Div1 >
-    <Title>Accompagné par : </Title>
-    <P> {details.accompagne}</P>
+    <Title>Accompagné par  </Title>
+    <P value={details.accompagne}></P>
    </Div1>
-
+   <div style={{display:"flex"}}>
+    <Button>Modifier</Button>
+    <Button>Valider</Button>
+    <Button>Non Valider</Button>
+   </div>
    </First>
     <Second>
     <H1>Depenses effectuées sur la Mission N° {id} :</H1>

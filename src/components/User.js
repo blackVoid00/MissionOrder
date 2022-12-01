@@ -5,12 +5,13 @@ import { useParams,useNavigate } from 'react-router-dom'
 import styles from "styled-components"
 import { useForm } from "react-hook-form";
 import {moment} from "moment"
+
 const MainDiv=styles.div`
-background-color:#1c539b;
 display:flex;
 width:900px;
 height:800px;
-box-shadow: rgba(0, 0, 0, 0.1) 0 5px 40px, rgba(0, 0, 0, 0.1) 0 5px 10px  !important;
+background-color: white;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 margin-left:18%;
 margin-top:2%;
 `
@@ -37,40 +38,43 @@ const Label=styles.label`
 display: inline-block;
 width: 160px;
 font-weight:bold !important;
-color:white;
+color:black;
 margin-left:30px;
 `
 const Input=styles.input`
 margin-bottom:10px;
 margin-top:10px;
 margin-right:10px;
-height:35px !important;
-width: ${props=> props.inDate? "100px":"200px"};
-background: #fff;
-font: inherit;
-box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
-border: 0;
-outline: 0;
+text-align:center;
+justify-content:center;
+height:40px;
+width:200px;
+text-align: left !important;
+border: 10px solid transparent  !important;
+border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
-text-align:center;
-
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
+background:#F0F0F0;
 `
 const Select=styles.select`
-&:focus{
-    outline:none;
-}
-
-border: none;
 padding: 0 1em 0 0;
 margin: 0;
-width: 200px;
-font-family: inherit;
-font-size: inherit;
-cursor: inherit;
-line-height: inherit;
+height:30px;
+width:200px;
+text-align: left !important;
+border-radius:2px  !important;
+&:focus{
+outline: none  !important;
 }
+border: none;
+background:#F0F0F0;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 const Option=styles.option`
  text-align:center;
@@ -90,7 +94,6 @@ background-color:#B0C4DE ;
 font-weight:bold !important;
 cursor: pointer;
 font-weight:bold ;
-box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
 width:140px;
 height:30px;
 margin-left:5px;

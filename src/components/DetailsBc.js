@@ -56,6 +56,9 @@ border-radius:2px  !important;
 outline: none  !important;
 }
 background:#F0F0F0;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 const SelectM=styles.select`
 margin-left:50px;
@@ -70,6 +73,9 @@ outline: none  !important;
 }
 border: none;
 background:#F0F0F0;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 const DivInput=styles.div`
 margin-bottom:10px;
@@ -115,6 +121,9 @@ outline: none  !important;
 }
 color:black !important;
 background:#F0F0F0;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 const Button=styles.button`
 position: relative;

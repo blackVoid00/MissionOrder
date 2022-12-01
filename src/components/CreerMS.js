@@ -25,6 +25,9 @@ border-radius:2px  !important;
 outline: none  !important;
 }
 background:#F0F0F0;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 const H1 = styles.h1`
 font-size:30px !important;
@@ -64,6 +67,9 @@ border-radius:2px  !important;
 outline: none  !important;
 }
 background:#F0F0F0;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 const Button=styles.button`
 border-width: 0px;

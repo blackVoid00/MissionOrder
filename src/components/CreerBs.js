@@ -32,17 +32,6 @@ display:flex;
 margin-left:70px;
 
 `
-// const SousDiv1=styles.div`
-// display:inline-block;
-// margin-left: 10px;
-// margin-top: 50px
-// `
-
-// const SousDiv2=styles.div`
-// display:inline-block;
-// margin-left: 50px;
-// margin-top: 50px;
-// `
 const Select=styles.select`
 margin-right:10px;
 margin-left:20px;
@@ -57,6 +46,9 @@ border-radius:2px  !important;
 outline: none  !important;
 }
 background:#F0F0F0;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 const DivInput=styles.div`
 margin-bottom:10px;
@@ -85,6 +77,9 @@ border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 const Button=styles.button`
 position: relative;

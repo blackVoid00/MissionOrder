@@ -67,6 +67,9 @@ outline: 0;
 outline: none  !important;
 }
 text-align:center !important;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 export const LabelM=styles.label`
 display: inline-block;
@@ -110,6 +113,9 @@ outline: 0;
 outline: none  !important;
 }
 text-align:left !important;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 export const InputM=styles.input`
 margin-bottom:10px;
@@ -125,6 +131,9 @@ outline: 0;
 outline: none  !important;
 }
 text-align:left !important;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 export const Description=styles.div`
 margin-top:10px;
@@ -140,6 +149,9 @@ border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 export const InputMFILE=styles.input`
 opacity: 0;
@@ -193,6 +205,9 @@ border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 export const InputMT=styles.input`
 
@@ -204,6 +219,9 @@ border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 export const InputModalT=styles.input`
 margin-bottom:10px;
@@ -216,6 +234,9 @@ border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
 `
 export const LabelModal=styles.label`
 display: inline-block;
