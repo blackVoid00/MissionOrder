@@ -98,8 +98,33 @@ const CreerMS = () => {
   const [projet,setProjet]=useState("")
   const [dateDebut,setDateDebut]=useState("")
   const [dateFin,setDateFin]=useState("")
+  const [numMission,setNumeroMission]=useState("")
   const sendData=()=>{
-
+     axios.post("https://localhost:7111/api/Missions",{
+    
+      numeroMission: numMission,
+      idBonCaisse: numBc,
+      dateCreation: dateCreation,
+      totalMission: 0,
+      idUser: value,
+      etatMission: "F",
+      valideResponsable: "N",
+      valideRh: "N",
+      objetMission: projet,
+      dateDepart: dateDebut,
+      dateRetour: dateFin,
+      dureeIntervention: 0,
+      lieu: "",
+      nature: "",
+      vehicule: "",
+      accompagne: "",
+      heureDepart:"",
+      heureRetour: "",
+      description: "",
+      typeOperation: "",
+     }).then((response) => {
+      alert("mission created successfully")
+     })
   }
   useEffect(()=> {
    axios.get(url).then((response) => {
@@ -116,6 +141,10 @@ const CreerMS = () => {
     
         <SousDiv1>
         <H1>Formulaire Création Mission</H1>
+        <DivInput>
+        <Label>N° Mission</Label>
+        <Input placeholder='format NN001' onChange={(e)=>setNumeroMission(e.target.value)}></Input>
+      </DivInput>
         <DivInput>
         <Label>Date Création</Label>
         <Input l type="date" onChange={(e)=>setDateCreation(e.target.value)}></Input>

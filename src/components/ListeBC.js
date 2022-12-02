@@ -57,12 +57,14 @@ const ListeBC = () => {
            })
        
     },[])
+    console.log(Depense)
     const T= bc.map(c => {
       const matched = Depense.find(d => c.idBonCaisse === d.idBc)
-                 return {...c,...matched,solde:Number(c.créditTotal)-(Number(matched?.sommeDepense) + Number(c.soldeTotal))}
+                 return {...c,...matched,
+                          solde:Number(c.créditTotal)-(Number((matched?.sommeDepense)==null?0:matched?.sommeDepense) + Number(c.soldeTotal))}
      
     })
-    console.log(T)
+ 
     const columns=[
         {dataField:"dateCreation",text:"Date Création",footer:"Total",formatter : (row,cellContent)=>{
           return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
@@ -121,9 +123,9 @@ const ListeBC = () => {
     //      <span>{row.créditTotal}</span>
     //     )    
     // }},   
-      },{dataField:"sommeDepense",text:"Total Dépense ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),
+      },{dataField:"sommeDepense",text:"Total Dépense ", footer: columnData => columnData.reduce((acc, item) => acc + (item==null?0:item), 0),
         },
-        {dataField:"solde",text:"Solde ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),
+        {dataField:"solde",text:"Solde ", footer: columnData => columnData.reduce((acc, item) => acc +item, 0),
       },
         {dataField:"etat",text:"Statut",footer:"", formatter: (cellContent ,row) => {
             if ( row.etat==0) {
@@ -222,8 +224,7 @@ const ListeBC = () => {
     keyField='idBonCaisse'
     data={T}
     columns={columns}
-   
-  exportCSV
+    exportCSV
 >
   {
     props => (
@@ -248,7 +249,7 @@ const ListeBC = () => {
         text: '50', value: 50
       },
       {
-        text: 'All', value: bc.length
+        text: 'All', value: T.length
       } ], 
    
       withFirstAndLast: false,

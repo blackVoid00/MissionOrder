@@ -120,7 +120,7 @@ margin-left:50px;
 margin-bottom:10px;
 margin-top:10px;
 height:35px;
-width:100px;
+width:200px;
 text-align: left !important;
 border: none;
 border-radius:2px  !important;

@@ -102,15 +102,25 @@ outline: none  !important;
 
 const CreerBs = () => {
      const url="https://localhost:7111/api/Utilisateurs"
+     const url2="https://localhost:7111/api/PostBoncaisse"
 
      const [users,setUsers]=useState([])
      const [dateC,setDateC]=useState("")
-     const [dateE,setDateE]=useState("")
      const [value,setOptionUser]=useState("")
      const [libelle,setOptionLibelle]=useState("")
 
-     const creatBc=()=>{
-
+     const createBc=()=>{
+            axios.post(url2,{
+               dateCreation: dateC,
+               idUser: value,
+               libellé: libelle,
+               créditTotal: 0,
+               soldeTotal: 0,
+               dateExpiration: "2022-12-01T00:00:00.000",
+               etat: 0
+            }).then((response)=>{
+               alert("bc created successfully")
+            })
      }
      useEffect(() => {
 
@@ -150,12 +160,12 @@ const CreerBs = () => {
                 <option value="2">Frais OM </option>
                 <option value="3">Frais femme ménage</option>
                 <option value="4">Avance Sur salaire</option>
-                <option vamue="5">Achats</option>
+                <option value="5">Achats</option>
              </Select>
         </DivInput>
        <Div>
        </Div>
-       <Button onClick={creatBc}>Créer</Button>
+       <Button onClick={createBc}>Créer</Button>
       </div>
       <div>
           <img src={bcpic}></img>
