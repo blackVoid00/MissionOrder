@@ -93,15 +93,14 @@ const CreerMS = () => {
   const [users,setUsers] =useState([])
   const [bcNumbersList,setBcList]=useState([])
   const [value,setOptionUser]=useState(0)
-  const [dateCreation,setDateCreation]=useState("")
+  const [dateCreation,setDateCreation]=useState()
   const [numBc,setNumBc]=useState(0)
   const [projet,setProjet]=useState("")
-  const [dateDebut,setDateDebut]=useState("")
-  const [dateFin,setDateFin]=useState("")
+  const [dateDebut,setDateDebut]=useState( )
+  const [dateFin,setDateFin]=useState()
   const [numMission,setNumeroMission]=useState("")
   const sendData=()=>{
      axios.post("https://localhost:7111/api/Missions",{
-    
       numeroMission: numMission,
       idBonCaisse: numBc,
       dateCreation: dateCreation,
@@ -113,15 +112,7 @@ const CreerMS = () => {
       objetMission: projet,
       dateDepart: dateDebut,
       dateRetour: dateFin,
-      dureeIntervention: 0,
-      lieu: "",
-      nature: "",
-      vehicule: "",
-      accompagne: "",
-      heureDepart:"",
-      heureRetour: "",
-      description: "",
-      typeOperation: "",
+      dureeIntervention: 0
      }).then((response) => {
       alert("mission created successfully")
      })

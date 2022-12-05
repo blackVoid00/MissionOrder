@@ -44,12 +44,13 @@ text-align:center !important;
 `
 const Div=styles.div`
 display:flex !important;
-margin-left:200px;
+margin-left:100px;
+margin-bottom:0px;
 `
 const Div1=styles.div`
 display:inline-block;
-margin-left:400px;
-margin-top:100px;
+margin-left:300px;
+margin-top:50px;
 `
 const Select=styles.select`
 margin-right:50px;
@@ -134,17 +135,15 @@ color:black !important;
 font-size:16px;
 `
 const Button=styles.button`
-position: relative;
 border-width: 0px;
 border-style: solid;
 font-weight:bold !important;
 margin-top:50px;
-margin-left:10px;
 margin-right:10px;
 margin-bottom:50px;
 background-color:#B0C4DE ;
 height:30px;
-width:${props=>props.l ? "50px" : "100px"};
+width:110px;
 text-align:center !important;
 cursor:pointer;
 &:focus{
@@ -164,12 +163,18 @@ const DetailsBc = () => {
     const [sbc2,setSbc2]=useState([])
     const [showA, setShowA] = useState(false);
     const [showB, setShowB] = useState(false);
+    const [boncaisseEncourant,setBcEnCourant]=useState()
     const handleCloseA = () => setShowA(false);
-    const handleShowA = () => setShowA(true);
+    const handleShowA = (id) => {
+      setShowA(true)
+      setBcEnCourant(id)
+    };
     const handleCloseB = () => setShowB(false);
-    const handleShowB = () => setShowB(true);
-    const [debitD,setDebitD]=useState(0);
-    const [creditE,setCreditE]=useState(0);
+    const handleShowB = (id) => {
+      setShowB(true)
+      setBcEnCourant(id)
+    
+    };
     useEffect(()=>{
       axios.get(url1).then((response) => {setBc(response.data)});
       axios.get(url2).then((response)=>  {setSbc(response.data)})
@@ -180,10 +185,14 @@ const DetailsBc = () => {
    var time =moment(bc.dateCreationBc).format('YYYY-MM-DDThh:mm:ss').split('T')[1]
 
     const [users,setUsers]=useState([])
-    const [dateC,setDateC]=useState("")
-    const [dateE,setDateE]=useState("")
+    const [dateSortieCaisse,setDateSortieCaisse]=useState()
+    const [dateEntreeCaisse,setDateEntreeCaisse]=useState()
+    const [libelleSortieCaisse,setLibelleSortie]=useState("")
+    const [libelleEntreeCaisse,setLibelleEntree]=useState("")
+    const [creditSortie,setCreditSortie]=useState()
+    const [debitEntree,setDebitEntree]=useState()
     const [value,setOptionUser]=useState("")
-    const [libelle,setOptionLibelle]=useState("")
+   
 
     const columns=[
     
@@ -206,12 +215,35 @@ const DetailsBc = () => {
     {dataField:"credit",text:"Crédit",footer:columnData => columnData.reduce((acc, item) => acc + item, 0)}
    
 ]
- 
+console.log(boncaisseEncourant)
+ const Encaissement=()=>{
+         axios.post('https://localhost:7111/api/SBC',{
+          idBonCaisse: boncaisseEncourant,
+          credit: 0,
+          dateCreation: dateEntreeCaisse,
+          debit: debitEntree,
+          type:libelleEntreeCaisse
+         }).then((response)=>{
+          alert("sbc encaissement created successfully")
+         })
+ }
+ const Decaissement=()=>{
+  axios.post('https://localhost:7111/api/SBC',{
+    idBonCaisse: boncaisseEncourant,
+    credit: creditSortie,
+    dateCreation: dateSortieCaisse,
+    debit: 0,
+    type:libelleSortieCaisse
+  }).then((response)=>{
+   alert("sbc decaissement created successfully")
+  })
+
+ }
   return (
     <MainContainer>
    <MainDiv>
     <Div2>
-      <Title>Details du Bon de Caisse {bc.idBonCaisse}</Title>
+      <Title>Détails du Bon de Caisse {bc.idBonCaisse}</Title>
      <div>
         
         <DivInput>
@@ -239,8 +271,8 @@ const DetailsBc = () => {
         </DivInput>
         
        <Div>
-       <Button onClick={handleShowA}>Ajouter</Button>
-       <Button onClick={handleShowB}>Retirer</Button>
+       <Button onClick={()=>handleShowA(bc.idBonCaisse)}>Décaissement</Button>
+       <Button onClick={()=>handleShowB(bc.idBonCaisse)}>Encaissement</Button>
        <Button >Modifier</Button>
        <Button l onClick={()=>{alert("")}}><IconContext.Provider value={{ color: 'black', size: '20px'}}>
        <FaBalanceScale onClick={()=>{alert("solder")}}></FaBalanceScale>
@@ -266,15 +298,15 @@ const DetailsBc = () => {
                 <Modal.Body>
                 <DivInput>
                       <Label>Date Creation</Label>
-                      <InputM type="date"/>
+                      <InputM type="date" onChange={(e)=>setDateSortieCaisse(e.target.value)}/>
                     </DivInput>
                     <DivInput>
                       <Label>Crédit</Label>
-                      <InputM type="text"placeholder='entrer le crédit'/>
+                      <InputM type="text"placeholder='entrer le crédit' onChange={(e)=>setCreditSortie(e.target.value)}/>
                     </DivInput>
                       <DivInput>
                       <Label> Libellé Décaissements :</Label>
-                        <SelectM>
+                        <SelectM onChange={(e)=>setLibelleSortie(e.target.value)}>
                         <option>Avance sur salaire</option>
                         <option>Réglement Facture</option>
                         <option>Achat Administratif</option>
@@ -285,13 +317,13 @@ const DetailsBc = () => {
                         <option>Frais OM</option>
                         </SelectM>
                       </DivInput>
-                      <DivInput>
+                      {/* <DivInput>
                       <Label>Désignation</Label>
                     <InputM type="text" placeholder='entrer une désignation'/> 
-                    </DivInput>
+                    </DivInput> */}
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="success" >Valider</Button>
+                  <Button variant="success" onClick={Decaissement} >Valider</Button>
                  
                 </Modal.Footer>
          
@@ -311,28 +343,28 @@ const DetailsBc = () => {
                 <Modal.Body>
                 <DivInput>
                       <Label>Date Creation</Label>
-                      <InputM type="date"/>
+                      <InputM type="date" onChange={(e)=>setDateEntreeCaisse(e.target.value)}/>
                     </DivInput>
                     <DivInput>
                       <Label>Débit</Label>
-                      <InputM type="text"placeholder='entrer le débit'/> 
+                      <InputM type="text"placeholder='entrer le débit' onChange={(e)=>setDebitEntree(e.target.value)}/> 
                     </DivInput>
                       <DivInput>
                       <Label> Libellé Encaissements :</Label>
-                        <SelectM>
+                        <SelectM onChange={(e)=>{setLibelleEntree(e.target.value)}}>
                         <option>Remboursement d'une Avance sur salaire</option>
                         <option>Remboursement reçu/BC non dépensé</option>
                         <option>Argent restant d'une mission</option>
                         
                         </SelectM>
                       </DivInput>
-                      <DivInput>
+                      {/* <DivInput>
                       <Label>Désignation</Label>
                     <InputM type="text" placeholder='entrer une désignation'/> 
-                    </DivInput>
+                    </DivInput> */}
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="success" >Valider</Button>
+                  <Button variant="success" onClick={Encaissement}>Valider</Button>
                  
                 </Modal.Footer>
          
