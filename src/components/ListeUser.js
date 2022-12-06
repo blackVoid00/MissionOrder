@@ -40,12 +40,46 @@ const ListeUser = () => {
         }
     const url="https://localhost:7111/api/Utilisateurs/"
     const [user,setUser]=useState([])
+    const [u,setU]=useState([])
     useEffect(()=>{
         axios.get(url).then((response) => {
             setUser(response.data);
          });
-       
+         axios.get(url).then((response) => {
+          setU(response.data);
+       });
     },[])
+    
+    const[givenMatricule,setGivenMatricule] =useState("")
+    const [givenUserId,setGivenUserId] = useState()
+    const [givenStatus,setGivenStatus]= useState()
+    const [givenService,setGivenService]= useState()
+
+  const filterMatricule=()=>{
+         axios.get(`https://localhost:7111/api/GetUserByMatricule/${givenMatricule}`).then((response) => {
+          setUser(response.data)
+         })
+  }
+  const filterService=()=>{
+    axios.get(`https://localhost:7111/api/GetUserByService/${givenService}`).then((response) => {
+      setUser(response.data)
+    })
+}
+const filterUser=()=>{
+  axios.get(`https://localhost:7111/api/GetUserByFullName/${givenUserId}`).then((response) => {
+    setUser(response.data)
+  })
+}
+const filterStatus=()=>{
+  axios.get(`https://localhost:7111/api/GetUserByStatus/${givenStatus}`).then((response) => {
+    setUser(response.data)
+  })
+}
+const filterAll=()=>{
+  axios.get(`https://localhost:7111/api/GetAllFilterUser/${givenMatricule}/${givenUserId}/${givenStatus}/${givenService}`).then((response) => {
+    setUser(response.data)
+  })
+}
     const columns=[
         {dataField:"infoNom",text:"Utilisateur"},
         {dataField:"infoMatricule",text:"Matricule"},
@@ -105,30 +139,30 @@ const ListeUser = () => {
             <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
             <Div1>
              <LabelM l w>Matricule</LabelM>
-             <Select>
-             {user.map((user) => {return(
+             <Select onChange={(e)=>setGivenMatricule(e.target.value)}>
+             {u.map((user) => {return(
                       <>
                       <option value={user.infoMatricule}>{user.infoMatricule}</option>
                       </>
                  )})}
              </Select>
-             <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
+             <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterMatricule}></AiOutlineFilter></IconContext.Provider></ButtonM>
             </Div1>
             <Div1>
              <LabelM l w>Utilisateur</LabelM>
-             <Select>
-             {user.map((user) => {return(
+             <Select onChange={(e)=>setGivenUserId(e.target.value)}>
+             {u.map((user) => {return(
                       <>
                       <option value={user.infoId}>{user.infoNom}</option>
                       </>
                  )})}
              </Select>
-             <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
+             <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterUser}></AiOutlineFilter></IconContext.Provider></ButtonM>
             </Div1>
            
             <Div1>
              <LabelM l w>Service</LabelM>
-             <Select>
+             <Select onChange={(e)=>setGivenService(e.target.value)}>
              
                       <>
                       <option value='1'>Département ingénierie informatique</option>
@@ -138,7 +172,7 @@ const ListeUser = () => {
                       </>
              
              </Select>
-             <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
+             <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterService}></AiOutlineFilter></IconContext.Provider></ButtonM>
             </Div1>
             <br></br>  <br></br> 
             <div style={{display:"flex"}}>
@@ -146,13 +180,17 @@ const ListeUser = () => {
                <div style={{display:"flex"}}>
                <div style={{display:"flex"}}>
                 <Label1>Interdit</Label1>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime}></input>
+                <input type="checkbox" name="checkbox" onChange={(e)=>{setCheckBox(e.target.checked)
+                setGivenStatus(e.target.value)
+                }} onClick={CheckOneTime} value="1"></input>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <div style={{display:"flex"}}>
                 <Label2 >Autorisé</Label2>
-                <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime} ></input>&nbsp;&nbsp;&nbsp;
-                <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
+                <input type="checkbox" name="checkbox" onChange={(e)=>{setCheckBox(e.target.checked)
+                setGivenStatus(e.target.value)
+                }} onClick={CheckOneTime} value="0" ></input>&nbsp;&nbsp;&nbsp;
+                <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterStatus}></AiOutlineFilter></IconContext.Provider>
                 </div>
                 
                </div>
