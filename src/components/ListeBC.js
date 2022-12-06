@@ -39,6 +39,7 @@ const ListeBC = () => {
           }
           element.target.checked=true;
         }
+      
     const url="https://localhost:7111/api/GetBoncaisses"
     const url2="https://localhost:7111/api/GetDepenseOfEachBc"
     const [bc,setBc]=useState([])
@@ -64,7 +65,42 @@ const ListeBC = () => {
                           solde:Number(c.créditTotal)-(Number((matched?.sommeDepense)==null?0:matched?.sommeDepense) + Number(c.soldeTotal))}
      
     })
- 
+    const [du,setDateDu]=useState("")  
+    const [au,setDateAu]=useState("")  
+    const[givenDate,setGivenDate] =useState("")
+    const [givenUserId,setGivenUserId] = useState()
+    const [givenLibelle,setGivenLibelle] = useState("")
+    const [givenStatus,setGivenStatus]= useState()
+  const filterDateDuAu=()=>{
+         axios.get(`https://localhost:7111/api/GetBcOfThisDateInterval/${du}/${au}`).then((response) => {
+           setBc(response.data)
+         })
+  }
+  const filterDate=()=>{
+    axios.get(`https://localhost:7111/api/GetBcOfaGivenDate/${givenDate}`).then((response) => {
+      setBc(response.data)
+    })
+}
+const filterUser=()=>{
+  axios.get(`https://localhost:7111/api/GetBcOfaGivenUser/${givenUserId}`).then((response) => {
+    setBc(response.data)
+  })
+}
+const filterLibelle=()=>{
+  axios.get(`https://localhost:7111/api/GetBcOfaGivenOperation/${givenLibelle}`).then((response) => {
+    setBc(response.data)
+  })
+}
+const filterStatus=()=>{
+  axios.get(`https://localhost:7111/api/GetBcOfaGivenStatus/${givenStatus}`).then((response) => {
+    setBc(response.data)
+  })
+}
+const filterAll=()=>{
+  axios.get(`https://localhost:7111/api/GetAllFilter/${givenDate}/${givenUserId}/${givenLibelle}/${givenStatus}`).then((response) => {
+    setBc(response.data)
+  })
+}
     const columns=[
         {dataField:"dateCreation",text:"Date Création",footer:"Total",formatter : (row,cellContent)=>{
           return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
@@ -98,31 +134,9 @@ const ListeBC = () => {
       }},
         
         {dataField:"soldeTotal",text:"Total Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)
-      //   ,formatter: (cellContent ,row) => {
-      //     if ( row.soldeTotal==0) {
-      //       return (
-      //         <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
-      //         <MdMoneyOffCsred/>
-      //         </IconContext.Provider>
-      //       )
-      //     }   
-      //     return(
-      //      <span>{row.soldeTotal}</span>
-      //     )    
-      // }
+     
     },{dataField:"créditTotal",text:"Total Crédit ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),
-    //   formatter: (cellContent ,row) => {
-    //     if ( row.créditTotal==0) {
-    //       return (
-    //         <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
-    //         <MdMoneyOffCsred/>
-    //         </IconContext.Provider>
-    //       )
-    //     }   
-    //     return(
-    //      <span>{row.créditTotal}</span>
-    //     )    
-    // }},   
+  
       },{dataField:"sommeDepense",text:"Total Dépense ", footer: columnData => columnData.reduce((acc, item) => acc + (item==null?0:item), 0),
         },
         {dataField:"solde",text:"Solde ", footer: columnData => columnData.reduce((acc, item) => acc +item, 0),
@@ -152,43 +166,43 @@ const ListeBC = () => {
           <div style={{display:"flex",marginLeft: '10px'}}>
           <Div1>
            <LabelM l w>Du</LabelM>
-           <InputDate b type="date"></InputDate>
+           <InputDate b type="date" onChange={(e)=>setDateDu(e.target.value)}></InputDate>
           </Div1>
           <Div1>
            <LabelM l w>Au</LabelM>
-           <InputDate b type="date"></InputDate>
+           <InputDate b type="date" onChange={(e)=>setDateAu(e.target.value)} ></InputDate>
           </Div1>
           <div  style={{marginTop:"50px",marginRight:'50px'}}>
-          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
+          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterDateDuAu}></AiOutlineFilter></IconContext.Provider>
           </div>
           </div>
           <Div1>
            <LabelM l w>Date</LabelM>
-           <InputM b type="date"></InputM>&nbsp;
-          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
+           <InputM b type="date" onChange={(e)=>setGivenDate(e.target.value)}></InputM>&nbsp;
+          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterDate}></AiOutlineFilter></IconContext.Provider>
    
           </Div1>
           <Div1>
            <LabelM l w>Bénéficiaire</LabelM>
-           <Select>
+           <Select onChange={(e)=>setGivenUserId(e.target.value)}>
            {users.map((user) => {return(
                     <>
                     <option value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>
                     </>
                )})}
            </Select>
-           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
+           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterUser}></AiOutlineFilter></IconContext.Provider></ButtonM>
           </Div1>
           <Div1>
            <LabelM l w>Opération</LabelM>
-           <Select>
-           <option>Réglement Facture</option>
-           <option>Frais OM </option>
-           <option>Frais femme ménage</option>
-           <option>Avance Sur salaire</option>
-           <option>Achats</option>
+           <Select onChange={(e)=>setGivenLibelle(e.target.value)}>
+           <option value="1">Réglement Facture</option>
+           <option value="2">Frais OM </option>
+           <option value="3">Frais femme ménage</option>
+           <option value="4">Avance Sur salaire</option>
+           <option value="5">Achats</option>
            </Select>
-           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
+           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterLibelle}></AiOutlineFilter></IconContext.Provider></ButtonM>
           </Div1>
         
           <br></br>  <br></br> 
@@ -197,20 +211,23 @@ const ListeBC = () => {
              <div style={{display:"flex"}}>
              <div style={{display:"flex"}}>
               <Label1> Soldé</Label1>
-              <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime}></input>
+              <input type="checkbox" name="checkbox" onChange={(e)=>{setCheckBox(e.target.checked)
+              setGivenStatus(e.target.value)
+              }} onClick={CheckOneTime} value="1"></input>
               </div>
               &nbsp;&nbsp;
               <div style={{display:"flex"}}>
               <Label2 >Non Soldé</Label2>
-              <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime} ></input>&nbsp;&nbsp;&nbsp;
-              <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
+              <input type="checkbox" name="checkbox" onChange={(e)=>{setCheckBox(e.target.checked)
+              setGivenStatus(e.target.value)}} onClick={CheckOneTime} value="0" ></input>&nbsp;&nbsp;&nbsp;
+              <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterStatus}></AiOutlineFilter></IconContext.Provider>
               </div>
               
              </div>
              
           </div>
           <div style={{marginLeft:"50px",marginTop:"30px",marginBottom:"50px"}}>
-          <ButtonM>Filter All &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
+          <ButtonM>Filter All &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterAll}></AiOutlineFilter></IconContext.Provider></ButtonM>
           </div>
         
           

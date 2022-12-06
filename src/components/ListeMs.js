@@ -38,8 +38,13 @@ const ListeMs = () => {
         )
         
         }
-        
- 
+//    const [du,setDateDu]=useState("")  
+//    const [au,setDateAu]=useState("")   
+//  const filterDateDuAu=()=>{
+//         axios.get(`https://localhost:7111/api/GetBcOfThisDateInterval/${du}/${au}`).then((response) => {
+//           set
+//         })
+//  }
 
     const url="https://localhost:7111/api/Missions"
     const [ms,setMs]=useState([])
@@ -54,6 +59,37 @@ const ListeMs = () => {
            });
        
     },[])
+    const [du,setDateDu]=useState("")  
+    const [au,setDateAu]=useState("")  
+    const[givenDate,setGivenDate] =useState("")
+    const [givenUserId,setGivenUserId] = useState()
+    const [givenStatus,setGivenStatus]= useState()
+
+  const filterDateDuAu=()=>{
+         axios.get(`https://localhost:7111/api/GetMissionOfaGivenDateInterval/${du}/${au}`).then((response) => {
+          setMs(response.data)
+         })
+  }
+  const filterDate=()=>{
+    axios.get(`https://localhost:7111/api/GetMissionOfaGivenDate/${givenDate}`).then((response) => {
+      setMs(response.data)
+    })
+}
+const filterUser=()=>{
+  axios.get(`https://localhost:7111/api/GetMissionOfaGivenUser/${givenUserId}`).then((response) => {
+    setMs(response.data)
+  })
+}
+const filterStatus=()=>{
+  axios.get(`https://localhost:7111/api/GetMissionOfaGivenSatus/${givenStatus}`).then((response) => {
+    setMs(response.data)
+  })
+}
+const filterAll=()=>{
+  axios.get(`https://localhost:7111/api/GetAllFilterMs/${givenDate}/${givenUserId}/${givenStatus}`).then((response) => {
+    setMs(response.data)
+  })
+}
     const columns=[
       {dataField:"dateCreation",text:"Date Creation", footer:"Total",formatter : (row,cellContent)=>{
         return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
@@ -122,12 +158,15 @@ const ListeMs = () => {
                <BiLoaderCircle/>
                 </IconContext.Provider>
               )
-            }   
-            return(
-              <IconContext.Provider value={{color:"green",size:"20px"}}>
-               <AiOutlineFileDone/>
-                </IconContext.Provider>
-            )    
+            }
+            if ( row.etatMission =="F"){
+              return(
+                <IconContext.Provider value={{color:"green",size:"20px"}}>
+                 <AiOutlineFileDone/>
+                  </IconContext.Provider>
+              ) 
+            } 
+              
         }},
         {datafield:"Actions",text:"Consulter", csvExport: false,footer:"", formatter: ButtonCell}
     ]
@@ -142,12 +181,12 @@ const ListeMs = () => {
           <div style={{display:"flex",marginLeft: '10px'}}>
           <Div1>
            <LabelM l w>Du</LabelM>
-           <InputDate b type="date"></InputDate>
+           <InputDate b type="date" onChange={(e)=>setDateDu(e.target.value)}></InputDate>
           </Div1>
           <Div1>
            <LabelM l w>Au</LabelM>
-           <InputDate b type="date"></InputDate>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
+           <InputDate b type="date" onChange={(e)=>setDateAu(e.target.value)}></InputDate>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterDateDuAu}></AiOutlineFilter></IconContext.Provider>
           </Div1>
          
          
@@ -155,20 +194,20 @@ const ListeMs = () => {
           </div>
           <Div1>
            <LabelM l w>Date</LabelM>
-           <InputM b type="date"></InputM>&nbsp;&nbsp;&nbsp;
-          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
+           <InputM b type="date" onChange={(e)=>setGivenDate(e.target.value)}></InputM>&nbsp;&nbsp;&nbsp;
+          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterDate}></AiOutlineFilter></IconContext.Provider>
    
           </Div1>
           <Div1>
            <LabelM l w>Bénéficiaire</LabelM>
-           <Select>
+           <Select onChange={(e)=>setGivenUserId(e.target.value)}>
            {users.map((user) => {return(
                     <>
                     <option value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>
                     </>
                )})}
            </Select>
-           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
+           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterUser}></AiOutlineFilter></IconContext.Provider></ButtonM>
           </Div1>
          
         
@@ -178,20 +217,24 @@ const ListeMs = () => {
              <div style={{display:"flex"}}>
              <div style={{display:"flex"}}>
               <Label1>Fermée</Label1>&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime}></input>
+              <input type="checkbox" name="checkbox" onChange={(e)=>{setCheckBox(e.target.checked)
+              setGivenStatus(e.target.value)
+              }} onClick={CheckOneTime} value="F"></input>
               </div>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <div style={{display:"flex"}}>
               <Label2 >Ouverte</Label2>
-              <input type="checkbox" name="checkbox" onChange={(e)=>setCheckBox(e.target.checked)} onClick={CheckOneTime} ></input>&nbsp;&nbsp;&nbsp;
-              <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider>
+              <input type="checkbox" name="checkbox" onChange={(e)=>{setCheckBox(e.target.checked)
+              setGivenStatus(e.target.value)
+              }} onClick={CheckOneTime} value="O" ></input>&nbsp;&nbsp;&nbsp;
+              <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterStatus}></AiOutlineFilter></IconContext.Provider>
               </div>
               
              </div>
              
           </div>
           <div style={{marginLeft:"700px",marginTop:"0px",marginBottom:"50px"}}>
-          <ButtonM>Filter All &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
+          <ButtonM>Filter All &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterAll}></AiOutlineFilter></IconContext.Provider></ButtonM>
           </div>
            </div>
           </div>
