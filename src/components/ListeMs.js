@@ -86,7 +86,7 @@ const filterStatus=()=>{
   })
 }
 const filterAll=()=>{
-  axios.get(`https://localhost:7111/api/GetAllFilterMs/${givenDate}/${givenUserId}/${givenStatus}`).then((response) => {
+  axios.get(`https://localhost:7111/api/GetAllFilterMs/${du}/${au}/${givenUserId}/${givenStatus}`).then((response) => {
     setMs(response.data)
   })
 }
@@ -192,12 +192,7 @@ const filterAll=()=>{
          
         
           </div>
-          <Div1>
-           <LabelM l w>Date</LabelM>
-           <InputM b type="date" onChange={(e)=>setGivenDate(e.target.value)}></InputM>&nbsp;&nbsp;&nbsp;
-          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterDate}></AiOutlineFilter></IconContext.Provider>
-   
-          </Div1>
+          
           <Div1>
            <LabelM l w>Bénéficiaire</LabelM>
            <Select onChange={(e)=>setGivenUserId(e.target.value)}>
@@ -210,7 +205,12 @@ const filterAll=()=>{
            <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterUser}></AiOutlineFilter></IconContext.Provider></ButtonM>
           </Div1>
          
-        
+          <Div1>
+           <LabelM l w>Date</LabelM>
+           <InputM b type="date" onChange={(e)=>setGivenDate(e.target.value)}></InputM>&nbsp;&nbsp;&nbsp;
+          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterDate}></AiOutlineFilter></IconContext.Provider>
+   
+          </Div1>
           <br></br>  <br></br> 
           <div style={{display:"flex"}}>
             <LabelR w>Statut</LabelR>

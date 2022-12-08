@@ -75,11 +75,11 @@ const filterStatus=()=>{
     setUser(response.data)
   })
 }
-const filterAll=()=>{
-  axios.get(`https://localhost:7111/api/GetAllFilterUser/${givenMatricule}/${givenUserId}/${givenStatus}/${givenService}`).then((response) => {
-    setUser(response.data)
-  })
-}
+// const filterAll=()=>{
+//   axios.get(`https://localhost:7111/api/GetAllFilterUser/${givenMatricule}/${givenUserId}/${givenStatus}/${givenService}`).then((response) => {
+//     setUser(response.data)
+//   })
+// }
     const columns=[
         {dataField:"infoNom",text:"Utilisateur"},
         {dataField:"infoMatricule",text:"Matricule"},
@@ -88,35 +88,8 @@ const filterAll=()=>{
         {dataField:"infoCin",text:"Cin"},
         {dataField:"infoLibelle",text:"Service"},
         {dataField:"infoNumeroTel",text:"N° Tél"},
-        {dataField:"infoDateDebutContrat",text:"Début Contrat",formatter : (row,cellContent)=>{
-          return moment(cellContent.dateDebutContrat).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
-        }},
-        {dataField:"infoDateFinContrat",text:"Fin Contrat",formatter : (row,cellContent)=>{
-          return moment(cellContent.dateFinContrat).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
-        }},
-        {dataField:"infoRole",text:"Role", formatter: (cellContent ,row) => {
-          if ( row.infoRole =="0") {
-            return (
-              <span >
-                Utilisateur
-              </span>
-            )
-          }   if ( row.infoRole =="1") {
-            return (
-              <span >
-               Superviseur
-              </span>
-            )
-          }
-          if ( row.infoRole =="2") {
-            return (
-              <span>
-               Administrateur
-              </span>
-            )
-          }    
-           
-      },},
+        {dataField:"infoDateDebutContrat",text:"Début Contrat"},
+        {dataField:"infoDateFinContrat",text:"Fin Contrat"},
         {dataField:"infoStatus",text:"Statut",formatter: (cellContent ,row) => {
             if ( row.infoStatus == "1") {
               return (
@@ -196,9 +169,9 @@ const filterAll=()=>{
                </div>
                
             </div>
-            <div style={{marginLeft:"700px",marginTop:"0px",marginBottom:"50px"}}>
+            {/* <div style={{marginLeft:"700px",marginTop:"0px",marginBottom:"50px"}}>
             <ButtonM>Filter All &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter></AiOutlineFilter></IconContext.Provider></ButtonM>
-            </div>
+            </div> */}
              </div>
             </div>
          

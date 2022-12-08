@@ -103,9 +103,11 @@ outline: none  !important;
 const CreerBs = () => {
      const url="https://localhost:7111/api/Utilisateurs"
      const url2="https://localhost:7111/api/PostBoncaisse"
-
+     var curr = new Date();
+     curr.setDate(curr.getDate());
+     var date = curr.toISOString().substring(0,10);
      const [users,setUsers]=useState([])
-     const [dateC,setDateC]=useState("")
+     const [dateC,setDateC]=useState(date)
      const [value,setOptionUser]=useState("")
      const [libelle,setOptionLibelle]=useState("")
 
@@ -140,12 +142,13 @@ const CreerBs = () => {
       <div><H1>Formulaire de création de Bon de Caisse</H1></div>
       <DivInput>
             <Label>Date Creation </Label>
-             <Input type="date" onChange={(e)=>setDateC(e.target.value)}></Input>
+             <Input type="date" defaultValue={date} onChange={(e)=>setDateC(e.target.value)}></Input>
         </DivInput>
        
         <DivInput>
             <Label>Bénéficiaire </Label>
              <Select onChange={(e)=>setOptionUser(e.target.value)}>
+             <option></option>
                {users.map((user) => {return(
                     <>
                     <option value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>
@@ -156,8 +159,9 @@ const CreerBs = () => {
         <DivInput>
             <Label> Opération</Label>
              <Select onChange={(e)=>setOptionLibelle(e.target.value)}>
-                <option value="1">Réglement Facture</option>
-                <option value="2">Frais OM </option>
+               <option></option>
+                <option value="1">Règlement Facture</option>
+                <option value="2">Frais ordre Mission </option>
                 <option value="3">Frais femme ménage</option>
                 <option value="4">Avance Sur salaire</option>
                 <option value="5">Achats</option>

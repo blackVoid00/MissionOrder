@@ -4,6 +4,8 @@ import image from "../assets/upload.png"
 export const MainM=styles.div`
 display:flex;
 justify-content:center;
+background-color: white;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
 
 `
 export const H1=styles.h1`
@@ -15,15 +17,13 @@ font-size:30px !important;
 export const MainDiv=styles.div`
 display:inline-block;
 justify-content:center;
-
 margin-right:0px;
 margin-top:1%;
 width:100vh;
-background-color:#1c539b;
+
 `
 export const MainDiv2 = styles.div`
 display:inline-block;
-background-color:#1c539b;
 margin-top:1%;
 width:70vh;
 height:700px;
@@ -36,7 +36,7 @@ margin-left:50px
 export const SousDiv2=styles.div`
 display:grid;
 margin-right:50px;
-margin-left:100px;
+margin-left:50px;
 `
 export const Div2 =styles.div`  
 margin-top:50px;
@@ -55,18 +55,19 @@ padding:5px 5px 5px 5px;
 margin-top:10px;
 `
 export const Select=styles.select`
-margin-bottom:20px;
-margin-top:10px;
 margin-right:10px;
-height:35px !important;
+margin-left:20px;
+margin-bottom:10px;
+margin-top:10px;
+height:40px;
 width:200px;
-font: inherit;
-border: 2px solid #F0F0F0;
-outline: 0;
+text-align: left !important;
+border: 10px solid transparent  !important;
+border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
-text-align:center !important;
+background:#F0F0F0;
 font-weight:bold !important;
 color:black !important;
 font-size:16px;
@@ -75,7 +76,7 @@ export const LabelM=styles.label`
 display: inline-block;
 width: ${props=>props.w?"100px":"170px"};
 font-weight:bold !important;
-color:${props=>props.l? "#1c539b":"white"};
+color:${props=>props.l? "#1c539b":"black"};
 margin-left:20px;
 `
 export const LabelR=styles.label`
@@ -118,19 +119,18 @@ color:black !important;
 font-size:16px;
 `
 export const InputM=styles.input`
+margin-left:20px;
 margin-bottom:10px;
 margin-top:10px;
-margin-right:10px;
-height:35px !important;
-width: ${props=> props.inDate? "100px":"200px"};
-background: ${props=> props.b?"	#F0F0F0" :"#fff"};
-font: inherit;
-border: 0;
-outline: 0;
+height:40px;
+width:200px;
+background:#F0F0F0;
+text-align: left !important;
+border: 10px solid transparent  !important;
+border-radius:2px  !important;
 &:focus{
 outline: none  !important;
 }
-text-align:left !important;
 font-weight:bold !important;
 color:black !important;
 font-size:16px;
@@ -140,9 +140,15 @@ margin-top:10px;
 
 `
 export const InputD=styles.input`
-margin-top:10px;
 height:60px;
 width:250px;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
+margin-left:20px;
+margin-bottom:10px;
+margin-top:10px;
+background:#F0F0F0;
 text-align: left !important;
 border: 10px solid transparent  !important;
 border-radius:2px  !important;
@@ -190,6 +196,24 @@ margin-left:${props=>props.left? "400px":"0px"};
 margin-top:${props=>props.top? " 52px":"5px"};
 margin-bottom:${props=>props.bottom? "10px":"0px"};
 color:${props=>props.l? "white":"#1c539b"};
+`
+export const Button=styles.button`
+position: relative;
+border-width: 0px;
+border-style: solid;
+background-color:#B0C4DE ;
+font-weight:bold !important;
+font-weight:bold ;
+width:140px;
+height:30px;
+margin-left:240px;
+margin-top:50px;
+margin-bottom:50px;
+text-align:center !important;
+cursor:pointer;
+&:focus{
+outline: none  !important;
+}
 `
 export const Final=styles.div`
 margin-top:0px;

@@ -1,7 +1,6 @@
 import React, { useState,useEffect  } from 'react'
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import {MainM, MainDiv,MainDiv2,InputModalT,InputMT,Wrapper,Div1,SousDiv1,SousDiv2,Div2,Div3,InputM,Description,InputMFILE,InputD,Div1M,Div2M,LabelM,LabelMFile,DivM,ButtonM,Final,InputModal,LabelModal} from "./StyleMsC"
+import {MainM, MainDiv,MainDiv2,InputMT,Select,Div1,SousDiv1,SousDiv2,Div2,Div3,InputM,InputD,LabelM,Final,Button} from "./StyleMsC"
 import {AiOutlineCloudUpload} from "react-icons/ai"
 import { IconContext } from "react-icons";
 import axios from "axios";
@@ -154,10 +153,6 @@ const MissionComponent = () => {
          
          <SousDiv1>
 
-                      <Div1>
-                       <LabelM >Projet :</LabelM>
-                       <InputM type="text" placeholder='entrer le projet...' onChange={(e)=>setProjet(e.target.value)}></InputM>
-                      </Div1>
                       
                       <Div1>
                        <LabelM>  Date de Début :</LabelM>
@@ -173,22 +168,22 @@ const MissionComponent = () => {
                       </Div1>
                       <Div1>
                       <LabelM >Véhicule utilisé :</LabelM>
-                       <select className='Select-Ms'onChange={(e)=>setVehicule(e.target.value)}>
+                       <Select onChange={(e)=>setVehicule(e.target.value)}>
                                <option>Dacia Lodgy </option>
                                <option>Renault Kango  </option>
                                <option>Renault Express </option>
                                <option>Autre</option>
-                              </select>
+                              </Select>
                       </Div1>
                       <Div1>
                       <LabelM > Accompagné par :</LabelM>
-                       <select className='Select-Ms' onChange={(e)=>setAcc(e.target.value)}>
-                               {data.map((user)=><option>{user.nom} {user.prenom}</option>)}
+                       <Select  onChange={(e)=>setAcc(e.target.value)}>
+                               {data.map((user)=><option>{user.infoNom} {user.infoPrenom}</option>)}
                                <option>Personne</option>
-                              </select>
+                              </Select>
                       </Div1>
                    </SousDiv1>
-                       <SousDiv2>
+                   <SousDiv2>
                            
                        <Div1>
                        <LabelM >Date de Fin :</LabelM>
@@ -205,12 +200,12 @@ const MissionComponent = () => {
                         
                            <Div1>
                            <LabelM >Nature Mission</LabelM>
-                              <select className='Select-Ms' onChange={(e)=>setNature(e.target.value)}>
+                              <Select className='Select-Ms' onChange={(e)=>setNature(e.target.value)}>
                                 <option value="">Dépot de document</option>
                                 <option value="">Récup de document</option>
                                 <option value="">Dépannage</option>
                                 <option value="">Autre</option>
-                              </select>
+                              </Select>
                            </Div1>
                            <Div1>
                          
@@ -221,7 +216,7 @@ const MissionComponent = () => {
                           <Div1>
                           <LabelM w>Fiche Intervention</LabelM>
                           <input id="file-input" type="file" style={{display :"none"}}></input>
-                          <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+                          <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                           <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                           </IconContext.Provider>
 
@@ -230,175 +225,9 @@ const MissionComponent = () => {
                            {/* <ButtonM onClick={handleShow}>Autre Mission</ButtonM> */}
                           </Div1>
             </SousDiv2>
-            {/* <Modal
-                aria-labelledby="contained-modal-title-vcenter"
-               size="xl"
-                className="special_modal"
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-                style={{color: "black"}}>
-                <Modal.Header closeButton variant="white">
-                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Sous Mission</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <MainM>
-                    <Div1M> 
-                    <DivM>
-                    <LabelModal>Projet :</LabelModal>
-                     <InputModal type="text" placeholder='entrer le projet...'></InputModal>
-                  </DivM>
-                  <DivM>
-                    <LabelModal>Date de depart :</LabelModal>
-                     <InputModal type="date"></InputModal>
-                  </DivM>
-                  <DivM>
-                    <LabelModal>Heure de départ :</LabelModal>
-                     <InputModal type="time"></InputModal>
-                  </DivM>
-                  <DivM>
-                    <LabelModal>Durée Intervention :</LabelModal>
-                     <InputModal type="text" disabled value='test'></InputModal>
-                  </DivM>
-                  <DivM>
-                    <LabelModal>Véhicule utilisé</LabelModal>
-                     <InputModal type="text" placeholder='entrer le véhicule...'></InputModal>
-                  </DivM>
-                  <DivM>
-                    <LabelModal>Accompagné par :</LabelModal>
-                    <select className='Select-Ms'>
-                               {data.map((user)=><option>{user.nom} {user.prenom}</option>)}
-                              </select>
-        
-                  </DivM>
-                  </Div1M>
-
-                  <Div2M>
-                    <DivM>
-                    <LabelModal>Date de retour:</LabelModal>
-                     <InputModal type="date" ></InputModal>
-                  </DivM>
-                  <DivM>
-                    <LabelModal>heure de retour</LabelModal>
-                     <InputModal type="time" ></InputModal>
-                  </DivM>
-                  <DivM>
-                    <LabelModal>Lieu</LabelModal>
-                     <InputModal type="text" placeholder='entrer le lieu...'></InputModal>
-                  </DivM>
-                  <DivM>
-                             <LabelM>Nature Mission</LabelM>
-                              <select className='Select-Modal'>
-                                <option value="">Dépot de document</option>
-                                <option value="">Récup de document</option>
-                                <option value="">Dépannage</option>
-                              </select>
-                           </DivM>
-                  <DivM>
-                 
-                          <LabelM>Fiche Intervention</LabelM>
-                          
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-
-                          </DivM>
-                       
-                  </Div2M>
-                
-                  <SousDiv1>
-         <DivM>
-           <LabelM> Gasoil :</LabelM>
-            <InputModal type="text" placeholder='frais gazoil...' onChange={(e)=>setGazoil2(e.target.value)}></InputModal>
-          
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-
-        </DivM> 
-        <DivM>
-           <LabelM> Parking :</LabelM>
-            <InputModal type="text" placeholder='frais parking...' onChange={(e)=>setParking2(e.target.value)} ></InputModal>
            
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile} ></AiOutlineCloudUpload>
-                </IconContext.Provider>
-
-        </DivM> 
-        <DivM>
-           <LabelM> Hotel :</LabelM>
-            <InputModal type="text" placeholder='frais hotel...' onChange={(e)=>setHotel2(e.target.value)}></InputModal>
-          
-           
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-           
-        </DivM> 
-        <DivM>
-           <LabelM> Repas :</LabelM>
-            <InputModal type="text" placeholder='frais repas...' onChange={(e)=>setRepas2(e.target.value)}></InputModal>
-         
-           
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-
-        </DivM>
-        <DivM>
-           <LabelM> Taxi :</LabelM>
-            <InputModal type="text" placeholder='frais taxi...' onChange={(e)=>setTaxi2(e.target.value)}></InputModal>
-          
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-
-        </DivM>
-        <DivM>
-           <LabelM> Ach/tech :</LabelM>
-            <InputModal type="text" placeholder='frais achat tech...' onChange={(e)=>setAch2(e.target.value)} ></InputModal>
-          
-           
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-        </DivM>  
-        <DivM>
-           <LabelM> divers :</LabelM>
-            <InputModal type="text" placeholder='autre...' onChange={(e)=>setDivers2(e.target.value)}></InputModal>
-           
-           
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-
-        </DivM>
-        <DivM>
-        <LabelM> Total</LabelM>    
-        <InputModalT  type="text" disabled></InputModalT>
-        </DivM>
-        <ButtonM left top bottom onClick={setFinalTotal2}>Soumettre</ButtonM>  
-         </SousDiv1>
-                  
-                  </MainM>
-                </Modal.Body>
-                <Modal.Footer>
-                  
-                  <Button variant="success"  >Soumettre</Button>
-                 
-                </Modal.Footer>
-            </Modal> */}
                </Div2>
-          {/* {c ?<SousMission name={"Valider"} ></SousMission> : null} */}
+          {/* {c ?<SousMission name={"Valider"} ></SousMission> : null}  */}
         
         </MainDiv>
         <MainDiv2>
@@ -483,7 +312,7 @@ const MissionComponent = () => {
         <LabelM> Total</LabelM>    
         <InputMT  type="text" disabled value={total}></InputMT>
         </Div1>
-         <ButtonM left top bottom onClick={setFinalTotal}>Soumettre</ButtonM>  
+         <Button left top bottom onClick={setFinalTotal}>Soumettre</Button>  
        
         </Final>
          </SousDiv1>

@@ -24,6 +24,7 @@ const ListeBC = () => {
   const urlUser="https://localhost:7111/api/Utilisateurs"
   const [users,setUsers]=useState([])
     const navigate = useNavigate()
+  
     const [checkBox,setCheckBox]=useState(false)
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
@@ -65,10 +66,12 @@ const ListeBC = () => {
                           solde:Number(c.créditTotal)-(Number((matched?.sommeDepense)==null?0:matched?.sommeDepense) + Number(c.soldeTotal))}
      
     })
-    const [du,setDateDu]=useState("")  
-    const [au,setDateAu]=useState("")  
-    const[givenDate,setGivenDate] =useState("")
-    const [givenUserId,setGivenUserId] = useState()
+    var curr = new Date();
+    curr.setDate(curr.getDate());
+    var date = curr.toISOString().substring(0,10);
+    const [du,setDateDu]=useState(date)  
+    const [au,setDateAu]=useState(date)  
+    const [givenUserId,setGivenUserId] = useState("rien")
     const [givenLibelle,setGivenLibelle] = useState("")
     const [givenStatus,setGivenStatus]= useState()
   const filterDateDuAu=()=>{
@@ -76,11 +79,6 @@ const ListeBC = () => {
            setBc(response.data)
          })
   }
-  const filterDate=()=>{
-    axios.get(`https://localhost:7111/api/GetBcOfaGivenDate/${givenDate}`).then((response) => {
-      setBc(response.data)
-    })
-}
 const filterUser=()=>{
   axios.get(`https://localhost:7111/api/GetBcOfaGivenUser/${givenUserId}`).then((response) => {
     setBc(response.data)
@@ -96,11 +94,11 @@ const filterStatus=()=>{
     setBc(response.data)
   })
 }
-const filterAll=()=>{
-  axios.get(`https://localhost:7111/api/GetAllFilter/${givenDate}/${givenUserId}/${givenLibelle}/${givenStatus}`).then((response) => {
-    setBc(response.data)
-  })
-}
+// const filterAll=()=>{
+//   axios.get(`https://localhost:7111/api/GetAllFilter/${du}/${au}/${givenUserId}/${givenLibelle}/${givenStatus}`).then((response) => {
+//     setBc(response.data)
+//   })
+// }
     const columns=[
         {dataField:"dateCreation",text:"Date Création",footer:"Total",formatter : (row,cellContent)=>{
           return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
@@ -111,12 +109,12 @@ const filterAll=()=>{
         {dataField:"libellé",text:"Type Opération",footer:"" ,formatter: (cellContent ,row) => {
           if ( row.libellé==1) {
             return (
-              <span>Réglement Facture</span>
+              <span>Règlement Facture</span>
             )
           }   
           if ( row.libellé==2) {
             return (
-              <span>Frais OM</span>
+              <span>Frais ordre Mission</span>
             )
           }  if ( row.libellé==3) {
             return (
@@ -137,7 +135,16 @@ const filterAll=()=>{
      
     },{dataField:"créditTotal",text:"Total Crédit ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),
   
-      },{dataField:"sommeDepense",text:"Total Dépense ", footer: columnData => columnData.reduce((acc, item) => acc + (item==null?0:item), 0),
+      },{dataField:"sommeDepense",text:"Total Dépense ",formatter: (cellContent ,row) => {
+        if ( row.sommeDepense==null) {
+          return (
+           <span>0</span>
+          )
+        }if ( row.sommeDepense!=null){  
+        return(
+          <span>{row.sommeDepense}</span>
+        )  }   
+    }, footer: columnData => columnData.reduce((acc, item) => acc + (item==null?0:item), 0),
         },
         {dataField:"solde",text:"Solde ", footer: columnData => columnData.reduce((acc, item) => acc +item, 0),
       },
@@ -166,38 +173,35 @@ const filterAll=()=>{
           <div style={{display:"flex",marginLeft: '10px'}}>
           <Div1>
            <LabelM l w>Du</LabelM>
-           <InputDate b type="date" onChange={(e)=>setDateDu(e.target.value)}></InputDate>
+           <InputDate b type="date" defaultValue={date} onChange={(e)=>setDateDu(e.target.value)}></InputDate>
           </Div1>
           <Div1>
            <LabelM l w>Au</LabelM>
-           <InputDate b type="date" onChange={(e)=>setDateAu(e.target.value)} ></InputDate>
+           <InputDate b type="date" defaultValue={date} onChange={(e)=>setDateAu(e.target.value)} ></InputDate>
           </Div1>
           <div  style={{marginTop:"50px",marginRight:'50px'}}>
           <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterDateDuAu}></AiOutlineFilter></IconContext.Provider>
           </div>
           </div>
-          <Div1>
-           <LabelM l w>Date</LabelM>
-           <InputM b type="date" onChange={(e)=>setGivenDate(e.target.value)}></InputM>&nbsp;
-          <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterDate}></AiOutlineFilter></IconContext.Provider>
-   
-          </Div1>
+          
           <Div1>
            <LabelM l w>Bénéficiaire</LabelM>
            <Select onChange={(e)=>setGivenUserId(e.target.value)}>
+           <option>#Tous#</option>
            {users.map((user) => {return(
                     <>
-                    <option value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>
+                    <option defaultValue='rien' value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>
                     </>
                )})}
            </Select>
            <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterUser}></AiOutlineFilter></IconContext.Provider></ButtonM>
           </Div1>
+        
           <Div1>
            <LabelM l w>Opération</LabelM>
            <Select onChange={(e)=>setGivenLibelle(e.target.value)}>
-           <option value="1">Réglement Facture</option>
-           <option value="2">Frais OM </option>
+           <option value="1">Règlement Facture</option>
+           <option value="2">Frais ordre Mission </option>
            <option value="3">Frais femme ménage</option>
            <option value="4">Avance Sur salaire</option>
            <option value="5">Achats</option>
@@ -227,7 +231,7 @@ const filterAll=()=>{
              
           </div>
           <div style={{marginLeft:"50px",marginTop:"30px",marginBottom:"50px"}}>
-          <ButtonM>Filter All &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterAll}></AiOutlineFilter></IconContext.Provider></ButtonM>
+          {/* <ButtonM>Filter All &nbsp;<IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterAll}></AiOutlineFilter></IconContext.Provider></ButtonM> */}
           </div>
         
           

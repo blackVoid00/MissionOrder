@@ -119,37 +119,37 @@ const User = () => {
     const [dateDebutContrat,setDateD]=useState("")
     const [dateFinContrat,setDateF]=useState("")
     const [status,setStatus]=useState(0)
-
+   console.log(nom)
  const postUser=()=>{
     isAddmode?
     axios.post("https://localhost:7111/api/Utilisateurs",{
-        nom:  nom,
-        prenom: prenom,
-        matricule: matricule,
+        nom:nom,
+        prenom:prenom,
+        matricule:matricule,
         mail: mail,
         pwd: pwd,
         role:role ,
-        identifiant: identifiant,
-        idService: idService,
-        cin:  cin,
-        numeroTel: numeroTel,
-        dateDebutContrat: dateDebutContrat,
+        identifiant:identifiant,
+        idService:idService,
+        cin:cin,
+        numeroTel:numeroTel,
+        dateDebutContrat:dateDebutContrat,
         dateFinContrat:dateFinContrat,
         status:status
       }).then((response)=>{
         alert("user inserted successfully");
     }):axios.put(`https://localhost:7111/api/Utilisateurs/${id}`,{
-        nom:  nom,
-        prenom: prenom,
-        matricule: matricule,
-        mail: mail,
+        nom:nom,
+        prenom:prenom,
+        matricule:matricule,
+        mail:mail,
         pwd: pwd,
         role:role ,
-        identifiant: identifiant,
-        idService: idService,
-        cin:  cin,
-        numeroTel: numeroTel,
-        dateDebutContrat: dateDebutContrat,
+        identifiant:identifiant,
+        idService:idService,
+        cin:cin,
+        numeroTel:numeroTel,
+        dateDebutContrat:dateDebutContrat,
         dateFinContrat:dateFinContrat,
         status:status
       }).then((response)=>{
@@ -189,9 +189,7 @@ const User = () => {
         })
     }
  },[])
- console.log(users)
  
- console.log(users)
  return (
    
         <MainDiv>
@@ -258,11 +256,11 @@ const User = () => {
             <Div>
            
                 <Label> Date Début contrat</Label>
-                <Input type="date"  {...register('infoDateDebutContrat')}  onChange={(e)=>setDateD(e.target.value)} ></Input>
+                <Input type={isAddmode?"date":"text"}  {...register('infoDateDebutContrat')}  onChange={(e)=>setDateD(e.target.value)} ></Input>
             </Div>
             <Div>
                 <Label> Date Fin contrat</Label>
-                <Input {...register('infoDateFinContrat')} type="date"  onChange={(e)=>setDateF(e.target.value)} ></Input>
+                <Input {...register('infoDateFinContrat')} type={isAddmode?"date":"text"}  onChange={(e)=>setDateF(e.target.value)} ></Input>
             </Div>
             <Div>
                 <Label>Statut</Label>
