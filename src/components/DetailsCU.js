@@ -21,23 +21,15 @@ const DetailsCU = () => {
     const [au,setDateAu]=useState(date)
 
     const filterDateDuAu=()=>{
-      axios.get(`https://localhost:7111/api/GetBcOfThisDateInterval/${du}/${au}`).then((response) => {
-        
-      })
-}
-    useEffect(() => {
-      axios.get(`https://localhost:7111/api/GetDebitCreditTotal/${id}`).then((response) => {
+      axios.get(`https://localhost:7111/api/GetDuAuDebitCreditTotalOfUser/${id}/${du}/${au}`).then((response) => {
         setCreditDebit(response.data)
-       });
-       axios.get(`https://localhost:7111/api/GetDepenseTotal/${id}`).then((response) => {
-        setTotalDepense(response.data)
-       });
-       
-   })
-
+      })
+    
+} 
+   
    const T= CreditDebit.map( c => {
     const matched = Depense.find(d => c.idBc === d.idBc)
-               return {...c,...matched,solde:Number(c.sommeCredit)-(Number(matched?.sommeDepense) + Number(c.sommeDebit))}
+               return {...c,...matched,solde:Number((c.sommeCredit)==null?0:c.sommeCredit)-(Number(matched?.sommeDepense) + Number((c.sommeDebit)==null?0:c.sommeDebit))}
    
   }
 )
@@ -47,10 +39,46 @@ const columns=[
     return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
   }},
     {dataField:"idBc",text:"N° Bon caisse",footer:""},
-    {dataField:"sommeCredit",text:"Total Crédit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
-    {dataField:"sommeDebit",text:"Total Rendu", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
-    {dataField:"sommeDepense",text:"Total Dépenses", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
-    {dataField:"solde",text:"Solde", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+    {dataField:"sommeCredit",text:"Total Crédit",formatter: (cellContent ,row) => {
+      if ( row.sommeCredit==null) {
+        return (
+         <span>0</span>
+        )
+      }if ( row.sommeCredit!=null){  
+      return(
+        <span>{row.sommeCredit}</span>
+      )  }   
+  }, footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+    {dataField:"sommeDebit",text:"Total Rendu",formatter: (cellContent ,row) => {
+      if ( row.sommeDebit==null || isNaN(row.sommeDebit)) {
+        return (
+         <span>0</span>
+        )
+      }if ( row.sommeDebit!=null){  
+      return(
+        <span>{row.sommeDebit}</span>
+      )  }   
+  }, footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+    {dataField:"sommeDepense",text:"Total Dépenses", formatter: (cellContent ,row) => {
+      if ( row.sommeDepense==null || isNaN(row.sommeDepense)) {
+        return (
+         <span>0</span>
+        )
+      }if ( row.sommeDepense!=null){  
+      return(
+        <span>{row.sommeDepense}</span>
+      )  }   
+  },footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+    {dataField:"solde",text:"Solde",formatter: (cellContent ,row) => {
+      if ( isNaN(row.solde)) {
+        return (
+         <span>0</span>
+        )
+      }if ( row.solde!=null){  
+      return(
+        <span>{row.solde}</span>
+      )  }   
+  }, footer: columnData => columnData.reduce((acc, item) => acc + (item==null || isNaN(item))?0:item, 0)},
     {dataField:"solde",text:"Statut",footer:"",formatter: (cellContent ,row) => {
       if ( row.solde < 0) {
         return (
@@ -64,7 +92,7 @@ const columns=[
            <GiReceiveMoney/>
            </IconContext.Provider>
         )
-      }if(row.solde==0){
+      }if(row.solde==0 || isNaN(row.solde)){
         return(
           <IconContext.Provider value={{ color: 'green',size:"30px" }}> 
           <AiOutlineCheck/>
