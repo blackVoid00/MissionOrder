@@ -7,8 +7,46 @@ import moment from 'moment'
 import {AiOutlineCheck,AiOutlineFilter} from 'react-icons/ai'
 import {GiReceiveMoney,GiPayMoney} from 'react-icons/gi'
 import { IconContext } from 'react-icons/lib';
-import {Div1, InputDate,LabelM} from './StyleMsC';
 import debiteur from '../assets/Debiteur.png'
+import styles from "styled-components"
+
+
+
+const Div1 =styles.div`
+display:inline-block !important;
+padding:5px 5px 5px 5px;
+margin-top:10px;
+`
+
+const InputDate=styles.input`
+margin-bottom:10px;
+margin-top:10px;
+margin-right:10px;
+height:35px !important;
+width:120px;
+background:#F0F0F0;
+font: inherit;
+border: 0;
+outline: 0;
+&:focus{
+outline: none  !important;
+}
+text-align:left !important;
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
+`
+const LabelM=styles.label`
+display: inline-block;
+width: 50px;
+font-weight:bold !important;
+color:#1c539b;
+
+`
+
+
+
+
 const DetailsCU = () => {
     const {id}=useParams();
    
@@ -23,7 +61,10 @@ const DetailsCU = () => {
     const filterDateDuAu=()=>{
       axios.get(`https://localhost:7111/api/GetDuAuDebitCreditTotalOfUser/${id}/${du}/${au}`).then((response) => {
         setCreditDebit(response.data)
-      })
+      });
+      axios.get(`https://localhost:7111/api/GetDuAuTotalDepenseOfUser/${id}/${du}/${au}`).then((response) => {
+        setTotalDepense(response.data)
+      });
     
 } 
    
@@ -105,23 +146,23 @@ const columns=[
 ]
   return (
 
-<div style={{display:"flex"}}>
+<div style={{display:"flex",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)", marginTop:"100px"}}>
   <div>
-    <img src={debiteur}></img>
+    <img style={{marginTop: '100px'}} src={debiteur}></img>
   </div>
-<div style={{display:"inline-block",marginLeft:'200px'}}>
-<div style={{display:"inline-block",marginTop:"150px" ,height:"150px" ,width:"460px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
-          <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
+<div style={{display:"inline-block",marginLeft:'100px'}}>
+<div style={{display:"inline-block",marginTop:"50px" ,height:"150px",width:"460px"}}>
+         
           <div style={{display:"flex",marginLeft: '10px'}}>
           <Div1>
-           <LabelM l w>Du</LabelM>
+           <LabelM>Du</LabelM>
            <InputDate b type="date" defaultValue={date} onChange={(e)=>setDateDu(e.target.value)}></InputDate>
           </Div1>
           <Div1>
-           <LabelM l w>Au</LabelM>
+           <LabelM>Au</LabelM>
            <InputDate b type="date" defaultValue={date} onChange={(e)=>setDateAu(e.target.value)} ></InputDate>
           </Div1>
-          <div  style={{marginTop:"50px",marginRight:'50px'}}>
+          <div  style={{marginTop:"30px",marginLeft:'20px'}}>
           <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterDateDuAu}></AiOutlineFilter></IconContext.Provider>
           </div>
           </div>
@@ -133,7 +174,7 @@ const columns=[
           
            
         </div>
-<div style={{marginTop: '100px'}}>
+<div style={{marginTop: '50px',marginRight:"50px",marginBottom:"150px"}}>
         <BootStrapTable      
         keyField='idBc'
         data={T}

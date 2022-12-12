@@ -90,7 +90,7 @@ const Button=styles.button`
 position: relative;
 border-width: 0px;
 border-style: solid;
-background-color:#B0C4DE ;
+background-color:#B0C4DE;
 font-weight:bold !important;
 cursor: pointer;
 font-weight:bold ;
@@ -111,15 +111,15 @@ const User = () => {
     const [matricule,setMat]=useState("")
     const [mail,setEmail]=useState("")
     const [pwd,setPwd]=useState("")
-    const [role,setRole]=useState(0)
+    const [role,setRole]=useState()
     const [identifiant,setId]=useState("")
-    const [idService,setService]=useState(1)
+    const [idService,setService]=useState()
     const [cin,setCin]=useState("")
     const [numeroTel,setTel]=useState("")
     const [dateDebutContrat,setDateD]=useState("")
     const [dateFinContrat,setDateF]=useState("")
-    const [status,setStatus]=useState(0)
-   console.log(nom)
+    const [status,setStatus]=useState()
+   const { register,setValue,getValues} = useForm();
  const postUser=()=>{
     isAddmode?
     axios.post("https://localhost:7111/api/Utilisateurs",{
@@ -138,33 +138,38 @@ const User = () => {
         status:status
       }).then((response)=>{
         alert("user inserted successfully");
+    }).catch((error) => {
+        console.log(error.response);
     }):axios.put(`https://localhost:7111/api/Utilisateurs/${id}`,{
-        nom:nom,
-        prenom:prenom,
-        matricule:matricule,
-        mail:mail,
-        pwd: pwd,
-        role:role ,
-        identifiant:identifiant,
-        idService:idService,
-        cin:cin,
-        numeroTel:numeroTel,
-        dateDebutContrat:dateDebutContrat,
-        dateFinContrat:dateFinContrat,
-        status:status
+        idUser:id,
+        nom:getValues("infoNom"),
+        prenom:getValues("infoPrenom"),
+        matricule:getValues("infoMatricule"),
+        mail:getValues("infoMail"),
+        pwd: getValues("infoPwd"),
+        role:getValues("infoRole") ,
+        identifiant:getValues("infoIdentifiant"),
+        idService:getValues("infoNumService"),
+        cin:getValues("infoCin"),
+        numeroTel:getValues("infoNumeroTel"),
+        dateDebutContrat:getValues("infoDateDebutContrat"),
+        dateFinContrat:getValues("infoDateFinContrat"),
+        status:getValues("infoStatus")
       }).then((response)=>{
-            alert("user inserted successfully")
+            alert("user updated successfully")
+    }).catch((error) => {
+        console.log(error.response);
     })
+    console.log(getValues("infoCin"))
  }
+
  const deleteUser=()=>{
     axios.delete(`https://localhost:7111/api/Utilisateurs/${id}`).then((response)=>{
        navigate("/userlist")
     })
 
  }
- console.log(status)  
  const [users,setUsers]=useState({})
- const { register,setValue} = useForm();
  
  useEffect(()=>{
     if(!isAddmode){
