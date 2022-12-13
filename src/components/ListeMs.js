@@ -196,6 +196,7 @@ const filterAll=()=>{
           <Div1>
            <LabelM l w>Bénéficiaire</LabelM>
            <Select onChange={(e)=>setGivenUserId(e.target.value)}>
+            <option>#Tous#</option>
            {users.map((user) => {return(
                     <>
                     <option value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>

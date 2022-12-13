@@ -8,10 +8,18 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import "./swiper.css"
-import { IconContext } from 'react-icons'
-import {FcSearch} from 'react-icons/fc'
+import debiteur from '../assets/Debiteur.png'
 
+const Main=styles.div`
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
+background-color:white;
+margin-top: 200px;
+display:flex;
+width:auto;
+margin-bottom:20px;
+border:2px solid black;
 
+`
 const Button=styles.button`
 border-width: 0px;
 border-style: solid;
@@ -43,10 +51,14 @@ font-size:15px;
 `
 const Card= styles.div`
 display:inline-block;
+margin-top:100px;
+border:2px solid black;
+`
+const CardImage= styles.div`
+display:inline-block;
 margin-top:20px;
 margin-bottom:20px;
-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
-background-color:white;
+border:2px solid black;
 `
 const Image= styles.img`
 width:120px;
@@ -73,9 +85,14 @@ const CompteUsers = () => {
  
   return (
     <>
-  
-      <Swiper   modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={50}
+  <Main>
+    <CardImage>
+    <div>
+    <img style={{marginTop: '50px'}} src={debiteur}></img>
+  </div>
+    </CardImage>
+  <Swiper   modules={[Navigation, Pagination, Scrollbar, A11y]}
+      spaceBetween={5}
       slidesPerView={3}
       navigation
       pagination={{ clickable: true }}
@@ -95,6 +112,8 @@ const CompteUsers = () => {
         </Swiper>
             
       
+  </Main>
+     
       
     </>
   )

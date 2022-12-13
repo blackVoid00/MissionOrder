@@ -7,7 +7,7 @@ import moment from 'moment'
 import {AiOutlineCheck,AiOutlineFilter} from 'react-icons/ai'
 import {GiReceiveMoney,GiPayMoney} from 'react-icons/gi'
 import { IconContext } from 'react-icons/lib';
-import debiteur from '../assets/Debiteur.png'
+
 import styles from "styled-components"
 
 
@@ -147,9 +147,9 @@ const columns=[
   return (
 
 <div style={{display:"flex",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)", marginTop:"100px"}}>
-  <div>
+  {/* <div>
     <img style={{marginTop: '100px'}} src={debiteur}></img>
-  </div>
+  </div> */}
 <div style={{display:"inline-block",marginLeft:'100px'}}>
 <div style={{display:"inline-block",marginTop:"50px" ,height:"150px",width:"460px"}}>
          

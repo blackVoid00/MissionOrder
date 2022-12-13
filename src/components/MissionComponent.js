@@ -206,6 +206,10 @@ const MissionComponent = () => {
                                 <option value="">Dépannage</option>
                                 <option value="">Autre</option>
                               </Select>
+                              <input id="file-input" type="file" style={{display :"none"}}></input>
+                          <IconContext.Provider value={{ color: 'black', size: '30px'}}>
+                          <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+                          </IconContext.Provider>
                            </Div1>
                            <Div1>
                          
@@ -213,14 +217,14 @@ const MissionComponent = () => {
                           <InputD  type="text" placeholder='entrer les details...' onChange={(e)=>setD(e.target.value)}></InputD>
                  
                            </Div1>
-                          <Div1>
+                          {/* <Div1>
                           <LabelM w>Fiche Intervention</LabelM>
                           <input id="file-input" type="file" style={{display :"none"}}></input>
                           <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                           <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                           </IconContext.Provider>
 
-                          </Div1>
+                          </Div1> */}
                           <Div1>
                            {/* <ButtonM onClick={handleShow}>Autre Mission</ButtonM> */}
                           </Div1>
@@ -233,85 +237,28 @@ const MissionComponent = () => {
         <MainDiv2>
             <Div3>
             <SousDiv1>
-         <Div1>
-           <LabelM> Gasoil :</LabelM>
-            <InputM type="text" placeholder='frais gazoil...' onChange={(e)=>setGazoil(e.target.value)} ></InputM>
-          
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-
-        </Div1> 
         <Div1>
-           <LabelM> Parking :</LabelM>
-            <InputM type="text" placeholder='frais parking...' onChange={(e)=>setParking(e.target.value)}></InputM>
-           
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
+          <LabelM>Type Dépense</LabelM>
+          <Select className='Select-Ms' onChange={(e)=>setNature(e.target.value)}>
+            <option>veuillez selectionner un choix</option>
+                                <option value="">Hotel</option>
+                                <option value="">Gasoil</option>
+                                <option value="">Taxi</option>
+                                <option value="">Repas</option>
+                                <option value="">Parking</option>
+                                <option value="">Divers</option>
+                                <option value="">Achats technique</option>
+                              </Select>
+                              <input id="file-input" type="file" style={{display :"none"}}></input>
+                <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                 </IconContext.Provider>
-
-        </Div1> 
-        <Div1>
-           <LabelM> Hotel :</LabelM>
-            <InputM type="text" placeholder='frais hotel...' onChange={(e)=>setHotel(e.target.value)}></InputM>
-          
-           
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-           
-        </Div1> 
-        <Div1>
-           <LabelM> Repas :</LabelM>
-            <InputM type="text" placeholder='frais repas...' onChange={(e)=>setRepas(e.target.value)}></InputM>
-         
-           
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-
+          <LabelM>Montant Dépense</LabelM>                    
+         <InputM type="text" placeholder='entrer un montant'></InputM>    
+         <LabelM> Total</LabelM>  
+         <InputM type="text" disabled value={total}></InputM>                   
         </Div1>
-        <Div1>
-           <LabelM> Taxi :</LabelM>
-            <InputM type="text" placeholder='frais taxi...' onChange={(e)=>setTaxi(e.target.value)}></InputM>
-          
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-
-        </Div1>
-        <Div1>
-           <LabelM> Ach/tech :</LabelM>
-            <InputM type="text" placeholder='frais achat tech...' onChange={(e)=>setAch(e.target.value)} ></InputM>
-          
-           
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-        </Div1>  
-        <Div1>
-           <LabelM> divers :</LabelM>
-            <InputM type="text" placeholder='autre...' onChange={(e)=>setDivers(e.target.value)}></InputM>
-           
-           
-            <input id="file-input" type="file" style={{display :"none"}}></input>
-                <IconContext.Provider value={{ color: 'white', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                </IconContext.Provider>
-
-        </Div1>
-        
         <Final>
-        <Div1>
-        <LabelM> Total</LabelM>    
-        <InputMT  type="text" disabled value={total}></InputMT>
-        </Div1>
          <Button left top bottom onClick={setFinalTotal}>Soumettre</Button>  
        
         </Final>

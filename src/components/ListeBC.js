@@ -63,7 +63,7 @@ const ListeBC = () => {
     const T= bc.map(c => {
       const matched = Depense.find(d => c.idBonCaisse === d.idBc)
                  return {...c,...matched,
-                          solde:Number(c.créditTotal)-(Number((matched?.sommeDepense)==null?0:matched?.sommeDepense) + Number(c.soldeTotal))}
+                          solde:Number(c.creditTotal)-(Number((matched?.sommeDepense)==null?0:matched?.sommeDepense) + Number(c.debitTotal))}
      
     })
     var curr = new Date();
@@ -106,34 +106,34 @@ const filterStatus=()=>{
         {dataField:"idBonCaisse",text:"N° Bc ",footer:"", sort: true },
         {dataField:"beneficiaire",footer:"",text:"Bénéficiaire"},
        
-        {dataField:"libellé",text:"Type Opération",footer:"" ,formatter: (cellContent ,row) => {
-          if ( row.libellé==1) {
+        {dataField:"libelle",text:"Type Opération",footer:"" ,formatter: (cellContent ,row) => {
+          if ( row.libelle==1) {
             return (
               <span>Règlement Facture</span>
             )
           }   
-          if ( row.libellé==2) {
+          if ( row.libelle==2) {
             return (
               <span>Frais ordre Mission</span>
             )
-          }  if ( row.libellé==3) {
+          }  if ( row.libelle==3) {
             return (
               <span>Frais femme ménage</span>
             )
-          }  if ( row.libellé==4) {
+          }  if ( row.libelle==4) {
             return (
               <span>Avance Sur salaire</span>
             )
-          }  if ( row.libellé==5) {
+          }  if ( row.libelle==5) {
             return (
               <span>Achats</span>
             )
           }    
       }},
         
-        {dataField:"soldeTotal",text:"Total Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)
+        {dataField:"debitTotal",text:"Total Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)
      
-    },{dataField:"créditTotal",text:"Total Crédit ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),
+    },{dataField:"creditTotal",text:"Total Crédit ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),
   
       },{dataField:"sommeDepense",text:"Total Dépense ",formatter: (cellContent ,row) => {
         if ( row.sommeDepense==null) {

@@ -98,20 +98,14 @@ const DetailsMs = () => {
     })
    })
     const columns=[
-      {dataField:"idSousMission",text:"Operation",footer:"Total"},
-      {dataField:"datec",footer:"",text:"Date ",formatter:
+      {dataField:"idDepense",text:"N°Operation",footer:"Total"},
+      {dataField:"dateCreation",footer:"",text:"Date ",formatter:
        (row,cellContent)=>{
         return moment(cellContent.datec).format("YYYY-MM-DDThh:mm:ss").split("T")[0]
        }
     },
-      {dataField:"gasoil",text:"Gasoil",footer:columnData => columnData.reduce((acc, item) => acc + item, 0)},
-      {dataField:"taxi",text:"Taxi", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
-      {dataField:"repas",text:"Repas", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
-      {dataField:"hotel",text:"Hotel", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
-      {dataField:"parking",text:"Parking", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
-      {dataField:"divers",text:"Divers", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
-      {dataField:"achTech",text:"Achat/Tech", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
-      {dataField:"totalSm",text:"Total", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+    {dataField:"typeDepense",text:"Type Dépense",footer:""},
+    {dataField:"montantDepense",text:"Montant", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
     
   ]
   var dateD=moment(details.dateD).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 

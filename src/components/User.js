@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
 import styles from "styled-components"
 import { useForm } from "react-hook-form";
-import {moment} from "moment"
-
+import { Modal } from 'react-bootstrap';
+import { ButtonM } from './StyleMsC'
 const MainDiv=styles.div`
 display:flex;
 width:900px;
@@ -98,13 +98,18 @@ width:140px;
 height:30px;
 margin-left:5px;
 margin-right:5px;
-margin-top:220px;
-margin-bottom:30px;
+margin-top:${props=>props.m?"0px":"220px"};
+margin-bottom:${props=>props.b?"0px":"30px"};
 `
 const User = () => {
     const {id}=useParams()
     const navigate = useNavigate()
-   
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => {
+      setShow(true)
+     
+    };
     const isAddmode=!id;
     const [nom,setNom]=useState("")
     const [prenom,setPrenom]=useState("")
@@ -278,13 +283,37 @@ const User = () => {
                 {isAddmode?  <> <Button onClick={postUser}>Ajouter</Button>
                 <Button disabled >Supprimer</Button>
                 <Button disabled>Modifier</Button></>: <> <Button disabled >Ajouter</Button>
-                <Button onClick={deleteUser} >Supprimer</Button>
+                <Button onClick={handleShow} >Supprimer</Button>
                 <Button onClick={postUser}>Modifier</Button></>}
                
                
             </DivB>
                 
                 </Div2>
+                <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+      
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+              
+                <p>Êtes-vous sûr de vouloir supprimer cet utilisateur {getValues("infoPrenom")} &nbsp; {getValues("infoNom")} ?</p>
+               
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button m b onClick={deleteUser} >Oui</Button>
+                  <Button m b onClick={handleClose} >Non</Button>
+                </Modal.Footer>
+         
+         </Modal>
         </MainDiv>
     
   )

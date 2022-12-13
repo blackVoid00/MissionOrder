@@ -113,6 +113,7 @@ const filterStatus=()=>{
             <Div1>
              <LabelM l w>Matricule</LabelM>
              <Select onChange={(e)=>setGivenMatricule(e.target.value)}>
+             <option>#Tous#</option>
              {u.map((user) => {return(
                       <>
                       <option value={user.infoMatricule}>{user.infoMatricule}</option>
@@ -124,6 +125,7 @@ const filterStatus=()=>{
             <Div1>
              <LabelM l w>Utilisateur</LabelM>
              <Select onChange={(e)=>setGivenUserId(e.target.value)}>
+             <option>#Tous#</option>
              {u.map((user) => {return(
                       <>
                       <option value={user.infoId}>{user.infoNom}</option>
@@ -135,9 +137,11 @@ const filterStatus=()=>{
            
             <Div1>
              <LabelM l w>Service</LabelM>
+             
              <Select onChange={(e)=>setGivenService(e.target.value)}>
              
                       <>
+                      <option>#Tous#</option>
                       <option value='1'>Département ingénierie informatique</option>
                       <option value='2'> Département technique</option>
                       <option value='3'>Département Administratif</option>

@@ -219,23 +219,23 @@ console.log(boncaisseEncourant)
  const Encaissement=()=>{
          axios.post('https://localhost:7111/api/SBC',{
           idBonCaisse: boncaisseEncourant,
-          credit: 0,
+          creditOperation: 0,
           dateCreation: dateEntreeCaisse,
-          debit: debitEntree,
-          type:libelleEntreeCaisse
+          debitOperation: debitEntree,
+          typeOperation:libelleEntreeCaisse
          }).then((response)=>{
-          alert("sbc encaissement created successfully")
+          
          })
  }
  const Decaissement=()=>{
   axios.post('https://localhost:7111/api/SBC',{
     idBonCaisse: boncaisseEncourant,
-    credit: creditSortie,
+    creditOperation: creditSortie,
     dateCreation: dateSortieCaisse,
-    debit: 0,
-    type:libelleSortieCaisse
+    debitOperation: 0,
+    typeOperation:libelleSortieCaisse
   }).then((response)=>{
-   alert("sbc decaissement created successfully")
+   
   })
 
  }

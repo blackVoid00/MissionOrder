@@ -93,12 +93,15 @@ const CreerMS = () => {
   const [users,setUsers] =useState([])
   const [bcNumbersList,setBcList]=useState([])
   const [value,setOptionUser]=useState(0)
-  const [dateCreation,setDateCreation]=useState()
+  const [dateCreation,setDateCreation]=useState(date)
   const [numBc,setNumBc]=useState(0)
   const [projet,setProjet]=useState("")
   const [dateDebut,setDateDebut]=useState( )
   const [dateFin,setDateFin]=useState()
   const [numMission,setNumeroMission]=useState("")
+  var curr = new Date();
+  curr.setDate(curr.getDate());
+  var date = curr.toISOString().substring(0,10);
   const sendData=()=>{
      axios.post("https://localhost:7111/api/Missions",{
       numeroMission: numMission,
@@ -138,11 +141,12 @@ const CreerMS = () => {
       </DivInput>
         <DivInput>
         <Label>Date Création</Label>
-        <Input l type="date" onChange={(e)=>setDateCreation(e.target.value)}></Input>
+        <Input l type="date" defaultValue={date} onChange={(e)=>setDateCreation(e.target.value)}></Input>
       </DivInput>
         <DivInput>
         <Label>Bénéficiaire</Label>
         <Select   onChange={(e)=>setOptionUser(e.target.value)}>
+        <option>Veuillez selectionner un choix</option>
         {users.map((user)=><option value={user.infoId}>{user.infoNom} {user.infoPrenom}</option>)}
         </Select>
       </DivInput>

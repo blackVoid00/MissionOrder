@@ -1,8 +1,10 @@
 
 .swiper {
-    width:900px;
-    margin-top: 200px;
-    margin-left: 350px;
+    width:800px;
+    margin-left:150px;
+    margin-right: 50px;
+    margin-bottom:20px;
+border:2px solid black;
   }
   
 .swiper-slide {

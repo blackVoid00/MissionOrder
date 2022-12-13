@@ -110,16 +110,15 @@ const CreerBs = () => {
      const [dateC,setDateC]=useState(date)
      const [value,setOptionUser]=useState("")
      const [libelle,setOptionLibelle]=useState("")
-
+     const [credit,setCredit]=useState(0)
      const createBc=()=>{
             axios.post(url2,{
                dateCreation: dateC,
                idUser: value,
-               libellé: libelle,
-               créditTotal: 0,
-               soldeTotal: 0,
-               dateExpiration: "2022-12-01T00:00:00.000",
-               etat: 0
+               libelle: libelle,
+               creditTotal: credit,
+               debitTotal: 0,
+               etatBonCaisse: 0
             }).then((response)=>{
                alert("bc created successfully")
             })
@@ -148,7 +147,7 @@ const CreerBs = () => {
         <DivInput>
             <Label>Bénéficiaire </Label>
              <Select onChange={(e)=>setOptionUser(e.target.value)}>
-             <option></option>
+             <option>Veuillez selectionner un choix</option>
                {users.map((user) => {return(
                     <>
                     <option value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>
@@ -159,13 +158,17 @@ const CreerBs = () => {
         <DivInput>
             <Label> Opération</Label>
              <Select onChange={(e)=>setOptionLibelle(e.target.value)}>
-               <option></option>
+               <option>Veuillez selectionner un choix</option>
                 <option value="1">Règlement Facture</option>
                 <option value="2">Frais ordre Mission </option>
                 <option value="3">Frais femme ménage</option>
                 <option value="4">Avance Sur salaire</option>
                 <option value="5">Achats</option>
              </Select>
+        </DivInput>
+        <DivInput>
+            <Label>Crédit </Label>
+             <Input type="text" onChange={(e)=>setCredit(e.target.value)} placeholder="entrer le montant à créditer"></Input>
         </DivInput>
        <Div>
        </Div>
