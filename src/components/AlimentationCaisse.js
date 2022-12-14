@@ -1,7 +1,7 @@
 import React ,{useState, useEffect} from 'react'
 import axios from 'axios'
 import styles from 'styled-components'
-import bcpic from "../assets/bcPic2.png"
+import caissepic from "../assets/caisse.png"
 
 const MainDiv = styles.div`
 display:flex;
@@ -100,79 +100,85 @@ outline: none  !important;
 }
 `
 
-const CreerBs = () => {
-     const url="https://localhost:7111/api/Utilisateurs"
+const AlimentationCaisse = () => {
      const url2="https://localhost:7111/api/PostBoncaisse"
      var curr = new Date();
      curr.setDate(curr.getDate());
      var date = curr.toISOString().substring(0,10);
-     const [users,setUsers]=useState([])
      const [dateC,setDateC]=useState(date)
-     const [value,setOptionUser]=useState("") 
+     const [libelle,setOptionLibelle]=useState("")
      const [credit,setCredit]=useState(0)
+     const [debit,setDebit]=useState(0)
+     const [showDebit,setShowDebit]=useState(false)
+     const [showCredit,setShowCredit]=useState(false)
      const createBc=()=>{
             axios.post(url2,{
                dateCreation: dateC,
-               idUser: value,
-               libelle: "2",
+               idUser: 61,
+               libelle: libelle,
                creditTotal: credit,
-               debitTotal: 0,
-               etatBonCaisse: 0
+               debitTotal: debit,
+               etatBonCaisse: 1
             }).then((response)=>{
                alert("bc created successfully")
             })
      }
-     useEffect(() => {
-
-          axios.get(url).then((response) => {
-
-         setUsers(response.data)
-
-          });
+     useEffect(()=>{
+        if(libelle==6){
+            setShowDebit(true)
+            setShowCredit(false)
+        }else{
+            setShowDebit(false)
+            setShowCredit(true)
+    }
+        
      })
-       
   return (
    <MainDiv>
      
     <Div2>
     
       <div>
-      <div><H1>Formulaire de création de Bon de Caisse</H1></div>
+      <div><H1>Menu Caisse</H1></div>
       <DivInput>
             <Label>Date Creation </Label>
              <Input type="date" defaultValue={date} onChange={(e)=>setDateC(e.target.value)}></Input>
         </DivInput>
        
         <DivInput>
-            <Label>Bénéficiaire </Label>
-             <Select onChange={(e)=>setOptionUser(e.target.value)}>
-             <option>Veuillez selectionner un choix</option>
-               {users.map((user) => {return(
-                    <>
-                    <option value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>
-                    </>
-               )})}
-             </Select>
+            <Label>Bénéficiaire</Label>
+             <Input value="STE RIFL" disabled></Input>
         </DivInput>
         <DivInput>
             <Label> Opération</Label>
-
-                < Input value="Frais ordre Mission" disabled></Input>
+             <Select onChange={(e)=>setOptionLibelle(e.target.value)}>
+               <option>Veuillez selectionner un choix</option>
+                <option value="1">Règlement Facture</option>
+                <option value="6">Alimentation de Caisse</option>
+                <option value="3">Frais femme ménage</option>
+                <option value="4">Avance Sur salaire</option>
+                <option value="5">Achats</option>
+             </Select>
         </DivInput>
-        <DivInput>
-            <Label>Crédit </Label>
-             <Input type="text" onChange={(e)=>setCredit(e.target.value)} placeholder="entrer le montant à créditer"></Input>
-        </DivInput>
+        {showCredit &&  <DivInput>
+            <Label>Crédit</Label>
+             <Input type="text" onChange={(e)=>setCredit(e.target.value)} placeholder="entrer une somme"></Input>
+        </DivInput>}
+        {showDebit && <DivInput>
+            <Label>Débit</Label>
+             <Input type="text" onChange={(e)=>setDebit(e.target.value)} placeholder="entrer une somme"></Input>
+        </DivInput>}
+        
        <Div>
        </Div>
        <Button onClick={createBc}>Créer</Button>
       </div>
-      <div>
-          <img src={bcpic}></img>
+      <div style={{marginLeft:"80px",marginTop:"50px"}}>
+          <img src={caissepic}></img>
      </div>
     </Div2>
    </MainDiv>
   )
 }
 
-export default CreerBs 
+export default AlimentationCaisse

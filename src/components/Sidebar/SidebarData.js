@@ -78,7 +78,7 @@ export const SidebarData = [
     subNav: [
       {
         title: 'Alimentation Caisse',
-        path: '/app',
+        path: '/alimentation',
         icon: <FaIcons.FaCashRegister/>
       }
     ]

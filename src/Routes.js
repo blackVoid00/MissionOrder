@@ -21,11 +21,13 @@ import PublicRoute from "./components/PublicRoute";
 import DetailsCU from "./components/DetailsCU";
 import ListeUser from "./components/ListeUser";
 import Home2 from "./components/Home2"
+import AlimentationCaisse from "./components/AlimentationCaisse";
 const Routing = () => {
     return (
         <Routes>
             <Route exact path="/" element={<ProtectedRoute></ProtectedRoute>}>
                     <Route  path="/testing" element={<Layout><Test></Test></Layout>}></Route>
+                    <Route  path="/alimentation" element={<Layout><AlimentationCaisse></AlimentationCaisse></Layout>}></Route>
                     <Route  path="/compteuser" element={<Layout><CompteUsers></CompteUsers></Layout>}></Route>
                     <Route  path="/cuswipe/:id" element={<Layout><DetailsCU></DetailsCU></Layout>}></Route>
                     <Route  path="/app" element={<Layout><Home2></Home2></Layout>}></Route>

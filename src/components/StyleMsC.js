@@ -4,8 +4,6 @@ import image from "../assets/upload.png"
 export const MainM=styles.div`
 display:flex;
 justify-content:center;
-background-color: white;
-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
 
 `
 export const H1=styles.h1`
@@ -20,13 +18,17 @@ justify-content:center;
 margin-right:0px;
 margin-top:1%;
 width:100vh;
-
+background-color: white;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
 `
 export const MainDiv2 = styles.div`
 display:inline-block;
 margin-top:1%;
-width:70vh;
-height:700px;
+width:400px;
+height:380px;
+margin-left:50px;
+background-color: white;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
 ` 
 
 export const SousDiv1=styles.div`
@@ -206,9 +208,8 @@ font-weight:bold !important;
 font-weight:bold ;
 width:140px;
 height:30px;
-margin-left:240px;
-margin-top:50px;
-margin-bottom:50px;
+margin-left:140px;
+margin-top:20px;
 text-align:center !important;
 cursor:pointer;
 &:focus{

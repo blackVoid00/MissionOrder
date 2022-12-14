@@ -258,10 +258,10 @@ const MissionComponent = () => {
          <LabelM> Total</LabelM>  
          <InputM type="text" disabled value={total}></InputM>                   
         </Div1>
-        <Final>
+       
          <Button left top bottom onClick={setFinalTotal}>Soumettre</Button>  
        
-        </Final>
+       
          </SousDiv1>
          
             </Div3>

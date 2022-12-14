@@ -110,24 +110,27 @@ const CreerMS = () => {
       totalMission: 0,
       idUser: value,
       etatMission: "F",
-      valideResponsable: "N",
-      valideRh: "N",
+      valideParSuperviseur: "N",
+      valideParAdministrateur: "N",
       objetMission: projet,
-      dateDepart: dateDebut,
-      dateRetour: dateFin,
+      dateDebut: dateDebut,
+      dateFin: dateFin,
       dureeIntervention: 0
      }).then((response) => {
       alert("mission created successfully")
      })
   }
+  const getBcListOfEachUser=(v)=>{
+    axios.get(`https://localhost:7111/api/GetAllBcOfAGivenUser/${v}`).then((response) => {
+      setBcList(response.data)
+     
+ })
+  }
   useEffect(()=> {
    axios.get(url).then((response) => {
      setUsers(response.data)
     })
-    axios.get(`https://localhost:7111/api/GetAllBcOfAGivenUser/${value}`).then((response) => {
-               setBcList(response.data)
-              
-          })
+   getBcListOfEachUser(value)
   })
   return (
     <>
@@ -153,6 +156,7 @@ const CreerMS = () => {
       <DivInput>
         <Label>N° Bon Caisse</Label>
         <Select  onChange={(e)=>setNumBc(e.target.value)}>
+          <option>veuillez selectionner un choix</option>
         {bcNumbersList.map((bc)=><option value={bc.idBonCaisse}>{bc.idBonCaisse}</option>)}
         </Select>
       </DivInput>
