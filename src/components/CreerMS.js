@@ -92,13 +92,14 @@ const CreerMS = () => {
   const url = "https://localhost:7111/api/Utilisateurs"
   const [users,setUsers] =useState([])
   const [bcNumbersList,setBcList]=useState([])
-  const [value,setOptionUser]=useState(0)
+  const [value,setOptionUser]=useState("")
   const [dateCreation,setDateCreation]=useState(date)
   const [numBc,setNumBc]=useState(0)
   const [projet,setProjet]=useState("")
   const [dateDebut,setDateDebut]=useState( )
   const [dateFin,setDateFin]=useState()
   const [numMission,setNumeroMission]=useState("")
+  
   var curr = new Date();
   curr.setDate(curr.getDate());
   var date = curr.toISOString().substring(0,10);
@@ -120,17 +121,22 @@ const CreerMS = () => {
       alert("mission created successfully")
      })
   }
-  const getBcListOfEachUser=(v)=>{
+  console.log(value)
+  console.log(bcNumbersList)
+  const getListBc=(v) => {
     axios.get(`https://localhost:7111/api/GetAllBcOfAGivenUser/${v}`).then((response) => {
-      setBcList(response.data)
-     
+      setBcList(()=>response.data)
  })
+  }
+  const changeValue=(e)=>{
+   getListBc(e.target.value)
+   setOptionUser(e.target.target) 
   }
   useEffect(()=> {
    axios.get(url).then((response) => {
      setUsers(response.data)
     })
-   getBcListOfEachUser(value)
+  
   })
   return (
     <>
@@ -148,7 +154,7 @@ const CreerMS = () => {
       </DivInput>
         <DivInput>
         <Label>Bénéficiaire</Label>
-        <Select   onChange={(e)=>setOptionUser(e.target.value)}>
+        <Select  onChange={changeValue}>
         <option>Veuillez selectionner un choix</option>
         {users.map((user)=><option value={user.infoId}>{user.infoNom} {user.infoPrenom}</option>)}
         </Select>
