@@ -2,7 +2,7 @@ import React ,{useState, useEffect} from 'react'
 import axios from 'axios'
 import styles from 'styled-components'
 import bcpic from "../assets/bcPic2.png"
-
+import {Modal} from 'react-bootstrap'
 const MainDiv = styles.div`
 display:flex;
 width:auto;
@@ -99,6 +99,22 @@ cursor:pointer;
 outline: none  !important;
 }
 `
+const ButtonM=styles.button`
+border-width: 0px;
+border-style: solid;
+background-color:#B0C4DE ;
+font-weight:bold !important;
+font-weight:bold ;
+width:140px;
+height:30px;
+margin-left:180px;
+margin-bottom:30px;
+text-align:center !important;
+cursor:pointer;
+&:focus{
+outline: none  !important;
+}
+`
 
 const CreerBs = () => {
      const url="https://localhost:7111/api/Utilisateurs"
@@ -106,6 +122,12 @@ const CreerBs = () => {
      var curr = new Date();
      curr.setDate(curr.getDate());
      var date = curr.toISOString().substring(0,10);
+     const [show, setShow] = useState(false);
+     const handleClose = () => setShow(false);
+     const handleShow = () => {
+       setShow(true)
+      
+     };
      const [users,setUsers]=useState([])
      const [dateC,setDateC]=useState(date)
      const [value,setOptionUser]=useState("") 
@@ -165,11 +187,39 @@ const CreerBs = () => {
         </DivInput>
        <Div>
        </Div>
-       <Button onClick={createBc}>Créer</Button>
+       <Button onClick={handleShow}>Créer</Button>
       </div>
       <div>
           <img src={bcpic}></img>
      </div>
+     <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+      
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+              
+                <p>Êtes-vous sûr de vouloir créer un nouveau bon de caisse ?</p>
+               
+                </Modal.Body>
+                <Modal.Footer>
+                  <div style={{display:"flex"}}>
+                  <ButtonM onClick={createBc} >Oui</ButtonM>
+                  <ButtonM  onClick={handleClose} >Non</ButtonM>
+                  </div>
+                  
+                </Modal.Footer>
+         
+         </Modal>
+    
     </Div2>
    </MainDiv>
   )

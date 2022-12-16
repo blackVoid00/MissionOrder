@@ -1,6 +1,6 @@
 import React from 'react';
 import * as IoIcons from 'react-icons/io';
-import * as RiIcons from 'react-icons/ri';
+
 import * as BiIcons from 'react-icons/bi';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
@@ -57,7 +57,7 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: 'Mission fill',
+        title: 'Formulaire Mission',
         path: '/mission',
         icon: <AiIcons.AiFillFileAdd />
       },
@@ -77,7 +77,7 @@ export const SidebarData = [
     iconOpened: <BiIcons.BiMinus />,
     subNav: [
       {
-        title: 'Alimentation Caisse',
+        title: 'Operations Diverses',
         path: '/alimentation',
         icon: <FaIcons.FaCashRegister/>
       }

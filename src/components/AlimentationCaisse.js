@@ -2,7 +2,7 @@ import React ,{useState, useEffect} from 'react'
 import axios from 'axios'
 import styles from 'styled-components'
 import caissepic from "../assets/caisse.png"
-
+import { Modal } from 'react-bootstrap'
 const MainDiv = styles.div`
 display:flex;
 width:auto;
@@ -99,7 +99,22 @@ cursor:pointer;
 outline: none  !important;
 }
 `
-
+const ButtonM=styles.button`
+border-width: 0px;
+border-style: solid;
+background-color:#B0C4DE ;
+font-weight:bold !important;
+font-weight:bold ;
+width:140px;
+height:30px;
+margin-left:180px;
+margin-bottom:30px;
+text-align:center !important;
+cursor:pointer;
+&:focus{
+outline: none  !important;
+}
+`
 const AlimentationCaisse = () => {
      const url2="https://localhost:7111/api/PostBoncaisse"
      var curr = new Date();
@@ -111,6 +126,12 @@ const AlimentationCaisse = () => {
      const [debit,setDebit]=useState(0)
      const [showDebit,setShowDebit]=useState(false)
      const [showCredit,setShowCredit]=useState(false)
+     const [show, setShow] = useState(false);
+     const handleClose = () => setShow(false);
+     const handleShow = () => {
+       setShow(true)
+      
+     };
      const createBc=()=>{
             axios.post(url2,{
                dateCreation: dateC,
@@ -158,6 +179,12 @@ const AlimentationCaisse = () => {
                 <option value="3">Frais femme ménage</option>
                 <option value="4">Avance Sur salaire</option>
                 <option value="5">Achats</option>
+                        {/* <option>Réglement Facture</option>
+                        <option>Achat Administratif</option>
+                        <option>Achat Technique</option>
+                        <option>Faris de Femme Menage</option>
+                        <option>Autres Achats</option>
+                        <option>Frais envoie de courriers</option> */}
              </Select>
         </DivInput>
         {showCredit &&  <DivInput>
@@ -171,12 +198,40 @@ const AlimentationCaisse = () => {
         
        <Div>
        </Div>
-       <Button onClick={createBc}>Créer</Button>
+       <Button onClick={handleShow}>Créer</Button>
       </div>
       <div style={{marginLeft:"80px",marginTop:"50px"}}>
           <img src={caissepic}></img>
      </div>
     </Div2>
+    <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+      
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+              
+                <p>Êtes-vous sûr de vouloir créer une nouvelle opération ?</p>
+               
+                </Modal.Body>
+                <Modal.Footer>
+                  <div style={{display:"flex"}}>
+                  <ButtonM onClick={createBc} >Oui</ButtonM>
+                  <ButtonM  onClick={handleClose} >Non</ButtonM>
+                  </div>
+                  
+                </Modal.Footer>
+         
+         </Modal>
+    
    </MainDiv>
   )
 }

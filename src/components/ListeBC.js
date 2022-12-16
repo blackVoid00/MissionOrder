@@ -74,23 +74,40 @@ const ListeBC = () => {
     const [givenUserId,setGivenUserId] = useState("rien")
     const [givenLibelle,setGivenLibelle] = useState("")
     const [givenStatus,setGivenStatus]= useState()
+
+
+
+
+    const onChangeStatus=(e)=>{
+      setCheckBox(e.target.checked)
+      setGivenStatus(e.target.value)
+      filterStatus(e.target.value) 
+    }
+    const OnChangeBeneficiaire=(e)=>{
+      setGivenUserId(e.target.value)
+      filterUser(e.target.value)
+    }
+    const onChangeLibelle=(e)=>{
+      setGivenLibelle(e.target.value)
+       filterLibelle(e.target.value)
+    }
   const filterDateDuAu=()=>{
          axios.get(`https://localhost:7111/api/GetBcOfThisDateInterval/${du}/${au}`).then((response) => {
            setBc(response.data)
          })
   }
-const filterUser=()=>{
-  axios.get(`https://localhost:7111/api/GetBcOfaGivenUser/${givenUserId}`).then((response) => {
+const filterUser=(v)=>{
+  axios.get(`https://localhost:7111/api/GetBcOfaGivenUser/${v}`).then((response) => {
     setBc(response.data)
   })
 }
-const filterLibelle=()=>{
-  axios.get(`https://localhost:7111/api/GetBcOfaGivenOperation/${givenLibelle}`).then((response) => {
+const filterLibelle=(v)=>{
+  axios.get(`https://localhost:7111/api/GetBcOfaGivenOperation/${v}`).then((response) => {
     setBc(response.data)
   })
 }
-const filterStatus=()=>{
-  axios.get(`https://localhost:7111/api/GetBcOfaGivenStatus/${givenStatus}`).then((response) => {
+const filterStatus=(v)=>{
+  axios.get(`https://localhost:7111/api/GetBcOfaGivenStatus/${v}`).then((response) => {
     setBc(response.data)
   })
 }
@@ -186,27 +203,28 @@ const filterStatus=()=>{
           
           <Div1>
            <LabelM l w>Bénéficiaire</LabelM>
-           <Select onChange={(e)=>setGivenUserId(e.target.value)}>
+           <Select onChange={OnChangeBeneficiaire}>
            <option>#Tous#</option>
            {users.map((user) => {return(
                     <>
-                    <option defaultValue='rien' value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>
+                    <option value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>
                     </>
                )})}
            </Select>
-           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterUser}></AiOutlineFilter></IconContext.Provider></ButtonM>
+           {/* <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterUser}></AiOutlineFilter></IconContext.Provider></ButtonM> */}
           </Div1>
         
           <Div1>
            <LabelM l w>Opération</LabelM>
-           <Select onChange={(e)=>setGivenLibelle(e.target.value)}>
+           <Select onChange={onChangeLibelle}>
+           <option>Veuillez selectionner un choix</option>
            <option value="1">Règlement Facture</option>
            <option value="2">Frais ordre Mission </option>
            <option value="3">Frais femme ménage</option>
            <option value="4">Avance Sur salaire</option>
            <option value="5">Achats</option>
            </Select>
-           <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterLibelle}></AiOutlineFilter></IconContext.Provider></ButtonM>
+           {/* <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterLibelle}></AiOutlineFilter></IconContext.Provider></ButtonM> */}
           </Div1>
         
           <br></br>  <br></br> 
@@ -215,16 +233,13 @@ const filterStatus=()=>{
              <div style={{display:"flex"}}>
              <div style={{display:"flex"}}>
               <Label1> Soldé</Label1>
-              <input type="checkbox" name="checkbox" onChange={(e)=>{setCheckBox(e.target.checked)
-              setGivenStatus(e.target.value)
-              }} onClick={CheckOneTime} value="1"></input>
+              <input type="checkbox" name="checkbox" onChange={onChangeStatus} onClick={CheckOneTime} value="1"></input>
               </div>
               &nbsp;&nbsp;
               <div style={{display:"flex"}}>
               <Label2 >Non Soldé</Label2>
-              <input type="checkbox" name="checkbox" onChange={(e)=>{setCheckBox(e.target.checked)
-              setGivenStatus(e.target.value)}} onClick={CheckOneTime} value="0" ></input>&nbsp;&nbsp;&nbsp;
-              <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterStatus}></AiOutlineFilter></IconContext.Provider>
+              <input type="checkbox" name="checkbox" onChange={onChangeStatus} onClick={CheckOneTime} value="0" ></input>&nbsp;&nbsp;&nbsp;
+              {/* <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterStatus}></AiOutlineFilter></IconContext.Provider> */}
               </div>
               
              </div>

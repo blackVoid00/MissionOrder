@@ -54,24 +54,40 @@ const ListeUser = () => {
     const [givenUserId,setGivenUserId] = useState()
     const [givenStatus,setGivenStatus]= useState()
     const [givenService,setGivenService]= useState()
-
-  const filterMatricule=()=>{
-         axios.get(`https://localhost:7111/api/GetUserByMatricule/${givenMatricule}`).then((response) => {
+    const onChangeMatricule=(e)=>{
+      setGivenMatricule(e.target.checked)  
+     filterMatricule(e.target.value) 
+    }
+    const onChangeStatus=(e)=>{
+      setCheckBox(e.target.checked)
+      setGivenStatus(e.target.value)
+      filterStatus(e.target.value) 
+    }
+    const OnChangeBeneficiaire=(e)=>{
+      setGivenUserId(e.target.value)
+      filterUser(e.target.value)
+    }
+    const OnChangeService=(e)=>{
+    setGivenService(e.target.value)
+    filterService(e.target.value)
+    }
+  const filterMatricule=(v)=>{
+         axios.get(`https://localhost:7111/api/GetUserByMatricule/${v}`).then((response) => {
           setUser(response.data)
          })
   }
-  const filterService=()=>{
-    axios.get(`https://localhost:7111/api/GetUserByService/${givenService}`).then((response) => {
+  const filterService=(v)=>{
+    axios.get(`https://localhost:7111/api/GetUserByService/${v}`).then((response) => {
       setUser(response.data)
     })
 }
-const filterUser=()=>{
-  axios.get(`https://localhost:7111/api/GetUserByFullName/${givenUserId}`).then((response) => {
+const filterUser=(v)=>{
+  axios.get(`https://localhost:7111/api/GetUserByFullName/${v}`).then((response) => {
     setUser(response.data)
   })
 }
-const filterStatus=()=>{
-  axios.get(`https://localhost:7111/api/GetUserByStatus/${givenStatus}`).then((response) => {
+const filterStatus=(v)=>{
+  axios.get(`https://localhost:7111/api/GetUserByStatus/${v}`).then((response) => {
     setUser(response.data)
   })
 }
@@ -112,7 +128,7 @@ const filterStatus=()=>{
             <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
             <Div1>
              <LabelM l w>Matricule</LabelM>
-             <Select onChange={(e)=>setGivenMatricule(e.target.value)}>
+             <Select onChange={onChangeMatricule}>
              <option>#Tous#</option>
              {u.map((user) => {return(
                       <>
@@ -120,11 +136,11 @@ const filterStatus=()=>{
                       </>
                  )})}
              </Select>
-             <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterMatricule}></AiOutlineFilter></IconContext.Provider></ButtonM>
+           
             </Div1>
             <Div1>
              <LabelM l w>Utilisateur</LabelM>
-             <Select onChange={(e)=>setGivenUserId(e.target.value)}>
+             <Select onChange={OnChangeBeneficiaire}>
              <option>#Tous#</option>
              {u.map((user) => {return(
                       <>
@@ -132,13 +148,13 @@ const filterStatus=()=>{
                       </>
                  )})}
              </Select>
-             <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterUser}></AiOutlineFilter></IconContext.Provider></ButtonM>
+         
             </Div1>
            
             <Div1>
              <LabelM l w>Service</LabelM>
              
-             <Select onChange={(e)=>setGivenService(e.target.value)}>
+             <Select onChange={OnChangeService}>
              
                       <>
                       <option>#Tous#</option>
@@ -149,7 +165,7 @@ const filterStatus=()=>{
                       </>
              
              </Select>
-             <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterService}></AiOutlineFilter></IconContext.Provider></ButtonM>
+             
             </Div1>
             <br></br>  <br></br> 
             <div style={{display:"flex"}}>
@@ -157,17 +173,13 @@ const filterStatus=()=>{
                <div style={{display:"flex"}}>
                <div style={{display:"flex"}}>
                 <Label1>Interdit</Label1>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="checkbox" name="checkbox" onChange={(e)=>{setCheckBox(e.target.checked)
-                setGivenStatus(e.target.value)
-                }} onClick={CheckOneTime} value="1"></input>
+                <input type="checkbox" name="checkbox" onChange={onChangeStatus} onClick={CheckOneTime} value="1"></input>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <div style={{display:"flex"}}>
                 <Label2 >Autorisé</Label2>
-                <input type="checkbox" name="checkbox" onChange={(e)=>{setCheckBox(e.target.checked)
-                setGivenStatus(e.target.value)
-                }} onClick={CheckOneTime} value="0" ></input>&nbsp;&nbsp;&nbsp;
-                <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterStatus}></AiOutlineFilter></IconContext.Provider>
+                <input type="checkbox" name="checkbox" onChange={onChangeStatus} onClick={CheckOneTime} value="0" ></input>&nbsp;&nbsp;&nbsp;
+             
                 </div>
                 
                </div>

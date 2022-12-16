@@ -5,14 +5,15 @@ import { useParams,useNavigate } from 'react-router-dom'
 import styles from "styled-components"
 import { useForm } from "react-hook-form";
 import { Modal } from 'react-bootstrap';
-import { ButtonM } from './StyleMsC'
+
+
 const MainDiv=styles.div`
 display:flex;
-width:900px;
+width:1000px;
 height:800px;
 background-color: white;
 box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-margin-left:18%;
+margin-left:200px;
 margin-top:2%;
 `
 const Div1 =styles.div`
@@ -21,9 +22,9 @@ display:inline-block;
 
 `
 const Div2 =styles.div`  
-margin-top:5%;
+margin-top:90px;
 display:inline-block;
-
+margin-left:50px;
 `
 const Div=styles.div`
 display:inline-block !important;
@@ -32,6 +33,7 @@ margin-top:10px;
 `
 const DivB=styles.div`
 display:flex;
+margin-top:20px;
 `
 
 const Label=styles.label`
@@ -101,15 +103,27 @@ margin-right:5px;
 margin-top:${props=>props.m?"0px":"220px"};
 margin-bottom:${props=>props.b?"0px":"30px"};
 `
-const User = () => {
+const CreerUser = () => {
     const {id}=useParams()
     const navigate = useNavigate()
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => {
-      setShow(true)
+    const [showA, setShowA] = useState(false);
+    const [showD, setShowD] = useState(false);
+    const [showU, setShowU] = useState(false);
+    const handleCloseA = () => setShowA(false);
+    const handleCloseU = () => setShowU(false);
+    const handleCloseD = () => setShowD(false);
+    const handleShowA = () => {
+      setShowA(true)
      
     };
+    const handleShowD = () => {
+        setShowD(true)
+       
+      };
+      const handleShowU = () => {
+        setShowU(true)
+       
+      };
     const isAddmode=!id;
     const [nom,setNom]=useState("")
     const [prenom,setPrenom]=useState("")
@@ -280,22 +294,23 @@ const User = () => {
                 </Select>
             </Div>
             <DivB>
-                {isAddmode?  <> <Button onClick={postUser}>Ajouter</Button>
+                {isAddmode?  <> <Button onClick={handleShowA}>Ajouter</Button>
                 <Button disabled >Supprimer</Button>
                 <Button disabled>Modifier</Button></>: <> <Button disabled >Ajouter</Button>
-                <Button onClick={handleShow} >Supprimer</Button>
-                <Button onClick={postUser}>Modifier</Button></>}
+                <Button onClick={handleShowD} >Supprimer</Button>
+                <Button onClick={handleShowU}>Modifier</Button></>}
                
                
             </DivB>
                 
                 </Div2>
+                
                 <Modal
         aria-labelledby="contained-modal-title-vcenter"
         className="special_modal"
       
-        show={show}
-        onHide={handleClose}
+        show={showD}
+        onHide={handleCloseD}
         backdrop="static"
         keyboard={false}
         style={{color: "black"}}>
@@ -310,7 +325,55 @@ const User = () => {
                 </Modal.Body>
                 <Modal.Footer>
                   <Button m b onClick={deleteUser} >Oui</Button>
-                  <Button m b onClick={handleClose} >Non</Button>
+                  <Button m b onClick={handleCloseD} >Non</Button>
+                </Modal.Footer>
+         
+         </Modal>
+         <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+      
+        show={showU}
+        onHide={handleCloseU}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+              
+                <p>Êtes-vous sûr de vouloir mettre à jour cet utilisateur {getValues("infoPrenom")} &nbsp; {getValues("infoNom")} ?</p>
+               
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button m b onClick={postUser} >Oui</Button>
+                  <Button m b onClick={handleCloseU} >Non</Button>
+                </Modal.Footer>
+         
+         </Modal>
+         <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+      
+        show={showA}
+        onHide={handleCloseA}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+              
+                <p>Êtes-vous sûr de vouloir ajouter cet utilisateur {getValues("infoPrenom")} &nbsp; {getValues("infoNom")} ?</p>
+               
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button m b onClick={postUser} >Oui</Button>
+                  <Button m b onClick={handleCloseA} >Non</Button>
                 </Modal.Footer>
          
          </Modal>
@@ -319,4 +382,4 @@ const User = () => {
   )
 }
 
-export default User
+export default CreerUser

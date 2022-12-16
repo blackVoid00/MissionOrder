@@ -4,6 +4,8 @@ import axios from "axios";
 import { useEffect } from 'react';
 import { useState } from 'react';
 import mspic from "../assets/msPic.png"
+import { Modal } from 'react-bootstrap';
+
 const MainDiv = styles.div`
 display:flex;
 width:auto;
@@ -87,6 +89,22 @@ cursor:pointer;
 outline: none  !important;
 }
 `
+const ButtonM=styles.button`
+border-width: 0px;
+border-style: solid;
+background-color:#B0C4DE ;
+font-weight:bold !important;
+font-weight:bold ;
+width:140px;
+height:30px;
+margin-left:109px;
+margin-bottom:30px;
+text-align:center !important;
+cursor:pointer;
+&:focus{
+outline: none  !important;
+}
+`
 
 const CreerMS = () => {
   const url = "https://localhost:7111/api/Utilisateurs"
@@ -99,7 +117,12 @@ const CreerMS = () => {
   const [dateDebut,setDateDebut]=useState( )
   const [dateFin,setDateFin]=useState()
   const [numMission,setNumeroMission]=useState("")
-  
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => {
+      setShow(true)
+     
+    };
   var curr = new Date();
   curr.setDate(curr.getDate());
   var date = curr.toISOString().substring(0,10);
@@ -179,10 +202,36 @@ const CreerMS = () => {
         <Input l type="date" onChange={(e)=>setDateFin(e.target.value)}></Input>
       </DivInput>
       <br></br> 
-       
+      <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+      
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+              
+                <p>Êtes-vous sûr de vouloir ajouter une nouvelle mission ?</p>
+               
+                </Modal.Body>
+                <Modal.Footer>
+                  <div style={{display:"flex"}}>
+                  <ButtonM onClick={sendData} >Oui</ButtonM>
+                  <ButtonM  onClick={handleClose} >Non</ButtonM>
+                  </div>
+                  
+                </Modal.Footer>
+         
+         </Modal>
     
       
-      <Button onClick={sendData}>Créer</Button> 
+      <Button onClick={handleShow}>Créer</Button> 
       
      
         </SousDiv1>

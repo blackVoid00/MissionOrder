@@ -183,10 +183,12 @@ const DetailsBc = () => {
   
    var date=moment(bc.dateCreationBc).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
    var time =moment(bc.dateCreationBc).format('YYYY-MM-DDThh:mm:ss').split('T')[1]
-
+   var curr = new Date();
+   curr.setDate(curr.getDate());
+   var date2 = curr.toISOString().substring(0,10);
     const [users,setUsers]=useState([])
-    const [dateSortieCaisse,setDateSortieCaisse]=useState()
-    const [dateEntreeCaisse,setDateEntreeCaisse]=useState()
+    const [dateSortieCaisse,setDateSortieCaisse]=useState(date2)
+    const [dateEntreeCaisse,setDateEntreeCaisse]=useState(date2)
     const [libelleSortieCaisse,setLibelleSortie]=useState("")
     const [libelleEntreeCaisse,setLibelleEntree]=useState("")
     const [creditSortie,setCreditSortie]=useState()
@@ -264,6 +266,10 @@ console.log(boncaisseEncourant)
             <Input type="text" disabled value={bc.beneficiaire}></Input>
         </DivInput>
         <DivInput>
+            <Label>Crédit Initial </Label>
+            <Input type="text" disabled value={bc.credit}></Input>
+        </DivInput>
+        <DivInput>
             <Label>Missions </Label>
             <Select>
               {sbc.map((s)=>{return( <><option>{s.idMs}</option></>)})}
@@ -298,7 +304,7 @@ console.log(boncaisseEncourant)
                 <Modal.Body>
                 <DivInput>
                       <Label>Date Creation</Label>
-                      <InputM type="date" onChange={(e)=>setDateSortieCaisse(e.target.value)}/>
+                      <InputM type="date" defaultValue={date2} onChange={(e)=>setDateSortieCaisse(e.target.value)}/>
                     </DivInput>
                     <DivInput>
                       <Label>Crédit</Label>
@@ -307,13 +313,8 @@ console.log(boncaisseEncourant)
                       <DivInput>
                       <Label> Libellé Décaissements :</Label>
                         <SelectM onChange={(e)=>setLibelleSortie(e.target.value)}>
-                        <option>Avance sur salaire</option>
-                        <option>Réglement Facture</option>
-                        <option>Achat Administratif</option>
-                        <option>Achat Technique</option>
-                        <option>Faris de Femme Menage</option>
-                        <option>Autres Achats</option>
-                        <option>Frais envoie de courriers</option>
+                        <option>Veuillez selectionner un choix</option>
+                       
                         <option>Frais OM</option>
                         </SelectM>
                       </DivInput>
@@ -343,7 +344,7 @@ console.log(boncaisseEncourant)
                 <Modal.Body>
                 <DivInput>
                       <Label>Date Creation</Label>
-                      <InputM type="date" onChange={(e)=>setDateEntreeCaisse(e.target.value)}/>
+                      <InputM type="date" defaultValue={date2} onChange={(e)=>setDateEntreeCaisse(e.target.value)}/>
                     </DivInput>
                     <DivInput>
                       <Label>Débit</Label>
