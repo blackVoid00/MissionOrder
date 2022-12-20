@@ -18,6 +18,7 @@ justify-content:center;
 margin-right:0px;
 margin-top:1%;
 width:100vh;
+height:70vh;
 background-color: white;
 box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
 `
@@ -25,7 +26,7 @@ export const MainDiv2 = styles.div`
 display:inline-block;
 margin-top:1%;
 width:400px;
-height:380px;
+height:500px;
 margin-left:50px;
 background-color: white;
 box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
@@ -47,7 +48,7 @@ justify-content:space-between;
 height:60vh;
 `
 export const Div3 =styles.div`  
-margin-top:5%;
+margin-top:20%;
 display:flex;
 height:auto;
 `

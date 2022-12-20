@@ -10,20 +10,7 @@ import "./modal.css"
 const MissionComponent = () => {
   const url = "https://localhost:7111/api/Utilisateurs"
   const [data,setData] = useState([])
-  const [gasoil,setGazoil]=useState(0)
-  const [parking,setParking] = useState(0)
-  const [hotel,setHotel] = useState(0)
-  const [repas,setRepas] = useState(0)
-  const [taxi,setTaxi] = useState(0)
-  const [ach,setAch] = useState(0)
   const [divers,setDivers] = useState(0)
-  // const [gasoil2,setGazoil2]=useState(0)
-  // const [parking2,setParking2] = useState(0)
-  // const [hotel2,setHotel2] = useState(0)
-  // const [repas2,setRepas2] = useState(0)
-  // const [taxi2,setTaxi2] = useState(0)
-  // const [ach2,setAch2] = useState(0)
-  // const [divers2,setDivers2] = useState(0)
   const [total,setTotal] = useState(0)
   const [ha,setHa]=useState("")
   const [hd,setHd]=useState("")
@@ -36,7 +23,10 @@ const MissionComponent = () => {
   const [nature,setNature]=useState("")
   const [desc,setD]=useState("")
   const [duree,setDuration]=useState(0)
-  // const [total2,setTotal2] = useState(0)
+  var curr = new Date();
+     curr.setDate(curr.getDate());
+     var datedepense = curr.toISOString().substring(0,10);
+     const [datedep,setDep]=useState(datedepense)
    const [tab,setTab] = useState([])
   const getUsers=async( )=> { 
     await axios.get(url).then((response) => {
@@ -51,7 +41,7 @@ const MissionComponent = () => {
   var sommeF=0
   useEffect(()=>{
       getUsers()
-      setTotal(()=>parseInt(gasoil)+ parseInt(parking)+ parseInt(repas)+ parseInt(ach)+parseInt(taxi)+parseInt(hotel)+parseInt(divers))
+      // setTotal(()=>parseInt(gasoil)+ parseInt(parking)+ parseInt(repas)+ parseInt(ach)+parseInt(taxi)+parseInt(hotel)+parseInt(divers))
       
       // setTotal2(()=>parseInt(gasoil2)+ parseInt(parking2)+ parseInt(repas2)+ parseInt(ach2)+parseInt(taxi2)+parseInt(hotel2)+parseInt(divers2))  
   })
@@ -169,10 +159,12 @@ const MissionComponent = () => {
                       <Div1>
                       <LabelM >Véhicule utilisé :</LabelM>
                        <Select onChange={(e)=>setVehicule(e.target.value)}>
-                               <option>Dacia Lodgy </option>
-                               <option>Renault Kango  </option>
-                               <option>Renault Express </option>
+                               <option>Veuillez selectionner un choix</option>
+                               <option>Dacia Lodgy 12130-H-6</option>
+                               <option>Renault Kango 46709-D-8 </option>
+                               <option>Renault Express WW075167 </option>
                                <option>Autre</option>
+                               <option>Rien</option>
                               </Select>
                       </Div1>
                       <Div1>
@@ -238,6 +230,8 @@ const MissionComponent = () => {
             <Div3>
             <SousDiv1>
         <Div1>
+          <LabelM>Date Dépense</LabelM>
+          <InputM type="date" defaultValue={datedepense}  onChange={(e)=>setDep(e.target.value)}></InputM>
           <LabelM>Type Dépense</LabelM>
           <Select className='Select-Ms' onChange={(e)=>setNature(e.target.value)}>
             <option>veuillez selectionner un choix</option>
@@ -255,8 +249,8 @@ const MissionComponent = () => {
                 </IconContext.Provider>
           <LabelM>Montant Dépense</LabelM>                    
          <InputM type="text" placeholder='entrer un montant'></InputM>    
-         <LabelM> Total</LabelM>  
-         <InputM type="text" disabled value={total}></InputM>                   
+         {/* <LabelM> Total</LabelM>  
+         <InputM type="text" disabled value={total}></InputM>                    */}
         </Div1>
        
          <Button left top bottom onClick={setFinalTotal}>Soumettre</Button>  
