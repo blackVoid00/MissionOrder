@@ -235,13 +235,13 @@ const MissionComponent = () => {
           <LabelM>Type Dépense</LabelM>
           <Select className='Select-Ms' onChange={(e)=>setNature(e.target.value)}>
             <option>veuillez selectionner un choix</option>
-                                <option value="">Hotel</option>
-                                <option value="">Gasoil</option>
-                                <option value="">Taxi</option>
-                                <option value="">Repas</option>
-                                <option value="">Parking</option>
-                                <option value="">Divers</option>
-                                <option value="">Achats technique</option>
+                                <option value="Hotel">Hotel</option>
+                                <option value="Gasoil">Gasoil</option>
+                                <option value="Taxi">Taxi</option>
+                                <option value="Repas">Repas</option>
+                                <option value="Parking">Parking</option>
+                                <option value="Divers">Divers</option>
+                                <option value="Achats Tech">Achats technique</option>
                               </Select>
                               <input id="file-input" type="file" style={{display :"none"}}></input>
                 <IconContext.Provider value={{ color: 'black', size: '30px'}}>
