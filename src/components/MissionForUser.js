@@ -128,7 +128,7 @@ const filterAll=()=>{
   <div  style={{display:"flex",width:"auto"}}>
   <div style={{display:"inline-block"}}>
     <H1>Tableau Des Ordres de Missions</H1>
-       <div style={{display:"inline-block",height:"300px" ,marginLeft:"0px",marginTop:"80px", width:"auto",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
+       <div style={{display:"inline-block" ,marginLeft:"0px",marginTop:"80px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
           <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
           <div style={{display:"flex",marginLeft: '10px'}}>
           <Div1>
@@ -170,7 +170,7 @@ const filterAll=()=>{
            </div>
           </div>
        
-    <div style={{marginTop: '30px',marginLeft:"260px"}}>
+    <div style={{marginTop: '250px',marginLeft:"160px"}}>
      
         {/* <h1 style={{color:"black",marginLeft: '350px',marginBottom:"50px",fontSize: '40px',fontWeight:"bold"}}>Liste des bons de caisse</h1> */}
         
