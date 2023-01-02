@@ -28,8 +28,7 @@ const MissionForUser = () => {
       }
       element.target.checked=true;
     }
-    const urlUser="https://localhost:7111/api/Utilisateurs"
-    const [users,setUsers]=useState([])
+    
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
             <IconContext.Provider value={{ color: '#1c539b',size:"20px" }}><AiFillEdit onClick={()=>navigate(`/mission/${row.idMission}`)  }/></IconContext.Provider>
@@ -44,12 +43,6 @@ const MissionForUser = () => {
         axios.get(url).then((response) => {
             setMs(response.data);
          });
-         axios.get(urlUser).then((response) => {
-
-          setUsers(response.data)
- 
-           });
-       
     },[])
     
     var curr = new Date();
@@ -96,10 +89,10 @@ const filterAll=()=>{
     const columns=[
       {dataField:"idMission",text:"N° Mission"},
       {dataField:"dateDepart",text:"Date Début",formatter : (row,cellContent)=>{
-        return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+        return moment(cellContent.dateDepart).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
       {dataField:"dateRetour",text:"Date Retour",formatter : (row,cellContent)=>{
-        return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+        return moment(cellContent.dateRetour).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
       
       {dataField:"objetMission",text:"Projet"},
