@@ -4,12 +4,10 @@ import paginationFactory from 'react-bootstrap-table2-paginator'
 import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import moment from 'moment'
-import {AiOutlineFileAdd,AiFillEye,AiFillCheckCircle,AiOutlineFileDone,AiOutlineFilter} from "react-icons/ai"
+import {AiOutlineFileAdd,AiFillEdit,AiOutlineFileDone,AiOutlineFilter} from "react-icons/ai"
 import {ButtonM, Div1, InputDate, InputM , LabelM,Select ,LabelR,Label1,Label2} from './StyleMsC';
 import { IconContext } from 'react-icons/lib';
 import {BiLoaderCircle,BiExport} from 'react-icons/bi';
-import {MdRemoveDone} from 'react-icons/md';
-import {ImCancelCircle} from 'react-icons/im';
 import ToolkitProvider, { CSVExport } from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
 import styles from "styled-components"
 
@@ -34,7 +32,7 @@ const MissionForUser = () => {
     const [users,setUsers]=useState([])
     const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
-            <IconContext.Provider value={{ color: '#1c539b',size:"20px" }}><AiFillEye  onClick={()=>navigate(`/detailms/${row.idMission}`)  }/></IconContext.Provider>
+            <IconContext.Provider value={{ color: '#1c539b',size:"20px" }}><AiFillEdit onClick={()=>navigate(`/mission/${row.idMission}`)  }/></IconContext.Provider>
         )
         
         }
@@ -96,16 +94,16 @@ const filterAll=()=>{
   })
 }
     const columns=[
-      {dataField:"idMission",text:"N° Mission",footer:""},
-      {dataField:"dateDepart",text:"Date Début", footer:"Total",formatter : (row,cellContent)=>{
+      {dataField:"idMission",text:"N° Mission"},
+      {dataField:"dateDepart",text:"Date Début",formatter : (row,cellContent)=>{
         return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
-      {dataField:"dateRetour",text:"Date Début", footer:"Total",formatter : (row,cellContent)=>{
+      {dataField:"dateRetour",text:"Date Retour",formatter : (row,cellContent)=>{
         return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
       
-      {dataField:"objetMission",text:"Projet",footer:""},
-      {dataField:"etatMission",text:"Statut",footer:"", formatter: (cellContent ,row) => {
+      {dataField:"objetMission",text:"Projet"},
+      {dataField:"etatMission",text:"Statut", formatter: (cellContent ,row) => {
             if ( row.etatMission =="O") {
               return (
                 <IconContext.Provider value={{color:"#b71c1c",size:"20px"}}>
@@ -122,7 +120,7 @@ const filterAll=()=>{
             } 
               
         }},
-        {datafield:"Actions",text:"Remplir", csvExport: false,footer:"", formatter: ButtonCell}
+        {datafield:"Actions",text:"Remplir", csvExport: false, formatter: ButtonCell}
     ]
   return (
   <>
@@ -146,19 +144,7 @@ const filterAll=()=>{
          
         
           </div>
-          
-          <Div1>
-           <LabelM l w>Bénéficiaire</LabelM>
-           <Select onChange={OnChangeBeneficiaire}>
-            <option>#Tous#</option>
-           {users.map((user) => {return(
-                    <>
-                    <option value={user.infoId}>{user.infoNom} &nbsp;{user.infoPrenom}</option>
-                    </>
-               )})}
-           </Select>
-         
-          </Div1>
+        
         
           <br></br>  <br></br> 
           <div style={{display:"flex"}}>

@@ -57,8 +57,8 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: 'Formulaire Mission',
-        path: '/mission',
+        title: 'Liste Mission User',
+        path: '/listmsUser',
         icon: <AiIcons.AiFillFileAdd />
       },
       {
