@@ -110,12 +110,12 @@ const CreerMS = () => {
   const url = "https://localhost:7111/api/Utilisateurs"
   const [users,setUsers] =useState([])
   const [bcNumbersList,setBcList]=useState([])
-  const [value,setOptionUser]=useState("")
+  const [val,setOptionUser]=useState(0)
   const [dateCreation,setDateCreation]=useState(date)
   const [numBc,setNumBc]=useState(0)
   const [projet,setProjet]=useState("")
-  const [dateDebut,setDateDebut]=useState( )
-  const [dateFin,setDateFin]=useState()
+  const [dateDebut,setDateDebut]=useState("")
+  const [dateFin,setDateFin]=useState("")
   const [numMission,setNumeroMission]=useState("")
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -132,19 +132,19 @@ const CreerMS = () => {
       idBonCaisse: numBc,
       dateCreation: dateCreation,
       totalMission: 0,
-      idUser: value,
+      idUser: val,
       etatMission: "F",
       valideParSuperviseur: "N",
       valideParAdministrateur: "N",
       objetMission: projet,
       dateDebut: dateDebut,
-      dateFin: dateFin,
-      dureeIntervention: 0
+      dateFin: dateFin
      }).then((response) => {
-      alert("mission created successfully")
+      console.log(response.status);
      })
+     setShow(false)
   }
-  console.log(value)
+  console.log(val)
   console.log(bcNumbersList)
   const getListBc=(v) => {
     axios.get(`https://localhost:7111/api/GetAllBcOfAGivenUser/${v}`).then((response) => {
@@ -153,7 +153,7 @@ const CreerMS = () => {
   }
   const changeValue=(e)=>{
    getListBc(e.target.value)
-   setOptionUser(e.target.target) 
+   setOptionUser(e.target.value) 
   }
   useEffect(()=> {
    axios.get(url).then((response) => {

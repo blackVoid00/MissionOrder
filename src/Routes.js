@@ -21,6 +21,7 @@ import DetailsCU from "./components/DetailsCU";
 import ListeUser from "./components/ListeUser";
 import Home2 from "./components/Home2"
 import AlimentationCaisse from "./components/AlimentationCaisse";
+import MissionForUser from "./components/MissionForUser";
 const Routing = () => {
     return (
         <Routes>
@@ -41,7 +42,7 @@ const Routing = () => {
                     <Route  path="/addUser" element={<Layout><CreerUser></CreerUser></Layout>}></Route>
                     <Route  path="/editUser/:id" element={<Layout><CreerUser></CreerUser></Layout>}></Route>
                     <Route  path="/userdetail/:id" element={<Layout><DetailUser></DetailUser></Layout>}></Route>
-                  
+                    <Route path="/listmsUser" element={<Layout><MissionForUser></MissionForUser></Layout>}></Route>
                     <Route path="/detailbc/:id" element={<Layout><DetailsBc></DetailsBc></Layout>}></Route>
                     <Route path="/detailms/:id" element={<Layout><DetailsMs></DetailsMs></Layout>}></Route>
             </Route>

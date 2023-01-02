@@ -143,6 +143,7 @@ const CreerBs = () => {
             }).then((response)=>{
                alert("bc created successfully")
             })
+            setShow(false)
      }
      useEffect(() => {
 

@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import styles from 'styled-components'
 import {FaBalanceScale} from 'react-icons/fa'
+import {MdOutlineCancel} from 'react-icons/md'
 import {IconContext} from 'react-icons'
 import moment from 'moment';
 import { Modal } from 'react-bootstrap';
@@ -152,7 +153,13 @@ outline: none  !important;
 `
 
 const DetailsBc = () => {
-
+       const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
+        return (
+            
+            <IconContext.Provider value={{ color:'red',size:"20px" }}><MdOutlineCancel onClick={()=>axios.delete(`https://localhost:7111/SBC/${row.idOperation}`) }/></IconContext.Provider>
+        )
+        
+        }
     const {id} = useParams()
     
     const url1=`https://localhost:7111/api/GetBoncaisse2/${id}`
@@ -214,7 +221,8 @@ const DetailsBc = () => {
     }},
     {dataField:"type",text:"Libellé",footer:""},
     {dataField:"debit",text:"Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
-    {dataField:"credit",text:"Crédit",footer:columnData => columnData.reduce((acc, item) => acc + item, 0)}
+    {dataField:"credit",text:"Crédit",footer:columnData => columnData.reduce((acc, item) => acc + item, 0)},
+    {dataField:"annuler",text:"Annuler",formatter:ButtonCell}
    
 ]
 console.log(boncaisseEncourant)
