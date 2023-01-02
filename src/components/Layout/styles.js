@@ -10,7 +10,7 @@ export const SLayout = styled.div`
 export const SMain = styled.main`
     padding-left: calc(${v.smSpacing} * 25);
     h1 {
-        font-size: 14px;
+        font-size: 12px;
     }
 `;
 export const DivNavv=styled.div`
