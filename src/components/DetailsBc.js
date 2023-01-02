@@ -156,7 +156,7 @@ const DetailsBc = () => {
        const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
         return (
             
-            <IconContext.Provider value={{ color:'red',size:"20px" }}><MdOutlineCancel onClick={()=>axios.delete(`https://localhost:7111/SBC/${row.idOperation}`) }/></IconContext.Provider>
+            <IconContext.Provider value={{ color:'#b71c1c',size:"20px" }}><MdOutlineCancel onClick={()=>{handleShow() ;setNumOp(row.idSBonCaisse)}}/></IconContext.Provider>
         )
         
         }
@@ -168,9 +168,25 @@ const DetailsBc = () => {
     const [bc,setBc]=useState([])
     const [sbc,setSbc]=useState([])
     const [sbc2,setSbc2]=useState([])
+    const [numOp,setNumOp]=useState(0)
+    const [show, setShow] = useState(false);
     const [showA, setShowA] = useState(false);
     const [showB, setShowB] = useState(false);
     const [boncaisseEncourant,setBcEnCourant]=useState()
+    const handleShow=()=>{
+      setShow(true)
+
+    }
+    const deleteOperation=()=>{
+      axios.delete(`https://localhost:7111/api/SBC/${numOp}`).then((response)=>{})
+      setShow(false)
+      ;
+    }
+    console.log(numOp)
+  
+    const handleClose=()=>{
+      setShow(false)
+    }
     const handleCloseA = () => setShowA(false);
     const handleShowA = (id) => {
       setShowA(true)
@@ -219,10 +235,11 @@ const DetailsBc = () => {
     {dataField:"dateCreationSbc",text:"Date opération",footer:"Total",formatter : (row,cellContent)=>{
       return moment(cellContent.dateCreationSbc).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
     }},
+   
     {dataField:"type",text:"Libellé",footer:""},
     {dataField:"debit",text:"Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
     {dataField:"credit",text:"Crédit",footer:columnData => columnData.reduce((acc, item) => acc + item, 0)},
-    {dataField:"annuler",text:"Annuler",formatter:ButtonCell}
+    {dataField:"annuler",text:"Action",formatter:ButtonCell}
    
 ]
 console.log(boncaisseEncourant)
@@ -236,6 +253,7 @@ console.log(boncaisseEncourant)
          }).then((response)=>{
           
          })
+         setShowB(false)
  }
  const Decaissement=()=>{
   axios.post('https://localhost:7111/api/SBC',{
@@ -247,6 +265,7 @@ console.log(boncaisseEncourant)
   }).then((response)=>{
    
   })
+  setShowA(false)
 
  }
   return (
@@ -294,9 +313,30 @@ console.log(boncaisseEncourant)
        
        </Div>
        </div>
-       {/* {showC ? <div>
-        <label>Crédit</label>
-        <input type='text'></input></div> : null} */}
+     
+          <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+              
+                <p>Êtes-vous sûr de vouloir supprimer cette opération N° {numOp} ?</p>
+               
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button m b onClick={deleteOperation} >Oui</Button>
+                  <Button m b onClick={handleClose} >Non</Button>
+                </Modal.Footer>
+         
+         </Modal>
         <Modal
         aria-labelledby="contained-modal-title-vcenter"
         className="special_modal"
@@ -322,7 +362,6 @@ console.log(boncaisseEncourant)
                       <Label> Libellé Décaissements :</Label>
                         <SelectM onChange={(e)=>setLibelleSortie(e.target.value)}>
                         <option>Veuillez selectionner un choix</option>
-                       
                         <option>Frais OM</option>
                         </SelectM>
                       </DivInput>
@@ -361,6 +400,7 @@ console.log(boncaisseEncourant)
                       <DivInput>
                       <Label> Libellé Encaissements :</Label>
                         <SelectM onChange={(e)=>{setLibelleEntree(e.target.value)}}>
+                        <option>veuillez selectionner un choix</option>
                         <option>Remboursement d'une Avance sur salaire</option>
                         <option>Remboursement reçu/BC non dépensé</option>
                         <option>Argent restant d'une mission</option>
