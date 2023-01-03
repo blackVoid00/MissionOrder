@@ -53,10 +53,7 @@ const MissionComponent = () => {
     console.log(tab)
     console.log(tab2)   
   }
-  // const setFinalTotal2=()=>{
-  //   tab.push(total2) 
-  //   console.log(tab)   
-  // }
+  const [file,setFile]=useState(null)
   var storage=localStorage.setItem("total",total)
   const uploadFile=()=>{
     const input = document.getElementById('file-input');
@@ -64,6 +61,12 @@ const MissionComponent = () => {
        input.click();
     }
     }
+   const handleFile=(e)=>{
+    const f=e.target.files[0]
+    setFile(f)
+    console.log(file)
+   }
+   
     const createmS=()=>{
       axios.put("https://localhost:7111/api/Missions",{
       
@@ -71,74 +74,16 @@ const MissionComponent = () => {
             alert("user inserted successfully")
     })
     }
-    // const [isDisabled,setDisabled]=useState(true)
-    // const [c,setClicked]=useState(false)
-    
-    // const [users,setUsers]=useState([{
-    //     name:"Ahmed",
-    //     age:"20",
-    //     Role:"user"
-    //  },{
-    //    name:"Wiam",
-    //    age:"40",
-    //    Role:"admin"
-    //  },{
-    //    name:"Asma",
-    //    age:"30",
-    //    Role:"editor"
-    //  }
-    
-    // ] )
-    // const [role,setRole]=useState(0)
-    // // const AddOther=()=>{
-    // //     setClicked(!c)
-      
-    // // }
+  
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   return (
         <>
-        {/* <select name="roles" onChange={(e)=>{setRole(e.target.value)}}>
-            <option value="0">user</option>
-            <option value="1">admin</option>
-            <option value="2">editor</option>
-        </select>
-       */}
         <MainM>
         <MainDiv>
-            {/* <Div1>
-            <SousDiv1> 
-              <Div>
-              <Label>Nom:</Label> 
-               <Input type="text" disabled={isDisabled}></Input>
-              </Div>
-              <Div>
-              <Label>Prénom :</Label>
-               <Input type="text" disabled={isDisabled}></Input>
-              </Div>
-              <Div>
-              <Label>Date de création :</Label>
-               <Input type="text" disabled={isDisabled}></Input>
-              </Div>
-            </SousDiv1>
-            <SousDiv2>
-                <Div>
-                <Label>Matricule :</Label>
-                <Input  type="text" disabled={isDisabled}></Input>
-                </Div>
-                <Div>
-                <Label>Numéro de mission :</Label>
-                <Input type="text" disabled={isDisabled}></Input>
-                </Div>
-                <Div>
-                <Label>Bon de Caisse :</Label>
-                <Input type="text" disabled={isDisabled}></Input>
-                </Div>
-            </SousDiv2>
-              
-            </Div1> */}
+          
             <Div2>
          
          <SousDiv1>
@@ -198,7 +143,7 @@ const MissionComponent = () => {
                                 <option value="">Dépannage</option>
                                 <option value="">Autre</option>
                               </Select>
-                              <input id="file-input" type="file" style={{display :"none"}}></input>
+                              <input id="file-input" type="file" style={{display :"none"}} onChange={(e)=>handleFile(e)}></input>
                           <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                           <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                           </IconContext.Provider>
@@ -209,21 +154,13 @@ const MissionComponent = () => {
                           <InputD  type="text" placeholder='entrer les details...' onChange={(e)=>setD(e.target.value)}></InputD>
                  
                            </Div1>
-                          {/* <Div1>
-                          <LabelM w>Fiche Intervention</LabelM>
-                          <input id="file-input" type="file" style={{display :"none"}}></input>
-                          <IconContext.Provider value={{ color: 'black', size: '30px'}}>
-                          <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                          </IconContext.Provider>
-
-                          </Div1> */}
                           <Div1>
-                           {/* <ButtonM onClick={handleShow}>Autre Mission</ButtonM> */}
+                         
                           </Div1>
             </SousDiv2>
            
                </Div2>
-          {/* {c ?<SousMission name={"Valider"} ></SousMission> : null}  */}
+       
         
         </MainDiv>
         <MainDiv2>
@@ -243,14 +180,13 @@ const MissionComponent = () => {
                                 <option value="Divers">Divers</option>
                                 <option value="Achats Tech">Achats technique</option>
                               </Select>
-                              <input id="file-input" type="file" style={{display :"none"}}></input>
+                              <input id="file-input" name="file-depense" type="file" style={{display :"none"}} onChange={(e)=>setFile(e.target.files)}></input>
                 <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                 </IconContext.Provider>
           <LabelM>Montant Dépense</LabelM>                    
          <InputM type="text" placeholder='entrer un montant'></InputM>    
-         {/* <LabelM> Total</LabelM>  
-         <InputM type="text" disabled value={total}></InputM>                    */}
+     
         </Div1>
        
          <Button left top bottom onClick={setFinalTotal}>Soumettre</Button>  
@@ -260,17 +196,7 @@ const MissionComponent = () => {
          
             </Div3>
             <Div3>
-            {/* <table style={{height:"100px",width:"200px", backgroundColor:"black",marginBottom:"100px", borderCollapse: "collapse"}}>
-                <tr>
-                  <th style={{paddingTop: "12px",paddingBottom: "12px",textAlign: "left" ,backgroundColor: "#04AA6D", color: "white"}}>Numero</th>
-                  <th style={{paddingTop: "12px",paddingBottom: "12px",textAlign: "left" ,backgroundColor: "#04AA6D", color: "white"}}>Crédit</th>
-                </tr>
-                <tr>
-                  <td style={{ border: "1px solid #ddd",padding: "8px"}}>{data[0].idUser}</td>
-                  <td style={{ border: "1px solid #ddd",padding: "8px"}}>{data[0].identifiant}</td>
-                </tr>
-              </table>
-             */}
+           
             </Div3>
              
         </MainDiv2>

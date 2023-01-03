@@ -111,12 +111,12 @@ const CreerMS = () => {
   const [users,setUsers] =useState([])
   const [bcNumbersList,setBcList]=useState([])
   const [val,setOptionUser]=useState(0)
-  const [dateCreation,setDateCreation]=useState(date)
+  // const [dateCreation,setDateCreation]=useState(date)
   const [numBc,setNumBc]=useState(0)
   const [projet,setProjet]=useState("")
   const [dateDebut,setDateDebut]=useState("")
   const [dateFin,setDateFin]=useState("")
-  const [numMission,setNumeroMission]=useState("")
+  
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => {
@@ -126,14 +126,17 @@ const CreerMS = () => {
   var curr = new Date();
   curr.setDate(curr.getDate());
   var date = curr.toISOString().substring(0,10);
+  let day=curr.getDate();
+  let month=curr.getMonth()+1;
+  let year=curr.getFullYear();
+  var all=day+"/ "+ month+" /" + year
   const sendData=()=>{
      axios.post("https://localhost:7111/api/Missions",{
-      numeroMission: numMission,
-      idBonCaisse: numBc,
-      dateCreation: dateCreation,
+      idBonCaisse: Number(numBc),
+      dateCreation: date,
       totalMission: 0,
-      idUser: val,
-      etatMission: "F",
+      idUser: Number(val),
+      etatMission: "O",
       valideParSuperviseur: "N",
       valideParAdministrateur: "N",
       objetMission: projet,
@@ -166,15 +169,12 @@ const CreerMS = () => {
     <MainDiv>
     
         <SousDiv1>
-        <H1>Formulaire Création Mission</H1>
-        <DivInput>
-        <Label>N° Mission</Label>
-        <Input placeholder='format NN001' onChange={(e)=>setNumeroMission(e.target.value)}></Input>
-      </DivInput>
-        <DivInput>
+        <H1> Formulaire d'ajout Mission : {all}</H1>
+        
+        {/* <DivInput>
         <Label>Date Création</Label>
         <Input l type="date" defaultValue={date} onChange={(e)=>setDateCreation(e.target.value)}></Input>
-      </DivInput>
+      </DivInput> */}
         <DivInput>
         <Label>Bénéficiaire</Label>
         <Select  onChange={changeValue}>

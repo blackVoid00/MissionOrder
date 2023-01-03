@@ -221,7 +221,7 @@ const DetailsBc = () => {
 
     const columns=[
     
-      {dataField:"dateDepense",text:"Date Dépenses",footer:"Total",formatter : (row,cellContent)=>{
+      {dataField:"dateDepense",text:"Date Dépenses",footer:"",formatter : (row,cellContent)=>{
         return moment(cellContent.dateDepense).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
       {dataField:"libelleOp",text:"Projet",footer: ""},
@@ -232,7 +232,7 @@ const DetailsBc = () => {
   const columns2=[
     // {dataField:"idSbc",text:"N° Operation"},
    
-    {dataField:"dateCreationSbc",text:"Date opération",footer:"Total",formatter : (row,cellContent)=>{
+    {dataField:"dateCreationSbc",text:"Date opération",footer:"",formatter : (row,cellContent)=>{
       return moment(cellContent.dateCreationSbc).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
     }},
    
