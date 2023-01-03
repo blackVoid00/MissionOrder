@@ -69,6 +69,9 @@ const ListeBC = () => {
     var curr = new Date();
     curr.setDate(curr.getDate());
     var date = curr.toISOString().substring(0,10);
+    let year = curr.getFullYear()
+    const monthNames = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre" ,"décembre"];
+    let all =monthNames[curr.getMonth()]+"-"+year
     const [du,setDateDu]=useState(date)  
     const [au,setDateAu]=useState(date)  
     const [givenUserId,setGivenUserId] = useState("rien")
@@ -182,7 +185,7 @@ const filterStatus=(v)=>{
     ]
   return (
     <div style={{marginLeft: '0px',marginTop: '100px'}}>
-      <div style={{marginTop:"0px",marginBottom:"50px"}}><H1>Tableau Des Bons De Caisse</H1></div>
+      <div style={{marginTop:"0px",marginBottom:"100px"}}><H1>Bons de Caisse du mois : {all}</H1></div>
        <div  style={{display:"flex",width:"auto"}}>
        
        <div style={{display:"inline-block" , width:"460px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>

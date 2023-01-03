@@ -1,15 +1,16 @@
 
 .swiper {
     width:800px;
-    margin-left:150px;
+    margin-left:20px;
     margin-right: 50px;
     margin-bottom:20px;
-border:2px solid black;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; 
+    background-color:white;
   }
   
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    
+    margin-top:50px
     
   }

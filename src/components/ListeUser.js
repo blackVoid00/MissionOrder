@@ -123,7 +123,7 @@ const filterStatus=(v)=>{
     <div style={{marginTop: '20px'}}>
     <div  style={{display:"inline-block",width:"auto"}}>
     <div style={{display:"flex"}}>
-      <H1>Tableau Des Utilisateurs</H1>
+      <H1>Liste des Utilisateurs</H1>
          <div style={{display:"inline-block",height:"300px" ,marginLeft:"260px", width:"820px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
             <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
             <Div1>
