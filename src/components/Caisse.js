@@ -5,6 +5,7 @@ import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import moment from 'moment'
 import {AiOutlineFilter} from "react-icons/ai"
+import {AiFillFolderAdd} from "react-icons/ai"
 import {Div1, InputDate,LabelM,Select} from './StyleMsC';
 import { IconContext } from 'react-icons/lib';
 import {BiExport} from 'react-icons/bi';
@@ -18,6 +19,30 @@ font-weight:bold !important;
 font-size:30px !important;
 margin-top:120px;
 `
+export const Input=styles.input`
+
+margin-bottom:10px;
+margin-top:10px;
+height:40px;
+width:200px;
+background:white;
+text-align: left !important;
+border: 10px solid transparent  !important;
+border-radius:2px  !important;
+&:focus{
+outline: none  !important;
+}
+font-weight:bold !important;
+color:black !important;
+font-size:16px;
+`
+const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
+  return (
+      
+      <IconContext.Provider value={{ color: '#1c539b',size:"30px" }}><AiFillFolderAdd /></IconContext.Provider>
+  )
+  
+  }
 const Caisse = () => {
   const { ExportCSVButton } = CSVExport;
     const navigate = useNavigate()
@@ -79,7 +104,7 @@ const Caisse = () => {
         {dataField:"dateCreation",text:"Date Création",footer:"Total",formatter : (row,cellContent)=>{
             return moment(cellContent.dateCreation).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
           }, sort: true},
-          {dataField:"idBonCaisse",text:"N° Bc ",footer:"", sort: true },
+          {dataField:"idBonCaisse",text:"N° BC ",footer:"", sort: true },
           {dataField:"beneficiaire",footer:"",text:"Bénéficiaire"},
          
           {dataField:"libelle",text:"Type Opération",footer:"" ,formatter: (cellContent ,row) => {
@@ -109,14 +134,19 @@ const Caisse = () => {
                 return (
                   <span>Alimentation Caisse</span>
                 )
-              }   
+              }  
+              if ( row.libelle==7) {
+                return (
+                  <span>Autres frais</span>
+                )
+              }  
         }},
        
-          {dataField:"debitTotal",text:"Total Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)
+          {dataField:"debitTotal",text:"Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)
        
-      },{dataField:"creditTotal",text:"Total Crédit ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),
+      },{dataField:"creditTotal",text:"Crédit ", footer: columnData => columnData.reduce((acc, item) => acc + item, 0),
     
-        },{dataField:"sommeDepense",text:"Total Dépense ",formatter: (cellContent ,row) => {
+        },{dataField:"sommeDepense",text:"Cumul Dépenses ",formatter: (cellContent ,row) => {
           if ( row.sommeDepense==null) {
             return (
              <span>0</span>
@@ -136,15 +166,15 @@ const Caisse = () => {
                 <FaBalanceScale/></IconContext.Provider>
               )  }   
           },},
-          {datafield:"Details",text:"Actions", csvExport: false,footer:""}
+          {datafield:"Details",text:"PJ", csvExport: false,footer:"",formatter: ButtonCell}
     ]
   return (
   <>
-  <div style={{marginTop: '20px'}}>
+  <div style={{marginTop: '50px'}}>
   <div  style={{display:"inline-block",width:"auto"}}>
   <div style={{display:"flex"}}>
     <H1>Caisse du mois {all}</H1>
-       <div style={{display:"flex" ,marginLeft:"260px",marginRight:"260px", width:"auto",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
+       <div style={{display:"flex" ,marginLeft:"260px",marginRight:"150px", width:"auto",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
           <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
           <div style={{display:"flex",marginLeft: '10px'}}>
           <Div1>
@@ -184,6 +214,7 @@ const Caisse = () => {
             <option value="6">Alimentation Caisse</option>
             <option value="5">Achats</option>
             <option value="4">Avance sur salaire</option>
+            <option value="7">Autres frais</option>
            </Select>
          
           </Div1>
@@ -202,10 +233,14 @@ const Caisse = () => {
     props => (
       <>
      
-         
-        
-         <ExportCSVButton { ...props.csvProps }><IconContext.Provider value={{color:"#1c539b",size:"30px"}}><BiExport/></IconContext.Provider>&nbsp;Exporter csv</ExportCSVButton>
-         
+     <br></br><br></br> <br></br><br></br>   
+     <div style={{display: 'flex',justifyContent:"space-between"}}>
+         <div>
+          <LabelM>Solde Total</LabelM>
+          <Input value="200" disabled></Input>
+          </div>
+         <ExportCSVButton { ...props.csvProps }><IconContext.Provider value={{color:"#1c539b",size:"30px"}}><BiExport/></IconContext.Provider>&nbsp;Exporter CSV</ExportCSVButton>
+         </div>
          <br></br><br></br>
       <BootStrapTable      
     { ...props.baseProps }

@@ -156,7 +156,7 @@ const CreerUser = () => {
         dateFinContrat:dateFinContrat,
         status:status
       }).then((response)=>{
-        alert("user inserted successfully");
+        setShowA(false)
     }).catch((error) => {
         console.log(error.response);
     }):axios.put(`https://localhost:7111/api/Utilisateurs/${id}`,{
@@ -175,7 +175,7 @@ const CreerUser = () => {
         dateFinContrat:getValues("infoDateFinContrat"),
         status:getValues("infoStatus")
       }).then((response)=>{
-            alert("user updated successfully")
+        setShowU(false)
     }).catch((error) => {
         console.log(error.response);
     })

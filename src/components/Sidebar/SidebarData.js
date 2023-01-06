@@ -34,7 +34,7 @@ export const SidebarData = [
     ]
   },
   {
-    title: 'Bon Caisse',
+    title: 'Bons de caisse',
     path: '/bcaisselist',
     icon: <IoIcons.IoIosPaper />,
     iconClosed: <AiIcons.AiOutlinePlus />,
@@ -49,7 +49,7 @@ export const SidebarData = [
       ]
   },
   {
-    title: 'Mission',
+    title: 'Missions',
     path: '/missionlist',
     icon: <BiIcons.BiTask />,
     iconClosed: <AiIcons.AiOutlinePlus />,
@@ -59,7 +59,7 @@ export const SidebarData = [
       {
         title: 'Liste Mission User',
         path: '/listmsUser',
-        icon: <AiIcons.AiFillFileAdd />
+        icon: <AiIcons.AiOutlineUnorderedList />
       },
       {
         title: 'Stats Mission',
@@ -71,20 +71,15 @@ export const SidebarData = [
   },
   {
     title: 'Caisse',
-    path: '/app',
-    icon: <BiIcons.BiCalculator />,
+    path: '/caisse',
+    icon: <FaIcons.FaCashRegister/>,
     iconClosed: <AiIcons.AiOutlinePlus />,
     iconOpened: <BiIcons.BiMinus />,
     subNav: [
       {
         title: 'Operations Diverses',
         path: '/alimentation',
-        icon: <FaIcons.FaCashRegister/>
-      },
-      {
-        title: 'Caisse du mois',
-        path: '/caisse',
-        icon: <GiIcons.GiCash/>
+        icon: <BiIcons.BiCalculator /> 
       }
     ]
   }
