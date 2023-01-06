@@ -5,9 +5,11 @@ import {AiOutlineCloudUpload} from "react-icons/ai"
 import { IconContext } from "react-icons";
 import axios from "axios";
 import "./modal.css"
+import { useParams } from 'react-router-dom';
 
 
 const MissionComponent = () => {
+  const {id}=useParams()
   const url = "https://localhost:7111/api/Utilisateurs"
   const [data,setData] = useState([])
   const [divers,setDivers] = useState(0)
@@ -27,12 +29,28 @@ const MissionComponent = () => {
      curr.setDate(curr.getDate());
      var datedepense = curr.toISOString().substring(0,10);
      const [datedep,setDep]=useState(datedepense)
+     const [montant,setMontant]=useState(0)
+     const [file,setFile]=useState()
+
+    const saveFile=(e) =>{
+      setFile(e.target.files[0])
+  }
+     const sendDepense =()=>{
+      axios.post("https://localhost:7111/api/Depenses",{
+        montantDepense:montant,
+        typeDepense:nature,
+        dateCreation :datedep,
+        idMission:id,
+        image:file
+      }).then((response)=>{});
+    }
    const [tab,setTab] = useState([])
   const getUsers=async( )=> { 
     await axios.get(url).then((response) => {
      setData(response.data)
     })
   }
+  console.log(file)
   const duration=()=>{
     var difference =(ha-hd) / 1000;
     difference /= (60 * 60);
@@ -53,7 +71,7 @@ const MissionComponent = () => {
     console.log(tab)
     console.log(tab2)   
   }
-  const [file,setFile]=useState(null)
+ 
   var storage=localStorage.setItem("total",total)
   const uploadFile=()=>{
     const input = document.getElementById('file-input');
@@ -61,11 +79,7 @@ const MissionComponent = () => {
        input.click();
     }
     }
-   const handleFile=(e)=>{
-    const f=e.target.files[0]
-    setFile(f)
-    console.log(file)
-   }
+  
    
     const createmS=()=>{
       axios.put("https://localhost:7111/api/Missions",{
@@ -76,7 +90,7 @@ const MissionComponent = () => {
     }
   
     const [show, setShow] = useState(false);
-
+   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   return (
@@ -143,7 +157,7 @@ const MissionComponent = () => {
                                 <option value="">Dépannage</option>
                                 <option value="">Autre</option>
                               </Select>
-                              <input id="file-input" type="file" style={{display :"none"}} onChange={(e)=>handleFile(e)}></input>
+                              <input id="file-input" type="file" style={{display :"none"}} ></input>
                           <IconContext.Provider value={{ color: 'black', size: '30px'}}>
                           <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
                           </IconContext.Provider>
@@ -180,16 +194,16 @@ const MissionComponent = () => {
                                 <option value="Divers">Divers</option>
                                 <option value="Achats Tech">Achats technique</option>
                               </Select>
-                              <input id="file-input" name="file-depense" type="file" style={{display :"none"}} onChange={(e)=>setFile(e.target.files)}></input>
+                              <input  type="file" name="image" accept="image/*" multiple={false} onChange={(e)=>saveFile(e)}></input>
                 <IconContext.Provider value={{ color: 'black', size: '30px'}}>
-               <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
+               
                 </IconContext.Provider>
           <LabelM>Montant Dépense</LabelM>                    
-         <InputM type="text" placeholder='entrer un montant'></InputM>    
+         <InputM type="text" placeholder='entrer un montant' onChange={(e)=>setMontant(e.target.value)}></InputM>    
      
         </Div1>
        
-         <Button left top bottom onClick={setFinalTotal}>Soumettre</Button>  
+         <Button left top bottom onClick={sendDepense}>Soumettre</Button>  
        
        
          </SousDiv1>
