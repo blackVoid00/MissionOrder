@@ -90,10 +90,10 @@ const ListeBC = () => {
       setGivenUserId(e.target.value)
       filterUser(e.target.value)
     }
-    const onChangeLibelle=(e)=>{
-      setGivenLibelle(e.target.value)
-       filterLibelle(e.target.value)
-    }
+    // const onChangeLibelle=(e)=>{
+    //   setGivenLibelle(e.target.value)
+    //    filterLibelle(e.target.value)
+    // }
   const filterDateDuAu=()=>{
          axios.get(`https://localhost:7111/api/GetBcOfThisDateInterval/${du}/${au}`).then((response) => {
            setBc(response.data)
@@ -104,11 +104,11 @@ const filterUser=(v)=>{
     setBc(response.data)
   })
 }
-const filterLibelle=(v)=>{
-  axios.get(`https://localhost:7111/api/GetBcOfaGivenOperation/${v}`).then((response) => {
-    setBc(response.data)
-  })
-}
+// const filterLibelle=(v)=>{
+//   axios.get(`https://localhost:7111/api/GetBcOfaGivenOperation/${v}`).then((response) => {
+//     setBc(response.data)
+//   })
+// }
 const filterStatus=(v)=>{
   axios.get(`https://localhost:7111/api/GetBcOfaGivenStatus/${v}`).then((response) => {
     setBc(response.data)
@@ -127,28 +127,12 @@ const filterStatus=(v)=>{
         {dataField:"beneficiaire",footer:"",text:"Bénéficiaire"},
        
         {dataField:"libelle",text:"Type Opération",footer:"" ,formatter: (cellContent ,row) => {
-          if ( row.libelle==1) {
-            return (
-              <span>Règlement Facture</span>
-            )
-          }   
+          
           if ( row.libelle==2) {
             return (
               <span>Frais ordre Mission</span>
             )
-          }  if ( row.libelle==3) {
-            return (
-              <span>Frais femme ménage</span>
-            )
-          }  if ( row.libelle==4) {
-            return (
-              <span>Avance Sur salaire</span>
-            )
-          }  if ( row.libelle==5) {
-            return (
-              <span>Achats</span>
-            )
-          }    
+          }   
       }},
         
         {dataField:"debitTotal",text:"Total Débit", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)
@@ -217,7 +201,7 @@ const filterStatus=(v)=>{
            {/* <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterUser}></AiOutlineFilter></IconContext.Provider></ButtonM> */}
           </Div1>
         
-          <Div1>
+          {/* <Div1>
            <LabelM l w>Opération</LabelM>
            <Select onChange={onChangeLibelle}>
            <option>Veuillez selectionner un choix</option>
@@ -227,9 +211,8 @@ const filterStatus=(v)=>{
            <option value="4">Avance Sur salaire</option>
            <option value="5">Achats</option>
            </Select>
-           {/* <ButtonM><IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterLibelle}></AiOutlineFilter></IconContext.Provider></ButtonM> */}
-          </Div1>
-        
+          
+          </Div1>*/}
           <br></br>  <br></br> 
           <div style={{display:"flex"}}>
             <LabelR w>Statut</LabelR>

@@ -22,6 +22,7 @@ import ListeUser from "./components/ListeUser";
 import Home2 from "./components/Home2"
 import AlimentationCaisse from "./components/AlimentationCaisse";
 import MissionForUser from "./components/MissionForUser";
+import Caisse from "./components/Caisse";
 const Routing = () => {
     return (
         <Routes>
@@ -37,6 +38,7 @@ const Routing = () => {
                     <Route  path="/creerMs" element={<Layout><CreerMS></CreerMS></Layout>}></Route>
                     <Route  path="/creerBs" element={<Layout><CreerBs></CreerBs></Layout>}></Route>
                     <Route path="/bcaisselist" element={<Layout><ListeBC></ListeBC></Layout>}></Route>
+                    <Route path="/caisse" element={<Layout><Caisse></Caisse></Layout>}></Route>
                     <Route  path="/missionlist" element={<Layout><ListeMs></ListeMs></Layout>}></Route>
                     <Route path="/mission/:id" element={<Layout><Mission></Mission></Layout>}></Route>
                     <Route  path="/addUser" element={<Layout><CreerUser></CreerUser></Layout>}></Route>

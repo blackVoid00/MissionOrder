@@ -174,11 +174,12 @@ const AlimentationCaisse = () => {
             <Label> Opération</Label>
              <Select onChange={(e)=>setOptionLibelle(e.target.value)}>
                <option>Veuillez selectionner un choix</option>
-                <option value="1">Règlement Facture</option>
+                <option value="1">Règlement facture</option>
                 <option value="6">Alimentation de Caisse</option>
                 <option value="3">Frais femme ménage</option>
-                <option value="4">Avance Sur salaire</option>
+                <option value="4">Avance sur salaire</option>
                 <option value="5">Achats</option>
+                <option value="7">Autres frais</option>
                         {/* <option>Réglement Facture</option>
                         <option>Achat Administratif</option>
                         <option>Achat Technique</option>

@@ -136,7 +136,16 @@ const filterAll=()=>{
       },footer:""},
       {dataField:"idMission",text:"N° Mission",footer:""},
         {dataField:"objetMission",text:"Projet",footer:""},
-        {dataField:"totalMission",text:"Total Dépenses", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+        {dataField:"totalM",text:"Total Dépenses",formatter: (cellContent ,row) => {
+          if ( row.totalM==null) {
+            return (
+             <span>0</span>
+            )
+          }if ( row.totalM!=null){  
+          return(
+            <span>{row.totalM}</span>
+          )  }   
+      }, footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
         {dataField:"valideResponsable",text:"ValiderResp",footer:"", formatter: (cellContent ,row) => {
           if ( row.valideResponsable =="N") {
             return (

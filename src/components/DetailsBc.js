@@ -163,11 +163,13 @@ const DetailsBc = () => {
     const {id} = useParams()
     
     const url1=`https://localhost:7111/api/GetBoncaisse2/${id}`
-    const url2=`https://localhost:7111/api/SBC/${id}`
+    const url2=`https://localhost:7111/api/GetSousBonCaisse/${id}`
     const url3=`https://localhost:7111/api/GetAllPerformedOperations/${id}`
+    const url4=`https://localhost:7111/api/GetMissionsAndDepenset/${id}`
     const [bc,setBc]=useState([])
     const [sbc,setSbc]=useState([])
     const [sbc2,setSbc2]=useState([])
+    const [missionDepense,setMD]=useState([])
     const [numOp,setNumOp]=useState(0)
     const [show, setShow] = useState(false);
     const [showA, setShowA] = useState(false);
@@ -178,7 +180,7 @@ const DetailsBc = () => {
 
     }
     const deleteOperation=()=>{
-      axios.delete(`https://localhost:7111/api/SBC/${numOp}`).then((response)=>{})
+      axios.delete(`https://localhost:7111/api/DeleteSousBonCaisse/${numOp}`).then((response)=>{})
       setShow(false)
       ;
     }
@@ -199,9 +201,10 @@ const DetailsBc = () => {
     
     };
     useEffect(()=>{
-      axios.get(url1).then((response) => {setBc(response.data)});
+      axios.get(url1).then((response) => {setBc(response.data)})
       axios.get(url2).then((response)=>  {setSbc(response.data)})
       axios.get(url3).then((response)=>  {setSbc2(response.data)})
+      axios.get(url4).then((response)=>  {setMD(response.data)})
    })
   
    var date=moment(bc.dateCreationBc).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
@@ -221,12 +224,12 @@ const DetailsBc = () => {
 
     const columns=[
     
-      {dataField:"dateDepense",text:"Date Dépenses",footer:"",formatter : (row,cellContent)=>{
-        return moment(cellContent.dateDepense).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+      {dataField:"dateSbc",text:"Date Dépenses",footer:"",formatter : (row,cellContent)=>{
+        return moment(cellContent.dateSbc).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
       {dataField:"libelleOp",text:"Projet",footer: ""},
       {dataField:"idMs",text:"N° Mission",footer:""},
-      {dataField:"depense",text:"Dépenses",footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
+      {dataField:"depensetotal",text:"Dépenses",footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
    ,
   ]
   const columns2=[
@@ -244,7 +247,7 @@ const DetailsBc = () => {
 ]
 console.log(boncaisseEncourant)
  const Encaissement=()=>{
-         axios.post('https://localhost:7111/api/SBC',{
+         axios.post('https://localhost:7111/api/PostSousBonCaisse',{
           idBonCaisse: boncaisseEncourant,
           creditOperation: 0,
           dateCreation: dateEntreeCaisse,
@@ -256,7 +259,7 @@ console.log(boncaisseEncourant)
          setShowB(false)
  }
  const Decaissement=()=>{
-  axios.post('https://localhost:7111/api/SBC',{
+  axios.post('https://localhost:7111/api/PostSousBonCaisse',{
     idBonCaisse: boncaisseEncourant,
     creditOperation: creditSortie,
     dateCreation: dateSortieCaisse,
@@ -463,7 +466,7 @@ console.log(boncaisseEncourant)
      <H1>Tableau dépenses</H1>
      <BootStrapTable      
      keyField='idSBc'
-     data={sbc}
+     data={missionDepense}
      columns={columns}
      pagination={paginationFactory({
       sizePerPageList: [ {

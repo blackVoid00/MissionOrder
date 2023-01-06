@@ -4,7 +4,7 @@ import * as IoIcons from 'react-icons/io';
 import * as BiIcons from 'react-icons/bi';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import * as FcIcons from 'react-icons/fc';
+import * as GiIcons from 'react-icons/gi';
 export const SidebarData = [
   {
     title:"Acceuil",
@@ -80,6 +80,11 @@ export const SidebarData = [
         title: 'Operations Diverses',
         path: '/alimentation',
         icon: <FaIcons.FaCashRegister/>
+      },
+      {
+        title: 'Caisse du mois',
+        path: '/caisse',
+        icon: <GiIcons.GiCash/>
       }
     ]
   }
