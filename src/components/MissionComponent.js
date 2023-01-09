@@ -49,6 +49,7 @@ const urlDepense="https://localhost:7111/api/Depenses"
         id:id
         
       }}).then((response)=>{});
+      setShow(false)
     }
    const [tab,setTab] = useState([])
   const getUsers=async( )=> { 
@@ -207,12 +208,36 @@ const urlDepense="https://localhost:7111/api/Depenses"
                 </IconContext.Provider>
           <LabelM>Montant Dépense</LabelM>                    
          <InputM type="text" placeholder='entrer un montant' onChange={(e)=>setMontant(e.target.value)}></InputM>    
-        <button onClick={sendDepense}>Send Data</button>
+        <button onClick={handleShow}>Send Data</button>
        
         </Div1>
        
        
-       
+        <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Entrée de Caisse</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <p>Etes vous sur de vouloir soumettre cette dépense ?</p>
+                <ul>
+                  <li>Type dépense :{nature}</li>
+                  <li>Montant :{montant}</li>
+                </ul>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="success" onClick={sendDepense}>Valider</Button>
+                 
+                </Modal.Footer>
+         
+         </Modal>
        
          </SousDiv1>
          
