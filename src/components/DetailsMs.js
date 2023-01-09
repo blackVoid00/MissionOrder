@@ -8,8 +8,10 @@ import { useParams } from 'react-router-dom';
 import BootStrapTable from "react-bootstrap-table-next"
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import moment from 'moment';
-import {AiOutlineMinus} from "react-icons/ai"
+import {FaFileDownload} from "react-icons/fa"
 import {IconContext} from "react-icons/lib"
+import { ButtonM } from './StyleMsC';
+import { Modal } from 'react-bootstrap';
 const Div=styles.div`
 width: auto;
 display:flex;
@@ -87,6 +89,7 @@ const DetailsMs = () => {
     const {id}=useParams()
     const [data,setData]=useState([])
     const [details,setDetails]=useState([])
+    const [idDep,setIdDepense]=useState()
     useEffect(()=>{
         axios.get(`https://localhost:7111/api/GetAllPerformedOperationsOfaGivenMission/${id}`).then((response) => {
             setData(response.data)
@@ -97,6 +100,24 @@ const DetailsMs = () => {
       setDetails(response.data)
     })
    })
+   const [show, setShow] = useState(false);
+   const handleClose = () => setShow(false);
+   const handleShow = (e) => {
+     setShow(true)
+     setIdDepense(e)
+   };
+ const downloadFile=()=>{
+  axios.get(`https://localhost:7111/api/Depenses/${idDep}`).then((response)=>{
+   })
+   setShow(false)
+ }
+   const ButtonCell=(cell, row, rowIndex, formatExtraData)=>{
+    return (
+        
+        <IconContext.Provider value={{ color: '#1c539b',size:"25px" }}><FaFileDownload onClick={()=>handleShow(row.idDepense)}/></IconContext.Provider>
+    )
+    
+    }
     const columns=[
       {dataField:"idDepense",text:"N°Operation",footer:"Total"},
       {dataField:"dateCreation",footer:"",text:"Date ",formatter:
@@ -106,7 +127,7 @@ const DetailsMs = () => {
     },
     {dataField:"typeDepense",text:"Type Dépense",footer:""},
     {dataField:"montantDepense",text:"Montant", footer: columnData => columnData.reduce((acc, item) => acc + item, 0)},
-    
+    {datafield:"Details",text:"PJ", csvExport: false,footer:"",formatter: ButtonCell}
   ]
   var dateD=moment(details.dateD).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
   var dateR=moment(details.dateR).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
@@ -163,6 +184,34 @@ const DetailsMs = () => {
     <Button>Non Valider</Button>
    </div>
    </First>
+   <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+      
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+              
+                <p>Êtes-vous sûr de vouloir télécharger ce fichier ?</p>
+                <p>Si oui consulter "C:\Users\Public\ProjetMission"</p>
+                </Modal.Body>
+                <Modal.Footer>
+                  <div style={{display:"flex"}}>
+                  <ButtonM onClick={downloadFile} >Oui</ButtonM>
+                  <ButtonM  onClick={handleClose} >Non</ButtonM>
+                  </div>
+                  
+                </Modal.Footer>
+         
+         </Modal>
+    
     <Second>
     <H1>Depenses effectuées sur la Mission N° {id} :</H1>
     <br></br>
