@@ -25,6 +25,7 @@ const MissionComponent = () => {
   const [nature,setNature]=useState("")
   const [desc,setD]=useState("")
   const [duree,setDuration]=useState(0)
+  const [fileName,setFileName]=useState("")
   var curr = new Date();
      curr.setDate(curr.getDate());
      var datedepense = curr.toISOString().substring(0,10);
@@ -34,15 +35,20 @@ const MissionComponent = () => {
 
     const saveFile=(e) =>{
       setFile(e.target.files[0])
+      setFileName(e.target.files[0].name)
   }
+ let formData=new FormData();
+const urlDepense="https://localhost:7111/api/Depenses"
+  formData.append("file",file)
      const sendDepense =()=>{
-      axios.post("https://localhost:7111/api/Depenses",{
-        montantDepense:montant,
-        typeDepense:nature,
-        dateCreation :datedep,
-        idMission:id,
-        image:file
-      }).then((response)=>{});
+      axios.post(urlDepense,formData,{
+        params:{
+        Montant:montant,
+        TypeDepense:nature,
+        DateCreation:datedep,
+        id:id
+        
+      }}).then((response)=>{});
     }
    const [tab,setTab] = useState([])
   const getUsers=async( )=> { 
@@ -57,12 +63,12 @@ const MissionComponent = () => {
     return Math.abs(Math.round(difference));
   }
   var sommeF=0
-  useEffect(()=>{
-      getUsers()
-      // setTotal(()=>parseInt(gasoil)+ parseInt(parking)+ parseInt(repas)+ parseInt(ach)+parseInt(taxi)+parseInt(hotel)+parseInt(divers))
+  // useEffect(()=>{
+  //     getUsers()
+  //     // setTotal(()=>parseInt(gasoil)+ parseInt(parking)+ parseInt(repas)+ parseInt(ach)+parseInt(taxi)+parseInt(hotel)+parseInt(divers))
       
-      // setTotal2(()=>parseInt(gasoil2)+ parseInt(parking2)+ parseInt(repas2)+ parseInt(ach2)+parseInt(taxi2)+parseInt(hotel2)+parseInt(divers2))  
-  })
+  //     // setTotal2(()=>parseInt(gasoil2)+ parseInt(parking2)+ parseInt(repas2)+ parseInt(ach2)+parseInt(taxi2)+parseInt(hotel2)+parseInt(divers2))  
+  // })
   const setFinalTotal=()=>{
     let initialVal=0
     tab.push(total) 
@@ -126,13 +132,13 @@ const MissionComponent = () => {
                                <option>Rien</option>
                               </Select>
                       </Div1>
-                      <Div1>
+                      {/* <Div1>
                       <LabelM > Accompagné par :</LabelM>
                        <Select  onChange={(e)=>setAcc(e.target.value)}>
                                {data.map((user)=><option>{user.infoNom} {user.infoPrenom}</option>)}
                                <option>Personne</option>
                               </Select>
-                      </Div1>
+                      </Div1> */}
                    </SousDiv1>
                    <SousDiv2>
                            
@@ -181,6 +187,7 @@ const MissionComponent = () => {
             <Div3>
             <SousDiv1>
         <Div1>
+          
           <LabelM>Date Dépense</LabelM>
           <InputM type="date" defaultValue={datedepense}  onChange={(e)=>setDep(e.target.value)}></InputM>
           <LabelM>Type Dépense</LabelM>
@@ -200,10 +207,11 @@ const MissionComponent = () => {
                 </IconContext.Provider>
           <LabelM>Montant Dépense</LabelM>                    
          <InputM type="text" placeholder='entrer un montant' onChange={(e)=>setMontant(e.target.value)}></InputM>    
-     
+        <button onClick={sendDepense}>Send Data</button>
+       
         </Div1>
        
-         <Button left top bottom onClick={sendDepense}>Soumettre</Button>  
+       
        
        
          </SousDiv1>
