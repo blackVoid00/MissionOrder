@@ -8,6 +8,7 @@ import "./modal.css"
 import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import {TbCurrencyDirham} from 'react-icons/tb'
+import { useRef } from 'react';
 const MissionComponent = () => {
   const {id}=useParams()
   const [mission,setMission]=useState({})
@@ -35,6 +36,7 @@ const MissionComponent = () => {
       setFile(e.target.files[0])
       
   }
+  const hiddenFileInput = useRef(null)
  let formData=new FormData();
 const urlDepense="https://localhost:7111/api/Depenses"
   formData.append("file",file)
@@ -94,6 +96,9 @@ const urlDepense="https://localhost:7111/api/Depenses"
   })
   setShowU(false)
  }
+ const handleClick = event => {
+  hiddenFileInput.current.click();
+};
  useEffect(()=>{
   getUsers()
   const fields=[
@@ -212,10 +217,10 @@ const urlDepense="https://localhost:7111/api/Depenses"
                                 <option>Dépannage</option>
                                 <option>Autre</option>
                               </Select>
-                              <input id="file-input" type="file" style={{display :"none"}} ></input>
-                          <IconContext.Provider value={{ color: 'black', size: '30px'}}>
+                              {/* <input id="file-input" type="file" style={{display :"none"}} ></input>
+                          <IconContext.Provider value={{ color: '#1c539b', size: '30px'}}>
                           <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={uploadFile}></AiOutlineCloudUpload>
-                          </IconContext.Provider>
+                          </IconContext.Provider> */}
                            </Div1>
                            <Div1>
                          
@@ -223,9 +228,10 @@ const urlDepense="https://localhost:7111/api/Depenses"
                           <InputD {...register('description')} type="text" placeholder='entrer les details...' onChange={(e)=>setD(e.target.value)}></InputD>
                  
                            </Div1>
-                          <Div1>
+                          
                          <Button onClick={handleShowU}>Envoyer</Button>
-                          </Div1>
+                         
+                         
             </SousDiv2>
            
                </Div2>
@@ -238,8 +244,11 @@ const urlDepense="https://localhost:7111/api/Depenses"
               <Div1><H1>Mes Dépenses</H1></Div1>
         <Div1>
           <LabelM>Date Dépense</LabelM>
+          <br></br>
           <InputM type="date" defaultValue={datedepense}  onChange={(e)=>setDep(e.target.value)}></InputM>
+          <br></br> <br></br>
           <LabelM>Type Dépense</LabelM>
+          <br></br> 
           <Select className='Select-Ms' onChange={(e)=>setNature(e.target.value)}>
             <option>veuillez selectionner un choix</option>
                                 <option value="Hotel">Hotel</option>
@@ -251,15 +260,21 @@ const urlDepense="https://localhost:7111/api/Depenses"
                                 <option value="Achats Tech">Achats technique</option>
                               </Select>
                             
-                              <LabelM>Piéce jointe</LabelM>
-                              <input  type="file" name="image" accept="image/*"  multiple={false} onChange={(e)=>saveFile(e)}></input>
-          <LabelM>Montant Dépense</LabelM>                    
+                             
+                              <input style={{display:'none'}} type="file" name="image" accept="image/*"   ref={hiddenFileInput} multiple={false} onChange={(e)=>saveFile(e)}></input>
+                              <IconContext.Provider value={{ color: '#1c539b', size: '30px'}}>
+                          <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={handleClick}></AiOutlineCloudUpload>
+                          </IconContext.Provider>
+                          <br></br> <br></br>
+          <LabelM>Montant Dépense</LabelM>  
+          <br></br>                  
          <InputM type="text" placeholder='entrer un montant' onChange={(e)=>setMontant(e.target.value)}></InputM>&nbsp;&nbsp;&nbsp;&nbsp;
-         <IconContext.Provider value={{ color: 'black', size: '26px'}}>
+         <IconContext.Provider value={{ color: '#1c539b', size: '26px'}}>
          <TbCurrencyDirham></TbCurrencyDirham>
                           </IconContext.Provider>
         </Div1>
-        <Button onClick={handleShow}>Send Data</Button>
+        <br></br> 
+        <Button onClick={handleShow}>Soumettre</Button>
        
        
         <Modal

@@ -211,6 +211,7 @@ width:140px;
 height:30px;
 margin-left:140px;
 margin-top:20px;
+margin-bottom:60px;
 text-align:center !important;
 cursor:pointer;
 &:focus{
