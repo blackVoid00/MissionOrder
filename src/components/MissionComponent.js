@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import {TbCurrencyDirham} from 'react-icons/tb'
 import { useRef } from 'react';
+import {GiCash} from "react-icons/gi"
 const MissionComponent = () => {
   const {id}=useParams()
   const [mission,setMission]=useState({})
@@ -47,7 +48,6 @@ const urlDepense="https://localhost:7111/api/Depenses"
         TypeDepense:nature,
         DateCreation:datedep,
         id:id
-        
       }}).then((response)=>{});
       setShow(false)
     }
@@ -58,17 +58,15 @@ const urlDepense="https://localhost:7111/api/Depenses"
     })
   }
   console.log(file)
-  const duration=()=>{
-    var difference =(ha-hd) / 1000;
-    difference /= (60 * 60);
-    return Math.abs(Math.round(difference));
-  }
  
-  const getMission=()=>{
-    axios.get(`https://localhost:7111/api/Ms/${id}`).then((response)=>{
-       setMission(response.data)
-    })
-   }
+var x =getValues("heureFin")
+var y=getValues("heureDebut")
+var timeStart=new Date("01/01/2023 " + y).getHours();
+var timeEnd=new Date("01/01/2023 " + x).getHours();  
+var difference=timeEnd - timeStart
+console.log("heure fin "+x)
+console.log("heure debut is "+y)
+console.log("difference is "+difference)
  const updateMission=()=>{
   axios.put(`https://localhost:7111/api/Ms/${id}`,{idMission: id,
   numeroMission:getValues("numeroMission"),
@@ -82,7 +80,7 @@ const urlDepense="https://localhost:7111/api/Depenses"
   etatMission:"O",
   valideParSuperviseur: "N",
   valideParAdministrateur:"N",
-  dureeIntervention:0,
+  dureeIntervention:difference,
   lieu:getValues("lieu"),
   nature: getValues("nature"),
   vehicule:getValues("vehicule") ,
@@ -171,7 +169,7 @@ const urlDepense="https://localhost:7111/api/Depenses"
                       </Div1>
                       <Div1>
                       <LabelM> Durée Intervention :</LabelM>
-                       <InputM type="text" {...register('dureeIntervention')} disabled  onChange={(e)=>setDuration(e.target.value)}></InputM>
+                       <InputM type="text" {...register('dureeIntervention')} value={difference} disabled ></InputM>
                       </Div1>
                       <Div1>
                       <LabelM >Véhicule utilisé :</LabelM>
@@ -241,8 +239,10 @@ const urlDepense="https://localhost:7111/api/Depenses"
         <MainDiv2>
             <Div3>
             <SousDiv1>
-              <Div1><H1>Mes Dépenses</H1></Div1>
+              <div style={{display:"flex"}}><H1>Mes Dépenses</H1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <IconContext.Provider value={{ color: '#1c539b', size: '30px'}}> <GiCash></GiCash>
+                          </IconContext.Provider></div>
         <Div1>
+        <br></br> 
           <LabelM>Date Dépense</LabelM>
           <br></br>
           <InputM type="date" defaultValue={datedepense}  onChange={(e)=>setDep(e.target.value)}></InputM>
@@ -264,6 +264,7 @@ const urlDepense="https://localhost:7111/api/Depenses"
                               <input style={{display:'none'}} type="file" name="image" accept="image/*"   ref={hiddenFileInput} multiple={false} onChange={(e)=>saveFile(e)}></input>
                               <IconContext.Provider value={{ color: '#1c539b', size: '30px'}}>
                           <AiOutlineCloudUpload  style={{marginLeft:20}} onClick={handleClick}></AiOutlineCloudUpload>
+                     
                           </IconContext.Provider>
                           <br></br> <br></br>
           <LabelM>Montant Dépense</LabelM>  

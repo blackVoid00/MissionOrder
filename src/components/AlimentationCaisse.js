@@ -196,7 +196,10 @@ const AlimentationCaisse = () => {
             <Label>Débit</Label>
              <Input type="text" onChange={(e)=>setDebit(e.target.value)} placeholder="entrer une somme"></Input>
         </DivInput>}
-        
+        <DivInput>
+            <Label>Observation</Label>
+            <Input type="text"  placeholder="entrer une observation"></Input>
+        </DivInput>
        <Div>
        </Div>
        <Button onClick={handleShow}>Créer</Button>
