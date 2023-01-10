@@ -12,6 +12,7 @@ import {FaFileDownload} from "react-icons/fa"
 import {IconContext} from "react-icons/lib"
 import { ButtonM } from './StyleMsC';
 import { Modal } from 'react-bootstrap';
+import * as ReactBootstrap from 'react-bootstrap'
 const Div=styles.div`
 width: auto;
 display:flex;
