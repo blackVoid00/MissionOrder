@@ -71,13 +71,12 @@ hight:400px;
 const Login = () => {
     const url="https://localhost:7111/api/Login"
 
-
     const [identifiant,setIdentifiant]=useState("");
     const [password,setPassword] =useState("");
     const [loginstatus , setLoginstatus]=useState(false);
 
     let navigate=useNavigate()
-    
+    const url2=`https://localhost:7111/api/Login/${identifiant}`
    const LoginApp=()=>{
     axios.post(url,{
         identifiant: identifiant,
@@ -90,7 +89,7 @@ const Login = () => {
     });
       
     
-  
+   
     
    }
   return (

@@ -12,6 +12,7 @@ import {FaFileDownload} from "react-icons/fa"
 import {IconContext} from "react-icons/lib"
 import { ButtonM } from './StyleMsC';
 import { Modal } from 'react-bootstrap';
+import { useForm } from "react-hook-form";
 import * as ReactBootstrap from 'react-bootstrap'
 const Div=styles.div`
 width: auto;
@@ -39,7 +40,7 @@ const First=styles.div`
 width:450px;
 height:auto;
 margin-left:20px;
-margin-top:5%;
+margin-top:10px;
 padding:20px;
 background-color: white;
 box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -89,23 +90,87 @@ const DetailsMs = () => {
     
     const {id}=useParams()
     const [data,setData]=useState([])
-    const [details,setDetails]=useState([])
+    const [details,setDetails]=useState({})
     const [idDep,setIdDepense]=useState()
-    useEffect(()=>{
+    const { register,setValue,getValues} = useForm();
+   const [dateC,setDac]=useState("")
+   const [bc,setBc]=useState("")
+   const [numMission,setNumMission]=useState("")
+   const [nom,setNom]=useState("")
+   const [prenom,setPrenom]=useState("")
+   const [nature,setNature]=useState("")
+   const [objet,setObjet]=useState("")
+   const [dateDepart,setDateD]=useState("")
+   const [dateRetour,setDateR]=useState("")
+   const [heureDebut,setHeureD]=useState("")
+   const [heureFin,setHeureF]=useState("")
+   const [lieu,setLieu]=useState("")
+   const [vehicule,setVehicule]=useState("")
+   const [acc,setAcc]=useState("")
+   const [desc,setDesc]=useState("")
+   const [dureeIntervention,setDuree]=useState("")
+   
+   
+   
+   
+   useEffect(()=>{
         axios.get(`https://localhost:7111/api/GetAllPerformedOperationsOfaGivenMission/${id}`).then((response) => {
             setData(response.data)
         })
     })
    useEffect(()=>{
-    axios.get(`https://localhost:7111/api/Missions/${id}`).then((response) => {
-      setDetails(response.data)
-    })
-   })
+    const fields=[
+  "idMission",
+  "numeroMission",
+  "idSbonCaisse",
+  "dateCreation",
+  "totalMission",
+  "idUser",
+  "etatMission",
+  "valideResponsable",
+  "valideRh",
+  "objetMission",
+  "dateD",
+  "dateR",
+  "dureeIntervention",
+  "lieu",
+  "nature",
+  "vehicule",
+  "accompagne",
+  "heureDepart",
+  "heureRetour",
+  "description",
+  "nomUser",
+  "prenomUser"]
+            axios.get(`https://localhost:7111/api/Missions/${id}`).then((response)=>{
+                fields.forEach(field=>setValue(field,response.data[field])) 
+                setDetails(response.data) 
+            })
+        
+   },[])
    const [show, setShow] = useState(false);
    const handleClose = () => setShow(false);
    const handleShow = (e) => {
      setShow(true)
      setIdDepense(e)
+   };
+   const [showM, setShowM] = useState(false);
+   const handleCloseM = () => setShowM(false);
+   const handleShowM= (e) => {
+     setShowM(true)
+    
+   };
+   const [showModifier, setShowModifier] = useState(false);
+   const handleCloseModifier = () => setShowModifier(false);
+   const handleShowModifier= (e) => {
+     setShowModifier(true)
+    
+   };
+   const [showMV, setShowMV] = useState(false);
+   const handleCloseMV = () => setShowMV(false);
+   const handleShowMV= (e) => {
+     setShowMV(true)
+    
    };
  const downloadFile=()=>{
   axios.get(`https://localhost:7111/api/Depenses/${idDep}`).then((response)=>{
@@ -117,8 +182,83 @@ const DetailsMs = () => {
         
         <IconContext.Provider value={{ color: '#1c539b',size:"25px" }}><FaFileDownload onClick={()=>handleShow(row.idDepense)}/></IconContext.Provider>
     )
-    
     }
+    const modifierMission=()=>{
+      axios.put(`https://localhost:7111/api/Missions/${id}`,{
+      idMission: id,
+      numeroMission:getValues("numeroMission"),
+      idBonCaisse:getValues("idSbonCaisse"),
+      dateCreation:getValues("dateCreation"),
+      dateDebut:getValues("dateD"),
+      dateFin:getValues("dateF"),
+      idUser:getValues("idUser"),
+      objetMission:getValues("objetMission"),
+      totalMission: getValues("totalMission"),
+      etatMission:getValues("etatMission"),
+      valideParSuperviseur: getValues("valideResponsable"),
+      valideParAdministrateur:getValues("valideRh"),
+      dureeIntervention:getValues("dureeIntervention"),
+      lieu:getValues("lieu"),
+      nature: getValues("nature"),
+      vehicule:getValues("vehicule") ,
+      accompagnePar: getValues("accompagne"),
+      heureDebut: getValues("heureDebut"),
+      heureFin: getValues("heureFin"),
+      description:getValues("description")
+      }).then((response) => {})
+      setShowModifier(false)
+ }
+    const invalidateMission=()=>{
+      axios.put(`https://localhost:7111/api/Missions/${id}`,{
+      idMission: id,
+      numeroMission:getValues("numeroMission"),
+      idBonCaisse:getValues("idSbonCaisse"),
+      dateCreation:getValues("dateCreation"),
+      dateDebut:getValues("dateD"),
+      dateFin:getValues("dateF"),
+      idUser:getValues("idUser"),
+      objetMission:getValues("objetMission"),
+      totalMission: getValues("totalMission"),
+      etatMission:"O",
+      valideParSuperviseur: "N",
+      valideParAdministrateur:"N",
+      dureeIntervention:getValues("dureeIntervention"),
+      lieu:getValues("lieu"),
+      nature: getValues("nature"),
+      vehicule:getValues("vehicule") ,
+      accompagnePar: getValues("accompagne"),
+      heureDebut: getValues("heureDebut"),
+      heureFin: getValues("heureFin"),
+      description:getValues("description")
+      }).then((response) => {})
+      setShowMV(false)
+ }
+    const validateMission=()=>{
+      axios.put(`https://localhost:7111/api/Missions/${id}`,{
+      idMission: id,
+      numeroMission:getValues("numeroMission"),
+      idBonCaisse:getValues("idSbonCaisse"),
+      dateCreation:getValues("dateCreation"),
+      dateDebut:getValues("dateD"),
+      dateFin:getValues("dateF"),
+      idUser:getValues("idUser"),
+      objetMission:getValues("objetMission"),
+      totalMission: getValues("totalMission"),
+      etatMission:"F",
+      valideParSuperviseur: "O",
+      valideParAdministrateur:"O",
+      dureeIntervention:getValues("dureeIntervention"),
+      lieu:getValues("lieu"),
+      nature: getValues("nature"),
+      vehicule:getValues("vehicule") ,
+      accompagnePar: getValues("accompagne"),
+      heureDebut: getValues("heureDebut"),
+      heureFin: getValues("heureFin"),
+      description:getValues("description")
+      }).then((response) => {})
+      setShowM(false)
+ }
+ 
     const columns=[
       {dataField:"idDepense",text:"N°Operation",footer:"Total"},
       {dataField:"dateCreation",footer:"",text:"Date ",formatter:
@@ -136,55 +276,134 @@ const DetailsMs = () => {
    <Div>
    <First>
    <Div1 >
-    <Title>N° Mission </Title>
-    <P value={details.numeroMission}></P>
+    <Title>Date Création  </Title>
+    <P {...register('dateCreation')} onChange={(e)=>setDac(e.target.value)}></P>
    </Div1>
+ 
    <Div1 >
     <Title>Nom </Title>
-    <P value={details.nomUser}></P>
+    <P {...register('nomUser')} disabled onChange={(e)=>setNom(e.target.value)}></P>
    </Div1>
    <Div1 >
     <Title>Prénom </Title>
-    <P value={details.prenomUser}></P>
+    <P {...register('prenomUser')} disabled onChange={(e)=>setPrenom(e.target.value)}></P>
    </Div1>
    <Div1 >
     <Title>Nature Mission </Title>
-    <P value={details.nature}></P>
+    <P {...register('nature')} onChange={(e)=>setNature(e.target.value)}></P>
+   </Div1>
+   <Div1 >
+    <Title>Objet Mission </Title>
+    <P {...register('objetMission')} onChange={(e)=>setObjet(e.target.value)}></P>
    </Div1>
    <Div1 >
     <Title>Date Départ  </Title>
-    <P value={dateD}></P>
+    <P {...register('dateD')} onChange={(e)=>setDateD(e.target.value)}></P>
    </Div1>
+  
    <Div1 >
     <Title>Heure Départ </Title>
-    <P value={details.heureDepart}></P>
+    <P type="time" {...register('heureDepart')} onChange={(e)=>setHeureD(e.target.value)}></P>
    </Div1>
    <Div1 >
     <Title>Date Retour  </Title>
-    <P value={dateR} ></P>
+    <P  {...register('dateR')} onChange={(e)=>setDateR(e.target.value)}></P>
    </Div1>
    <Div1 >
     <Title>Heure Retour </Title>
-    <P value={details.heureRetour}></P>
+    <P type="time"{...register('heureRetour')} onChange={(e)=>setHeureF(e.target.value)}></P>
    </Div1>
    <Div1 >
     <Title>Lieu </Title>
-    <P value={details.lieu}></P>
+    <P {...register('lieu')} onChange={(e)=>setLieu(e.target.value)}></P>
    </Div1>
    <Div1 >
     <Title>Vehicule </Title>
-    <P value={details.vehicule}></P>
+    <P {...register('vehicule')} onChange={(e)=>setVehicule(e.target.value)}></P>
    </Div1>
    <Div1 >
     <Title>Accompagné par  </Title>
-    <P value={details.accompagne}></P>
+    <P {...register('accompagne')} onChange={(e)=>setAcc(e.target.value)}></P>
+   </Div1>
+   <Div1 >
+    <Title>Description  </Title>
+    <P {...register('description')} onChange={(e)=>setDesc(e.target.value)}></P>
+   </Div1>
+   <Div1 >
+    <Title>Durée Intervention  </Title>
+    <P {...register('dureeIntervention')} onChange={(e)=>setDuree(e.target.value)}></P>
    </Div1>
    <div style={{display:"flex"}}>
-    <Button>Modifier</Button>
-    <Button>Valider</Button>
-    <Button>Non Valider</Button>
+    <Button onClick={handleShowModifier}>Modifier</Button>
+    <Button onClick={handleShowM}>Valider</Button>
+    <Button onClick={handleShowMV}>Non Valider</Button>
    </div>
    </First>
+   <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+        show={showModifier}
+        onHide={handleCloseModifier}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Dépense</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <p>Etes vous sur de vouloir modifier cette mission ?</p>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="success" onClick={modifierMission}>Valider</Button>
+                 
+                </Modal.Footer>
+         
+         </Modal>
+   <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+        show={showMV}
+        onHide={handleCloseMV}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Dépense</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <p>Etes vous sur de vouloir invalider cette mission ?</p>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="success" onClick={invalidateMission}>Valider</Button>
+                 
+                </Modal.Footer>
+         
+         </Modal>
+         
+   <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        className="special_modal"
+        show={showM}
+        onHide={handleCloseM}
+        backdrop="static"
+        keyboard={false}
+        style={{color: "black"}}>
+         
+         <Modal.Header closeButton variant="white">
+                  <Modal.Title  style={{color: "black",fontWeight: "bold"}}>Dépense</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <p>Etes vous sur de vouloir valider cette mission ?</p>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="success" onClick={validateMission}>Valider</Button>
+                 
+                </Modal.Footer>
+         
+         </Modal>
+         
    <Modal
         aria-labelledby="contained-modal-title-vcenter"
         className="special_modal"

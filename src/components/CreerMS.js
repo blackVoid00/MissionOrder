@@ -133,6 +133,7 @@ const CreerMS = () => {
   const sendData=()=>{
      axios.post("https://localhost:7111/api/Missions",{
       idBonCaisse: Number(numBc),
+      numeroMission:"test",
       dateCreation: date,
       totalMission: 0,
       idUser: Number(val),
