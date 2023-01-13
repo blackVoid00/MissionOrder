@@ -136,6 +136,7 @@ const CreerMS = () => {
       numeroMission:"test",
       dateCreation: date,
       totalMission: 0,
+      dureeIntervention:0,
       idUser: Number(val),
       etatMission: "O",
       valideParSuperviseur: "N",

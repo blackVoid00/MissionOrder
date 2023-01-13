@@ -68,9 +68,10 @@ console.log("heure fin "+x)
 console.log("heure debut is "+y)
 console.log("difference is "+difference)
  const updateMission=()=>{
-  axios.put(`https://localhost:7111/api/PutMission/${id}`,{idMission: id,
+  axios.put(`https://localhost:7111/api/PutMission/${id}`,{
+  idMission: id,
+  idBonCaisse:getValues("idSbonCaisse"),
   numeroMission:getValues("numeroMission"),
-  idBonCaisse:getValues("idSBonCaisse"),
   dateCreation:getValues("dateCreation"),
   dateDebut:getValues("dateD"),
   dateFin:getValues("dateR"),
@@ -101,7 +102,7 @@ console.log("difference is "+difference)
   getUsers()
   const fields=[
   "numeroMission",
-  "idSBonCaisse",
+  "idSbonCaisse",
   "dateCreation",
   "totalMission",
   "idUser",
