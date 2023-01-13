@@ -35,9 +35,9 @@ const MissionForUser = () => {
         )
         
         }
+     const idUser=localStorage.getItem('id');
 
-
-    const url="https://localhost:7111/api/Missions"
+    const url=`https://localhost:7111/api/GetMission/${idUser}`
     const [ms,setMs]=useState([])
     useEffect(()=>{
         axios.get(url).then((response) => {
@@ -91,13 +91,14 @@ const filterAll=()=>{
 }
     const columns=[
       {dataField:"idMission",text:"N° Mission"},
-      {dataField:"dateDepart",text:"Date Début",formatter : (row,cellContent)=>{
-        return moment(cellContent.dateDepart).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+      {dataField:"dateD",text:"Date Début",formatter : (row,cellContent)=>{
+        return moment(cellContent.dateD).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
-      {dataField:"dateRetour",text:"Date Retour",formatter : (row,cellContent)=>{
-        return moment(cellContent.dateRetour).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
+      {dataField:"dateR",text:"Date Retour",formatter : (row,cellContent)=>{
+        return moment(cellContent.dateR).format('YYYY-MM-DDThh:mm:ss').split('T')[0] 
       }},
-      
+      {dataField:"prenomUser",text:"Prenom"},
+      {dataField:"nomUser",text:"Nom"},
       {dataField:"objetMission",text:"Projet"},
       {dataField:"etatMission",text:"Statut", formatter: (cellContent ,row) => {
             if ( row.etatMission =="O") {
@@ -124,46 +125,8 @@ const filterAll=()=>{
   <div  style={{display:"flex",width:"auto"}}>
   <div style={{display:"inline-block"}}>
     <H1>Missions du mois {all}</H1>
-       <div style={{display:"inline-block" ,marginLeft:"0px",marginTop:"80px",backgroundColor:"white",boxShadow: "0 6px 10px 0 rgba(0, 0, 0 , .1)"}}>
-          <div style={{backgroundColor:"#1c539b"}}><p style={{opacity:"0"}}>hey</p></div>
-          <div style={{display:"flex",marginLeft: '10px'}}>
-          <Div1>
-           <LabelM l w>Du</LabelM>
-           <InputDate b defaultValue={date} type="date" onChange={(e)=>setDateDu(e.target.value)}></InputDate>
-          </Div1>
-          <Div1>
-           <LabelM l w>Au</LabelM>
-           <InputDate b defaultValue={date} type="date" onChange={(e)=>setDateAu(e.target.value)}></InputDate>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <IconContext.Provider value={{ color: '#b71c1c',size:"20px" }}><AiOutlineFilter onClick={filterDateDuAu}></AiOutlineFilter></IconContext.Provider>
-          </Div1>
-         
-         
-        
-          </div>
-        
-        
-          <br></br>  <br></br> 
-          <div style={{display:"flex"}}>
-            <LabelR w>Statut</LabelR>
-             <div style={{display:"flex"}}>
-             <div style={{display:"flex"}}>
-              <Label1>Fermée</Label1>&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="checkbox" name="checkbox" onChange={onChangeStatus} onClick={CheckOneTime} value="F"></input>
-              </div>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <div style={{display:"flex"}}>
-              <Label2 >Ouverte</Label2>
-              <input type="checkbox" name="checkbox" onChange={onChangeStatus} onClick={CheckOneTime} value="O" ></input>&nbsp;&nbsp;&nbsp;
+  
        
-              </div>
-              
-             </div>
-             
-          </div>
-          <div style={{marginLeft:"700px",marginTop:"0px",marginBottom:"50px"}}>
-        
-          </div>
-           </div>
           </div>
        
     <div style={{marginTop: '250px',marginLeft:"160px"}}>
@@ -182,7 +145,7 @@ const filterAll=()=>{
       <>
      
          <div style={{display: 'flex',justifyContent:"space-between"}}>
-         <ButtonM large onClick={()=>navigate('/creerMs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineFileAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM>
+         {/* <ButtonM large onClick={()=>navigate('/creerMs')}><IconContext.Provider value={{ color: '#1c539b',size:"35px" }}><AiOutlineFileAdd/></IconContext.Provider>&nbsp; Ajouter</ButtonM> */}
          <ExportCSVButton { ...props.csvProps }><IconContext.Provider value={{color:"#1c539b",size:"30px"}}><BiExport/></IconContext.Provider>&nbsp;Exporter csv</ExportCSVButton>
          </div>
          <br></br><br></br>

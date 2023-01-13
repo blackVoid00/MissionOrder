@@ -74,23 +74,39 @@ const Login = () => {
     const [identifiant,setIdentifiant]=useState("");
     const [password,setPassword] =useState("");
     const [loginstatus , setLoginstatus]=useState(false);
-
+    const [role,setRole] = useState("")
     let navigate=useNavigate()
     const url2=`https://localhost:7111/api/Login/${identifiant}`
    const LoginApp=()=>{
+    axios.get(url2).then((response)=>{
+        setRole(response.data['infoRole'])
+        localStorage.setItem("role", response.data['infoRole']);
+        localStorage.setItem("nom", response.data['infoNom']);
+        localStorage.setItem("prenom", response.data['infoPrenom']);
+        localStorage.setItem("id", JSON.stringify(response.data['infoId']));
+        console.log(response.data['infoId'])
+    });
+
     axios.post(url,{
         identifiant: identifiant,
         pwd: password,
     }).then((response)=>{
         if(response.status==200){
             localStorage.setItem("loginId", identifiant);
-            navigate("/home")
+            if(role=="0"){
+                navigate('/homeuser')
+            }
+            if(role=="1"){
+                navigate('/homeadmin')
+            }
+            if(role=="2"){
+                navigate('/homeadmin')
+            }
         } 
     });
       
-    
-   
-    
+ 
+
    }
   return (
  

@@ -23,16 +23,18 @@ import Home2 from "./components/Home2"
 import AlimentationCaisse from "./components/AlimentationCaisse";
 import MissionForUser from "./components/MissionForUser";
 import Caisse from "./components/Caisse";
+import ProtectedUserRoute from "./components/ProtectedUserRoute";
+import Unauthorized from "./components/Unauthorized";
 const Routing = () => {
-    return (
+    return ( 
         <Routes>
-            <Route exact path="/" element={<ProtectedRoute></ProtectedRoute>}>
+            <Route exact path="/" element={<ProtectedRoute/>}>
                   
                     <Route  path="/alimentation" element={<Layout><AlimentationCaisse></AlimentationCaisse></Layout>}></Route>
                     <Route  path="/compteuser" element={<Layout><CompteUsers></CompteUsers></Layout>}></Route>
                     <Route  path="/cuswipe/:id" element={<Layout><DetailsCU></DetailsCU></Layout>}></Route>
                     <Route  path="/app" element={<Layout><Home2></Home2></Layout>}></Route>
-                    <Route  path="/home" element={<Home></Home>}></Route>
+                    <Route  path="/homeadmin" element={<Home></Home>}></Route>
                     <Route  path="/filter" element={<Layout><FilterByRole></FilterByRole></Layout>}></Route>
                     <Route  path="/userlist" element={<Layout><ListeUser></ListeUser></Layout>}></Route>
                     <Route  path="/creerMs" element={<Layout><CreerMS></CreerMS></Layout>}></Route>
@@ -40,17 +42,25 @@ const Routing = () => {
                     <Route path="/bcaisselist" element={<Layout><ListeBC></ListeBC></Layout>}></Route>
                     <Route path="/caisse" element={<Layout><Caisse></Caisse></Layout>}></Route>
                     <Route  path="/missionlist" element={<Layout><ListeMs></ListeMs></Layout>}></Route>
-                    <Route path="/mission/:id" element={<Layout><Mission></Mission></Layout>}></Route>
+                    <Route path="/detailbc/:id" element={<Layout><DetailsBc></DetailsBc></Layout>}></Route>
+                    <Route path="/detailms/:id" element={<Layout><DetailsMs></DetailsMs></Layout>}></Route>
                     <Route  path="/addUser" element={<Layout><CreerUser></CreerUser></Layout>}></Route>
                     <Route  path="/editUser/:id" element={<Layout><CreerUser></CreerUser></Layout>}></Route>
                     <Route  path="/userdetail/:id" element={<Layout><DetailUser></DetailUser></Layout>}></Route>
+                    </Route>
+                    <Route exact path="/" element={<ProtectedUserRoute/>}>
+                    <Route  path="/homeuser" element={<Home></Home>}></Route>
+                    <Route path="/mission/:id" element={<Layout><Mission></Mission></Layout>}></Route>
                     <Route path="/listmsUser" element={<Layout><MissionForUser></MissionForUser></Layout>}></Route>
-                    <Route path="/detailbc/:id" element={<Layout><DetailsBc></DetailsBc></Layout>}></Route>
-                    <Route path="/detailms/:id" element={<Layout><DetailsMs></DetailsMs></Layout>}></Route>
-            </Route>
-            <Route exact path="/" element={<PublicRoute></PublicRoute>}>
+                    </Route>
+                    
+                    
+        
+            
                       <Route  path="login" element={<Login />}></Route>
-            </Route>
+                      <Route path="unauthorized" element={<Unauthorized></Unauthorized>}></Route>
+                      
+            
         </Routes>
         
  

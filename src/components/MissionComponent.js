@@ -59,8 +59,8 @@ const urlDepense="https://localhost:7111/api/Depenses"
   }
   console.log(file)
  
-var x =getValues("heureFin")
-var y=getValues("heureDebut")
+var x =getValues("heureRetour")
+var y=getValues("heureDepart")
 var timeStart=new Date("01/01/2023 " + y).getHours();
 var timeEnd=new Date("01/01/2023 " + x).getHours();  
 var difference=timeEnd - timeStart
@@ -68,25 +68,25 @@ console.log("heure fin "+x)
 console.log("heure debut is "+y)
 console.log("difference is "+difference)
  const updateMission=()=>{
-  axios.put(`https://localhost:7111/api/Ms/${id}`,{idMission: id,
+  axios.put(`https://localhost:7111/api/PutMission/${id}`,{idMission: id,
   numeroMission:getValues("numeroMission"),
-  idBonCaisse:getValues("idBonCaisse"),
+  idBonCaisse:getValues("idSBonCaisse"),
   dateCreation:getValues("dateCreation"),
-  dateDebut:getValues("dateDebut"),
-  dateFin:getValues("dateFin"),
+  dateDebut:getValues("dateD"),
+  dateFin:getValues("dateR"),
   idUser:getValues("idUser"),
   objetMission:getValues("objetMission"),
   totalMission: 0,
-  etatMission:"O",
-  valideParSuperviseur: "N",
-  valideParAdministrateur:"N",
+  etatMission:getValues("etatMission"),
+  valideParSuperviseur: getValues("valideResponsable"),
+  valideParAdministrateur:getValues("valideRh"),
   dureeIntervention:difference,
   lieu:getValues("lieu"),
   nature: getValues("nature"),
   vehicule:getValues("vehicule") ,
-  accompagnePar: getValues("accompagnePar"),
-  heureDebut: getValues("heureDebut"),
-  heureFin: getValues("heureFin"),
+  accompagnePar: getValues("accompagne"),
+  heureDebut: getValues("heureDepart"),
+  heureFin: getValues("heureRetour"),
   description:getValues("description")
 
   }).then((response)=>{
@@ -101,25 +101,25 @@ console.log("difference is "+difference)
   getUsers()
   const fields=[
   "numeroMission",
-  "idBonCaisse",
+  "idSBonCaisse",
   "dateCreation",
   "totalMission",
   "idUser",
   "etatMission",
-  "valideParSuperviseur",
-  "valideParAdministrateur",
+  "valideRh",
+  "valideResponsable",
   "objetMission",
-  "dateDebut",
-  "dateFin",
+  "dateR",
+  "dateD",
   "dureeIntervention",
   "lieu",
   "nature",
   "vehicule",
-  "accompagnePar",
-  "heureDebut",
-  "heureFin",
+  "accompagne",
+  "heureDepart",
+  "heureRetour",
   "description"]
-        axios.get(`https://localhost:7111/api/Ms/${id}`).then((response)=>{
+        axios.get(`https://localhost:7111/api/Missions/${id}`).then((response)=>{
             fields.forEach(field=>setValue(field,response.data[field])) 
              setMission(response.data) 
         })
@@ -161,11 +161,11 @@ console.log("difference is "+difference)
      
                       <Div1>
                        <LabelM>  Date de Début :</LabelM>
-                       <InputM type="text" {...register('dateDebut')} onChange={(e)=>setDd(e.target.value)} disabled></InputM>
+                       <InputM type="text" {...register('dateD')} onChange={(e)=>setDd(e.target.value)} disabled></InputM>
                       </Div1>
                       <Div1>
                        <LabelM>  Heure de Début :</LabelM>
-                       <InputM type="time" {...register('heureDebut')} onChange={(e)=>setHd(e.target.value)}></InputM>
+                       <InputM type="time" {...register('heureDepart')} onChange={(e)=>setHd(e.target.value)}></InputM>
                       </Div1>
                       <Div1>
                       <LabelM> Durée Intervention :</LabelM>
@@ -184,7 +184,7 @@ console.log("difference is "+difference)
                       </Div1>
                       <Div1>
                       <LabelM > Accompagné par :</LabelM>
-                       <Select {...register('accompagnePar')} onChange={(e)=>setAcc(e.target.value)}>
+                       <Select {...register('accompagne')} onChange={(e)=>setAcc(e.target.value)}>
                        <option>Veuillez selectionner une personne</option>
                                {data.map((user)=><option>{user.infoNom} {user.infoPrenom}</option>)}
                                <option value="Personne">Personne</option>
@@ -195,11 +195,11 @@ console.log("difference is "+difference)
                            
                        <Div1>
                        <LabelM >Date de Fin :</LabelM>
-                       <InputM disabled {...register('dateFin')} onChange={(e)=>setDr(e.target.value)}></InputM>
+                       <InputM disabled {...register('dateR')} onChange={(e)=>setDr(e.target.value)}></InputM>
                       </Div1>
                       <Div1>
                       <LabelM > Heure de retour :</LabelM>
-                       <InputM {...register('heureFin')} type="time"  onChange={(e)=>setHa(e.target.value)}></InputM>
+                       <InputM {...register('heureRetour')} type="time"  onChange={(e)=>setHa(e.target.value)}></InputM>
                       </Div1> 
                       <Div1>
                       <LabelM> lieu :</LabelM>

@@ -40,10 +40,10 @@ const Home2 = () => {
   
 })
 // defining a "useEffect" hook that will call two functions when the app is running (updating the Dom automatically)
-  useEffect(()=>{
-    getData()
-    getChart()
-   })
+  // useEffect(()=>{
+  //   getData()
+  //   getChart()
+  //  })
 //this function get the data from the api's url
 const getData=() => {
   axios.get(url).then((response) =>{

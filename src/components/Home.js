@@ -47,9 +47,17 @@ const Home = () => {
   const navigate=useNavigate()
 
 const GoCaisse=()=>{
-  navigate("/app")
+  const role=localStorage.getItem('role')
+  if(role=="0"){
+    navigate('/listmsUser')
+  }
+  if(role=="1"){
+    navigate('/app')
+  }
+  if(role=="2"){
+    navigate('/app')
+  }
 }
-
   return (
     <MainDiv>
         <Container1>

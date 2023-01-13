@@ -113,12 +113,11 @@ const DetailsMs = () => {
    
    
    
+   
    useEffect(()=>{
-        axios.get(`https://localhost:7111/api/GetAllPerformedOperationsOfaGivenMission/${id}`).then((response) => {
-            setData(response.data)
-        })
-    })
-   useEffect(()=>{
+    axios.get(`https://localhost:7111/api/GetAllPerformedOperationsOfaGivenMission/${id}`).then((response) => {
+      setData(response.data)
+  })
     const fields=[
   "idMission",
   "numeroMission",
@@ -190,7 +189,7 @@ const DetailsMs = () => {
       idBonCaisse:getValues("idSbonCaisse"),
       dateCreation:getValues("dateCreation"),
       dateDebut:getValues("dateD"),
-      dateFin:getValues("dateF"),
+      dateFin:getValues("dateR"),
       idUser:getValues("idUser"),
       objetMission:getValues("objetMission"),
       totalMission: getValues("totalMission"),
